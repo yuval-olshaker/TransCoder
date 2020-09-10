@@ -92,8 +92,8 @@ class Translator:
         assert len(reloaded['decoder'].keys()) == len(
             list(p for p, _ in self.decoder.state_dict().items()))
 
-        self.encoder.cuda()
-        self.decoder.cuda()
+        # self.encoder.cuda()
+        # self.decoder.cuda()
 
         self.encoder.eval()
         self.decoder.eval()
@@ -104,7 +104,9 @@ class Translator:
             assert lang1 in {'python', 'java', 'cpp'}, lang1
             assert lang2 in {'python', 'java', 'cpp'}, lang2
 
+            device = 'cpu'
             DEVICE = device
+
             tokenizer = getattr(code_tokenizer, f'tokenize_{lang1}')
             detokenizer = getattr(code_tokenizer, f'detokenize_{lang2}')
             lang1 += '_sa'
