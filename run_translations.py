@@ -3,8 +3,10 @@
 import argparse
 import preprocessing.src.code_tokenizer as code_tokenizer
 import translate
+import html_templates
 
 SEPARATOR = '|'
+
 
 def get_parser():
     """
@@ -19,18 +21,21 @@ def get_parser():
 
     return parser
 
+
 # splits a line to function-name and code. By | symbol
 def split_line(line):
     index = line.find(SEPARATOR)
-    name = line[:index-1] #cuts the space before the |
-    code = line[index+2:-1] # cut the space after the |. cut \n in the end
+    name = line[:index - 1]  # cuts the space before the |
+    code = line[index + 2:-1]  # cut the space after the |. cut \n in the end
     return name, code
+
 
 # read the data from files
 def read_file(file_path):
     with open(file_path) as file:
         lines = file.readlines()
-    return list( map( split_line, lines))
+    return list(map(split_line, lines))
+
 
 # parse the lines and detokenize them so it will be readable for humans
 def make_java_readable(java_file):
@@ -63,6 +68,22 @@ def create_params(src_lang, tgt_lang):
     return a_params
 
 
+# return the whole column of code by language and origin or translated
+# by the way change the code to html representation
+def get_code_from_corpus(file_translated, column):
+    return list(map(lambda line: line[column].replace('\n', '<br>'), file_translated))
+
+# create the html code
+def create_html(lang, origin, translated):
+    html_string = html_templates.OPENING.replace('LANGUAGE', lang)
+    for i in range(len(combined[0])):
+        html_string += html_templates.CODE_TITLE.replace('ENTER_FUNCTION_NAME', combined[0][i])
+        html_string += html_templates.CODE.replace('ORIGIN_CODE', combined[origin][i]).replace('TRANSLATED_CODE',
+                                                                                          combined[translated][i])
+    html_string += html_templates.ENDING
+    return html_string
+
+
 if __name__ == '__main__':
 
     # generate parser / parse parameters
@@ -81,4 +102,20 @@ if __name__ == '__main__':
     java_file_translated = translate_lines(True, java_file_readable)
     python_file_translated = translate_lines(False, python_file_readable)
 
-    print(java_file[15][1])
+    # combine translation and original
+    combined = [get_code_from_corpus(java_file_translated, 0), get_code_from_corpus(java_file_translated, 2),
+                get_code_from_corpus(python_file_translated, 3),
+                get_code_from_corpus(python_file_translated, 2), get_code_from_corpus(java_file_translated, 3)]
+
+    # create the html string
+    java_string = create_html('java', 1, 2)
+    python_string = create_html('python', 3, 4)
+
+
+    # print to html
+    with open('/mnt/c/TransCoder/test_java_web.html', 'w') as html_file:
+        html_file.write(java_string)
+    with open('/mnt/c/TransCoder/test_python_web.html', 'w') as html_file:
+        html_file.write(python_string)
+
+    print('a')
