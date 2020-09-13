@@ -146,7 +146,7 @@ if __name__ == '__main__':
 
     print_for_evaluation('/mnt/c/TransCoder/outputs/origin_java.java', 1)
     print_for_evaluation('/mnt/c/TransCoder/outputs/translated_java.java', 2)
-    print_for_evaluation('/mnt/c/TransCoder/outputs/origin_python.java', 3)
-    print_for_evaluation('/mnt/c/TransCoder/outputs/translated_python.java', 4)
+    print_for_evaluation('/mnt/c/TransCoder/outputs/origin_python.py', 3)
+    print_for_evaluation('/mnt/c/TransCoder/outputs/translated_python.py', 4)
 
     print_time()
