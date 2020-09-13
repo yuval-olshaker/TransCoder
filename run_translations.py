@@ -6,7 +6,7 @@ import translate
 import html_templates
 
 SEPARATOR = '|'
-
+LONG_CODES = ['FINDING_THE_MAXIMUM_SQUARE_SUB_MATRIX_WITH_ALL_EQUAL_ELEMENTS', 'WILDCARD_CHARACTER_MATCHING']
 
 def get_parser():
     """
@@ -62,7 +62,7 @@ def create_params(src_lang, tgt_lang):
     a_params = a_parser.parse_args()
     a_params.model_path = '/mnt/c/TransCoder/model_from_' + src_lang + '_to_' + tgt_lang + '.pth'
     a_params.BPE_path = '/mnt/c/TransCoder/data/BPE_with_comments_codes'
-    a_params.beam_size = 1
+    a_params.beam_size = 5
     a_params.src_lang = src_lang
     a_params.tgt_lang = tgt_lang
     return a_params
