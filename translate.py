@@ -13,6 +13,7 @@
 #     --src_lang cpp --tgt_lang java \
 #     --model_path trained_model.pth < input_code.cpp
 #
+from datetime import datetime
 
 import argparse
 import os
@@ -155,8 +156,14 @@ class Translator:
                 results.append(detokenizer(t))
             return results
 
+def print_time():
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print("Current Time =", current_time)
 
 if __name__ == '__main__':
+    print_time()
+
     # generate parser / parse parameters
     parser = get_parser()
     params = parser.parse_args()
@@ -183,3 +190,6 @@ if __name__ == '__main__':
     for out in output:
         print("=" * 20)
         print(out)
+
+    print_time()
+
