@@ -4,6 +4,7 @@ import argparse
 import preprocessing.src.code_tokenizer as code_tokenizer
 import translate
 import html_templates
+from datetime import datetime
 
 SEPARATOR = '|'
 LONG_CODES = ['FINDING_THE_MAXIMUM_SQUARE_SUB_MATRIX_WITH_ALL_EQUAL_ELEMENTS', 'WILDCARD_CHARACTER_MATCHING']
@@ -62,7 +63,7 @@ def create_params(src_lang, tgt_lang):
     a_params = a_parser.parse_args()
     a_params.model_path = '/mnt/c/TransCoder/model_from_' + src_lang + '_to_' + tgt_lang + '.pth'
     a_params.BPE_path = '/mnt/c/TransCoder/data/BPE_with_comments_codes'
-    a_params.beam_size = 5
+    a_params.beam_size = 1
     a_params.src_lang = src_lang
     a_params.tgt_lang = tgt_lang
     return a_params
@@ -84,7 +85,14 @@ def create_html(lang, origin, translated):
     return html_string
 
 
+def print_time():
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print("Current Time =", current_time)
+
+
 if __name__ == '__main__':
+    print_time()
 
     # generate parser / parse parameters
     parser = get_parser()
@@ -118,4 +126,4 @@ if __name__ == '__main__':
     with open('/mnt/c/TransCoder/test_python_web.html', 'w') as html_file:
         html_file.write(python_string)
 
-    print('a')
+    print_time()
