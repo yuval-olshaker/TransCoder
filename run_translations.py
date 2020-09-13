@@ -8,6 +8,7 @@ from datetime import datetime
 
 SEPARATOR = '|'
 LONG_CODES = ['FINDING_THE_MAXIMUM_SQUARE_SUB_MATRIX_WITH_ALL_EQUAL_ELEMENTS', 'WILDCARD_CHARACTER_MATCHING']
+LINE_SEPARATOR = '\n\n'
 
 def get_parser():
     """
@@ -71,8 +72,12 @@ def create_params(src_lang, tgt_lang):
 
 # return the whole column of code by language and origin or translated
 # by the way change the code to html representation
-def get_code_from_corpus(file_translated, column):
-    return list(map(lambda line: line[column].replace('\n', '<br>'), file_translated))
+def get_code_from_corpus(file_translated, column, is_html=True):
+    if is_html:
+        return list(map(lambda line: line[column].replace('\n', '<br>'), file_translated))
+    else:
+        return list(map(lambda line: line[column], file_translated))
+
 
 # create the html code
 def create_html(lang, origin, translated):
@@ -80,10 +85,16 @@ def create_html(lang, origin, translated):
     for i in range(len(combined[0])):
         html_string += html_templates.CODE_TITLE.replace('ENTER_FUNCTION_NAME', combined[0][i])
         html_string += html_templates.CODE.replace('ORIGIN_CODE', combined[origin][i]).replace('TRANSLATED_CODE',
-                                                                                          combined[translated][i])
+                                                                                               combined[translated][i])
     html_string += html_templates.ENDING
     return html_string
 
+# creates the files for evaluation
+def print_for_evaluation(path, ind):
+    with open(path, 'w') as out_file:
+        for i in range(len(combined_txt[0])):
+            out_file.write(combined_txt[0][i] + LINE_SEPARATOR)
+            out_file.write(combined_txt[ind][i] + LINE_SEPARATOR)
 
 def print_time():
     now = datetime.now()
@@ -115,15 +126,27 @@ if __name__ == '__main__':
                 get_code_from_corpus(python_file_translated, 3),
                 get_code_from_corpus(python_file_translated, 2), get_code_from_corpus(java_file_translated, 3)]
 
+
     # create the html string
     java_string = create_html('java', 1, 2)
     python_string = create_html('python', 3, 4)
 
-
     # print to html
-    with open('/mnt/c/TransCoder/test_java_web.html', 'w') as html_file:
+    with open('/mnt/c/TransCoder/outputs/test_java_web.html', 'w') as html_file:
         html_file.write(java_string)
-    with open('/mnt/c/TransCoder/test_python_web.html', 'w') as html_file:
+    with open('/mnt/c/TransCoder/outputs/test_python_web.html', 'w') as html_file:
         html_file.write(python_string)
+
+    # print the function - for evaluation
+    combined_txt = [get_code_from_corpus(java_file_translated, 0, is_html=False),
+                    get_code_from_corpus(java_file_translated, 2, is_html=False),
+                    get_code_from_corpus(python_file_translated, 3, is_html=False),
+                    get_code_from_corpus(python_file_translated, 2, is_html=False),
+                    get_code_from_corpus(java_file_translated, 3, is_html=False)]
+
+    print_for_evaluation('/mnt/c/TransCoder/outputs/origin_java.java', 1)
+    print_for_evaluation('/mnt/c/TransCoder/outputs/translated_java.java', 2)
+    print_for_evaluation('/mnt/c/TransCoder/outputs/origin_python.java', 3)
+    print_for_evaluation('/mnt/c/TransCoder/outputs/translated_python.java', 4)
 
     print_time()
