@@ -95,7 +95,9 @@ def print_for_evaluation(path, ind):
     with open(path, 'w') as out_file:
         for i in range(len(combined_txt[0])):
             out_file.write(combined_txt[0][i] + LINE_SEPARATOR)
-            out_file.write(combined_txt[ind][i] + END_OF_FUNCTION + LINE_SEPARATOR)
+            # functions must to end with \n. sometimes they do not.
+            func = combined_txt[ind][i]
+            out_file.write(func if func[-1] == '\n' else func + '\n' + END_OF_FUNCTION + LINE_SEPARATOR)
 
 def print_time():
     now = datetime.now()
