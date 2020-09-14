@@ -8,9 +8,16 @@ def read_translated(trans_path):
         lines = file.readlines()
     return list(filter(''.__ne__, (map(lambda line: line.replace('\n', ''), lines))))  # no empty lines, not EOL
 
+# finds the index in the list of the function name
+# it is placed one before the first '('
+def find_function_name_index(temp):
+    i = 0
+    while i < len(temp) and temp[i] != '(':
+        i+=1
+    return i - 1
 
 # add pur translated code into the tests so we will able to check it
-def add_code_to_tests(lang, lines):
+def add_code_to_tests(lang, lines, add):
     titles = []  # return the titles and lines counting to it
     output_dir = '/mnt/c/TransCoder/outputs/' + lang + '/'
     if lang == 'python':
@@ -25,14 +32,14 @@ def add_code_to_tests(lang, lines):
             i += 1
 
         test_path = output_dir + lines[0] + '.' + lang
-        changed_test_path = output_dir + 'changed/' + lines[0] + '.' + lang
+        changed_test_path = output_dir + 'changed/' + add + lines[0] + '.' + lang
         # run only if the file exists (they do not have tests for all functions in every language
         if os.path.exists(test_path):
             with open(test_path) as specific_test_read:
                 temp = relevant_lines[0].split()  # change the function name to f_filled
-                origin_function_name = temp[1]  # if uses recursion we need to change in many places
-                # TODO - in java that is not always at 1
-                temp[1] = 'f_filled'
+                ind = find_function_name_index(temp) # finds the place of funcion name
+                origin_function_name = temp[ind]  # if uses recursion we need to change in many places
+                temp[ind] = 'f_filled'
                 relevant_lines[0] = ' '.join(temp)
                 specific_test_str = specific_test_read.read()
                 specific_test_str = specific_test_str.replace('TOFILL', '\n' + '\n'.join(relevant_lines).replace(
@@ -48,9 +55,9 @@ def add_code_to_tests(lang, lines):
 
 
 # run the tests of python language (translated from java)
-def run_python_tests(titles):
+def run_python_tests(titles, add):
     results = []
-    dir_path = '/mnt/c/TransCoder/outputs/python/changed/'
+    dir_path = '/mnt/c/TransCoder/outputs/python/changed/' + add
     for title in titles:
         try:
             os.system('python3 ' + dir_path + title[0] + '.py > ' + dir_path + 'temp.txt')  # run the python test
@@ -64,9 +71,9 @@ def run_python_tests(titles):
 
 
 # run the tests of java language (translated from python)
-def run_java_tests(titles):
+def run_java_tests(titles, add):
     results = []
-    dir_path = '/mnt/c/TransCoder/outputs/java/changed/'
+    dir_path = '/mnt/c/TransCoder/outputs/java/changed/' + add
     for title in titles:
         try:
             os.system('javac' + dir_path + title[0] + '.java')  # compile the java test
@@ -96,27 +103,29 @@ if __name__ == '__main__':
     add = 'from_tok/'
     if use_data_from_tests:
         add = 'from_tests/'
-    java_lines = read_translated('/mnt/c/TransCoder/outputs/' + add + 'translated_java.java')
-    python_lines = read_translated('/mnt/c/TransCoder/outputs/' + add + 'translated_python.py')
+    out_dir = '/mnt/c/TransCoder/outputs/' + add
+
+    java_lines = read_translated(out_dir + 'translated_java.java')
+    python_lines = read_translated(out_dir + 'translated_python.py')
 
     # put it out
-    python_titles, python_not_exists = add_code_to_tests('python', python_lines)
-    java_titles, java_not_exists = add_code_to_tests('java', java_lines)
+    python_titles, python_not_exists = add_code_to_tests('python', python_lines, add)
+    java_titles, java_not_exists = add_code_to_tests('java', java_lines, add)
 
     # run the tests
-    python_results = run_python_tests(python_titles)
-    java_results = run_java_tests(java_titles)
+    python_results = run_python_tests(python_titles, add)
+    java_results = run_java_tests(java_titles, add)
 
     python_results = order_results(python_results)
     java_results = order_results(java_results)
 
-    with open('/mnt/c/TransCoder/outputs/tests_run_check_python.txt', 'w') as f:
+    with open(out_dir + 'tests_run_check_python.txt', 'w') as f:
         f.writelines(python_results)
-    with open('/mnt/c/TransCoder/outputs/not_exists_python.txt', 'w') as f:
+    with open(out_dir + 'not_exists_python.txt', 'w') as f:
         f.writelines(python_not_exists)
-    with open('/mnt/c/TransCoder/outputs/tests_run_check_java.txt', 'w') as f:
+    with open(out_dir + 'tests_run_check_java.txt', 'w') as f:
         f.writelines(java_results)
-    with open('/mnt/c/TransCoder/outputs/not_exists_java.txt', 'w') as f:
+    with open(out_dir + 'not_exists_java.txt', 'w') as f:
         f.writelines(java_not_exists)
 
     print_time()
