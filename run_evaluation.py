@@ -25,16 +25,18 @@ def add_code_to_tests(lang, lines):
             i += 1
 
         test_path = output_dir + lines[0] + '.' + lang
-        changes_test_path = output_dir + 'changed/' + lines[0] + '.' + lang
+        changed_test_path = output_dir + 'changed/' + lines[0] + '.' + lang
         # run only if the file exists (they do not have tests for all functions in every language
         if os.path.exists(test_path):
             with open(test_path) as specific_test_read:
-                temp = relevant_lines[0].split()  # change the function name
-                temp[1] = 'f_filled'  # to f_filled
+                temp = relevant_lines[0].split()  # change the function name to f_filled
+                origin_function_name = temp[1]  # if uses recursion we need to change in many places
+                temp[1] = 'f_filled'
                 relevant_lines[0] = ' '.join(temp)
                 specific_test_str = specific_test_read.read()
-                specific_test_str = specific_test_str.replace('TOFILL', '\n' + '\n'.join(relevant_lines))
-            with open(changes_test_path, 'w') as specific_test_write:
+                specific_test_str = specific_test_str.replace('TOFILL', '\n' + '\n'.join(relevant_lines).replace(
+                    origin_function_name, 'f_filled'))
+            with open(changed_test_path, 'w') as specific_test_write:
                 specific_test_write.write(specific_test_str)
 
             titles.append([lines[0], len(relevant_lines)])  # add the title and lines amount
@@ -55,7 +57,7 @@ def run_python_tests(titles):
                 res = result.read()[:-1].split()  # no EOL, split by ' '
                 results.append([title[0], title[1], res[0], res[1]])
         except:
-            print(title[0] + ' most likely does not compile')
+            print(title[0])
     return results
 
 
@@ -63,7 +65,7 @@ if __name__ == '__main__':
     print_time()
     # read the translation data we created
     java_lines = read_translated('/mnt/c/TransCoder/outputs/translated_java.java')
-    python_lines = read_translated('/mnt/c/TransCoder/outputs/copy_of_run/translated_python.py')
+    python_lines = read_translated('/mnt/c/TransCoder/outputs/translated_python.py')
 
     # put it out
     python_titles = add_code_to_tests('python', python_lines)
