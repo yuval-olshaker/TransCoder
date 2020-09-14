@@ -1,0 +1,81 @@
+import os
+from run_translations import print_time, END_OF_FUNCTION
+
+
+# read the translations file
+def read_translated(trans_path):
+    with open(trans_path) as file:
+        lines = file.readlines()
+    return list(filter(''.__ne__, (map(lambda line: line.replace('\n', ''), lines))))  # no empty lines, not EOL
+
+
+# add pur translated code into the tests so we will able to check it
+def add_code_to_tests(lang, lines):
+    titles = []  # return the titles and lines counting to it
+    output_dir = '/mnt/c/TransCoder/outputs/' + lang + '/'
+    if lang == 'python':
+        lang = 'py'
+    not_exists = []
+    while len(lines) > 0:
+        # find the lines of the translated function
+        relevant_lines = []
+        i = 1
+        while lines[i] != END_OF_FUNCTION:
+            relevant_lines.append(lines[i])
+            i += 1
+
+        test_path = output_dir + lines[0] + '.' + lang
+        changes_test_path = output_dir + 'changed/' + lines[0] + '.' + lang
+        # run only if the file exists (they do not have tests for all functions in every language
+        if os.path.exists(test_path):
+            with open(test_path) as specific_test_read:
+                temp = relevant_lines[0].split()  # change the function name
+                temp[1] = 'f_filled'  # to f_filled
+                relevant_lines[0] = ' '.join(temp)
+                specific_test_str = specific_test_read.read()
+                specific_test_str = specific_test_str.replace('TOFILL', '\n' + '\n'.join(relevant_lines))
+            with open(changes_test_path, 'w') as specific_test_write:
+                specific_test_write.write(specific_test_str)
+
+            titles.append([lines[0], len(relevant_lines)])  # add the title and lines amount
+        else:
+            not_exists.append(lines[0])
+        lines = lines[i + 1:]
+    return titles
+
+
+# run the tests of python language (translated from java)
+def run_python_tests(titles):
+    results = []
+    dir_path = '/mnt/c/TransCoder/outputs/python/changed/'
+    for title in titles:
+        try:
+            os.system('python3 ' + dir_path + title[0] + '.py > ' + dir_path + 'temp.txt')  # run the python test
+            with open(dir_path + 'temp.txt') as result:  # take the result we printed
+                res = result.read()[:-1].split()  # no EOL, split by ' '
+                results.append([title[0], title[1], res[0], res[1]])
+        except:
+            print(title[0] + ' most likely does not compile')
+    return results
+
+
+if __name__ == '__main__':
+    print_time()
+    # read the translation data we created
+    java_lines = read_translated('/mnt/c/TransCoder/outputs/translated_java.java')
+    python_lines = read_translated('/mnt/c/TransCoder/outputs/copy_of_run/translated_python.py')
+
+    # put it out
+    python_titles = add_code_to_tests('python', python_lines)
+    java_titles = add_code_to_tests('java', java_lines)
+
+    # run the tests
+    results = run_python_tests(python_titles)
+
+    results = map(
+        lambda res: (res[0] + ' num lines: ' + res[1] + ' num successes: ' + res[2] + ' total_tests: ' + res[3]),
+        results)
+
+    with open('/mnt/c/TransCoder/outputs/tests_run_check.txt') as tests_run_check:
+        tests_run_check.writelines(results)
+    print_time()
