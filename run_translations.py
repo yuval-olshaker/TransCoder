@@ -123,12 +123,15 @@ if __name__ == '__main__':
     java_file_readable = make_java_readable(java_file)
     python_file_readable = make_python_readable(python_file)
 
+    add = 'from_tok/'
+
     use_tests_origin = True
     # we choose which one to translate
     # get the origin code from the tests
     if use_tests_origin:
         java_file_readable = get_origin_codes('java', '//', 5)
         python_file_readable = get_origin_codes('python', '#', 3)
+        add = 'from_tests/'
 
 
     # translate all
@@ -145,10 +148,11 @@ if __name__ == '__main__':
     java_string = create_html('java', 1, 2)
     python_string = create_html('python', 3, 4)
 
+    out_dir_path = '/mnt/c/TransCoder/outputs/' + add
     # print to html
-    with open('/mnt/c/TransCoder/outputs/test_java_web.html', 'w') as html_file:
+    with open(out_dir_path + 'test_java_web.html', 'w') as html_file:
         html_file.write(java_string)
-    with open('/mnt/c/TransCoder/outputs/test_python_web.html', 'w') as html_file:
+    with open(out_dir_path + 'test_python_web.html', 'w') as html_file:
         html_file.write(python_string)
 
     # print the function - for evaluation
@@ -158,9 +162,9 @@ if __name__ == '__main__':
                     get_code_from_corpus(python_file_translated, 2, is_html=False),
                     get_code_from_corpus(java_file_translated, 3, is_html=False)]
 
-    print_for_evaluation('/mnt/c/TransCoder/outputs/origin_java.java', 1)
-    print_for_evaluation('/mnt/c/TransCoder/outputs/translated_java.java', 2)
-    print_for_evaluation('/mnt/c/TransCoder/outputs/origin_python.py', 3)
-    print_for_evaluation('/mnt/c/TransCoder/outputs/translated_python.py', 4)
+    print_for_evaluation(out_dir_path + 'origin_java.java', 1)
+    print_for_evaluation(out_dir_path + 'translated_java.java', 2)
+    print_for_evaluation(out_dir_path + 'origin_python.py', 3)
+    print_for_evaluation(out_dir_path + 'translated_python.py', 4)
 
     print_time()

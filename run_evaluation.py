@@ -92,8 +92,12 @@ if __name__ == '__main__':
     print_time()
 
     # read the translation data we created
-    java_lines = read_translated('/mnt/c/TransCoder/outputs/translated_java.java')
-    python_lines = read_translated('/mnt/c/TransCoder/outputs/translated_python.py')
+    use_data_from_tests = False
+    add = 'from_tok/'
+    if use_data_from_tests:
+        add = 'from_tests/'
+    java_lines = read_translated('/mnt/c/TransCoder/outputs/' + add + 'translated_java.java')
+    python_lines = read_translated('/mnt/c/TransCoder/outputs/' + add + 'translated_python.py')
 
     # put it out
     python_titles, python_not_exists = add_code_to_tests('python', python_lines)
