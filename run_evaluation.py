@@ -31,6 +31,7 @@ def add_code_to_tests(lang, lines):
             with open(test_path) as specific_test_read:
                 temp = relevant_lines[0].split()  # change the function name to f_filled
                 origin_function_name = temp[1]  # if uses recursion we need to change in many places
+                # TODO - in java that is not always at 1
                 temp[1] = 'f_filled'
                 relevant_lines[0] = ' '.join(temp)
                 specific_test_str = specific_test_read.read()

@@ -6,6 +6,8 @@ import translate
 import html_templates
 from datetime import datetime
 
+from create_readable_corpus import get_origin_codes
+
 SEPARATOR = '|'
 LONG_CODES = ['FINDING_THE_MAXIMUM_SQUARE_SUB_MATRIX_WITH_ALL_EQUAL_ELEMENTS', 'WILDCARD_CHARACTER_MATCHING']
 LINE_SEPARATOR = '\n\n'
@@ -40,21 +42,21 @@ def read_file(file_path):
     return list(map(split_line, lines))
 
 
-# parse the lines and detokenize them so it will be readable for humans
+# parse the lines and detokenize them so it will be readable for humans - and better for the run
 def make_java_readable(java_file):
-    return list(map(lambda line: (line[0], line[1], code_tokenizer.detokenize_java(line[1])), java_file))
+    return list(map(lambda line: (line[0], code_tokenizer.detokenize_java(line[1])), java_file))
 
 
 def make_python_readable(python_file):
-    return list(map(lambda line: (line[0], line[1], code_tokenizer.detokenize_python(line[1])), python_file))
+    return list(map(lambda line: (line[0], code_tokenizer.detokenize_python(line[1])), python_file))
 
 
 # translate with the model from facebook
 def translate_lines(is_from_java, file_readable):
     t_params = create_params('java', 'python') if is_from_java else create_params('python', 'java')
     translator = translate.Translator(t_params)
-    return list(map(lambda line: (line[0], line[1], line[2],
-                                  translator.translate(line[2], lang1=t_params.src_lang, lang2=t_params.tgt_lang,
+    return list(map(lambda line: (line[0], line[1],
+                                  translator.translate(line[1], lang1=t_params.src_lang, lang2=t_params.tgt_lang,
                                                        beam_size=t_params.beam_size)[0]),
                     file_readable))
 
@@ -121,14 +123,22 @@ if __name__ == '__main__':
     java_file_readable = make_java_readable(java_file)
     python_file_readable = make_python_readable(python_file)
 
+    use_tests_origin = True
+    # we choose which one to translate
+    # get the origin code from the tests
+    if use_tests_origin:
+        java_file_readable = get_origin_codes('java', '//', 5)
+        python_file_readable = get_origin_codes('python', '#', 3)
+
+
     # translate all
     java_file_translated = translate_lines(True, java_file_readable)
     python_file_translated = translate_lines(False, python_file_readable)
 
     # combine translation and original
-    combined = [get_code_from_corpus(java_file_translated, 0), get_code_from_corpus(java_file_translated, 2),
-                get_code_from_corpus(python_file_translated, 3),
-                get_code_from_corpus(python_file_translated, 2), get_code_from_corpus(java_file_translated, 3)]
+    combined = [get_code_from_corpus(java_file_translated, 0), get_code_from_corpus(java_file_translated, 1),
+                get_code_from_corpus(python_file_translated, 2),
+                get_code_from_corpus(python_file_translated, 1), get_code_from_corpus(java_file_translated, 2)]
 
 
     # create the html string
