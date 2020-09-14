@@ -1,4 +1,3 @@
-from run_translations import print_time
 from os import listdir
 from os.path import isfile, join
 
@@ -32,8 +31,6 @@ def get_origin_codes(lang, comment_str, cut_size):
 
 
 if __name__ == '__main__':
-    print_time()
     java_origin_codes = get_origin_codes('java', '//', 5)
     python_origin_codes = get_origin_codes('python', '#', 3)
-    print_time()
     a = 5

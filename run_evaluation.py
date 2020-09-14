@@ -1,6 +1,12 @@
 import os
-from run_translations import print_time, END_OF_FUNCTION
+from datetime import datetime
 
+END_OF_FUNCTION = '|||'
+
+def print_time():
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print("Current Time =", current_time)
 
 # read the translations file
 def read_translated(trans_path):
