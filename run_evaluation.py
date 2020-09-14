@@ -57,12 +57,30 @@ def run_python_tests(titles):
                 res = result.read()[:-1].split()  # no EOL, split by ' '
                 results.append([title[0], title[1], res[0], res[1]])
         except:
-            print(title[0])
+            results.append([title[0], title[1], -1, -1])
+        os.system('rm ' + dir_path + 'temp.txt')
     return results
 
+# run the tests of java language (translated from python)
+def run_java_tests(titles):
+    results = []
+    dir_path = '/mnt/c/TransCoder/outputs/java/changed/'
+    for title in titles:
+        try:
+            os.system('javac' + dir_path + title[0] + '.java') # compile the java test
+            os.system('cd ' + dir_path) # go into the dir because java is annoying
+            os.system('java ' + title[0] + ' > temp.txt') # run the java test
+            with open(dir_path + 'temp.txt') as result:  # take the result we printed
+                res = result.read()[:-1].split()  # no EOL, split by ' '
+                results.append([title[0], title[1], res[0], res[1]])
+        except:
+            results.append([title[0], title[1], -1, -1])
+        os.system('rm ' + dir_path + 'temp.txt')
+    return results
 
 if __name__ == '__main__':
     print_time()
+
     # read the translation data we created
     java_lines = read_translated('/mnt/c/TransCoder/outputs/translated_java.java')
     python_lines = read_translated('/mnt/c/TransCoder/outputs/translated_python.py')
