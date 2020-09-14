@@ -97,7 +97,8 @@ def print_for_evaluation(path, ind):
             out_file.write(combined_txt[0][i] + LINE_SEPARATOR)
             # functions must to end with \n. sometimes they do not.
             func = combined_txt[ind][i]
-            out_file.write(func if func[-1] == '\n' else func + '\n' + END_OF_FUNCTION + LINE_SEPARATOR)
+            func = func if func[-1] == '\n' else func + '\n'
+            out_file.write(func + END_OF_FUNCTION + LINE_SEPARATOR)
 
 def print_time():
     now = datetime.now()
