@@ -9,6 +9,7 @@ from datetime import datetime
 SEPARATOR = '|'
 LONG_CODES = ['FINDING_THE_MAXIMUM_SQUARE_SUB_MATRIX_WITH_ALL_EQUAL_ELEMENTS', 'WILDCARD_CHARACTER_MATCHING']
 LINE_SEPARATOR = '\n\n'
+END_OF_FUNCTION = '|||'
 
 def get_parser():
     """
@@ -53,7 +54,7 @@ def translate_lines(is_from_java, file_readable):
     t_params = create_params('java', 'python') if is_from_java else create_params('python', 'java')
     translator = translate.Translator(t_params)
     return list(map(lambda line: (line[0], line[1], line[2],
-                                  translator.translate(line[1], lang1=t_params.src_lang, lang2=t_params.tgt_lang,
+                                  translator.translate(line[2], lang1=t_params.src_lang, lang2=t_params.tgt_lang,
                                                        beam_size=t_params.beam_size)[0]),
                     file_readable))
 
@@ -94,7 +95,7 @@ def print_for_evaluation(path, ind):
     with open(path, 'w') as out_file:
         for i in range(len(combined_txt[0])):
             out_file.write(combined_txt[0][i] + LINE_SEPARATOR)
-            out_file.write(combined_txt[ind][i] + LINE_SEPARATOR)
+            out_file.write(combined_txt[ind][i] + END_OF_FUNCTION + LINE_SEPARATOR)
 
 def print_time():
     now = datetime.now()
