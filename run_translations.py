@@ -131,6 +131,7 @@ if __name__ == '__main__':
     if use_tests_origin:
         java_file_readable = get_origin_codes('java', '//', 5)
         python_file_readable = get_origin_codes('python', '#', 3)
+        # TODO - needs to use only the functions that both has (around 616)
         add = 'from_tests/'
 
 

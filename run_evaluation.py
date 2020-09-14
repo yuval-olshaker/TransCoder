@@ -59,6 +59,7 @@ def add_code_to_tests(lang, lines, add):
         lines = lines[i + 1:]
     return titles, not_exists
 
+# TODO - in both java and python - we need to deal with infinite loop
 
 # run the tests of python language (translated from java)
 def run_python_tests(titles, add):
