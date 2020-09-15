@@ -107,6 +107,21 @@ def print_time():
     current_time = now.strftime("%H:%M:%S")
     print("Current Time =", current_time)
 
+# returns the tests names from corpus
+def get_tests(file_readable):
+    return list( map( lambda line: line[0], file_readable))
+
+# returns only the tests that are in both
+def cut_unique(file_readable, tests_in_both):
+    return list(filter( lambda line: line[0] in tests_in_both, file_readable))
+
+# returns the corpora with only the tests that we have in both languages - so we have the source code of them both
+def tests_of_both_languages(java_file_readable, python_file_readable):
+    java_tests = get_tests(java_file_readable)
+    python_tests = get_tests(python_file_readable)
+    tests_in_both = list(set(java_tests).intersection(python_tests))
+    return cut_unique(java_file_readable, tests_in_both), cut_unique(python_file_readable, tests_in_both)
+
 
 if __name__ == '__main__':
     print_time()
@@ -126,12 +141,13 @@ if __name__ == '__main__':
     add = 'from_tok/'
 
     use_tests_origin = True
+    # TODO - we do not need them separately. we will add the differences.
     # we choose which one to translate
     # get the origin code from the tests
     if use_tests_origin:
         java_file_readable = get_origin_codes('java', '//', 5)
         python_file_readable = get_origin_codes('python', '#', 3)
-        # TODO - needs to use only the functions that both has (around 616)
+        java_file_readable, python_file_readable = tests_of_both_languages(java_file_readable, python_file_readable)
         add = 'from_tests/'
 
 
