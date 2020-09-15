@@ -61,7 +61,6 @@ def add_code_to_tests(lang, lines, add):
         lines = lines[i + 1:]
     return titles, not_exists
 
-# TODO - in both java and python - we need to deal with infinite loop
 # an handler that raises exception - for infinite loops
 def handler(signum, frame):
     raise Exception('what')
