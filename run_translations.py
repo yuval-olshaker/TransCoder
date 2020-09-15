@@ -116,12 +116,19 @@ def cut_unique(file_readable, tests_in_both):
     return list(filter( lambda line: line[0] in tests_in_both, file_readable))
 
 # returns the corpora with only the tests that we have in both languages - so we have the source code of them both
-def tests_of_both_languages(java_file_readable, python_file_readable):
+def combine_tests_of_both_languages(java_file_readable, python_file_readable):
     java_tests = get_tests(java_file_readable)
     python_tests = get_tests(python_file_readable)
     tests_in_both = list(set(java_tests).intersection(python_tests))
     return cut_unique(java_file_readable, tests_in_both), cut_unique(python_file_readable, tests_in_both)
 
+# add the origin code from tests that are not in the tok file
+def combine_origin_from_both_sources(file_readable, file_readable_test):
+    titles = list(map(lambda line: line[0], file_readable))
+    for i in range(len(file_readable_test)):
+        if file_readable_test[i][0] not in titles:
+            file_readable.append(file_readable_test[i])
+    return file_readable
 
 if __name__ == '__main__':
     print_time()
@@ -137,19 +144,14 @@ if __name__ == '__main__':
     # make the test data readable for humans
     java_file_readable = make_java_readable(java_file)
     python_file_readable = make_python_readable(python_file)
+    # read the data from the tests they generated
+    java_file_readable_test = get_origin_codes('java', '//', 5)
+    python_file_readable_test = get_origin_codes('python', '#', 3)
 
-    add = 'from_tok/'
-
-    use_tests_origin = True
-    # TODO - we do not need them separately. we will add the differences.
-    # we choose which one to translate
-    # get the origin code from the tests
-    if use_tests_origin:
-        java_file_readable = get_origin_codes('java', '//', 5)
-        python_file_readable = get_origin_codes('python', '#', 3)
-        java_file_readable, python_file_readable = tests_of_both_languages(java_file_readable, python_file_readable)
-        add = 'from_tests/'
-
+    # add the data from the tests they generated
+    java_file_readable = combine_origin_from_both_sources(java_file_readable, java_file_readable_test)
+    python_file_readable = combine_origin_from_both_sources(python_file_readable, python_file_readable_test)
+    java_file_readable, python_file_readable = combine_tests_of_both_languages(java_file_readable, python_file_readable)
 
     # translate all
     java_file_translated = translate_lines(True, java_file_readable)
@@ -165,7 +167,7 @@ if __name__ == '__main__':
     java_string = create_html('java', 1, 2)
     python_string = create_html('python', 3, 4)
 
-    out_dir_path = '/mnt/c/TransCoder/outputs/' + add
+    out_dir_path = '/mnt/c/TransCoder/outputs/'
     # print to html
     with open(out_dir_path + 'test_java_web.html', 'w') as html_file:
         html_file.write(java_string)

@@ -26,7 +26,7 @@ def find_function_name_index(temp):
     return i - 1
 
 # add pur translated code into the tests so we will able to check it
-def add_code_to_tests(lang, lines, add):
+def add_code_to_tests(lang, lines):
     titles = []  # return the titles and lines counting to it
     output_dir = '/mnt/c/TransCoder/outputs/' + lang + '/'
     if lang == 'python':
@@ -41,7 +41,7 @@ def add_code_to_tests(lang, lines, add):
             i += 1
 
         test_path = output_dir + lines[0] + '.' + lang
-        changed_test_path = output_dir + 'changed/' + add + lines[0] + '.' + lang
+        changed_test_path = output_dir + 'changed/' + lines[0] + '.' + lang
         # run only if the file exists (they do not have tests for all functions in every language
         if os.path.exists(test_path):
             with open(test_path) as specific_test_read:
@@ -77,9 +77,9 @@ def run_process(command):
         raise Exception
 
 # run the tests of python language (translated from java)
-def run_python_tests(titles, add):
+def run_python_tests(titles):
     results = []
-    dir_path = '/mnt/c/TransCoder/outputs/python/changed/' + add
+    dir_path = '/mnt/c/TransCoder/outputs/python/changed/'
     for title in titles:
         try:
             # if runs more then MAX_TEST_TIME (30) seconds - infinite loop
@@ -94,9 +94,9 @@ def run_python_tests(titles, add):
 
 
 # run the tests of java language (translated from python)
-def run_java_tests(titles, add):
+def run_java_tests(titles):
     results = []
-    dir_path = '/mnt/c/TransCoder/outputs/java/changed/' + add
+    dir_path = '/mnt/c/TransCoder/outputs/java/changed/'
     for title in titles:
         try:
             os.system('javac' + dir_path + title[0] + '.java')  # compile the java test
@@ -122,23 +122,19 @@ def order_results(results):
 if __name__ == '__main__':
     print_time()
 
-    # read the translation data we created
-    use_data_from_tests = False
-    add = 'from_tok/'
-    if use_data_from_tests:
-        add = 'from_tests/'
-    out_dir = '/mnt/c/TransCoder/outputs/' + add
+    out_dir = '/mnt/c/TransCoder/outputs/'
 
+    # read the translation data we created
     java_lines = read_translated(out_dir + 'translated_java.java')
     python_lines = read_translated(out_dir + 'translated_python.py')
 
     # put it out
-    python_titles, python_not_exists = add_code_to_tests('python', python_lines, add)
-    java_titles, java_not_exists = add_code_to_tests('java', java_lines, add)
+    python_titles, python_not_exists = add_code_to_tests('python', python_lines)
+    java_titles, java_not_exists = add_code_to_tests('java', java_lines)
 
     # run the tests
-    python_results = run_python_tests(python_titles, add)
-    java_results = run_java_tests(java_titles, add)
+    python_results = run_python_tests(python_titles)
+    java_results = run_java_tests(java_titles)
 
     python_results = order_results(python_results)
     java_results = order_results(java_results)
