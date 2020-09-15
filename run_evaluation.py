@@ -3,6 +3,7 @@ import os
 from datetime import datetime
 
 END_OF_FUNCTION = '|||'
+MAX_TEST_TIME = 30 # the max time of single test. if takes more - infinite loop
 
 # prints current time
 def print_time():
@@ -63,16 +64,13 @@ def add_code_to_tests(lang, lines, add):
 
 # run command on linux
 def run_command(command):
-    print_time()
     os.system(command)
 
 # starts process to run a command - if runs more than 30 seconds. raise exception
 def run_process(command):
-    print_time()
-    p = multiprocessing.Process(target=run_command(command))
+    p = multiprocessing.Process(target=run_command, args=(command,))
     p.start()
-    p.join(10)
-    print_time()
+    p.join(MAX_TEST_TIME)
     if p.is_alive():
         p.terminate()
         p.join()
@@ -84,8 +82,7 @@ def run_python_tests(titles, add):
     dir_path = '/mnt/c/TransCoder/outputs/python/changed/' + add
     for title in titles:
         try:
-            # if runs more then 30 seconds - infinite loops
-            print_time()
+            # if runs more then MAX_TEST_TIME (30) seconds - infinite loop
             run_process('python3 ' + dir_path + title[0] + '.py > ' + dir_path + 'temp.txt') # runs python test
             with open(dir_path + 'temp.txt') as result:  # take the result we printed
                 res = result.read()[:-1].split()  # no EOL, split by ' '
