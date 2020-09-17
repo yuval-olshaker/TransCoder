@@ -34,7 +34,7 @@ public static boolean f_filled ( int [ ] arr , int n , int x ) {
     if ( ( arr [ i ] > arr [ i + 1 ] ) && ( arr [ i + 1 ] < arr [ n - 1 ] ) ) {
       break ;
     }
-  };
+  }
   int l = ( i + 1 ) % n ;
   int r = i ;
   while ( ( l != r ) && ( l < n ) ) {

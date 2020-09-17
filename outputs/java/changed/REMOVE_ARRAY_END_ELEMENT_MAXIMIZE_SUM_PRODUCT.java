@@ -27,7 +27,6 @@ public static int f_filled ( int [ ] [ ] dp , int [ ] a , int low , int high , i
   if ( ( low == high ) && ( dp [ low ] [ high ] != 0 ) ) return a [ low ] [ high ] ;
   if ( ( dp [ low ] [ high ] != 0 ) && ( a [ low ] [ high ] != 0 ) ) return dp [ low ] [ high ] ;
   dp [ low ] [ high ] = Math . max ( a [ low ] * turn + f_filled ( dp , a , low + 1 , high , turn + 1 ) , a [ high ] * turn + f_filled ( dp , a , low , high - 1 , turn + 1 ) ) ;
-  ;
   return dp [ low ] [ high ] ;
 }
 

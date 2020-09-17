@@ -18,7 +18,6 @@ static double f_gold ( int n ) {
 //
 public static double f_filled ( int n ) {
   return ( ( 0.666 ) * ( 1 - 1 / Math . pow ( 10 , n ) ) ) ;
-  ;
 }
 
 public static void main(String args[]) {

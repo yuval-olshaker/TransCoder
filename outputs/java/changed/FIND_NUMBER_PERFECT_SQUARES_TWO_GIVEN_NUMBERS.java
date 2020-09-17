@@ -28,7 +28,6 @@ public static int f_filled ( int a , int b ) {
   i <= b ;
   i ++ ) {
     int j = 1 ;
-    ;
     while ( j * j <= i ) {
       if ( j * j == i ) cnt = cnt + 1 ;
       j = j + 1 ;

@@ -27,7 +27,6 @@ static int f_gold ( int arr [ ] , int n , int X ) {
 //
 public static int f_filled ( int [ ] arr , int n , int X ) {
   if ( ( X < arr [ 0 ] ) && ( X > arr [ n - 1 ] ) ) return 0 ;
-  ;
   else if ( ( X > arr [ n - 1 ] ) && ( X < arr [ n ] ) ) return n ;
   int lowerPnt = 0 ;
   int i = 1 ;

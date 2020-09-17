@@ -30,9 +30,8 @@ public static int f_filled ( int n ) {
   r <= n ;
   r ++ ) {
     nCr = ( nCr * ( n + 1 - r ) ) / r ;
-    ;
     res += nCr * nCr ;
-  };
+  }
   return res ;
 }
 

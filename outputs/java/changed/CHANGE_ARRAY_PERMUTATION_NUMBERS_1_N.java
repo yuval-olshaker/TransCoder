@@ -43,11 +43,10 @@ public static void f_filled ( int [ ] a , int n ) {
   i < n ;
   i ++ ) {
     if ( count . containsKey ( a [ i ] ) ) {
-      count . put ( a [ i ] , 1 ) ;
+      count . put ( a [ i ] , ++ count . get ( a [ i ] ) ) ;
     }
     else {
       count . put ( a [ i ] , 1 ) ;
-      ;
     }
   }
   int nextMissing = 1 ;
@@ -55,7 +54,7 @@ public static void f_filled ( int [ ] a , int n ) {
   i < n ;
   i ++ ) {
     if ( count . get ( a [ i ] ) != 1 || a [ i ] > n || a [ i ] < 1 ) {
-      count . put ( a [ i ] , 1 ) ;
+      count . put ( a [ i ] , -- count . get ( a [ i ] ) ) ;
       while ( count . containsKey ( nextMissing ) ) {
         nextMissing ++ ;
       }

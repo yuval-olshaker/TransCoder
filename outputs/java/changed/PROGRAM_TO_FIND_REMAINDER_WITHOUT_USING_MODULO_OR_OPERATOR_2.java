@@ -18,9 +18,9 @@ static int f_gold ( int num , int divisor ) {
 
 //
 public static int f_filled ( int num , int divisor ) {
-  while ( ( num >= divisor ) && ( num <= divisor ) ) {
+  while ( ( num >= divisor ) && ( num < 0 ) ) {
     num -= divisor ;
-  };
+  }
   return num ;
 }
 

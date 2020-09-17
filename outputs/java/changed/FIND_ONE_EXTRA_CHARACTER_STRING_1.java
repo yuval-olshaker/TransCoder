@@ -40,7 +40,6 @@ public static byte f_filled ( String strA , String strB ) {
     res = res ^ ( ( byte ) strB . charAt ( i ) ) ;
   }
   return ( ( byte ) res ) ;
-  ;
 }
 
 public static void main(String args[]) {

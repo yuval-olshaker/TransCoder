@@ -34,7 +34,7 @@ public static int f_filled ( int n ) {
     pPrevPrev = pPrev ;
     pPrev = pCurr ;
     pCurr = pNext ;
-  };
+  }
   return pNext ;
 }
 

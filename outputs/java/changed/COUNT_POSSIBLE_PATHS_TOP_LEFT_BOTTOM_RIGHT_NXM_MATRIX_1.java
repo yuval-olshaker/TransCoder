@@ -35,18 +35,18 @@ public static int f_filled ( int m , int n ) {
   for ( int y = 0 ;
   y < n ;
   y ++ ) {
-    count [ y ] [ 0 ] = 0 ;
+    count [ y ] [ 0 ] = y ;
   }
   for ( int i = 0 ;
   i < m ;
   i ++ ) {
-    count [ i ] [ 0 ] = 1 ;
-  };
+    count [ i ] [ 0 ] = i ;
+  }
   for ( int j = 0 ;
   j < n ;
   j ++ ) {
-    count [ 0 ] [ j ] = 1 ;
-  };
+    count [ 0 ] [ j ] = j ;
+  }
   for ( int i = 1 ;
   i < m ;
   i ++ ) {

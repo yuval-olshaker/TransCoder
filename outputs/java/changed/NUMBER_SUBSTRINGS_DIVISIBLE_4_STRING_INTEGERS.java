@@ -30,7 +30,6 @@ static int f_gold ( String s ) {
 public static int f_filled ( String s ) {
   int n = s . length ( ) ;
   int count = 0 ;
-  ;
   for ( int i = 0 ;
   i < n ;
   i += 1 ) {

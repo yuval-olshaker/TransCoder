@@ -52,9 +52,11 @@ public static int f_filled ( String str , int n ) {
   i ++ ) P [ i ] [ i ] = true ;
   for ( int i = 0 ;
   i < n - 1 ;
-  i ++ ) if ( ( str . charAt ( i ) == str . charAt ( i + 1 ) ) ) {
-    P [ i ] [ i + 1 ] = true ;
-    dp [ i ] [ i + 1 ] = 1 ;
+  i ++ ) {
+    if ( ( str . charAt ( i ) == str . charAt ( i + 1 ) ) && ( P [ i ] [ i + 1 ] ) ) {
+      P [ i ] [ i + 1 ] = true ;
+      dp [ i ] [ i + 1 ] = 1 ;
+    }
   }
   for ( int gap = 2 ;
   gap < n ;
@@ -63,9 +65,8 @@ public static int f_filled ( String str , int n ) {
     i < n - gap ;
     i ++ ) {
       int j = gap + i ;
-      ;
-      if ( ( str . charAt ( i ) == str . charAt ( j ) && P [ i + 1 ] [ j - 1 ] ) ) P [ i ] [ j ] = true ;
-      if ( ( P [ i ] [ j ] == true ) || ( P [ i ] [ j ] == false ) ) dp [ i ] [ j ] = ( dp [ i ] [ j - 1 ] + dp [ i + 1 ] [ j ] + 1 - dp [ i + 1 ] [ j - 1 ] ) ;
+      if ( ( str . charAt ( i ) == str . charAt ( j ) && P [ i + 1 ] [ j - 1 ] ) && ( P [ i ] [ j ] == true ) ) P [ i ] [ j ] = true ;
+      if ( ( P [ i ] [ j ] == true ) && ( dp [ i ] [ j - 1 ] + dp [ i + 1 ] [ j ] + 1 - dp [ i + 1 ] [ j - 1 ] ) ) dp [ i ] [ j ] = ( dp [ i ] [ j - 1 ] + dp [ i + 1 ] [ j ] - dp [ i + 1 ] [ j - 1 ] ) ;
       else dp [ i ] [ j ] = ( dp [ i ] [ j - 1 ] + dp [ i + 1 ] [ j ] - dp [ i + 1 ] [ j - 1 ] ) ;
     }
   }

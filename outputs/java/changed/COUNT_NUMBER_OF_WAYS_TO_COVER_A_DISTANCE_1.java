@@ -32,9 +32,8 @@ public static int f_filled ( int dist ) {
   i <= dist ;
   i ++ ) {
     count [ i ] = ( count [ i - 1 ] + count [ i - 2 ] + count [ i - 3 ] ) ;
-  };
+  }
   return count [ dist ] ;
-  ;
 }
 
 public static void main(String args[]) {

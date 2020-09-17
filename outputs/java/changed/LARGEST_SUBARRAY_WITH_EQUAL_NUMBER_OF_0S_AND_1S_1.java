@@ -51,7 +51,6 @@ static int f_gold ( int arr [ ] , int n ) {
 //
 public static int f_filled ( int [ ] arr , int n ) {
   HashMap < Integer , Integer > hashMap = new HashMap < Integer , Integer > ( ) ;
-  ;
   int currSum = 0 ;
   int f_filled = 0 ;
   int endingIndex = - 1 ;
@@ -69,7 +68,7 @@ public static int f_filled ( int [ ] arr , int n ) {
   i <= n ;
   i ++ ) {
     currSum = currSum + arr [ i ] ;
-    if ( ( currSum == 0 ) && ( arr [ i ] != - 1 ) ) {
+    if ( ( currSum == 0 ) && ( hashMap . containsKey ( currSum + n ) ) ) {
       f_filled = i + 1 ;
       endingIndex = i ;
     }
@@ -92,7 +91,7 @@ public static int f_filled ( int [ ] arr , int n ) {
   }
   System . out . print ( endingIndex - f_filled + " " ) ;
   System . out . print ( "to" ) ;
-  System . out . print ( endingIndex ) ;
+  System . out . println ( endingIndex ) ;
   return f_filled ;
 }
 

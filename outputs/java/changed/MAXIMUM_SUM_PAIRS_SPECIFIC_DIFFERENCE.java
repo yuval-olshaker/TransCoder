@@ -39,11 +39,9 @@ public static int f_filled ( int [ ] arr , int N , int K ) {
     if ( ( arr [ i ] - arr [ i - 1 ] < K ) && ( i >= 2 ) ) {
       if ( ( i >= 2 ) && ( i < N ) ) {
         dp [ i ] = Math . max ( dp [ i ] , dp [ i - 2 ] + arr [ i ] + arr [ i - 1 ] ) ;
-        ;
       }
       else {
         dp [ i ] = Math . max ( dp [ i ] , arr [ i ] + arr [ i - 1 ] ) ;
-        ;
       }
     }
   }

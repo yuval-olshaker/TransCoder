@@ -23,12 +23,17 @@ static String f_gold ( int n ) {
 
 //
 public static String f_filled ( int n ) {
-  if ( ( n == 0 ) || ( n == 1 ) ) return "0" ;
-  ;
+  if ( ( n == 0 ) || ( n == 1 ) ) {
+    return "0" ;
+  }
   String bin = "" ;
   while ( ( n > 0 ) && ( n != 0 ) ) {
-    if ( ( n & 1 == 0 ) ) bin = "0" + bin ;
-    else bin = "1" + bin ;
+    if ( ( n & 1 == 0 ) ) {
+      bin = "0" + bin ;
+    }
+    else {
+      bin = "1" + bin ;
+    }
     n = n >> 1 ;
   }
   return bin ;

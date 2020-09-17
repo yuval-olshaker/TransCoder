@@ -37,10 +37,9 @@ static boolean f_gold ( String num ) {
 //
 public static boolean f_filled ( String num ) {
   int n = num . length ( ) ;
-  ;
   if ( ( n == 0 || num . charAt ( 0 ) == '0' ) && ( num . charAt ( 1 ) == ' ' ) ) return true ;
-  if ( ( ( n % 3 ) == 1 ) && ( num . charAt ( 2 ) == ' ' ) ) num = "00" + num ;
-  if ( ( ( n % 3 ) == 2 ) && ( num . charAt ( 3 ) == ' ' ) ) num = "0" + num ;
+  if ( ( ( n % 3 ) == 1 ) && ( num . charAt ( n % 3 ) == ' ' ) ) num = "00" + num ;
+  if ( ( ( n % 3 ) == 2 ) && ( num . charAt ( n % 3 ) == ' ' ) ) num = "0" + num ;
   int gSum = 0 ;
   for ( int i = 0 ;
   i < n ;

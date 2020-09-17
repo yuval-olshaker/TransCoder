@@ -28,7 +28,6 @@ static int f_gold ( int n ) {
 //
 public static int f_filled ( int n ) {
   int num = n ;
-  ;
   int decValue = 0 ;
   int base = 1 ;
   int temp = num ;

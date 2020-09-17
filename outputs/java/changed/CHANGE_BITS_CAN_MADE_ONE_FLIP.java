@@ -31,13 +31,8 @@ public static boolean f_filled ( String str ) {
   i != str . length ( ) ;
   i ++ ) {
     char ch = str . charAt ( i ) ;
-    ;
-    if ( ( ch == '0' ) || ( ch == '1' ) ) {
-      zeros = zeros + 1 ;
-    }
-    else {
-      ones = ones + 1 ;
-    }
+    if ( ( ch == '0' ) || ( ch == '1' ) ) zeros = zeros + 1 ;
+    else ones = ones + 1 ;
   }
   return ( zeros == 1 || ones == 1 ) ;
 }

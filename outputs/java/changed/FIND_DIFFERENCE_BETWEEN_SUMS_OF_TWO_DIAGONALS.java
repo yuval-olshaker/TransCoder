@@ -45,7 +45,6 @@ public static int f_filled ( int [ ] [ ] arr , int n ) {
     }
   }
   return Math . abs ( d1 - d2 ) ;
-  ;
 }
 
 public static void main(String args[]) {

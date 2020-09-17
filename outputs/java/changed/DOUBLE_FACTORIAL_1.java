@@ -23,13 +23,12 @@ static int f_gold ( int n ) {
 
 
 //
-public static double f_filled ( int n ) {
-  double res = 1 ;
-  ;
+public static int f_filled ( int n ) {
+  int res = 1 ;
   for ( int i = n ;
   i >= 0 ;
-  i -- ) {
-    if ( ( i == 0 || i == 1 ) && ( res == 0 ) ) {
+  i -= 2 ) {
+    if ( ( i == 0 || i == 1 ) && ( i != 0 ) ) {
       return res ;
     }
     else {

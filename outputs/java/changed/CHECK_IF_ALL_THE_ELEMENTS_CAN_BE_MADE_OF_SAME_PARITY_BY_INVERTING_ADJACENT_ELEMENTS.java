@@ -27,7 +27,6 @@ static boolean f_gold ( int [ ] a , int n ) {
 public static boolean f_filled ( int [ ] a , int n ) {
   int countOdd = 0 ;
   int countEven = 0 ;
-  ;
   for ( int i = 0 ;
   i < n ;
   i ++ ) {

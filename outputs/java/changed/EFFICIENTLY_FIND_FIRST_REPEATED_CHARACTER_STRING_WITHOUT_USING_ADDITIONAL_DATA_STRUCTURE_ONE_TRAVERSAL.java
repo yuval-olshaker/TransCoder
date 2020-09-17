@@ -31,8 +31,9 @@ public static int f_filled ( String string ) {
   i < string . length ( ) ;
   i ++ ) {
     int val = ( int ) string . charAt ( i ) - 'a' ;
-    ;
-    if ( ( ( checker & ( 1 << val ) ) > 0 ) && ( ( checker & ( 1 << val ) ) > 0 ) ) return pos ;
+    if ( ( ( checker & ( 1 << val ) ) > 0 ) && ( ( checker & ( 1 << val ) ) > 0 ) ) {
+      return pos ;
+    }
     checker |= ( 1 << val ) ;
     pos ++ ;
   }

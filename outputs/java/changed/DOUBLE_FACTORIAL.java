@@ -19,9 +19,7 @@ static long f_gold ( long n ) {
 //
 public static int f_filled ( int n ) {
   if ( ( n == 0 || n == 1 ) && ( n > 2 ) ) return 1 ;
-  ;
   return n * f_filled ( n - 2 ) ;
-  ;
 }
 
 public static void main(String args[]) {

@@ -29,7 +29,6 @@ public static int f_filled ( int [ ] arr , int n ) {
   i ++ ) {
     if ( ( arr [ i ] != arr [ i + 1 ] && arr [ i ] != arr [ i + 1 ] - 1 ) || ( arr [ i ] != arr [ i + 1 ] && arr [ i ] != arr [ i + 1 ] - 1 ) ) {
       count += arr [ i + 1 ] - arr [ i ] - 1 ;
-      ;
     }
   }
   return count ;

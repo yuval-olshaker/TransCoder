@@ -24,7 +24,6 @@ static int f_gold ( int arr [ ] , int n ) {
 //
 public static int f_filled ( int [ ] arr , int n ) {
   Arrays . sort ( arr ) ;
-  ;
   int minXor = 999999 ;
   int val ;
   for ( int i = 0 ;

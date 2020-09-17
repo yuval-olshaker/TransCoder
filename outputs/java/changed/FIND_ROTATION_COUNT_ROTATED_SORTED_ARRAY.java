@@ -34,9 +34,8 @@ public static int f_filled ( int [ ] arr , int n ) {
       min = arr [ i ] ;
       min_index = i ;
     }
-  };
+  }
   return min_index ;
-  ;
 }
 
 public static void main(String args[]) {

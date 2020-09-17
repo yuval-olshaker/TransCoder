@@ -71,11 +71,9 @@ public static int f_filled ( int n ) {
     j ++ ) {
       if ( ( j == 0 ) || ( j == 1 ) ) {
         dp [ i ] [ j ] = dp [ i - 1 ] [ j + 1 ] ;
-        ;
       }
       else {
         dp [ i ] [ j ] = ( dp [ i - 1 ] [ j - 1 ] + dp [ i - 1 ] [ j + 1 ] ) ;
-        ;
       }
     }
   }

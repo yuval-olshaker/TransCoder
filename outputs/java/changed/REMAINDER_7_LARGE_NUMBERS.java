@@ -32,13 +32,12 @@ static int f_gold ( String num ) {
 public static int f_filled ( String num ) {
   int [ ] series = {
     1 , 3 , 2 , - 1 , - 3 , - 2 };
-    ;
     int seriesIndex = 0 ;
     int result = 0 ;
     for ( int i = ( num . length ( ) - 1 ) ;
     i >= 0 ;
     i -- ) {
-      int digit = ( int ) num . charAt ( i ) - 48 ;
+      int digit = ( int ) ( num . charAt ( i ) - 48 ) ;
       result += digit * series [ seriesIndex ] ;
       seriesIndex = ( seriesIndex + 1 ) % 6 ;
       result %= 7 ;

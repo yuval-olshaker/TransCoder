@@ -21,11 +21,16 @@ static int f_gold ( int array [ ] , int start , int end ) {
 
 //
 public static int f_filled ( int [ ] array , int start , int end ) {
-  if ( ( start > end ) && ( start < array . length ) ) return end + 1 ;
-  if ( ( start != array [ start ] ) && ( start < array . length ) ) return start ;
-  ;
+  if ( ( start > end ) && ( start < array . length ) ) {
+    return end + 1 ;
+  }
+  if ( ( start != array [ start ] ) && ( start < array . length ) ) {
+    return start ;
+  }
   int mid = ( int ) ( ( start + end ) / 2 ) ;
-  if ( ( array [ mid ] == mid ) && ( array [ mid + 1 ] == mid ) ) return f_filled ( array , mid + 1 , end ) ;
+  if ( ( array [ mid ] == mid ) && ( array [ mid + 1 ] == mid ) ) {
+    return f_filled ( array , mid + 1 , end ) ;
+  }
   return f_filled ( array , start , mid ) ;
 }
 

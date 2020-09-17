@@ -24,7 +24,6 @@ static int f_gold ( int x ) {
 //
 public static int f_filled ( int x ) {
   int m = 1 ;
-  ;
   while ( ( x & m ) != 0 ) {
     x = x ^ m ;
     m <<= 1 ;

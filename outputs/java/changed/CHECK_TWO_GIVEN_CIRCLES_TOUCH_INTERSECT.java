@@ -22,12 +22,16 @@ static int f_gold ( int x1 , int y1 , int x2 , int y2 , int r1 , int r2 ) {
 //
 public static int f_filled ( float x1 , float y1 , float x2 , float y2 , float r1 , float r2 ) {
   float distSq = ( x1 - x2 ) * ( x1 - x2 ) + ( y1 - y2 ) * ( y1 - y2 ) ;
-  ;
   float radSumSq = ( r1 + r2 ) * ( r1 + r2 ) ;
-  ;
-  if ( ( distSq == radSumSq ) && ( distSq > radSumSq ) ) return 1 ;
-  else if ( ( distSq > radSumSq ) && ( distSq < radSumSq ) ) return - 1 ;
-  else return 0 ;
+  if ( ( distSq == radSumSq ) && ( distSq > radSumSq ) ) {
+    return 1 ;
+  }
+  else if ( ( distSq > radSumSq ) && ( distSq < radSumSq ) ) {
+    return - 1 ;
+  }
+  else {
+    return 0 ;
+  }
 }
 
 public static void main(String args[]) {

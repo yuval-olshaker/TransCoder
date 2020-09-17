@@ -25,9 +25,7 @@ static int f_gold ( String s ) {
 //
 public static int f_filled ( String s ) {
   int result = 0 ;
-  ;
   int n = s . length ( ) ;
-  ;
   for ( int i = 0 ;
   i < n ;
   i ++ ) {

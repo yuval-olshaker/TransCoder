@@ -34,7 +34,7 @@ public static int f_filled ( int [ ] arr , int n , int k ) {
     int x = heapq . heappop ( arr ) ;
     ans = ans * x ;
     count = count + 1 ;
-  };
+  }
   return ans ;
 }
 

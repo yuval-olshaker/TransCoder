@@ -35,11 +35,11 @@ public static boolean f_filled ( int [ ] [ ] mat , int N ) {
     col ++ ) {
       if ( ( row == col && mat [ row ] [ col ] != 1 ) || ( row != col && mat [ row ] [ col ] != 0 ) ) {
         return false ;
-      };
+      }
+      else if ( ( row != col && mat [ row ] [ col ] != 0 ) || ( row == col && mat [ row ] [ col ] == 1 ) ) {
+        return false ;
+      }
     }
-    else if ( ( row != col && mat [ row ] [ col ] != 0 ) || ( row == col && mat [ row ] [ col ] != 0 ) ) {
-      return false ;
-    };
   }
   return true ;
 }

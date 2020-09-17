@@ -54,13 +54,11 @@ public static int f_filled ( int [ ] arr , int n ) {
       }
     }
   }
-  if ( ( maxsize == - 1 ) || ( ( ( ( int ) arr [ startindex ] ) & 0xff ) == 0 ) ) {
+  if ( ( maxsize == - 1 ) || ( ( maxsize == 0 ) && ( startindex < n ) ) ) {
     System . out . println ( "No such subarray" ) ;
-    ;
   }
   else {
-    System . out . println ( startindex + " to" + startindex + maxsize - 1 ) ;
-    ;
+    System . out . println ( startindex + "to" + startindex + maxsize - 1 ) ;
   }
   return maxsize ;
 }

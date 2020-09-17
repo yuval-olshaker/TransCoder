@@ -46,7 +46,6 @@ public static int f_filled ( int n ) {
       x <= ( int ) Math . ceil ( Math . sqrt ( i ) ) ;
       x ++ ) {
         int temp = x * x ;
-        ;
         if ( temp > i ) break ;
         else dp [ i ] = Math . min ( dp [ i ] , 1 + dp [ i - temp ] ) ;
       }

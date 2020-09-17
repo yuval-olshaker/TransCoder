@@ -55,9 +55,8 @@ public static int f_filled ( String str ) {
   i < n ;
   i ++ ) {
     P [ i ] [ i ] = true ;
-    ;
     C [ i ] [ i ] = 0 ;
-  };
+  }
   for ( L = 2 ;
   L <= n ;
   L ++ ) {

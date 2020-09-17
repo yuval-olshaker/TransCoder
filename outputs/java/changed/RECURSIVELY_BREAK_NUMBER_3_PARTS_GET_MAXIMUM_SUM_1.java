@@ -29,8 +29,7 @@ public static int f_filled ( int n ) {
   for ( int i = 2 ;
   i <= n ;
   i ++ ) {
-    dp [ i ] = Math . max ( dp [ ( int ) ( i / 2 ) ] + dp [ ( int ) ( i / 3 ) ] + dp [ ( int ) ( i / 4 ) ] , i ) ;
-    ;
+    dp [ i ] = Math . max ( dp [ Integer . parseInt ( i / 2 ) ] + dp [ Integer . parseInt ( i / 3 ) ] + dp [ Integer . parseInt ( i / 4 ) ] , i ) ;
   }
   return dp [ n ] ;
 }

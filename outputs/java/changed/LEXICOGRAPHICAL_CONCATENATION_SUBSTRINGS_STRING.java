@@ -34,7 +34,6 @@ static String f_gold ( String s ) {
 //
 public static String f_filled ( String s ) {
   int n = s . length ( ) ;
-  ;
   int subCount = ( n * ( n + 1 ) ) / 2 ;
   int [ ] arr = new int [ subCount ] ;
   int index = 0 ;
@@ -42,7 +41,7 @@ public static String f_filled ( String s ) {
   i < n ;
   i ++ ) {
     for ( int j = 1 ;
-    j <= n - i + 1 ;
+    j < n - i + 1 ;
     j ++ ) {
       arr [ index ] = s . charAt ( i ) ;
       index ++ ;

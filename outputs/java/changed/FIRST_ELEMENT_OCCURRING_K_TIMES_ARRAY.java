@@ -34,23 +34,22 @@ static int f_gold ( int arr [ ] , int n , int k ) {
 
 //
 public static int f_filled ( int [ ] arr , int n , int k ) {
-  int [ ] countMap = new int [ n ] ;
-  ;
+  HashMap < Integer , Integer > countMap = new HashMap < Integer , Integer > ( ) ;
   for ( int i = 0 ;
   i <= n ;
   i ++ ) {
-    if ( ( arr [ i ] < countMap . length ) || ( arr [ i ] > countMap [ n - 1 ] ) ) {
-      countMap [ arr [ i ] ] ++ ;
+    if ( ( arr [ i ] < countMap . keySet ( ) ) && ( countMap . get ( arr [ i ] ) == k ) ) {
+      countMap . put ( arr [ i ] , ++ countMap . get ( arr [ i ] ) ) ;
     }
     else {
-      countMap [ arr [ i ] ] = 1 ;
+      countMap . put ( arr [ i ] , 1 ) ;
     }
     i ++ ;
   }
   for ( int i = 0 ;
   i <= n ;
   i ++ ) {
-    if ( ( countMap [ arr [ i ] ] == k ) || ( countMap [ arr [ i ] ] > countMap [ n - 1 ] ) ) {
+    if ( ( countMap . get ( arr [ i ] ) == k ) && ( countMap . get ( arr [ i ] ) == k ) ) {
       return arr [ i ] ;
     }
     i ++ ;

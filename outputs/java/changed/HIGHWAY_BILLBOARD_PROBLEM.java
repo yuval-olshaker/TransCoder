@@ -37,7 +37,6 @@ static int f_gold ( int m , int [ ] x , int [ ] revenue , int n , int t ) {
 public static int f_filled ( int m , int [ ] x , int [ ] revenue , int n , int t ) {
   int [ ] maxRev = new int [ m + 1 ] ;
   int nxtbb = 0 ;
-  ;
   for ( int i = 1 ;
   i <= m ;
   i ++ ) {
@@ -51,7 +50,7 @@ public static int f_filled ( int m , int [ ] x , int [ ] revenue , int n , int t
         }
         else {
           maxRev [ i ] = Math . max ( maxRev [ i - t - 1 ] + revenue [ nxtbb ] , maxRev [ i - 1 ] ) ;
-        };
+        }
         nxtbb ++ ;
       }
     }

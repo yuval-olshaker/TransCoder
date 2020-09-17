@@ -36,7 +36,6 @@ static int f_gold ( int arr [ ] , int n ) {
 //
 public static int f_filled ( int [ ] arr , int n ) {
   int result = 0 ;
-  ;
   for ( int i = 0 ;
   i <= n ;
   i ++ ) {
@@ -44,7 +43,6 @@ public static int f_filled ( int [ ] arr , int n ) {
     j <= n ;
     j ++ ) {
       int product = arr [ i ] * arr [ j ] ;
-      ;
       for ( int k = 0 ;
       k <= n ;
       k ++ ) {

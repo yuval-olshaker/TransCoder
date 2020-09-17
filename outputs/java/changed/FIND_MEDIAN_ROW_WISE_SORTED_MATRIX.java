@@ -52,10 +52,9 @@ public static void f_filled ( int [ ] [ ] m , int r , int d ) {
     if ( m [ i ] [ d - 1 ] > mx ) mx = m [ i ] [ d - 1 ] ;
   }
   int desired = ( r * d + 1 ) / 2 ;
-  while ( ( mi < mx ) && ( mx > mi ) ) {
+  while ( ( mi < mx ) && ( mx > desired ) ) {
     int mid = mi + ( mx - mi ) / 2 ;
     int [ ] place = new int [ r ] ;
-    ;
     for ( int i = 0 ;
     i < r ;
     i ++ ) {

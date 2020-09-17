@@ -39,11 +39,8 @@ public static long f_filled ( long n ) {
     long currTerm = 1 ;
     while ( n % i == 0 ) {
       n = n / i ;
-      ;
       currTerm = currTerm * i ;
-      ;
       currSum += currTerm ;
-      ;
     }
     res = res * currSum ;
   }

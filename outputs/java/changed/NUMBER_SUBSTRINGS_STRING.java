@@ -19,9 +19,7 @@ static int f_gold ( String str ) {
 //
 public static int f_filled ( String str ) {
   int n = str . length ( ) ;
-  ;
   return ( int ) ( n * ( n + 1 ) / 2 ) ;
-  ;
 }
 
 public static void main(String args[]) {

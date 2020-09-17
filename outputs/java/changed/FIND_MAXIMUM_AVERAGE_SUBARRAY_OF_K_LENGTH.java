@@ -39,7 +39,6 @@ public static int f_filled ( int [ ] arr , int n , int k ) {
   for ( int i = 1 ;
   i < n ;
   i ++ ) csum [ i ] = csum [ i - 1 ] + arr [ i ] ;
-  ;
   int maxSum = csum [ k - 1 ] ;
   int maxEnd = k - 1 ;
   for ( int i = k ;

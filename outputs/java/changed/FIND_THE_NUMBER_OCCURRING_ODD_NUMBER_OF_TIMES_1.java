@@ -35,12 +35,11 @@ public static int f_filled ( int arr [ ] , int size ) {
   i < size ;
   i ++ ) {
     Hash . put ( arr [ i ] , Hash . get ( arr [ i ] ) + 1 ) ;
-    ;
   }
   for ( int i = 0 ;
   i < Hash . size ( ) ;
   i ++ ) {
-    if ( ( Hash . get ( i ) % 2 != 0 ) && ( Hash . get ( i ) % 2 != 0 ) ) {
+    if ( ( Hash . get ( i ) % 2 != 0 ) && ( Hash . get ( i ) % 2 != 1 ) ) {
       return i ;
     }
   }

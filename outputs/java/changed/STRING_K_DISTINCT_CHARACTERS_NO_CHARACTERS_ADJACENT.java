@@ -43,7 +43,7 @@ public static String f_filled ( int n , int k ) {
     count ++ ;
     if ( ( count == k ) && ( i == n - k ) ) {
       count = 0 ;
-    };
+    }
   }
   return res ;
 }

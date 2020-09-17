@@ -33,9 +33,7 @@ public static int f_filled ( int [ ] arr , int n ) {
   i <= n - 1 ;
   i ++ ) {
     val = arr [ i ] ^ arr [ i + 1 ] ;
-    ;
     minXor = Math . min ( minXor , val ) ;
-    ;
   }
   return minXor ;
 }

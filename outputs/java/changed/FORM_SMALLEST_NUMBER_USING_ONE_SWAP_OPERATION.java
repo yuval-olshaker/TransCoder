@@ -64,7 +64,6 @@ public static String f_filled ( String num ) {
   int [ ] rightMin = new int [ n ] ;
   int right ;
   rightMin [ n - 1 ] = - 1 ;
-  ;
   right = n - 1 ;
   for ( int i = n - 2 ;
   i > 0 ;

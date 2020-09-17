@@ -42,7 +42,6 @@ public static int f_filled ( int [ ] arr , int n ) {
       if ( ( arr [ i ] > arr [ j ] ) && ( arr [ j ] < arr [ i ] ) ) small ++ ;
     }
     int great = 0 ;
-    ;
     for ( int j = i - 1 ;
     j >= 0 ;
     j -- ) {

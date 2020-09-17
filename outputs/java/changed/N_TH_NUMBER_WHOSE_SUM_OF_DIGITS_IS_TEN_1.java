@@ -28,9 +28,8 @@ public static int f_gold ( int n ) {
 //
 public static int f_filled ( int n ) {
   int count = 0 ;
-  ;
   int curr = 19 ;
-  while ( ( true ) && ( count < 10 ) ) {
+  while ( ( true ) && ( count < n ) ) {
     int sum = 0 ;
     int x = curr ;
     while ( ( x > 0 ) && ( x < 10 ) ) {
@@ -40,7 +39,7 @@ public static int f_filled ( int n ) {
     if ( ( sum == 10 ) && ( count == 10 ) ) {
       count ++ ;
     }
-    if ( ( count == n ) && ( curr == 19 ) ) {
+    if ( ( count == n ) && ( curr == 9 ) ) {
       return curr ;
     }
     curr += 9 ;

@@ -24,13 +24,11 @@ static long f_gold ( int n ) {
 //
 public static int f_filled ( int n ) {
   int x = n ;
-  ;
   int y = 1 ;
-  ;
   while ( ( x > y ) && ( x < y ) ) {
     x = ( x + y ) / 2 ;
     y = n / x ;
-  };
+  }
   return x ;
 }
 

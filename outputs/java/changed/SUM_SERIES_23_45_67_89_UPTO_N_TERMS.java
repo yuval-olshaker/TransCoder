@@ -33,11 +33,10 @@ static double f_gold ( int n ) {
 public static double f_filled ( int n ) {
   int i = 1 ;
   double res = 0.0 ;
-  ;
   boolean sign = true ;
-  while ( ( n > 0 ) && ( i < n ) ) {
+  while ( ( n > 0 ) && ( sign ) ) {
     n = n - 1 ;
-    if ( ( sign ) || ( i < 0 ) ) {
+    if ( ( sign ) || ( n == 0 ) ) {
       sign = false ;
       res = res + ( i + 1 ) / ( i + 2 ) ;
       i = i + 2 ;

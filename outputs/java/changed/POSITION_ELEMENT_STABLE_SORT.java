@@ -30,11 +30,11 @@ public static int f_filled ( int [ ] arr , int n , int idx ) {
   i ++ ) {
     if ( ( arr [ i ] < arr [ idx ] ) && ( arr [ i ] == arr [ idx ] && i < idx ) ) {
       result ++ ;
-    };
+    }
     if ( ( arr [ i ] == arr [ idx ] && i < idx ) && ( arr [ i ] == arr [ idx ] && i < idx ) ) {
       result ++ ;
     }
-  };
+  }
   return result ;
 }
 

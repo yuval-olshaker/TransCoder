@@ -32,11 +32,11 @@ public static int f_filled ( int num ) {
     if ( ( num % i == 0 ) && ( i == ( num / i ) ) ) {
       if ( ( i == ( num / i ) ) && ( num % i == 0 ) ) {
         result = result + i ;
-      };
+      }
+      else {
+        result = result + ( i + num / i ) ;
+      }
     }
-    else {
-      result = result + ( i + num / i ) ;
-    };
     i = i + 1 ;
   }
   return ( result + 1 ) ;

@@ -58,7 +58,6 @@ public static String f_filled ( String str1 , String str2 ) {
   i < n1 ;
   i ++ ) {
     int sum = ( ( ( int ) str1 . charAt ( i ) ) - 48 ) + ( ( ( int ) str2 . charAt ( i ) ) - 48 ) + carry ;
-    ;
     str += ( char ) ( sum % 10 + 48 ) ;
     carry = ( int ) ( sum / 10 ) ;
   }
@@ -66,13 +65,10 @@ public static String f_filled ( String str1 , String str2 ) {
   i < n2 ;
   i ++ ) {
     int sum = ( ( ( int ) str2 . charAt ( i ) ) - 48 ) + carry ;
-    ;
     str += ( char ) ( sum % 10 + 48 ) ;
     carry = ( int ) ( sum / 10 ) ;
   }
-  if ( ( carry ) > 0 ) {
-    str += ( char ) ( carry + 48 ) ;
-  }
+  if ( ( carry ) > 0 ) str += ( char ) ( carry + 48 ) ;
   str = str . substring ( 0 , str . length ( ) - 1 ) ;
   return str ;
 }
