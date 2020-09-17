@@ -153,6 +153,9 @@ if __name__ == '__main__':
     python_file_readable = combine_origin_from_both_sources(python_file_readable, python_file_readable_test)
     java_file_readable, python_file_readable = combine_tests_of_both_languages(java_file_readable, python_file_readable)
 
+    # delete ';' from python files - it confuses the translator and not interesting at all (we can learn it)
+    python_file_readable = list(map(lambda line: (line[0], line[1].replace(';\n', '\n')), python_file_readable))
+
     # translate all
     print_time('start translations')
     java_file_translated = translate_lines(True, java_file_readable)
