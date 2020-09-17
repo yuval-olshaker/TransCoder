@@ -64,12 +64,16 @@ def add_code_to_tests(lang, lines):
     return titles, not_exists
 
 # run command on linux
-def run_command(command):
-    os.system(TIMEOUT_FOR_COMMAND + command)
+# second command is because at java we use "cd" command first and eant timeout for the run
+def run_command(command, second_command):
+    if second_command is None:
+        os.system(TIMEOUT_FOR_COMMAND + command)
+    else:
+        os.system(command + TIMEOUT_FOR_COMMAND + second_command)
 
 # starts process to run a command - if runs more than 30 seconds. raise exception
-def run_process(command):
-    p = multiprocessing.Process(target=run_command, args=(command,))
+def run_process(command, second_command=None):
+    p = multiprocessing.Process(target=run_command, args=(command,second_command))
     p.start()
     p.join(MAX_TEST_TIME)
     if p.is_alive():
@@ -105,7 +109,7 @@ def run_java_tests(titles):
             os.system('javac ' + dir_path + title[0] + '.java')  # compile the java test
             # if runs more then 30 seconds - infinite loops
             # run the java test, go into the dir because java is annoying
-            run_process('cd ' + dir_path + ' ; ' + 'java ' + title[0] + ' > temp.txt')
+            run_process('cd ' + dir_path + ' ; ', 'java ' + title[0] + ' > temp.txt')
             with open(dir_path + 'temp.txt') as result:  # take the result we printed
                 res = result.read()[:-1].split()  # no EOL, split by ' '
                 results.append([title[0], title[1], res[-2], res[-1]])
