@@ -52,7 +52,7 @@ def add_code_to_tests(lang, lines):
                 relevant_lines[0] = ' '.join(temp)
                 specific_test_str = specific_test_read.read()
                 specific_test_str = specific_test_str.replace('TOFILL', '\n' + '\n'.join(relevant_lines).replace(
-                    origin_function_name, 'f_filled'))
+                    origin_function_name, 'f_filled')).replace('import javafx.util.Pair;', '')
             with open(changed_test_path, 'w') as specific_test_write:
                 specific_test_write.write(specific_test_str)
 
@@ -99,10 +99,10 @@ def run_java_tests(titles):
     dir_path = '/mnt/c/TransCoder/outputs/java/changed/'
     for title in titles:
         try:
-            os.system('javac' + dir_path + title[0] + '.java')  # compile the java test
-            os.system('cd ' + dir_path)  # go into the dir because java is annoying
+            os.system('javac ' + dir_path + title[0] + '.java')  # compile the java test
             # if runs more then 30 seconds - infinite loops
-            run_process('java ' + title[0] + ' > temp.txt') # run the java test
+            # run the java test, go into the dir because java is annoying
+            run_process('cd ' + dir_path + ' ; ' + 'java ' + title[0] + ' > temp.txt')
             with open(dir_path + 'temp.txt') as result:  # take the result we printed
                 res = result.read()[:-1].split()  # no EOL, split by ' '
                 results.append([title[0], title[1], res[-2], res[-1]])
