@@ -4,6 +4,7 @@ from datetime import datetime
 
 END_OF_FUNCTION = '|||'
 MAX_TEST_TIME = 30 # the max time of single test. if takes more - infinite loop
+TIMEOUT_FOR_COMMAND = 'timeout ' + str(2 * MAX_TEST_TIME) + 's '
 
 # prints current time
 def print_time():
@@ -64,7 +65,7 @@ def add_code_to_tests(lang, lines):
 
 # run command on linux
 def run_command(command):
-    os.system(command)
+    os.system(TIMEOUT_FOR_COMMAND + command)
 
 # starts process to run a command - if runs more than 30 seconds. raise exception
 def run_process(command):
@@ -74,6 +75,8 @@ def run_process(command):
     if p.is_alive():
         p.terminate()
         p.join()
+        print('infinite loop:')
+        print(command)
         raise Exception
 
 # run the tests of python language (translated from java)
