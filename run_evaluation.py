@@ -80,7 +80,7 @@ def run_process(command, second_command=None):
         p.terminate()
         p.join()
         print('infinite loop:')
-        print(command)
+        print(second_command if second_command is not None else command)
         raise Exception
 
 # run the tests of python language (translated from java)
@@ -132,8 +132,8 @@ if __name__ == '__main__':
     out_dir = '/mnt/c/TransCoder/outputs/'
 
     # read the translation data we created
-    java_lines = read_translated(out_dir + 'translated_java.java')
     python_lines = read_translated(out_dir + 'translated_python.py')
+    java_lines = read_translated(out_dir + 'translated_java.java')
 
     # put it out
     python_titles, python_not_exists = add_code_to_tests('python', python_lines)
