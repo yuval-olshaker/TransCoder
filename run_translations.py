@@ -1,14 +1,12 @@
 # this scripts will run the translation on the test examples so we will be able to test the limitation
 # one of the important things is to organize the output so we will be able to go over it
 import argparse
-import preprocessing.src.code_tokenizer as code_tokenizer
 import translate
 import html_templates
 from datetime import datetime
 
-from create_readable_corpus import get_origin_codes
+from create_readable_corpus import get_origin_codes_from_test_files, get_origin_codes_from_tok_files
 
-SEPARATOR = '|'
 LONG_CODES = ['FINDING_THE_MAXIMUM_SQUARE_SUB_MATRIX_WITH_ALL_EQUAL_ELEMENTS', 'WILDCARD_CHARACTER_MATCHING']
 LINE_SEPARATOR = '\n\n'
 END_OF_FUNCTION = '|||'
@@ -25,30 +23,6 @@ def get_parser():
     parser.add_argument("--python_path", type=str, default="", help="Python path")
 
     return parser
-
-
-# splits a line to function-name and code. By | symbol
-def split_line(line):
-    index = line.find(SEPARATOR)
-    name = line[:index - 1]  # cuts the space before the |
-    code = line[index + 2:-1]  # cut the space after the |. cut \n in the end
-    return name, code
-
-
-# read the data from files
-def read_file(file_path):
-    with open(file_path) as file:
-        lines = file.readlines()
-    return list(map(split_line, lines))
-
-
-# parse the lines and detokenize them so it will be readable for humans - and better for the run
-def make_java_readable(java_file):
-    return list(map(lambda line: (line[0], code_tokenizer.detokenize_java(line[1])), java_file))
-
-
-def make_python_readable(python_file):
-    return list(map(lambda line: (line[0], code_tokenizer.detokenize_python(line[1])), python_file))
 
 
 # translate with the model from facebook
@@ -137,16 +111,11 @@ if __name__ == '__main__':
     parser = get_parser()
     params = parser.parse_args()
 
-    # read the files
-    java_file = read_file(params.java_path)
-    python_file = read_file(params.python_path)
+    java_file_readable, python_file_readable = get_origin_codes_from_tok_files(params.java_path, params.python_path)
 
-    # make the test data readable for humans
-    java_file_readable = make_java_readable(java_file)
-    python_file_readable = make_python_readable(python_file)
     # read the data from the tests they generated
-    java_file_readable_test = get_origin_codes('java', '//', 5)
-    python_file_readable_test = get_origin_codes('python', '#', 3)
+    java_file_readable_test = get_origin_codes_from_test_files('java', '//', 5)
+    python_file_readable_test = get_origin_codes_from_test_files('python', '#', 3)
 
     # add the data from the tests they generated
     java_file_readable = combine_origin_from_both_sources(java_file_readable, java_file_readable_test)
