@@ -102,10 +102,10 @@ def print_for_evaluation(path, ind):
             func = func if func[-1] == '\n' else func + '\n'
             out_file.write(func + END_OF_FUNCTION + LINE_SEPARATOR)
 
-def print_time():
+def print_time(to_print):
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
-    print("Current Time =", current_time)
+    print(to_print + " Time =", current_time)
 
 # returns the tests names from corpus
 def get_tests(file_readable):
@@ -131,7 +131,7 @@ def combine_origin_from_both_sources(file_readable, file_readable_test):
     return file_readable
 
 if __name__ == '__main__':
-    print_time()
+    print_time('start')
 
     # generate parser / parse parameters
     parser = get_parser()
@@ -154,9 +154,11 @@ if __name__ == '__main__':
     java_file_readable, python_file_readable = combine_tests_of_both_languages(java_file_readable, python_file_readable)
 
     # translate all
+    print_time('start translations')
     java_file_translated = translate_lines(True, java_file_readable)
+    print_time('after java')
     python_file_translated = translate_lines(False, python_file_readable)
-
+    print_time('finish translations')
     # combine translation and original
     combined = [get_code_from_corpus(java_file_translated, 0), get_code_from_corpus(java_file_translated, 1),
                 get_code_from_corpus(python_file_translated, 2),
@@ -176,14 +178,14 @@ if __name__ == '__main__':
 
     # print the function - for evaluation
     combined_txt = [get_code_from_corpus(java_file_translated, 0, is_html=False),
-                    get_code_from_corpus(java_file_translated, 2, is_html=False),
-                    get_code_from_corpus(python_file_translated, 3, is_html=False),
+                    get_code_from_corpus(java_file_translated, 1, is_html=False),
                     get_code_from_corpus(python_file_translated, 2, is_html=False),
-                    get_code_from_corpus(java_file_translated, 3, is_html=False)]
+                    get_code_from_corpus(python_file_translated, 1, is_html=False),
+                    get_code_from_corpus(java_file_translated, 2, is_html=False)]
 
     print_for_evaluation(out_dir_path + 'origin_java.java', 1)
     print_for_evaluation(out_dir_path + 'translated_java.java', 2)
     print_for_evaluation(out_dir_path + 'origin_python.py', 3)
     print_for_evaluation(out_dir_path + 'translated_python.py', 4)
 
-    print_time()
+    print_time('end')
