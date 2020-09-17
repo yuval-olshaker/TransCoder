@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class CHECK_POSSIBLE_SORT_ARRAY_CONDITIONAL_SWAPPING_ADJACENT_ALLOWED{
 static boolean f_gold ( int arr [ ] , int n ) {
   for ( int i = 0 ;

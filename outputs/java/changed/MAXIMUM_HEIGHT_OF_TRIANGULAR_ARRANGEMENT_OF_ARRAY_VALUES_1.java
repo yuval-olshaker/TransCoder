@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class MAXIMUM_HEIGHT_OF_TRIANGULAR_ARRANGEMENT_OF_ARRAY_VALUES_1{
 static int f_gold ( int a [ ] , int n ) {
   return ( int ) Math . floor ( ( - 1 + Math . sqrt ( 1 + ( 8 * n ) ) ) / 2 ) ;

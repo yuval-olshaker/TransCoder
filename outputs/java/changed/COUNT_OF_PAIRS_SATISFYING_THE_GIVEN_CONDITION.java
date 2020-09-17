@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class COUNT_OF_PAIRS_SATISFYING_THE_GIVEN_CONDITION{
 static int f_gold ( int a , int b ) {
   String s = String . valueOf ( b ) ;

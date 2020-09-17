@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class FIND_MINIMUM_SUM_FACTORS_NUMBER{
 static int f_gold ( int num ) {
   int sum = 0 ;

@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class LEXICOGRAPHICAL_MAXIMUM_SUBSTRING_STRING{
 static String f_gold ( String str ) {
   String mx = "" ;

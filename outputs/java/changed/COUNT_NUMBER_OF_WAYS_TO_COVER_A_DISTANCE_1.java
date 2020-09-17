@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class COUNT_NUMBER_OF_WAYS_TO_COVER_A_DISTANCE_1{
 static int f_gold ( int dist ) {
   int [ ] count = new int [ dist + 1 ] ;

@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class GOOGLE_CASE_GIVEN_SENTENCE{
 static String f_gold ( String s ) {
   int n = s . length ( ) ;

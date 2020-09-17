@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class PAINTING_FENCE_ALGORITHM{
 static long f_gold ( int n , int k ) {
   long total = k ;

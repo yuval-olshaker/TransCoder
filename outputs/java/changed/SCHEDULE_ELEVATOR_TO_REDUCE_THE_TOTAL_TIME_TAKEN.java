@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class SCHEDULE_ELEVATOR_TO_REDUCE_THE_TOTAL_TIME_TAKEN{
 static int f_gold ( int n , int k , int a [ ] ) {
   int temp ;

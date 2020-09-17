@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class SMALLEST_OF_THREE_INTEGERS_WITHOUT_COMPARISON_OPERATORS_1{
 static int f_gold ( int x , int y , int z ) {
   if ( ( y / x ) != 1 ) return ( ( y / z ) != 1 ) ? y : z ;

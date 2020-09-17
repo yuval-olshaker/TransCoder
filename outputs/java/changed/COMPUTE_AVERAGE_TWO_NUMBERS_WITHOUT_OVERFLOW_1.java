@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class COMPUTE_AVERAGE_TWO_NUMBERS_WITHOUT_OVERFLOW_1{
 static int f_gold ( int a , int b ) {
   return ( a / 2 ) + ( b / 2 ) + ( ( a % 2 + b % 2 ) / 2 ) ;

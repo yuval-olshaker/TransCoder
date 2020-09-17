@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class CHECK_WHETHER_TWO_STRINGS_ARE_ANAGRAM_OF_EACH_OTHER{
 static boolean f_gold ( char [ ] str1 , char [ ] str2 ) {
   int n1 = str1 . length ;

@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class FIND_DISTINCT_SUBSET_SUBSEQUENCE_SUMS_ARRAY{
 static void f_gold ( int arr [ ] , int n ) {
   int sum = 0 ;

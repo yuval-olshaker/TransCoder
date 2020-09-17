@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class NUMBER_NON_NEGATIVE_INTEGRAL_SOLUTIONS_B_C_N_1{
 static int f_gold ( int n ) {
   return ( ( n + 1 ) * ( n + 2 ) ) / 2 ;

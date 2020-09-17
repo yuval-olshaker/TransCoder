@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class CHECK_WHETHER_NUMBER_DUCK_NUMBER_NOT{
 static int f_gold ( String num ) {
   int len = num . length ( ) ;

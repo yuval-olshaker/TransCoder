@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class AREA_CIRCUMSCRIBED_CIRCLE_SQUARE{
 static float f_gold ( float a ) {
   float PI = 3.14159265f ;

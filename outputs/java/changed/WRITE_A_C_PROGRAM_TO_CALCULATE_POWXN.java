@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class WRITE_A_C_PROGRAM_TO_CALCULATE_POWXN{
 static int f_gold ( int x , int y ) {
   if ( y == 0 ) return 1 ;

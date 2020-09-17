@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class PADOVAN_SEQUENCE{
 static int f_gold ( int n ) {
   int pPrevPrev = 1 , pPrev = 1 , pCurr = 1 , pNext = 1 ;

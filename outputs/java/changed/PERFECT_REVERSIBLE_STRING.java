@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class PERFECT_REVERSIBLE_STRING{
 static boolean f_gold ( String str ) {
   int i = 0 , j = str . length ( ) - 1 ;

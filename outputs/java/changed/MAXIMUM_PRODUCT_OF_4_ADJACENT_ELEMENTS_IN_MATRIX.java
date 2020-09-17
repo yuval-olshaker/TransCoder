@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class MAXIMUM_PRODUCT_OF_4_ADJACENT_ELEMENTS_IN_MATRIX{
 static int f_gold ( int arr [ ] [ ] , int n ) {
   int max = 0 , result ;

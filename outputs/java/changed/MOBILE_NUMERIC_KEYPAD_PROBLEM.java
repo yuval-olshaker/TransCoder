@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class MOBILE_NUMERIC_KEYPAD_PROBLEM{
 static int f_gold ( char keypad [ ] [ ] , int n ) {
   if ( keypad == null || n <= 0 ) return 0 ;

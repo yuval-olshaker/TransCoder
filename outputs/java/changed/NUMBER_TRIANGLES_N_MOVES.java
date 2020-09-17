@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class NUMBER_TRIANGLES_N_MOVES{
 public static int f_gold ( int n ) {
   int [ ] answer = new int [ n + 1 ] ;

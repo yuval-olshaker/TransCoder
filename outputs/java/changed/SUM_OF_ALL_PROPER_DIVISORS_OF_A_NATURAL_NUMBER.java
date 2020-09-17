@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class SUM_OF_ALL_PROPER_DIVISORS_OF_A_NATURAL_NUMBER{
 static int f_gold ( int num ) {
   int result = 0 ;

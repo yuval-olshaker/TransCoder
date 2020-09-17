@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class COMPOSITE_NUMBER{
 static boolean f_gold ( int n ) {
   if ( n <= 1 ) System . out . println ( "False" ) ;

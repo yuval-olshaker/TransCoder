@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 class CHANGE_ARRAY_PERMUTATION_NUMBERS_1_N{
 static void f_gold ( int [ ] a , int n ) {
   HashMap < Integer , Integer > count = new HashMap < Integer , Integer > ( ) ;

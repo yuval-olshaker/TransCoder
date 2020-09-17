@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class BINARY_REPRESENTATION_OF_NEXT_NUMBER{
 static String f_gold ( String num ) {
   int l = num . length ( ) ;

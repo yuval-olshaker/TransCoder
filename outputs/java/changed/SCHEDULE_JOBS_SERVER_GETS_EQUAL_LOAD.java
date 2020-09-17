@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class SCHEDULE_JOBS_SERVER_GETS_EQUAL_LOAD{
 static int f_gold ( int a [ ] , int b [ ] , int n ) {
   int i ;

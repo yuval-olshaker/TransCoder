@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class BIN_PACKING_PROBLEM_MINIMIZE_NUMBER_OF_USED_BINS{
 static int f_gold ( int weight [ ] , int n , int c ) {
   int res = 0 , bin_rem = c ;

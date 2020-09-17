@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class SPLIT_N_MAXIMUM_COMPOSITE_NUMBERS{
 static int f_gold ( int n ) {
   if ( n < 4 ) return - 1 ;

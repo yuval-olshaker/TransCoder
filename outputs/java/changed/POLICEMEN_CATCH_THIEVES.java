@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class POLICEMEN_CATCH_THIEVES{
 static int f_gold ( char arr [ ] , int n , int k ) {
   int res = 0 ;

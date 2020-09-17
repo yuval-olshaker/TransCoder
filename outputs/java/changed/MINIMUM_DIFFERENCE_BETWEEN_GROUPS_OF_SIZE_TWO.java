@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class MINIMUM_DIFFERENCE_BETWEEN_GROUPS_OF_SIZE_TWO{
 static long f_gold ( long a [ ] , int n ) {
   Arrays . sort ( a ) ;

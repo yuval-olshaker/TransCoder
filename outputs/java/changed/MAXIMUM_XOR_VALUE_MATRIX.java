@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class MAXIMUM_XOR_VALUE_MATRIX{
 static int f_gold ( int mat [ ] [ ] , int N ) {
   int r_xor , c_xor ;

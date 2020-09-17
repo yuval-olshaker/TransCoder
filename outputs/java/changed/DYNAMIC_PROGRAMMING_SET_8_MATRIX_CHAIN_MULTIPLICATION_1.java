@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class DYNAMIC_PROGRAMMING_SET_8_MATRIX_CHAIN_MULTIPLICATION_1{
 static int f_gold ( int p [ ] , int n ) {
   int m [ ] [ ] = new int [ n ] [ n ] ;

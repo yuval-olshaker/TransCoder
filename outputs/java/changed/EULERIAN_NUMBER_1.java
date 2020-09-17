@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class EULERIAN_NUMBER_1{
 public static int f_gold ( int n , int m ) {
   int [ ] [ ] dp = new int [ n + 1 ] [ m + 1 ] ;

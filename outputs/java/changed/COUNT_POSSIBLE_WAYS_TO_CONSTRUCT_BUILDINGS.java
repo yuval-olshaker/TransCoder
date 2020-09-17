@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class COUNT_POSSIBLE_WAYS_TO_CONSTRUCT_BUILDINGS{
 static int f_gold ( int N ) {
   if ( N == 1 ) return 4 ;

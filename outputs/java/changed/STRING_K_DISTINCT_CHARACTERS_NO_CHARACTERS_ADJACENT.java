@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class STRING_K_DISTINCT_CHARACTERS_NO_CHARACTERS_ADJACENT{
 static String f_gold ( int n , int k ) {
   String res = "" ;

@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class LONGEST_REPEATING_AND_NON_OVERLAPPING_SUBSTRING{
 static String f_gold ( String str ) {
   int n = str . length ( ) ;

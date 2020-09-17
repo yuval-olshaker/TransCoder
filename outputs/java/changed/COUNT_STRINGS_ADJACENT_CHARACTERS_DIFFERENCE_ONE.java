@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class COUNT_STRINGS_ADJACENT_CHARACTERS_DIFFERENCE_ONE{
 static long f_gold ( int n ) {
   long [ ] [ ] dp = new long [ n + 1 ] [ 27 ] ;

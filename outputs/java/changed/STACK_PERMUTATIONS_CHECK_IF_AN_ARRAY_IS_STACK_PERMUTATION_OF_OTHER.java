@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class STACK_PERMUTATIONS_CHECK_IF_AN_ARRAY_IS_STACK_PERMUTATION_OF_OTHER{
 static boolean f_gold ( int ip [ ] , int op [ ] , int n ) {
   Queue < Integer > input = new LinkedList < > ( ) ;

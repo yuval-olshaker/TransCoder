@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class CONVERTING_ONE_STRING_USING_APPEND_DELETE_LAST_OPERATIONS{
 static boolean f_gold ( String str1 , String str2 , int k ) {
   if ( ( str1 . length ( ) + str2 . length ( ) ) < k ) return true ;

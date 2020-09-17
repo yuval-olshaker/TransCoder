@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class MINIMUM_COST_CUT_BOARD_SQUARES{
 static int f_gold ( Integer X [ ] , Integer Y [ ] , int m , int n ) {
   int res = 0 ;

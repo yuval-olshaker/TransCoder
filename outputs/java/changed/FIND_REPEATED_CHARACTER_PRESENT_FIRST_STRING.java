@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class FIND_REPEATED_CHARACTER_PRESENT_FIRST_STRING{
 static int f_gold ( String s ) {
   int p = - 1 , i , j ;

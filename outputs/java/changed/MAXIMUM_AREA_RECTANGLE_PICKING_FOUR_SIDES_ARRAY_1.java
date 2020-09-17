@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class MAXIMUM_AREA_RECTANGLE_PICKING_FOUR_SIDES_ARRAY_1{
 static int f_gold ( int arr [ ] , int n ) {
   Set < Integer > s = new HashSet < > ( ) ;

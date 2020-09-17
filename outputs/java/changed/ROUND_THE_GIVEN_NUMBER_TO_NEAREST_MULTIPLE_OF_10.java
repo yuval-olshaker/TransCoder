@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class ROUND_THE_GIVEN_NUMBER_TO_NEAREST_MULTIPLE_OF_10{
 static int f_gold ( int n ) {
   int a = ( n / 10 ) * 10 ;

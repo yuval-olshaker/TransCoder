@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class LOWER_INSERTION_POINT{
 static int f_gold ( int arr [ ] , int n , int X ) {
   if ( X < arr [ 0 ] ) return 0 ;

@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class CALCULATE_AREA_TETRAHEDRON{
 static double f_gold ( int side ) {
   double volume = ( Math . pow ( side , 3 ) / ( 6 * Math . sqrt ( 2 ) ) ) ;

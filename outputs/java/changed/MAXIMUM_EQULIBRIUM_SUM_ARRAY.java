@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class MAXIMUM_EQULIBRIUM_SUM_ARRAY{
 static int f_gold ( int [ ] arr , int n ) {
   int res = Integer . MIN_VALUE ;

@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class EFFICIENT_WAY_TO_MULTIPLY_WITH_7{
 static int f_gold ( int n ) {
   return ( ( n << 3 ) - n ) ;

@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class POSITION_OF_RIGHTMOST_SET_BIT_1{
 static int f_gold ( int n ) {
   int position = 1 ;

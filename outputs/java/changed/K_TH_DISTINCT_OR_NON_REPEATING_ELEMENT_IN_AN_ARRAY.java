@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class K_TH_DISTINCT_OR_NON_REPEATING_ELEMENT_IN_AN_ARRAY{
 static int f_gold ( int arr [ ] , int n , int k ) {
   int dist_count = 0 ;

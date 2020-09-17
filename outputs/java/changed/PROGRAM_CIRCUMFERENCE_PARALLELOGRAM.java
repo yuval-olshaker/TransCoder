@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class PROGRAM_CIRCUMFERENCE_PARALLELOGRAM{
 static float f_gold ( float a , float b ) {
   return ( ( 2 * a ) + ( 2 * b ) ) ;

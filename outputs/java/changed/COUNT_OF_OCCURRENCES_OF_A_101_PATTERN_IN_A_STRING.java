@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class COUNT_OF_OCCURRENCES_OF_A_101_PATTERN_IN_A_STRING{
 static int f_gold ( String str ) {
   int len = str . length ( ) ;

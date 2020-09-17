@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N{
 static int f_gold ( int n ) {
   int prime [ ] = new int [ n + 1 ] , sum = 0 ;

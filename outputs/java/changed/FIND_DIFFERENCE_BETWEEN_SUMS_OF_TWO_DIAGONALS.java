@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class FIND_DIFFERENCE_BETWEEN_SUMS_OF_TWO_DIAGONALS{
 public static int f_gold ( int arr [ ] [ ] , int n ) {
   int d1 = 0 , d2 = 0 ;

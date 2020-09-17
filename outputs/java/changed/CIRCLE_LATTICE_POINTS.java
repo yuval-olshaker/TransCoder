@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class CIRCLE_LATTICE_POINTS{
 static int f_gold ( int r ) {
   if ( r <= 0 ) return 0 ;

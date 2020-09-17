@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class PROGRAM_TO_FIND_THE_VOLUME_OF_A_TRIANGULAR_PRISM{
 static float f_gold ( float l , float b , float h ) {
   float volume = ( l * b * h ) / 2 ;

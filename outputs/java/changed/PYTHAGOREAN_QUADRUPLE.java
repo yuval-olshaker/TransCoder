@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class PYTHAGOREAN_QUADRUPLE{
 static Boolean f_gold ( int a , int b , int c , int d ) {
   int sum = a * a + b * b + c * c ;

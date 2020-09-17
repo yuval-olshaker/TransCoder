@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class SUM_SERIES_555555_N_TERMS{
 static int f_gold ( int n ) {
   return ( int ) ( 0.6172 * ( Math . pow ( 10 , n ) - 1 ) - 0.55 * n ) ;

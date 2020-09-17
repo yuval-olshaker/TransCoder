@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class TOTAL_NUMBER_OF_NON_DECREASING_NUMBERS_WITH_N_DIGITS{
 static int f_gold ( int n ) {
   int dp [ ] [ ] = new int [ 10 ] [ n + 1 ] ;

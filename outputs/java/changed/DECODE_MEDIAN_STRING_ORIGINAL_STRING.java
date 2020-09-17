@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class DECODE_MEDIAN_STRING_ORIGINAL_STRING{
 static String f_gold ( String s ) {
   int l = s . length ( ) ;

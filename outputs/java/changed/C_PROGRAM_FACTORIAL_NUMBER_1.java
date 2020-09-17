@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class C_PROGRAM_FACTORIAL_NUMBER_1{
 static int f_gold ( int n ) {
   int res = 1 , i ;

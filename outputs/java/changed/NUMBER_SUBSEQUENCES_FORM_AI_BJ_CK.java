@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class NUMBER_SUBSEQUENCES_FORM_AI_BJ_CK{
 static int f_gold ( String s ) {
   int aCount = 0 ;

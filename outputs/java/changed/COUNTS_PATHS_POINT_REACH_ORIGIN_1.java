@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class COUNTS_PATHS_POINT_REACH_ORIGIN_1{
 static int f_gold ( int n , int m ) {
   int dp [ ] [ ] = new int [ n + 1 ] [ m + 1 ] ;

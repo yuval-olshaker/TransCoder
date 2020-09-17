@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class UGLY_NUMBERS{
 static int f_gold ( int n ) {
   int ugly [ ] = new int [ n ] ;

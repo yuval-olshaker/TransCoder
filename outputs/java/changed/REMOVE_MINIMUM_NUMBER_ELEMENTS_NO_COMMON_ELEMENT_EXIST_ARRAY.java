@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class REMOVE_MINIMUM_NUMBER_ELEMENTS_NO_COMMON_ELEMENT_EXIST_ARRAY{
 public static int f_gold ( int a [ ] , int b [ ] , int n , int m ) {
   HashMap < Integer , Integer > countA = new HashMap < Integer , Integer > ( ) ;

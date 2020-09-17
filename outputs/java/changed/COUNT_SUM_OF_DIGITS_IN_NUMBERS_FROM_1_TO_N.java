@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class COUNT_SUM_OF_DIGITS_IN_NUMBERS_FROM_1_TO_N{
 static int f_gold ( int n ) {
   if ( n < 10 ) return ( n * ( n + 1 ) / 2 ) ;

@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class SWAP_ALL_ODD_AND_EVEN_BITS{
 static int f_gold ( int x ) {
   int even_bits = x & 0xAAAAAAAA ;

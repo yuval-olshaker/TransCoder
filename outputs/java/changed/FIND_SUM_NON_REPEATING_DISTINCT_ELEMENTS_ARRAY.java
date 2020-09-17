@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class FIND_SUM_NON_REPEATING_DISTINCT_ELEMENTS_ARRAY{
 static int f_gold ( int arr [ ] , int n ) {
   int sum = 0 ;

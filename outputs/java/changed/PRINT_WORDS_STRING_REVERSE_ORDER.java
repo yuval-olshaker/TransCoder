@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class PRINT_WORDS_STRING_REVERSE_ORDER{
 static String f_gold ( String str ) {
   int i = str . length ( ) - 1 ;

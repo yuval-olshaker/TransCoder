@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class FIND_EQUAL_POINT_STRING_BRACKETS{
 static int f_gold ( String str ) {
   int len = str . length ( ) ;

@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class CHECK_NUMBER_POWER_K_USING_BASE_CHANGING_METHOD{
 static boolean f_gold ( int n , int k ) {
   boolean oneSeen = false ;

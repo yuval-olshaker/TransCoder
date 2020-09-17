@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class PROGRAM_PAGE_REPLACEMENT_ALGORITHMS_SET_2_FIFO{
 static int f_gold ( int pages [ ] , int n , int capacity ) {
   HashSet < Integer > s = new HashSet < > ( capacity ) ;

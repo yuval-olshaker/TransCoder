@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class COUNT_SUBARRAYS_EQUAL_NUMBER_1S_0S{
 static int f_gold ( int arr [ ] , int n ) {
   Map < Integer , Integer > um = new HashMap < > ( ) ;

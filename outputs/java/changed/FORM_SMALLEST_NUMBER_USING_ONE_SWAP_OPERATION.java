@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class FORM_SMALLEST_NUMBER_USING_ONE_SWAP_OPERATION{
 public static String f_gold ( String str ) {
   char [ ] num = str . toCharArray ( ) ;

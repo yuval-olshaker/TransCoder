@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class MINIMUM_CHARACTERS_ADDED_FRONT_MAKE_STRING_PALINDROME{
 static boolean f_gold ( String s ) {
   int l = s . length ( ) ;

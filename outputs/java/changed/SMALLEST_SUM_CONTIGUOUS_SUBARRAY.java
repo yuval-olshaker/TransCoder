@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class SMALLEST_SUM_CONTIGUOUS_SUBARRAY{
 static int f_gold ( int arr [ ] , int n ) {
   int min_ending_here = 2147483647 ;

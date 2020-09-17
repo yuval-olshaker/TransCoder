@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class PROGRAM_CHECK_PLUS_PERFECT_NUMBER{
 static boolean f_gold ( int x ) {
   int temp = x ;

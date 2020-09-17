@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class MINIMUM_OPERATIONS_MAKE_GCD_ARRAY_MULTIPLE_K{
 static int f_gold ( int a [ ] , int n , int k ) {
   int result = 0 ;

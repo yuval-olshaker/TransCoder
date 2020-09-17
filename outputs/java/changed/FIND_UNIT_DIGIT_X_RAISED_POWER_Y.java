@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class FIND_UNIT_DIGIT_X_RAISED_POWER_Y{
 static int f_gold ( int x , int y ) {
   int res = 1 ;

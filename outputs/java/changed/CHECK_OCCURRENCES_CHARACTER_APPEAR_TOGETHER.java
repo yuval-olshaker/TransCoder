@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class CHECK_OCCURRENCES_CHARACTER_APPEAR_TOGETHER{
 static boolean f_gold ( String s , char c ) {
   boolean oneSeen = false ;

@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class NUMBER_ORDERED_PAIRS_AI_AJ_0{
 static int f_gold ( int a [ ] , int n ) {
   int count = 0 ;

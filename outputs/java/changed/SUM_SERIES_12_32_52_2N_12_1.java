@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class SUM_SERIES_12_32_52_2N_12_1{
 static int f_gold ( int n ) {
   return ( n * ( 2 * n - 1 ) * ( 2 * n + 1 ) ) / 3 ;

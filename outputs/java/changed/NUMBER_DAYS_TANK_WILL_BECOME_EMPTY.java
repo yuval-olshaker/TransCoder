@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class NUMBER_DAYS_TANK_WILL_BECOME_EMPTY{
 static int f_gold ( int C , int l ) {
   if ( l >= C ) return C ;

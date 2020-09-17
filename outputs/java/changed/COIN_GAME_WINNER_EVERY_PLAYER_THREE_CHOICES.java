@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class COIN_GAME_WINNER_EVERY_PLAYER_THREE_CHOICES{
 static boolean f_gold ( int x , int y , int n ) {
   boolean [ ] dp = new boolean [ n + 1 ] ;

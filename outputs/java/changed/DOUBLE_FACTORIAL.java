@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class DOUBLE_FACTORIAL{
 static long f_gold ( long n ) {
   if ( n == 0 || n == 1 ) return 1 ;

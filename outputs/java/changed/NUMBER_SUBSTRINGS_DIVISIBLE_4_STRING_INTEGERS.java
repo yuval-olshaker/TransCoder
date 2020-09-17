@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class NUMBER_SUBSTRINGS_DIVISIBLE_4_STRING_INTEGERS{
 static int f_gold ( String s ) {
   int n = s . length ( ) ;

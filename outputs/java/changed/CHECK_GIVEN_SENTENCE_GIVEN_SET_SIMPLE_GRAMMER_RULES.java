@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class CHECK_GIVEN_SENTENCE_GIVEN_SET_SIMPLE_GRAMMER_RULES{
 static boolean f_gold ( char [ ] str ) {
   int len = str . length ;

@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class GOLD_MINE_PROBLEM{
 static int f_gold ( int gold [ ] [ ] , int m , int n ) {
   int goldTable [ ] [ ] = new int [ m ] [ n ] ;

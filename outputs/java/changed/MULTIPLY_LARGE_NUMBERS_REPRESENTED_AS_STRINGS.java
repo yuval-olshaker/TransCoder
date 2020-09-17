@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class MULTIPLY_LARGE_NUMBERS_REPRESENTED_AS_STRINGS{
 static String f_gold ( String num1 , String num2 ) {
   int len1 = num1 . length ( ) ;

@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class CHOCOLATE_DISTRIBUTION_PROBLEM{
 static int f_gold ( int arr [ ] , int n , int m ) {
   if ( m == 0 || n == 0 ) return 0 ;

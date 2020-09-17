@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class COMPUTE_N_UNDER_MODULO_P{
 static int f_gold ( int n , int p ) {
   if ( n >= p ) return 0 ;

@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class FIND_REPETITIVE_ELEMENT_1_N_1_2{
 static int f_gold ( int arr [ ] , int n ) {
   int res = 0 ;

@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class WILDCARD_CHARACTER_MATCHING{
 static boolean f_gold ( String first , String second ) {
   if ( first . length ( ) == 0 && second . length ( ) == 0 ) return true ;

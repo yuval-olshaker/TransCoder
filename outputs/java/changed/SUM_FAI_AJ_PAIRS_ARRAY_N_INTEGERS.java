@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class SUM_FAI_AJ_PAIRS_ARRAY_N_INTEGERS{
 public static int f_gold ( int a [ ] , int n ) {
   Map < Integer , Integer > cnt = new HashMap < Integer , Integer > ( ) ;

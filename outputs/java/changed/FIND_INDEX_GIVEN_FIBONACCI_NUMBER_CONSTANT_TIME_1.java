@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class FIND_INDEX_GIVEN_FIBONACCI_NUMBER_CONSTANT_TIME_1{
 static int f_gold ( int n ) {
   float fibo = 2.078087F * ( float ) Math . log ( n ) + 1.672276F ;

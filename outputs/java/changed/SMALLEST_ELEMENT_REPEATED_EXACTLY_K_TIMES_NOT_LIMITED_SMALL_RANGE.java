@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class SMALLEST_ELEMENT_REPEATED_EXACTLY_K_TIMES_NOT_LIMITED_SMALL_RANGE{
 public static int f_gold ( int a [ ] , int n , int k ) {
   HashMap < Integer , Integer > m = new HashMap < Integer , Integer > ( ) ;

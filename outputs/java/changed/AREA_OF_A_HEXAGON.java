@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class AREA_OF_A_HEXAGON{
 public static double f_gold ( double s ) {
   return ( ( 3 * Math . sqrt ( 3 ) * ( s * s ) ) / 2 ) ;

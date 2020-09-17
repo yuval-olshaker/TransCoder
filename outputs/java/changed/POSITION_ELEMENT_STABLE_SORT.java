@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class POSITION_ELEMENT_STABLE_SORT{
 static int f_gold ( int arr [ ] , int n , int idx ) {
   int result = 0 ;

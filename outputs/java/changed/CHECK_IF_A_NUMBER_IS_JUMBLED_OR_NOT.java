@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class CHECK_IF_A_NUMBER_IS_JUMBLED_OR_NOT{
 static boolean f_gold ( int num ) {
   if ( num / 10 == 0 ) return true ;

@@ -8,7 +8,7 @@
 import java.util. *;
 import java.util.stream.*;
 import java.lang.*;
-import javafx.util.Pair;
+
 public class COUNT_SUBARRAYS_TOTAL_DISTINCT_ELEMENTS_ORIGINAL_ARRAY{
 static int f_gold ( int arr [ ] , int n ) {
   HashMap < Integer , Integer > vis = new HashMap < Integer , Integer > ( ) {
