@@ -1,9 +1,10 @@
 from datetime import datetime
+from run_translations import translate_lines
 
 INDENTATION = 4
 BRANCH_STATEMENTS = ['if', 'else', 'elif', 'for', 'while']
 REGULAR = 'regular'
-EASY_CODE = '    a = 5\n' # an easy code inside branch. with indentation
+EASY_CODE = '        a = 5\n' # an easy code inside branch. with indentation (twice. 1 for function and 1 for branch)
 
 def print_time(to_print):
     now = datetime.now()
@@ -60,6 +61,14 @@ def slice_code(comfortable_code):
 
     return slices
 
+# add to slices things they need to run (function declaration, return and so)
+def runable_slices(slices, whole_function):
+    function_declaration = slices[0][1]
+    slices[0] = [0, whole_function] # for function declaration - we need all the function (for this time)
+    for i in range(1,len(slices)):
+        slices[i][1] = function_declaration + '    ' + slices[i][1]
+    return slices
+
 if __name__ == '__main__':
     print_time('start')
     with open('/mnt/c/TransCoder/outputs/python/BINARY_SEARCH.py') as file:
@@ -67,4 +76,6 @@ if __name__ == '__main__':
     code = lines[6:17]
     comfortable_code = create_comfortable_code(code)
     slices = slice_code(comfortable_code)
+    slices = runable_slices(slices, ''.join(code))
+    translated = translate_lines(False, slices)
     a = 5
