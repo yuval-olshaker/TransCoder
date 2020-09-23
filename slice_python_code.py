@@ -57,6 +57,7 @@ def create_comfortable_code(code):
 # the main idea is that every line can stand alone. unless the line starts a branch.
 # when a line start branch. we will translate the inside of the branch and will translate
 # the branch statement with 'a = 5' inside that is easy for translation
+# TODO - fix bug of variable creation - if using variable that a slice does not have (starts to become complicated - will hold this)
 def slice_code(code):
     slices = []
     i = 0
@@ -93,35 +94,32 @@ def runable_slices(slices, whole_function):
 
 # finds the index for the end of the line that we are interested in
 # it is at the end of the condition. because we not have the inside of the branch
+# we have the a = 5 to help us
 def find_end_of_declaration(interesting_code):
-    brackets = 1
     i = 2
-    while brackets != 0 and i < len(interesting_code):
-        word = interesting_code[i]
-        if word == OPEN_BRACKET:
-            brackets += 1
-        elif word == CLOSE_BRACKET:
-            brackets -= 1
+    while i < len(interesting_code):
+        if EASY_CODE_JAVA in interesting_code[i]:
+            return i
         i += 1
-    return i
+    return -1
 
 
 # strips java line - and order it to be with no indentations
 def strip_line(line):
-    splitted_line = line.split(END_OF_LINE)  # splitted the code to lines.
-    # first line in function declaration - we do not need it
-    # second line its our code
-    interesting_code = splitted_line[1].strip().split(SPACE)  # take the line, no indentation, split with ' '
-    # if starts branch - we take the branch declaration and add '{', we remove the a=5 part.
-    if interesting_code[0] in BRANCH_STATEMENTS:
-        # cut the line and add the opening of branch in java
-        to_return = SPACE.join(interesting_code).replace(EASY_CODE_JAVA, EMPTY_STR)
-        if interesting_code[-1] != OPEN_SPECIAL_BRACKET:
+    splitted_line = line.split(END_OF_LINE) # splitted the code to lines.
+    if EASY_CODE_JAVA in line:
+        # we take the function from end of declaration to a = 5
+        end_of_declaration = find_end_of_declaration(splitted_line)
+        if end_of_declaration == -1:
+            to_return = splitted_line[1].replace(EASY_CODE_JAVA, EMPTY_STR).strip()
+        else:
+            to_return = ''.join(splitted_line[1:end_of_declaration]).strip()
+
+        if to_return[-1] != OPEN_SPECIAL_BRACKET:
             to_return += OPEN_SPECIAL_BRACKET
         return to_return
-    # if not branch - we take the line
-    return SPACE.join(interesting_code)
-
+    else:
+        return splitted_line[1].strip() # returns the interesting part (after declaration) stripped
 
 # close the branches that we need at this line - add '}'
 def close_branches(opened_indentations, ind, finish_lines):
