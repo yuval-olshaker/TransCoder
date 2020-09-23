@@ -1,5 +1,4 @@
 from datetime import datetime
-from run_translations import translate_lines
 
 INDENTATION = 4
 BRANCH_STATEMENTS = ['if', 'else', 'elif', 'for', 'while']
@@ -10,7 +9,7 @@ CLOSE_SPECIAL_BRACKET = '}'
 OPEN_BRACKET = '('
 CLOSE_BRACKET = ')'
 SPACE = ' '
-
+END_OF_BRANCH_LINE = ':' # this is how branch statements in python ends
 
 def print_time(to_print):
     now = datetime.now()
@@ -31,14 +30,23 @@ def get_indentation(splitted):
 
 # each line will save the indentation, kind of it (for, while, if, else)
 def create_comfortable_code(code):
+    code_splitted = code.split('\n')[:-1]
     comfortable_code = []
-    for line in code:
+    for line in code_splitted:
         splitted = line.split(' ')
         indentation = get_indentation(splitted)
         first_word = splitted[indentation * INDENTATION]
-        if first_word not in BRANCH_STATEMENTS:
-            first_word = REGULAR
-        comfortable_code.append([first_word, indentation, ' '.join(splitted[indentation * INDENTATION:])])
+        is_branch = first_word in BRANCH_STATEMENTS
+        if is_branch and splitted[-1] != END_OF_BRANCH_LINE:
+            branch_start = splitted.index(END_OF_BRANCH_LINE)
+            comfortable_code.append([first_word, indentation, ' '.join(splitted[indentation * INDENTATION:branch_start+1])])
+            comfortable_code.append(
+                [REGULAR, indentation + 1, ' '.join(splitted[branch_start + 1:])])
+        else:
+            if not is_branch:
+                first_word = REGULAR
+            comfortable_code.append([first_word, indentation, ' '.join(splitted[indentation * INDENTATION:])])
+
     return comfortable_code
 
 
@@ -46,24 +54,24 @@ def create_comfortable_code(code):
 # the main idea is that every line can stand alone. unless the line starts a branch.
 # when a line start branch. we will translate the inside of the branch and will translate
 # the branch statement with 'a = 5' inside that is easy for translation
-def slice_code(comfortable_code):
+def slice_code(code):
     slices = []
     i = 0
-    while i < len(comfortable_code):
-        line = comfortable_code[i]
+    while i < len(code):
+        line = code[i]
         if line[0] == REGULAR:  # if the line is regular - we appent it
             slices.append([line[1], line[2]])
             i += 1
         else:  # else, branch is started. we find the lines inside the branch and slice them separately
             slices.append([line[1], line[2] + EASY_CODE])
             i += 1
-            indent_line = comfortable_code[i]
+            indent_line = code[i]
             indent_code = []
             while indent_line[1] > line[1]:  # line with indentation are inside branch (python)
                 indent_code.append(indent_line)
                 i += 1
-                if i < len(comfortable_code):
-                    indent_line = comfortable_code[i]
+                if i < len(code):
+                    indent_line = code[i]
                 else:
                     break
             slices.extend(slice_code(indent_code))
@@ -157,14 +165,23 @@ def integrate_code(translated):
     return integrate(stripped_lines)
 
 
+# slice an entire corpus of code
+def slice_corpus(python_corpus):
+    new_corpus = []
+    for line in python_corpus:
+        sliced = slice_code(create_comfortable_code(line[1]))
+        new_corpus.append([line[0], sliced])
+    return new_corpus
+
+
+
 if __name__ == '__main__':
     print_time('start')
     with open('/mnt/c/TransCoder/outputs/python/BINARY_SEARCH.py') as file:
         lines = file.readlines()
-    code = lines[6:17]
-    comfortable_code = create_comfortable_code(code)
-    slices = slice_code(comfortable_code)
+    code = '\n'.join(lines[6:17])
+    slices = slice_code(create_comfortable_code(code))
     slices = runable_slices(slices, ''.join(code))
-    translated = translate_lines(False, slices)
-    integrated = integrate_code(translated)
+    # translated = translate_lines(False, slices)
+    # integrated = integrate_code(translated)
     a = 5

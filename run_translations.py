@@ -6,6 +6,7 @@ import html_templates
 from datetime import datetime
 
 from create_readable_corpus import get_origin_codes_from_test_files, get_origin_codes_from_tok_files
+from slice_python_code import slice_corpus
 
 LONG_CODES = ['FINDING_THE_MAXIMUM_SQUARE_SUB_MATRIX_WITH_ALL_EQUAL_ELEMENTS', 'WILDCARD_CHARACTER_MATCHING']
 LINE_SEPARATOR = '\n\n'
@@ -124,6 +125,8 @@ if __name__ == '__main__':
 
     # delete ';' from python files - it confuses the translator and not interesting at all (we can learn it)
     python_file_readable = list(map(lambda line: (line[0], line[1].replace(';\n', '\n')), python_file_readable))
+
+    python_file_sliced = slice_corpus(python_file_readable)
 
     # translate all
     print_time('start translations')
