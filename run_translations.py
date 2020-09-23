@@ -6,7 +6,7 @@ import html_templates
 from datetime import datetime
 
 from create_readable_corpus import get_origin_codes_from_test_files, get_origin_codes_from_tok_files
-from slice_python_code import slice_corpus
+from slice_python_code import slice_corpus, integrate_corpus
 
 LONG_CODES = ['FINDING_THE_MAXIMUM_SQUARE_SUB_MATRIX_WITH_ALL_EQUAL_ELEMENTS', 'WILDCARD_CHARACTER_MATCHING']
 LINE_SEPARATOR = '\n\n'
@@ -27,12 +27,17 @@ def get_parser():
 
 
 # translate with the model from facebook
-def translate_lines(is_from_java, file_readable):
+def translate_lines(is_from_java, file_readable, sliced = False):
     t_params = create_params('java', 'python') if is_from_java else create_params('python', 'java')
     translator = translate.Translator(t_params)
+    if not sliced:
+        return list(map(lambda line: (line[0], line[1],
+                                      translator.translate(line[1], lang1=t_params.src_lang, lang2=t_params.tgt_lang,
+                                                           beam_size=t_params.beam_size)[0]),
+                        file_readable))
     return list(map(lambda line: (line[0], line[1],
-                                  translator.translate(line[1], lang1=t_params.src_lang, lang2=t_params.tgt_lang,
-                                                       beam_size=t_params.beam_size)[0]),
+                                  list(map(lambda sliced: (sliced[0], translator.translate(sliced[1], lang1=t_params.src_lang, lang2=t_params.tgt_lang,
+                                                       beam_size=t_params.beam_size)[0]), line[2]))),
                     file_readable))
 
 
@@ -127,6 +132,9 @@ if __name__ == '__main__':
     python_file_readable = list(map(lambda line: (line[0], line[1].replace(';\n', '\n')), python_file_readable))
 
     python_file_sliced = slice_corpus(python_file_readable)
+
+    python_sliced_translated = translate_lines(False, python_file_sliced, True)
+    python_integrated = integrate_corpus(python_sliced_translated)
 
     # translate all
     print_time('start translations')

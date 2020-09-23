@@ -4,12 +4,15 @@ INDENTATION = 4
 BRANCH_STATEMENTS = ['if', 'else', 'elif', 'for', 'while']
 REGULAR = 'regular'
 EASY_CODE = '        a = 5\n'  # an easy code inside branch. with indentation (twice. 1 for function and 1 for branch)
+EASY_CODE_JAVA = 'a = 5 ;'
 OPEN_SPECIAL_BRACKET = '{'
 CLOSE_SPECIAL_BRACKET = '}'
 OPEN_BRACKET = '('
 CLOSE_BRACKET = ')'
 SPACE = ' '
 END_OF_BRANCH_LINE = ':' # this is how branch statements in python ends
+END_OF_LINE = '\n'
+EMPTY_STR = ''
 
 def print_time(to_print):
     now = datetime.now()
@@ -20,7 +23,7 @@ def print_time(to_print):
 # returns the indentation of line - how many times has 4 spaces in the start (the 4 can differ)
 def get_indentation(splitted):
     i = 0
-    while splitted[i] == '':
+    while splitted[i] == EMPTY_STR:
         i += 1
     if (i % INDENTATION) != 0:
         print('weird!!')
@@ -30,22 +33,22 @@ def get_indentation(splitted):
 
 # each line will save the indentation, kind of it (for, while, if, else)
 def create_comfortable_code(code):
-    code_splitted = code.split('\n')[:-1]
+    code_splitted = code.split(END_OF_LINE)[:-1]
     comfortable_code = []
     for line in code_splitted:
-        splitted = line.split(' ')
+        splitted = line.split(SPACE)
         indentation = get_indentation(splitted)
         first_word = splitted[indentation * INDENTATION]
         is_branch = first_word in BRANCH_STATEMENTS
         if is_branch and splitted[-1] != END_OF_BRANCH_LINE:
             branch_start = splitted.index(END_OF_BRANCH_LINE)
-            comfortable_code.append([first_word, indentation, ' '.join(splitted[indentation * INDENTATION:branch_start+1])])
+            comfortable_code.append([first_word, indentation, SPACE.join(splitted[indentation * INDENTATION:branch_start+1])])
             comfortable_code.append(
-                [REGULAR, indentation + 1, ' '.join(splitted[branch_start + 1:])])
+                [REGULAR, indentation + 1, SPACE.join(splitted[branch_start + 1:])])
         else:
             if not is_branch:
                 first_word = REGULAR
-            comfortable_code.append([first_word, indentation, ' '.join(splitted[indentation * INDENTATION:])])
+            comfortable_code.append([first_word, indentation, SPACE.join(splitted[indentation * INDENTATION:])])
 
     return comfortable_code
 
@@ -84,7 +87,7 @@ def runable_slices(slices, whole_function):
     function_declaration = slices[0][1]
     slices[0] = [0, whole_function]  # for function declaration - we need all the function (for this time)
     for i in range(1, len(slices)):
-        slices[i][1] = function_declaration + '    ' + slices[i][1]
+        slices[i][1] = (function_declaration + '    ' + slices[i][1]).replace(END_OF_BRANCH_LINE, END_OF_BRANCH_LINE + END_OF_LINE)
     return slices
 
 
@@ -105,19 +108,19 @@ def find_end_of_declaration(interesting_code):
 
 # strips java line - and order it to be with no indentations
 def strip_line(line):
-    splitted_line = line.split('\n')  # splitted the code to lines.
+    splitted_line = line.split(END_OF_LINE)  # splitted the code to lines.
     # first line in function declaration - we do not need it
     # second line its our code
-    interesting_code = splitted_line[1].strip().split(' ')  # take the line, no indentation, split with ' '
+    interesting_code = splitted_line[1].strip().split(SPACE)  # take the line, no indentation, split with ' '
     # if starts branch - we take the branch declaration and add '{', we remove the a=5 part.
     if interesting_code[0] in BRANCH_STATEMENTS:
         # cut the line and add the opening of branch in java
-        to_return = ' '.join(interesting_code).replace('a = 5 ;', '')
+        to_return = SPACE.join(interesting_code).replace(EASY_CODE_JAVA, EMPTY_STR)
         if interesting_code[-1] != OPEN_SPECIAL_BRACKET:
             to_return += OPEN_SPECIAL_BRACKET
         return to_return
     # if not branch - we take the line
-    return ' '.join(interesting_code)
+    return SPACE.join(interesting_code)
 
 
 # close the branches that we need at this line - add '}'
@@ -158,10 +161,10 @@ def integrate(stripped_lines):
 # integrate the translated code into our output
 # we will use trivial way - strip each line and put it in its place with the correct indentation
 def integrate_code(translated):
-    stripped_lines = [[0, translated[0][2].split('\n')[0]]]  # strip the first line
+    stripped_lines = [[0, translated[0][1].split(END_OF_LINE)[0]]]  # strip the first line
     for i in range(1, len(translated)):  # strip all the lines to prepare them for the integration
         # we need the indentation because we will use it to locate branches code
-        stripped_lines.append([translated[i][0], strip_line(translated[i][2])])
+        stripped_lines.append([translated[i][0], strip_line(translated[i][1])])
     return integrate(stripped_lines)
 
 
@@ -170,18 +173,22 @@ def slice_corpus(python_corpus):
     new_corpus = []
     for line in python_corpus:
         sliced = slice_code(create_comfortable_code(line[1]))
-        new_corpus.append([line[0], sliced])
+        sliced = runable_slices(sliced, line[1])
+        new_corpus.append([line[0], line[1], sliced])
     return new_corpus
 
+# integrate an entire corpus of translated code
+def integrate_corpus(python_sliced_corpus):
+    return list(map(lambda line: (line[0], line[1], integrate_code(line[2])), python_sliced_corpus))
 
 
 if __name__ == '__main__':
     print_time('start')
     with open('/mnt/c/TransCoder/outputs/python/BINARY_SEARCH.py') as file:
         lines = file.readlines()
-    code = '\n'.join(lines[6:17])
+    code = END_OF_LINE.join(lines[6:17])
     slices = slice_code(create_comfortable_code(code))
-    slices = runable_slices(slices, ''.join(code))
+    slices = runable_slices(slices, EMPTY_STR.join(code))
     # translated = translate_lines(False, slices)
     # integrated = integrate_code(translated)
     a = 5
