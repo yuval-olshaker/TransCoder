@@ -130,17 +130,19 @@ if __name__ == '__main__':
 
     # delete ';' from python files - it confuses the translator and not interesting at all (we can learn it)
     python_file_readable = list(map(lambda line: (line[0], line[1].replace(';\n', '\n')), python_file_readable))
-
     python_file_sliced = slice_corpus(python_file_readable)
 
-    python_sliced_translated = translate_lines(False, python_file_sliced, True)
-    python_integrated = integrate_corpus(python_sliced_translated)
+    use_slices = True
 
     # translate all
     print_time('start translations')
     java_file_translated = translate_lines(True, java_file_readable)
     print_time('after java')
-    python_file_translated = translate_lines(False, python_file_readable)
+    if use_slices:
+        python_sliced_translated = translate_lines(False, python_file_sliced, True)
+        python_file_translated = integrate_corpus(python_sliced_translated)
+    else:
+        python_file_translated = translate_lines(False, python_file_readable)
     print_time('finish translations')
     # combine translation and original
     combined = [get_code_from_corpus(java_file_translated, 0), get_code_from_corpus(java_file_translated, 1),
