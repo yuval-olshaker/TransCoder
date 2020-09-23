@@ -33,7 +33,6 @@ EFFICIENTLY_COMPUTE_SUMS_OF_DIAGONALS_OF_A_MATRIX
 public static void printDiagonalSums ( int [ ] [ ] mat , int n ) {
   int principal = 0 ;
   int secondary = 0 ;
-  ;
   for ( int i = 0 ;
   i <= n ;
   i ++ ) {
@@ -72,7 +71,6 @@ public static boolean find3Numbers ( int [ ] A , int arrSize , int sum ) {
     int r = arrSize - 1 ;
     while ( ( l < r ) && ( A [ i ] + A [ l ] + A [ r ] == sum ) ) {
       System . out . println ( "Triplet is" + A [ i ] + ", " + A [ l ] + ", " + A [ r ] ) ;
-      ;
       return true ;
     }
     else if ( ( A [ i ] + A [ l ] + A [ r ] < sum ) && ( A [ i ] + A [ l ] + A [ r ] < sum ) ) {
@@ -102,7 +100,6 @@ public static boolean isMagicSquare ( int [ ] [ ] mat ) {
   i <= N ;
   i ++ ) {
     int rowSum = 0 ;
-    ;
     for ( int j = 0 ;
     j <= N ;
     j ++ ) rowSum += mat [ i ] [ j ] ;
@@ -192,12 +189,17 @@ public static int subset ( int [ ] ar , int n ) {
 DECIMAL_BINARY_CONVERSION_WITHOUT_USING_ARITHMETIC_OPERATORS
 
 public static String decToBin ( int n ) {
-  if ( ( n == 0 ) || ( n == 1 ) ) return "0" ;
-  ;
+  if ( ( n == 0 ) || ( n == 1 ) ) {
+    return "0" ;
+  }
   String bin = "" ;
   while ( ( n > 0 ) && ( n != 0 ) ) {
-    if ( ( n & 1 == 0 ) ) bin = "0" + bin ;
-    else bin = "1" + bin ;
+    if ( ( n & 1 == 0 ) ) {
+      bin = "0" + bin ;
+    }
+    else {
+      bin = "1" + bin ;
+    }
     n = n >> 1 ;
   }
   return bin ;
@@ -348,10 +350,9 @@ public static void binaryMedian ( int [ ] [ ] m , int r , int d ) {
     if ( m [ i ] [ d - 1 ] > mx ) mx = m [ i ] [ d - 1 ] ;
   }
   int desired = ( r * d + 1 ) / 2 ;
-  while ( ( mi < mx ) && ( mx > mi ) ) {
+  while ( ( mi < mx ) && ( mx > desired ) ) {
     int mid = mi + ( mx - mi ) / 2 ;
     int [ ] place = new int [ r ] ;
-    ;
     for ( int i = 0 ;
     i < r ;
     i ++ ) {
@@ -410,61 +411,45 @@ public static int maxDP ( int n ) {
 QUERIES_ON_ARRAY_WITH_DISAPPEARING_AND_REAPPEARING_ELEMENTS
 
 public static void PerformQueries ( int [ ] [ ] a , int [ ] [ ] vec ) {
-  int ans [ ] ;
-  ;
+  int [ ] ans = new int [ a . length ] ;
   int n = a . length - 1 ;
-  ;
   int q = vec . length ;
-  ;
   for ( int i = 0 ;
   i < q ;
   i ++ ) {
     int t = vec [ i ] [ 0 ] ;
-    ;
     int m = vec [ i ] [ 1 ] ;
-    ;
     if ( ( m > n ) && ( m < n ) ) {
       ans [ i ] = - 1 ;
-      ;
       continue ;
     }
     int turn = t / n ;
-    ;
     int rem = t % n ;
-    ;
     if ( ( rem == 0 && turn % 2 == 1 ) || ( rem == 0 && turn % 2 == 0 ) ) {
       ans [ i ] = a [ m ] ;
-      ;
       continue ;
     }
-    if ( ( turn % 2 == 0 ) || ( turn == 1 && turn % 2 == 1 ) ) {
+    if ( ( turn % 2 == 0 ) || ( turn == 1 ) ) {
       int cursize = n - rem ;
-      ;
       if ( ( cursize < m ) && ( cursize < m ) ) {
         ans [ i ] = - 1 ;
-        ;
         continue ;
       }
       ans [ i ] = a [ m + rem ] ;
-      ;
     }
     else {
       int cursize = rem ;
-      ;
       if ( ( cursize < m ) && ( cursize < m ) ) {
         ans [ i ] = - 1 ;
-        ;
         continue ;
       }
       ans [ i ] = a [ m ] ;
-      ;
     }
   }
   for ( int i = 0 ;
   i < ans . length ;
   i ++ ) {
     System . out . println ( ans [ i ] ) ;
-    ;
   }
 }
 |||
@@ -904,16 +889,12 @@ LEONARDO_NUMBER_1
 
 public static int leonardo ( int n ) {
   int [ ] dp = new int [ n + 1 ] ;
-  ;
   dp [ 0 ] = 1 ;
-  ;
   dp [ 1 ] = 1 ;
-  ;
   for ( int i = 2 ;
   i <= n ;
   i ++ ) {
     dp [ i ] = dp [ i - 1 ] + dp [ i - 2 ] + 1 ;
-    ;
   }
   return dp [ n ] ;
 }
@@ -1006,7 +987,6 @@ public static int findMaxAverage ( int [ ] arr , int n , int k ) {
   for ( int i = 1 ;
   i < n ;
   i ++ ) csum [ i ] = csum [ i - 1 ] + arr [ i ] ;
-  ;
   int maxSum = csum [ k - 1 ] ;
   int maxEnd = k - 1 ;
   for ( int i = k ;
@@ -1156,7 +1136,6 @@ COUNT_PAIRS_WHOSE_PRODUCTS_EXIST_IN_ARRAY
 
 public static int countPairs ( int [ ] arr , int n ) {
   int result = 0 ;
-  ;
   for ( int i = 0 ;
   i <= n ;
   i ++ ) {
@@ -1164,7 +1143,6 @@ public static int countPairs ( int [ ] arr , int n ) {
     j <= n ;
     j ++ ) {
       int product = arr [ i ] * arr [ j ] ;
-      ;
       for ( int k = 0 ;
       k <= n ;
       k ++ ) {
@@ -1253,7 +1231,6 @@ POWER_SET
 
 public static void printPowerSet ( int [ ] set , int setSize ) {
   int pow_set_size = ( int ) ( Math . pow ( 2 , setSize ) ) ;
-  ;
   int counter ;
   int j ;
   for ( counter = 0 ;
@@ -1349,7 +1326,6 @@ public static boolean isPrime ( int n ) {
   for ( int i = 2 ;
   i < n ;
   i ++ ) if ( n % i == 0 ) return false ;
-  ;
   return true ;
 }
 |||
@@ -1431,9 +1407,8 @@ FIND_FIRST_NATURAL_NUMBER_WHOSE_FACTORIAL_DIVISIBLE_X
 public static int firstFactorialDivisibleNumber ( int x ) {
   int i ;
   int fact = 1 ;
-  ;
   for ( i = 1 ;
-  i <= x ;
+  i < x ;
   i ++ ) {
     fact = fact * i ;
     if ( ( fact % x == 0 ) && ( i % x == 0 ) ) break ;
@@ -1565,11 +1540,10 @@ public static int findMaxValue ( int [ ] [ ] mat ) {
   }
   maxArr [ N - 1 ] [ N - 1 ] = mat [ N - 1 ] [ N - 1 ] ;
   int maxv = mat [ N - 1 ] [ N - 1 ] ;
-  ;
   for ( int j = N - 2 ;
   j >= 0 ;
   j -- ) {
-    if ( ( mat [ N - 1 ] [ j ] > maxv ) && ( maxArr [ j ] [ j ] == maxv ) ) {
+    if ( ( mat [ N - 1 ] [ j ] > maxv ) && ( maxArr [ j ] [ j ] > maxv ) ) {
       maxv = mat [ N - 1 ] [ j ] ;
     }
     maxArr [ j ] [ j ] = maxv ;
@@ -1578,7 +1552,7 @@ public static int findMaxValue ( int [ ] [ ] mat ) {
   for ( int i = N - 2 ;
   i >= 0 ;
   i -- ) {
-    if ( ( mat [ i ] [ N - 1 ] > maxv ) && ( maxArr [ i ] [ N - 1 ] == maxv ) ) {
+    if ( ( mat [ i ] [ N - 1 ] > maxv ) && ( maxArr [ i ] [ N - 1 ] > maxv ) ) {
       maxv = mat [ i ] [ N - 1 ] ;
     }
     maxArr [ i ] [ N - 1 ] = maxv ;
@@ -1589,7 +1563,7 @@ public static int findMaxValue ( int [ ] [ ] mat ) {
     for ( int j = N - 2 ;
     j >= 0 ;
     j -- ) {
-      if ( ( maxArr [ i + 1 ] [ j + 1 ] - mat [ i ] [ j ] > maxValue ) && ( maxArr [ i + 1 ] [ j ] == maxv ) ) {
+      if ( ( maxArr [ i + 1 ] [ j + 1 ] - mat [ i ] [ j ] > maxValue ) && ( maxArr [ i + 1 ] [ j ] > maxv ) ) {
         maxValue = ( maxArr [ i + 1 ] [ j + 1 ] - mat [ i ] [ j ] ) ;
       }
       maxArr [ i ] [ j ] = Math . max ( mat [ i ] [ j ] , Math . max ( maxArr [ i ] [ j + 1 ] , maxArr [ i + 1 ] [ j ] ) ) ;
@@ -1661,7 +1635,6 @@ PROGRAM_OCTAL_DECIMAL_CONVERSION
 
 public static int octalToDecimal ( int n ) {
   int num = n ;
-  ;
   int decValue = 0 ;
   int base = 1 ;
   int temp = num ;
@@ -1784,35 +1757,27 @@ DIVIDE_CONQUER_SET_6_SEARCH_ROW_WISE_COLUMN_WISE_SORTED_2D_ARRAY
 
 public static void search ( int [ ] [ ] mat , int fromRow , int toRow , int fromCol , int toCol , int key ) {
   int i = fromRow + ( toRow - fromRow ) / 2 ;
-  ;
   int j = fromCol + ( toCol - fromCol ) / 2 ;
-  ;
   if ( ( mat [ i ] [ j ] == key ) && ( mat [ i ] [ j ] == key ) ) {
     System . out . println ( "Found " + key + " at " + i + " " + j ) ;
-    ;
   }
   else {
-    if ( ( i != toRow || j != fromCol ) && ( mat [ fromRow ] [ i ] == key ) && ( mat [ fromCol ] [ j ] == key ) ) {
+    if ( ( i != toRow || j != fromCol ) && ( mat [ fromRow ] [ i ] == key ) && ( mat [ fromRow ] [ j ] == key ) ) {
       search ( mat , fromRow , i , j , toCol , key ) ;
     }
-    if ( ( fromRow == toRow && fromCol + 1 == toCol ) && ( mat [ fromRow ] [ toCol ] == key ) && ( mat [ fromCol ] [ j ] == key ) ) {
-      if ( ( mat [ fromRow ] [ toCol ] == key ) && ( mat [ fromCol ] [ j ] == key ) ) {
+    if ( ( fromRow == toRow && fromCol + 1 == toCol ) || ( mat [ fromRow ] [ fromCol ] == key ) ) {
+      if ( ( mat [ fromRow ] [ toCol ] == key ) && ( mat [ fromCol ] [ toCol ] == key ) ) {
         System . out . println ( "Found " + key + " at " + fromRow + " " + toCol ) ;
-        ;
       }
     }
-    if ( ( mat [ i ] [ j ] < key ) && ( mat [ i ] [ j ] > key ) && ( mat [ i ] [ j ] > key ) ) {
-      if ( ( mat [ i ] [ j ] < key ) && ( mat [ i ] [ j ] > key ) ) {
-        if ( ( mat [ i ] [ j ] > key ) && ( mat [ i ] [ j ] < key ) ) {
-          if ( ( mat [ i ] [ j ] > key ) && ( mat [ i ] [ j ] < key ) ) {
-            if ( ( mat [ i ] [ j ] > key ) && ( mat [ i ] [ j ] > key ) ) {
-              if ( ( mat [ i ] [ j ] < key ) && ( mat [ i ] [ j ] > key ) ) {
-                if ( ( mat [ i ] [ j ] > key ) && ( mat [ i ] [ j ] > key ) ) {
-                }
-              }
-            }
-          }
-        }
+    if ( ( mat [ i ] [ j ] < key ) && ( mat [ i ] [ j ] == key ) ) {
+      if ( ( i + 1 <= toRow ) && ( mat [ i ] [ j ] == key ) ) {
+        search ( mat , i + 1 , toRow , fromCol , toCol , key ) ;
+      }
+    }
+    else {
+      if ( ( j - 1 >= fromCol ) && ( mat [ fromRow ] [ j ] == key ) && ( mat [ fromRow ] [ j ] == key ) ) {
+        search ( mat , fromRow , toRow , fromCol , j - 1 , key ) ;
       }
     }
   }
@@ -1888,7 +1853,6 @@ COMPUTE_THE_INTEGER_ABSOLUTE_VALUE_ABS_WITHOUT_BRANCHING
 
 public static int getAbs ( int n ) {
   int mask = n >> ( SIZE_INT * CHARBIT - 1 ) ;
-  ;
   return ( ( n + mask ) ^ mask ) ;
 }
 |||
@@ -1940,23 +1904,22 @@ COUNT_MINIMUM_STEPS_GET_GIVEN_DESIRED_ARRAY
 
 public static int countMinOperations ( int [ ] target , int n ) {
   int result = 0 ;
-  ;
-  while ( ( true ) && ( target [ 0 ] > target [ 1 ] ) ) {
+  while ( ( true ) && ( target . length > 0 ) ) {
     int zeroCount = 0 ;
     int i = 0 ;
-    while ( ( i < n ) && ( target [ i ] > target [ 1 ] ) ) {
-      if ( ( ( target [ i ] & 1 ) > 0 ) && ( target [ i ] == target [ 1 ] ) ) {
+    while ( ( i < n ) || ( target [ i ] == 0 ) ) {
+      if ( ( ( target [ i ] & 1 ) > 0 ) && ( target [ i ] == 1 ) ) {
         break ;
       }
-      else if ( ( target [ i ] == 0 ) && ( target [ i ] == 0 ) ) {
+      else if ( ( target [ i ] == 0 ) || ( target [ i ] == 1 ) ) {
         zeroCount ++ ;
       }
       i ++ ;
     }
-    if ( ( zeroCount == n ) || ( zeroCount == n ) ) {
+    if ( ( zeroCount == n ) || ( target [ zeroCount ] == 0 ) ) {
       return result ;
     }
-    if ( ( i == n ) && ( target [ 0 ] > target [ 1 ] ) ) {
+    if ( ( i == n ) && ( target [ i ] == 0 ) ) {
       for ( int j = 0 ;
       j < n ;
       j ++ ) {
@@ -2263,23 +2226,22 @@ public static int countFriendsPairings ( int n ) {
 FIRST_ELEMENT_OCCURRING_K_TIMES_ARRAY
 
 public static int firstElement ( int [ ] arr , int n , int k ) {
-  int [ ] countMap = new int [ n ] ;
-  ;
+  HashMap < Integer , Integer > countMap = new HashMap < Integer , Integer > ( ) ;
   for ( int i = 0 ;
   i <= n ;
   i ++ ) {
-    if ( ( arr [ i ] < countMap . length ) || ( arr [ i ] > countMap [ n - 1 ] ) ) {
-      countMap [ arr [ i ] ] ++ ;
+    if ( ( arr [ i ] < countMap . keySet ( ) ) && ( countMap . get ( arr [ i ] ) == k ) ) {
+      countMap . put ( arr [ i ] , ++ countMap . get ( arr [ i ] ) ) ;
     }
     else {
-      countMap [ arr [ i ] ] = 1 ;
+      countMap . put ( arr [ i ] , 1 ) ;
     }
     i ++ ;
   }
   for ( int i = 0 ;
   i <= n ;
   i ++ ) {
-    if ( ( countMap [ arr [ i ] ] == k ) || ( countMap [ arr [ i ] ] > countMap [ n - 1 ] ) ) {
+    if ( ( countMap . get ( arr [ i ] ) == k ) && ( countMap . get ( arr [ i ] ) == k ) ) {
       return arr [ i ] ;
     }
     i ++ ;
@@ -2292,7 +2254,6 @@ SUM_SERIES_0_6_0_06_0_006_0_0006_N_TERMS
 
 public static double sumOfSeries ( int n ) {
   return ( ( 0.666 ) * ( 1 - 1 / Math . pow ( 10 , n ) ) ) ;
-  ;
 }
 |||
 
@@ -2704,36 +2665,32 @@ FINDING_K_MODULUS_ARRAY_ELEMENT
 
 public static void printEqualModNumbers ( int [ ] arr , int n ) {
   Arrays . sort ( arr ) ;
-  ;
   int d = arr [ n - 1 ] - arr [ 0 ] ;
-  ;
   int [ ] v = new int [ n ] ;
-  ;
   int i = 1 ;
-  ;
   while ( ( i * i <= d ) && ( i != d / i ) ) {
     if ( ( d % i == 0 ) && ( i != d / i ) ) {
       v [ i ] = i ;
-      ;
-      if ( ( i != d / i ) && ( i != d / i ) ) v [ i ] = d / i ;
-      ;
+      if ( ( i != d / i ) && ( i != d / i ) ) {
+        v [ i ] = d / i ;
+      }
     }
     i ++ ;
-  };
+  }
   for ( i = 0 ;
   i < v . length ;
   i ++ ) {
     int temp = arr [ 0 ] % v [ i ] ;
-    ;
     int j = 1 ;
-    ;
     while ( ( j < n ) && ( arr [ j ] % v [ i ] != temp ) ) {
-      if ( ( arr [ j ] % v [ i ] != temp ) && ( j != n ) ) break ;
+      if ( ( arr [ j ] % v [ i ] != temp ) && ( j != n ) ) {
+        break ;
+      }
       j ++ ;
-    };
-    if ( ( j == n ) && ( i != 0 ) && ( i != d / i ) ) {
+    }
+    if ( ( j == n ) && ( i != 0 ) && ( j != d / i ) ) {
       System . out . print ( v [ i ] + " " ) ;
-    };
+    }
   }
 }
 |||
@@ -2834,8 +2791,7 @@ public static int countWays ( int N ) {
 ONE_LINE_FUNCTION_FOR_FACTORIAL_OF_A_NUMBER
 
 public static int factorial ( int n ) {
-  return 1 == ( n == 1 || n == 0 ) ? n * factorial ( n - 1 ) : n ;
-  ;
+  return 1 == ( n == 1 || n == 0 ) ? n : n * factorial ( n - 1 ) ;
 }
 |||
 
@@ -3061,16 +3017,13 @@ MULTIPLY_LARGE_INTEGERS_UNDER_LARGE_MODULO
 
 public static int moduloMultiplication ( int a , int b , int mod ) {
   int res = 0 ;
-  ;
   a = a % mod ;
-  ;
-  while ( ( b ) > 0 ) {
+  while ( ( b ) != 0 ) {
     if ( ( b & 1 ) != 0 ) {
       res = ( res + a ) % mod ;
     }
     a = ( 2 * a ) % mod ;
     b >>= 1 ;
-    ;
   }
   return res ;
 }
@@ -3222,9 +3175,8 @@ public static int countSeq ( int n ) {
   r <= n ;
   r ++ ) {
     nCr = ( nCr * ( n + 1 - r ) ) / r ;
-    ;
     res += nCr * nCr ;
-  };
+  }
   return res ;
 }
 |||
@@ -3545,7 +3497,6 @@ public static int CountSquares ( int a , int b ) {
   i <= b ;
   i ++ ) {
     int j = 1 ;
-    ;
     while ( j * j <= i ) {
       if ( j * j == i ) cnt = cnt + 1 ;
       j = j + 1 ;
@@ -4155,11 +4106,8 @@ DYNAMIC_PROGRAMMING_SET_4_LONGEST_COMMON_SUBSEQUENCE
 
 public static int lcs ( int [ ] X , int [ ] Y , int m , int n ) {
   if ( m == 0 || n == 0 ) return 0 ;
-  ;
   else if ( X [ m - 1 ] == Y [ n - 1 ] ) return 1 + lcs ( X , Y , m - 1 , n - 1 ) ;
-  ;
   else return Math . max ( lcs ( X , Y , m , n - 1 ) , lcs ( X , Y , m - 1 , n ) ) ;
-  ;
 }
 |||
 
@@ -4191,10 +4139,9 @@ CHECK_DIVISIBILITY_LARGE_NUMBER_999
 
 public static boolean isDivisible999 ( String num ) {
   int n = num . length ( ) ;
-  ;
   if ( ( n == 0 || num . charAt ( 0 ) == '0' ) && ( num . charAt ( 1 ) == ' ' ) ) return true ;
-  if ( ( ( n % 3 ) == 1 ) && ( num . charAt ( 2 ) == ' ' ) ) num = "00" + num ;
-  if ( ( ( n % 3 ) == 2 ) && ( num . charAt ( 3 ) == ' ' ) ) num = "0" + num ;
+  if ( ( ( n % 3 ) == 1 ) && ( num . charAt ( n % 3 ) == ' ' ) ) num = "00" + num ;
+  if ( ( ( n % 3 ) == 2 ) && ( num . charAt ( n % 3 ) == ' ' ) ) num = "0" + num ;
   int gSum = 0 ;
   for ( int i = 0 ;
   i < n ;
@@ -4250,7 +4197,6 @@ PROGRAM_SWAP_UPPER_DIAGONAL_ELEMENTS_LOWER_DIAGONAL_ELEMENTS_MATRIX
 
 public static void swapUpperToLower ( int [ ] [ ] arr ) {
   int n = 4 ;
-  ;
   for ( int i = 0 ;
   i <= n ;
   i ++ ) {
@@ -4258,9 +4204,7 @@ public static void swapUpperToLower ( int [ ] [ ] arr ) {
     j <= n ;
     j ++ ) {
       int temp = arr [ i ] [ j ] ;
-      ;
       arr [ i ] [ j ] = arr [ j ] [ i ] ;
-      ;
       arr [ j ] [ i ] = temp ;
     }
   }
@@ -4271,10 +4215,8 @@ public static void swapUpperToLower ( int [ ] [ ] arr ) {
     j <= n ;
     j ++ ) {
       System . out . print ( arr [ i ] [ j ] + " " ) ;
-      ;
     }
     System . out . println ( " " ) ;
-    ;
   }
 }
 |||
@@ -4283,13 +4225,9 @@ FIND_SUM_MODULO_K_FIRST_N_NATURAL_NUMBER_1
 
 public static int findSum ( int N , int K ) {
   double ans ;
-  ;
   double y = N / K ;
-  ;
   double x = N % K ;
-  ;
   ans = ( ( K * ( K - 1 ) / 2 ) * y + ( x * ( x + 1 ) ) / 2 ) ;
-  ;
   return ( int ) ans ;
 }
 |||
@@ -4322,10 +4260,8 @@ DYNAMIC_PROGRAMMING_SET_7_COIN_CHANGE
 public static int count ( int [ ] S , int m , int n ) {
   if ( ( n == 0 ) && ( m > 0 ) ) return 1 ;
   if ( ( n < 0 ) && ( m > 0 ) ) return 0 ;
-  ;
   if ( ( m <= 0 && n >= 1 ) && ( n >= 0 ) ) return 0 ;
   return count ( S , m - 1 , n ) + count ( S , m , n - S [ m - 1 ] ) ;
-  ;
 }
 |||
 
@@ -4397,7 +4333,6 @@ public static int fib ( int n , int a , int b ) {
   if ( n == 0 ) return a ;
   if ( n == 1 ) return b ;
   return fib ( n - 1 , b , a + b ) ;
-  ;
 }
 |||
 
@@ -4465,14 +4400,12 @@ SCHEDULE_ELEVATOR_TO_REDUCE_THE_TOTAL_TIME_TAKEN
 
 public static int minTime ( int n , int k , int [ ] a ) {
   Arrays . sort ( a , 0 , n ) ;
-  ;
   int minTime = 0 ;
-  ;
   for ( int i = 0 ;
   i < n ;
   i += k ) {
     minTime += ( 2 * a [ i ] ) ;
-  };
+  }
   return minTime ;
 }
 |||
@@ -4515,7 +4448,6 @@ public static char getMaxOccuringChar ( String str ) {
   i < str . length ( ) ;
   i ++ ) {
     count [ ( int ) str . charAt ( i ) ] ++ ;
-    ;
   }
   for ( int i = 0 ;
   i < str . length ( ) ;
@@ -4695,8 +4627,9 @@ MIDDLE_OF_THREE_USING_MINIMUM_COMPARISONS
 
 public static int middleOfThree ( int a , int b , int c ) {
   if ( ( ( a < b && b < c ) || ( c < b && b < a ) ) && ( ( b < a && a < c ) || ( c < a && a < b ) ) && ( ( c < a && c < b ) || ( c < a && a < c ) ) ) return b ;
-  ;
-  if ( ( ( b < a && a < c ) || ( c < a && a < b ) || ( b < a && b < c ) ) && ( ( c < a && c < b ) || ( c < a && b < c ) ) && ( ( a < b && a < c ) || ( a < b && c < b ) ) && ( ( b < a && b < c ) || ( b < a && c < c ) ) && ( ( c < a && c < b ) || ( c < a && c < b ) ) && ( ( a < b && a < c ) || ( a < c && c < b ) ) && ( ( b < a && b < c ) || ( b < a && c < b ) ) && ( ( c < a && c <
+  if ( ( ( b < a && a < c ) || ( c < a && a < b ) || ( c < a && b < c ) ) && ( ( a < b && b < c ) || ( c < a && b < c ) || ( c < a && c < b ) ) && ( ( b < a && b < c ) || ( c < a && c < a ) || ( c < a && c < b ) ) ) return a ;
+  else return c ;
+}
 |||
 
 LONGEST_COMMON_INCREASING_SUBSEQUENCE_LCS_LIS
@@ -4795,9 +4728,7 @@ DOUBLE_FACTORIAL
 
 public static int doublefactorial ( int n ) {
   if ( ( n == 0 || n == 1 ) && ( n > 2 ) ) return 1 ;
-  ;
   return n * doublefactorial ( n - 2 ) ;
-  ;
 }
 |||
 
@@ -4894,7 +4825,6 @@ public static void myCopy ( String s1 , String s2 ) {
   i < s1 . length ( ) ;
   i ++ ) {
     s2 . charAt ( i ) = s1 . charAt ( i ) ;
-    ;
   }
 }
 |||
@@ -5100,7 +5030,6 @@ ADD_1_TO_A_GIVEN_NUMBER_1
 
 public static int addOne ( int x ) {
   return ( - ( ~ x ) ) ;
-  ;
 }
 |||
 
@@ -5262,9 +5191,8 @@ public static int findLongestRepeatingSubSeq ( int [ ] X , int m , int n ) {
 
 COUNT_OF_N_DIGIT_NUMBERS_WHOSE_SUM_OF_DIGITS_EQUALS_TO_GIVEN_SUM
 
-public static int findCount ( int n , int sum ) {
+public static void findCount ( int n , int sum ) {
   int start = Math . pow ( 10 , n - 1 ) ;
-  ;
   int end = Math . pow ( 10 , n ) - 1 ;
   int count = 0 ;
   int i = start ;
@@ -5284,7 +5212,6 @@ public static int findCount ( int n , int sum ) {
     }
   }
   System . out . println ( count ) ;
-  return count ;
 }
 |||
 
@@ -5378,17 +5305,22 @@ SERIES_LARGEST_GCD_SUM_EQUALS_N
 
 public static void printSequence ( int n , int k ) {
   int b = ( int ) ( n / ( k * ( k + 1 ) / 2 ) ) ;
-  ;
-  if ( b == 0 ) System . out . println ( "-1" ) ;
+  if ( b == 0 ) {
+    System . out . println ( "-1" ) ;
+  }
   else {
     int r = 1 ;
-    ;
     int x = 1 ;
     while ( x * x <= n ) {
-      if ( n % x != 0 ) continue ;
-      ;
-      else if ( x <= b && x > r ) r = x ;
-      else if ( n / x <= b && n / x > r ) r = n / x ;
+      if ( n % x != 0 ) {
+        continue ;
+      }
+      else if ( x <= b && x > r ) {
+        r = x ;
+      }
+      else if ( n / x <= b && n / x > r ) {
+        r = n / x ;
+      }
       x = x + 1 ;
     }
     int i = 1 ;
@@ -5431,7 +5363,6 @@ FIND_THE_MAXIMUM_ELEMENT_IN_AN_ARRAY_WHICH_IS_FIRST_INCREASING_AND_THEN_DECREASI
 public static int findMaximum ( int [ ] arr , int low , int high ) {
   if ( low == high ) return arr [ low ] ;
   if ( high == low + 1 && arr [ low ] >= arr [ high ] ) return arr [ low ] ;
-  ;
   if ( high == low + 1 && arr [ low ] < arr [ high ] ) return arr [ high ] ;
   int mid = ( low + high ) / 2 ;
   if ( arr [ mid ] > arr [ mid + 1 ] && arr [ mid ] > arr [ mid - 1 ] ) return arr [ mid ] ;
@@ -5504,7 +5435,6 @@ public static int findDifference ( int [ ] arr , int n , int m ) {
   int max = 0 ;
   int min = 0 ;
   Arrays . sort ( arr ) ;
-  ;
   int j = n - 1 ;
   for ( int i = 0 ;
   i < m ;
@@ -5531,7 +5461,6 @@ public static List < String > printNumbers ( List < String > numbers ) {
     result . add ( "-1" ) ;
   }
   return Collections . unmodifiableList ( result ) ;
-  ;
 }
 |||
 
@@ -5628,9 +5557,7 @@ public static int minXOR ( int [ ] arr , int n ) {
   i <= n - 1 ;
   i ++ ) {
     val = arr [ i ] ^ arr [ i + 1 ] ;
-    ;
     minXor = Math . min ( minXor , val ) ;
-    ;
   }
   return minXor ;
 }
@@ -5725,11 +5652,8 @@ BINARY_REPRESENTATION_OF_NEXT_NUMBER
 
 public static String nextGreater ( String num1 ) {
   int l = num1 . length ( ) ;
-  ;
   StringBuilder num = new StringBuilder ( num1 ) ;
-  ;
   int i = l - 1 ;
-  ;
   while ( ( i >= 0 ) && ( num . charAt ( i ) == '0' ) ) {
     if ( ( num . charAt ( i ) == '1' ) || ( num . charAt ( i ) == '2' ) ) {
       num . setCharAt ( i , '1' ) ;
@@ -5741,7 +5665,6 @@ public static String nextGreater ( String num1 ) {
     i -- ;
   }
   num1 = num . toString ( ) ;
-  ;
   if ( ( i < 0 ) && ( num1 . charAt ( i ) == '1' ) ) {
     num1 = "1" + num1 ;
   }
@@ -5768,13 +5691,11 @@ public static int findSubArray ( int [ ] arr , int n ) {
       }
     }
   }
-  if ( ( maxsize == - 1 ) || ( ( ( ( int ) arr [ startindex ] ) & 0xff ) == 0 ) ) {
+  if ( ( maxsize == - 1 ) || ( ( maxsize == 0 ) && ( startindex < n ) ) ) {
     System . out . println ( "No such subarray" ) ;
-    ;
   }
   else {
-    System . out . println ( startindex + " to" + startindex + maxsize - 1 ) ;
-    ;
+    System . out . println ( startindex + "to" + startindex + maxsize - 1 ) ;
   }
   return maxsize ;
 }
@@ -5809,9 +5730,7 @@ public static int lps ( String str ) {
   int [ ] [ ] L = new int [ n ] [ n ] ;
   for ( int i = 0 ;
   i < n ;
-  i ++ ) {
-    L [ i ] [ i ] = 0 ;
-  }
+  i ++ ) L [ i ] [ i ] = 0 ;
   for ( int cl = 2 ;
   cl <= n ;
   cl ++ ) {
@@ -5819,16 +5738,9 @@ public static int lps ( String str ) {
     i < n - cl + 1 ;
     i ++ ) {
       int j = i + cl - 1 ;
-      if ( str . charAt ( i ) == str . charAt ( j ) && cl == 2 ) {
-        L [ i ] [ j ] = 2 ;
-      }
-      else if ( str . charAt ( i ) == str . charAt ( j ) ) {
-        L [ i ] [ j ] = L [ i + 1 ] [ j - 1 ] + 2 ;
-      }
-      else {
-        L [ i ] [ j ] = Math . max ( L [ i ] [ j - 1 ] , L [ i + 1 ] [ j ] ) ;
-        ;
-      }
+      if ( str . charAt ( i ) == str . charAt ( j ) && cl == 2 ) L [ i ] [ j ] = 2 ;
+      else if ( str . charAt ( i ) == str . charAt ( j ) ) L [ i ] [ j ] = L [ i + 1 ] [ j - 1 ] + 2 ;
+      else L [ i ] [ j ] = Math . max ( L [ i ] [ j - 1 ] , L [ i + 1 ] [ j ] ) ;
     }
   }
   return L [ 0 ] [ n - 1 ] ;
@@ -5849,7 +5761,6 @@ public static int getInvCount ( int [ ] arr , int n ) {
       if ( ( arr [ i ] > arr [ j ] ) && ( arr [ j ] < arr [ i ] ) ) small ++ ;
     }
     int great = 0 ;
-    ;
     for ( int j = i - 1 ;
     j >= 0 ;
     j -- ) {
@@ -5993,7 +5904,6 @@ FIND_SUM_NODES_GIVEN_PERFECT_BINARY_TREE_1
 
 public static int sumNodes ( int l ) {
   double leafNodeCount = Math . pow ( 2 , l - 1 ) ;
-  ;
   double sumLastLevel ;
   sumLastLevel = ( ( leafNodeCount * ( leafNodeCount + 1 ) ) / 2 ) ;
   double sum = sumLastLevel * l ;
@@ -6163,12 +6073,16 @@ CHECK_TWO_GIVEN_CIRCLES_TOUCH_INTERSECT
 
 public static int circle ( float x1 , float y1 , float x2 , float y2 , float r1 , float r2 ) {
   float distSq = ( x1 - x2 ) * ( x1 - x2 ) + ( y1 - y2 ) * ( y1 - y2 ) ;
-  ;
   float radSumSq = ( r1 + r2 ) * ( r1 + r2 ) ;
-  ;
-  if ( ( distSq == radSumSq ) && ( distSq > radSumSq ) ) return 1 ;
-  else if ( ( distSq > radSumSq ) && ( distSq < radSumSq ) ) return - 1 ;
-  else return 0 ;
+  if ( ( distSq == radSumSq ) && ( distSq > radSumSq ) ) {
+    return 1 ;
+  }
+  else if ( ( distSq > radSumSq ) && ( distSq < radSumSq ) ) {
+    return - 1 ;
+  }
+  else {
+    return 0 ;
+  }
 }
 |||
 
@@ -6197,7 +6111,7 @@ public static int pad ( int n ) {
     pPrevPrev = pPrev ;
     pPrev = pCurr ;
     pCurr = pNext ;
-  };
+  }
   return pNext ;
 }
 |||
@@ -6372,13 +6286,11 @@ SQUARE_ROOT_OF_A_PERFECT_SQUARE_1
 
 public static int squareRoot ( int n ) {
   int x = n ;
-  ;
   int y = 1 ;
-  ;
   while ( ( x > y ) && ( x < y ) ) {
     x = ( x + y ) / 2 ;
     y = n / x ;
-  };
+  }
   return x ;
 }
 |||
@@ -6562,18 +6474,18 @@ public static int numberOfPaths ( int m , int n ) {
   for ( int y = 0 ;
   y < n ;
   y ++ ) {
-    count [ y ] [ 0 ] = 0 ;
+    count [ y ] [ 0 ] = y ;
   }
   for ( int i = 0 ;
   i < m ;
   i ++ ) {
-    count [ i ] [ 0 ] = 1 ;
-  };
+    count [ i ] [ 0 ] = i ;
+  }
   for ( int j = 0 ;
   j < n ;
   j ++ ) {
-    count [ 0 ] [ j ] = 1 ;
-  };
+    count [ 0 ] [ j ] = j ;
+  }
   for ( int i = 1 ;
   i < m ;
   i ++ ) {
@@ -6751,12 +6663,13 @@ public static int findPosition ( int k , int n ) {
   int f1 = 0 ;
   int f2 = 1 ;
   int i = 2 ;
-  ;
   while ( i != 0 ) {
     int f3 = f1 + f2 ;
     f1 = f2 ;
     f2 = f3 ;
-    if ( f2 % k == 0 ) return n * i ;
+    if ( f2 % k == 0 ) {
+      return n * i ;
+    }
     i ++ ;
   }
   return 0 ;
@@ -6797,7 +6710,6 @@ public static int countNum ( int [ ] arr , int n ) {
   i ++ ) {
     if ( ( arr [ i ] != arr [ i + 1 ] && arr [ i ] != arr [ i + 1 ] - 1 ) || ( arr [ i ] != arr [ i + 1 ] && arr [ i ] != arr [ i + 1 ] - 1 ) ) {
       count += arr [ i + 1 ] - arr [ i ] - 1 ;
-      ;
     }
   }
   return count ;
@@ -6862,28 +6774,25 @@ public static void subArray ( int [ ] arr , int n ) {
 MAXIMUM_SUM_INCREASING_ORDER_ELEMENTS_N_ARRAYS
 
 public static int maximumSum ( int [ ] [ ] a , int n ) {
-  M ++ ;
+  M = a . length ;
   for ( int i = 0 ;
   i <= n ;
   i ++ ) a [ i ] . sort ( ) ;
-  ;
   int sum = a [ n - 1 ] [ M - 1 ] ;
-  ;
   int prev = a [ n - 1 ] [ M - 1 ] ;
-  ;
   for ( int i = n - 2 ;
   i >= 0 ;
   i -- ) {
     for ( int j = M - 1 ;
     j >= 0 ;
     j -- ) {
-      if ( ( a [ i ] [ j ] < prev ) && ( a [ i ] [ j ] > sum ) ) {
+      if ( ( a [ i ] [ j ] < prev ) && ( a [ i ] [ j ] > prev ) ) {
         prev = a [ i ] [ j ] ;
         sum += prev ;
         break ;
       }
     }
-    if ( ( j == - 1 ) || ( j == M - 1 ) ) return 0 ;
+    if ( ( j == - 1 ) || ( a [ i ] [ j ] > prev ) ) return 0 ;
   }
   return sum ;
 }
@@ -6892,8 +6801,7 @@ public static int maximumSum ( int [ ] [ ] a , int n ) {
 C_PROGRAM_FACTORIAL_NUMBER
 
 public static int factorial ( int n ) {
-  return 1 == ( n == 1 || n == 0 ) ? n * factorial ( n - 1 ) : n ;
-  ;
+  return 1 == ( n == 1 || n == 0 ) ? n : n * factorial ( n - 1 ) ;
 }
 |||
 
@@ -6902,7 +6810,6 @@ PRINT_SQUARES_FIRST_N_NATURAL_NUMBERS_WITHOUT_USING
 public static void printSquares ( int n ) {
   int square = 0 ;
   int prevX = 0 ;
-  ;
   for ( int x = 0 ;
   x <= n ;
   x ++ ) {
@@ -7013,10 +6920,8 @@ EXPONENTIAL_SQUARING_FAST_MODULO_MULTIPLICATION_1
 
 public static int exponentiation ( int bas , int exp ) {
   int t = 1 ;
-  ;
   while ( ( exp > 0 ) && ( exp % 2 != 0 ) ) {
     if ( ( exp % 2 != 0 ) ) t = ( t * bas ) % N ;
-    ;
     bas = ( bas * bas ) % N ;
     exp = ( int ) ( exp / 2 ) ;
   }
@@ -7124,16 +7029,14 @@ SELECT_A_RANDOM_NUMBER_FROM_STREAM_WITH_O1_SPACE
 
 public static int selectRandom ( int x ) {
   int res = 0 ;
-  ;
   int count = 0 ;
-  ;
   count ++ ;
-  if ( ( count == 1 ) && ( x == 0 ) ) {
+  if ( ( count == 1 ) || ( count == 2 ) ) {
     res = x ;
   }
   else {
-    int i = random . nextInt ( count ) ;
-    if ( ( i == count - 1 ) && ( x == 0 ) ) {
+    int i = ThreadLocalRandom . current ( ) . nextInt ( count ) ;
+    if ( ( i == count - 1 ) || ( i == 2 ) ) {
       res = x ;
     }
   }
@@ -7354,11 +7257,9 @@ public static int countStrs ( int n ) {
     j ++ ) {
       if ( ( j == 0 ) || ( j == 1 ) ) {
         dp [ i ] [ j ] = dp [ i - 1 ] [ j + 1 ] ;
-        ;
       }
       else {
         dp [ i ] [ j ] = ( dp [ i - 1 ] [ j - 1 ] + dp [ i - 1 ] [ j + 1 ] ) ;
-        ;
       }
     }
   }
@@ -7413,12 +7314,14 @@ public static void findCombinations ( String string , int index , String out ) {
 
 LINEAR_SEARCH
 
-public static int search ( int arr [ ] , int n , int x ) {
+public static int search ( int [ ] arr , int n , int x ) {
   for ( int i = 0 ;
   i <= n ;
   i ++ ) {
-    if ( ( arr [ i ] == x ) && ( arr [ i + 1 ] == x ) ) return i ;
-  };
+    if ( ( arr [ i ] == x ) && ( arr [ i + 1 ] == x ) ) {
+      return i ;
+    }
+  }
   return - 1 ;
 }
 |||
@@ -7599,7 +7502,6 @@ public static int findoptimal ( int N ) {
   for ( int n = 7 ;
   n <= N ;
   n ++ ) screen [ n - 1 ] = Math . max ( 2 * screen [ n - 4 ] , Math . max ( 3 * screen [ n - 5 ] , 4 * screen [ n - 6 ] ) ) ;
-  ;
   return screen [ N - 1 ] ;
 }
 |||
@@ -7672,7 +7574,6 @@ AREA_OF_A_HEXAGON
 
 public static double hexagonArea ( double s ) {
   return ( ( 3 * Math . sqrt ( 3 ) * ( s * s ) ) / 2 ) ;
-  ;
 }
 |||
 
@@ -7917,7 +7818,6 @@ MINIMUM_SUM_CHOOSING_MINIMUM_PAIRS_ARRAY
 
 static int minSum ( int [ ] A ) {
   int minVal = Math . min ( A ) ;
-  ;
   return minVal * ( A . length - 1 ) ;
 }
 |||
@@ -8068,7 +7968,6 @@ public static String decimalToBinary ( int num , int k_prec ) {
   while ( ( Integral ) > 0 ) {
     int rem = Integral % 2 ;
     binary += Integer . toString ( rem ) ;
-    ;
     Integral /= 2 ;
   }
   binary = binary . substring ( 0 , binary . length ( ) - 1 ) ;
@@ -8152,7 +8051,6 @@ public static double areaOfSegment ( double radius , double angle ) {
   double areaOfTriangle = 1 / 2 * ( radius * radius ) ;
   * Math . sin ( ( angle * Math . PI ) / 180 ) = 0 ;
   return areaOfSector - areaOfTriangle ;
-  ;
 }
 |||
 
@@ -8364,7 +8262,6 @@ public static int difference ( int [ ] [ ] arr , int n ) {
     }
   }
   return Math . abs ( d1 - d2 ) ;
-  ;
 }
 |||
 
@@ -8433,7 +8330,6 @@ COUNT_CHARACTERS_STRING_DISTANCE_ENGLISH_ALPHABETS
 
 public static int countPairs ( String str1 ) {
   int result = 0 ;
-  ;
   int n = str1 . length ( ) ;
   for ( int i = 0 ;
   i <= n ;
@@ -8443,7 +8339,7 @@ public static int countPairs ( String str1 ) {
     j ++ ) {
       if ( ( Math . abs ( ( char ) str1 . charAt ( i ) - ( char ) str1 . charAt ( j ) ) ) == Math . abs ( i - j ) ) {
         result ++ ;
-      };
+      }
     }
   }
   return result ;
@@ -8640,9 +8536,8 @@ public static int minPalPartion ( String str ) {
   i < n ;
   i ++ ) {
     P [ i ] [ i ] = true ;
-    ;
     C [ i ] [ i ] = 0 ;
-  };
+  }
   for ( L = 2 ;
   L <= n ;
   L ++ ) {
@@ -8715,7 +8610,6 @@ public static int minSumPath ( int [ ] [ ] A ) {
     for ( int j = 0 ;
     j < A [ i ] . length ;
     j ++ ) memo [ j ] = A [ i ] [ j ] + Math . min ( memo [ j ] , memo [ j + 1 ] ) ;
-    ;
   }
   return memo [ 0 ] ;
 }
@@ -8800,9 +8694,8 @@ public static double minJumps ( int [ ] arr , int n ) {
 MAXIMIZE_ARRAY_ELEMENTS_UPTO_GIVEN_NUMBER
 
 public static int findMaxVal ( int [ ] arr , int n , int num , int maxLimit ) {
-  int ind ;
-  int val ;
-  ;
+  int ind = - 1 ;
+  int val = - 1 ;
   int [ ] [ ] dp = new int [ maxLimit + 1 ] [ n ] ;
   for ( int j = 0 ;
   j < n ;
@@ -8825,7 +8718,7 @@ public static int findMaxVal ( int [ ] arr , int n , int num , int maxLimit ) {
           dp [ ind ] [ val ] = 1 ;
         }
       }
-      else if ( ( val - arr [ ind ] >= 0 ) && ( val + arr [ ind ] <= maxLimit ) && ( dp [ ind - 1 ] [ val + arr [ ind ] ] == 1 ) ) {
+      else if ( ( val - arr [ ind ] >= 0 ) && ( val + arr [ ind ] <= maxLimit ) && ( dp [ ind - 1 ] [ val - arr [ ind ] ] == 1 ) ) {
         dp [ ind ] [ val ] = dp [ ind - 1 ] [ val - arr [ ind ] ] ;
       }
       else if ( ( val + arr [ ind ] <= maxLimit ) && ( val + arr [ ind ] >= maxLimit ) && ( dp [ ind - 1 ] [ val + arr [ ind ] ] == 1 ) ) {
@@ -8926,11 +8819,11 @@ public static int getIndexInSortedArray ( int [ ] arr , int n , int idx ) {
   i ++ ) {
     if ( ( arr [ i ] < arr [ idx ] ) && ( arr [ i ] == arr [ idx ] && i < idx ) ) {
       result ++ ;
-    };
+    }
     if ( ( arr [ i ] == arr [ idx ] && i < idx ) && ( arr [ i ] == arr [ idx ] && i < idx ) ) {
       result ++ ;
     }
-  };
+  }
   return result ;
 }
 |||
@@ -9059,8 +8952,7 @@ MINIMIZE_THE_SUM_OF_DIGITS_OF_A_AND_B_SUCH_THAT_A_B_N
 
 public static int minSum ( int n ) {
   int sum = 0 ;
-  ;
-  while ( ( n > 0 ) && ( n % 10 == 0 ) ) {
+  while ( ( n > 0 ) && ( sum < 10 ) ) {
     sum += ( n % 10 ) ;
     n /= 10 ;
   }
@@ -9308,7 +9200,6 @@ static int maxProd ( int n ) {
   i <= n - 1 ;
   i ++ ) maxVal = Math . max ( maxVal , Math . max ( i * ( n - i ) , maxProd ( n - i ) * i ) ) ;
   return maxVal ;
-  ;
 }
 |||
 
@@ -9409,7 +9300,6 @@ FIND_BITONIC_POINT_GIVEN_BITONIC_SEQUENCE
 public static int binarySearch ( int [ ] arr , int left , int right ) {
   if ( ( left <= right ) && ( left <= right ) ) {
     int mid = ( left + right ) / 2 ;
-    ;
     if ( ( arr [ mid - 1 ] < arr [ mid ] && arr [ mid ] > arr [ mid + 1 ] ) || ( arr [ mid ] < arr [ mid + 1 ] ) ) return mid ;
     if ( ( arr [ mid ] < arr [ mid + 1 ] ) && ( arr [ mid + 1 ] > arr [ mid ] ) ) return binarySearch ( arr , mid + 1 , right ) ;
     else return binarySearch ( arr , left , mid - 1 ) ;
@@ -9544,9 +9434,7 @@ SUM_MATRIX_ELEMENT_ELEMENT_INTEGER_DIVISION_ROW_COLUMN_1
 
 public static int findSum ( int n ) {
   int ans = 0 ;
-  ;
   int temp = 0 ;
-  ;
   for ( int i = 1 ;
   i <= n ;
   i ++ ) {
@@ -9554,8 +9442,12 @@ public static int findSum ( int n ) {
       temp = i - 1 ;
       int num = 1 ;
       while ( temp < n ) {
-        if ( temp + i <= n ) ans += i * num ;
-        else ans += ( n - temp ) * num ;
+        if ( temp + i <= n ) {
+          ans += i * num ;
+        }
+        else {
+          ans += ( n - temp ) * num ;
+        }
         temp += i ;
         num ++ ;
       }
@@ -9583,10 +9475,6 @@ DOOLITTLE_ALGORITHM_LU_DECOMPOSITION
 
 public static void luDecomposition ( int [ ] [ ] mat , int n ) {
   int [ ] [ ] lower = new int [ n ] [ n ] ;
-  for ( int y = 0 ;
-  y < n ;
-  y ++ ) lower [ y ] [ y ] = 0 ;
-  ;
   int [ ] [ ] upper = new int [ n ] [ n ] ;
   for ( int i = 0 ;
   i < n ;
@@ -9595,46 +9483,46 @@ public static void luDecomposition ( int [ ] [ ] mat , int n ) {
     k < n ;
     k ++ ) {
       int sum = 0 ;
-      ;
       for ( int j = 0 ;
       j < i ;
-      j ++ ) sum += ( lower [ i ] [ j ] * upper [ j ] [ k ] ) ;
-      ;
+      j ++ ) {
+        sum += ( lower [ i ] [ j ] * upper [ j ] [ k ] ) ;
+      }
       upper [ i ] [ k ] = mat [ i ] [ k ] - sum ;
-      ;
     }
     for ( int k = i ;
     k < n ;
     k ++ ) {
-      if ( ( i == k ) && ( lower [ i ] [ i ] == 0 ) ) lower [ i ] [ i ] = 1 ;
+      if ( ( i == k ) && ( lower [ i ] [ i ] == 0 ) ) {
+        lower [ i ] [ i ] = 1 ;
+      }
       else {
         int sum = 0 ;
-        ;
         for ( int j = 0 ;
         j < i ;
-        j ++ ) sum += ( lower [ k ] [ j ] * upper [ j ] [ i ] ) ;
-        ;
+        j ++ ) {
+          sum += ( lower [ k ] [ j ] * upper [ j ] [ i ] ) ;
+        }
         lower [ k ] [ i ] = ( int ) ( ( mat [ k ] [ i ] - sum ) / upper [ i ] [ i ] ) ;
-        ;
       }
     }
   }
-  System . out . println ( "Lower Triangular\t\tUpper Triangular" ) ;
+  System . out . print ( "Lower Triangular\t\tUpper Triangular" ) ;
   for ( int i = 0 ;
   i < n ;
   i ++ ) {
     for ( int j = 0 ;
     j < n ;
-    j ++ ) System . out . print ( lower [ i ] [ j ] + "\t" ) ;
-    ;
-    System . out . print ( "" ) ;
-    ;
+    j ++ ) {
+      System . out . print ( lower [ i ] [ j ] + "\t" ) ;
+    }
+    System . out . print ( "" + "\t" ) ;
     for ( int j = 0 ;
     j < n ;
-    j ++ ) System . out . print ( upper [ i ] [ j ] + "\t" ) ;
-    ;
+    j ++ ) {
+      System . out . print ( upper [ i ] [ j ] + "\t" ) ;
+    }
     System . out . println ( "" ) ;
-    ;
   }
 }
 |||
@@ -9655,25 +9543,21 @@ NUMBER_DIGITS_REMOVED_MAKE_NUMBER_DIVISIBLE_3
 
 public static int divisible ( String num ) {
   int n = num . length ( ) ;
-  ;
   int sum = 0 ;
-  ;
   for ( int i = 0 ;
   i < n ;
   i ++ ) {
     sum += Integer . parseInt ( num . substring ( i , i + 1 ) ) ;
-  };
-  if ( ( sum % 3 == 0 ) && ( sum % 4 == 0 ) ) return 0 ;
-  ;
-  if ( ( n == 1 ) && ( sum % 3 == Integer . parseInt ( num . substring ( 0 , n - 1 ) ) % 3 ) ) return - 1 ;
-  ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    if ( ( sum % 3 == Integer . parseInt ( num . substring ( i , i + 1 ) ) % 3 ) && ( sum % 4 == Integer . parseInt ( num . substring ( i + 1 , i + 2 ) ) % 4 ) ) return 1 ;
-  };
-  if ( ( n == 2 ) && ( sum % 3 == Integer . parseInt ( num . substring ( 0 , n - 1 ) ) % 3 ) ) return - 1 ;
-  ;
+  }
+  if ( ( sum % 3 == 0 ) && ( sum % 4 == 0 ) ) {
+    return 0 ;
+  }
+  if ( ( n == 1 ) && ( sum % 3 == Integer . parseInt ( num . substring ( 0 , n - 1 ) ) % 3 ) ) {
+    return 1 ;
+  }
+  if ( ( n == 2 ) && ( sum % 3 == Integer . parseInt ( num . substring ( 0 , n - 2 ) ) % 3 ) ) {
+    return - 1 ;
+  }
   return 2 ;
 }
 |||
@@ -9682,9 +9566,7 @@ CHECK_IF_A_NUMBER_IS_POWER_OF_ANOTHER_NUMBER_1
 
 public static int isPower ( double x , double y ) {
   double res1 = Math . log ( y ) / Math . log ( x ) ;
-  ;
   double res2 = Math . log ( y ) / Math . log ( x ) ;
-  ;
   return 1 == ( res1 == res2 ) ? 0 : 1 ;
 }
 |||
@@ -9806,11 +9688,16 @@ public static int findLongestRepeatingSubSeq ( String str ) {
 FIND_THE_FIRST_MISSING_NUMBER
 
 public static int findFirstMissing ( int [ ] array , int start , int end ) {
-  if ( ( start > end ) && ( start < array . length ) ) return end + 1 ;
-  if ( ( start != array [ start ] ) && ( start < array . length ) ) return start ;
-  ;
+  if ( ( start > end ) && ( start < array . length ) ) {
+    return end + 1 ;
+  }
+  if ( ( start != array [ start ] ) && ( start < array . length ) ) {
+    return start ;
+  }
   int mid = ( int ) ( ( start + end ) / 2 ) ;
-  if ( ( array [ mid ] == mid ) && ( array [ mid + 1 ] == mid ) ) return findFirstMissing ( array , mid + 1 , end ) ;
+  if ( ( array [ mid ] == mid ) && ( array [ mid + 1 ] == mid ) ) {
+    return findFirstMissing ( array , mid + 1 , end ) ;
+  }
   return findFirstMissing ( array , start , mid ) ;
 }
 |||
@@ -9920,7 +9807,6 @@ COUNT_CHARACTERS_STRING_DISTANCE_ENGLISH_ALPHABETS_1
 
 public static int countPairs ( String str1 ) {
   int result = 0 ;
-  ;
   int n = str1 . length ( ) ;
   for ( int i = 0 ;
   i <= n ;
@@ -9930,7 +9816,7 @@ public static int countPairs ( String str1 ) {
     j ++ ) {
       if ( ( ( i + j ) < n ) && ( ( Math . abs ( ( char ) str1 . charAt ( i + j ) - ( char ) str1 . charAt ( i ) ) ) == j ) ) {
         result ++ ;
-      };
+      }
     }
   }
   return result ;
@@ -10041,23 +9927,19 @@ public static int countOnes ( int [ ] arr , int low , int high ) {
 POSSIBLE_MOVES_KNIGHT
 
 public static int findPossibleMoves ( int [ ] [ ] mat , int p , int q ) {
-  n = 0 ;
-  m = 0 ;
-  ;
+  n = mat . length ;
+  m = mat [ 0 ] . length ;
   int X [ ] = {
     2 , 1 , - 1 , - 2 , - 2 , - 1 , 1 , 2 };
-    ;
     int Y [ ] = {
       1 , 2 , 2 , 1 , - 1 , - 2 , - 2 , - 1 };
       int count = 0 ;
-      ;
       for ( int i = 0 ;
       i < 8 ;
       i ++ ) {
         int x = p + X [ i ] ;
         int y = q + Y [ i ] ;
         if ( ( x >= 0 && y >= 0 && x < n && y < m && mat [ x ] [ y ] == 0 ) || ( x >= 0 && y < n && x < m && mat [ x ] [ y ] == 0 ) ) count ++ ;
-        ;
       }
       return count ;
     }
@@ -10311,7 +10193,6 @@ MINIMUM_XOR_VALUE_PAIR
 
 public static int minXOR ( int [ ] arr , int n ) {
   Arrays . sort ( arr ) ;
-  ;
   int minXor = 999999 ;
   int val ;
   for ( int i = 0 ;
@@ -10338,13 +10219,11 @@ public static String compute ( String st , int n ) {
   i <= n ;
   i ++ ) {
     answer = answer + st . charAt ( i ) ;
-    ;
   }
   for ( int i = n ;
   i < l ;
   i ++ ) {
     answer = ( answer + reverseAlphabet . charAt ( ( char ) st . charAt ( i ) - 'a' ) ) ;
-    ;
   }
   return answer ;
 }
@@ -10415,16 +10294,13 @@ ROTATE_MATRIX_180_DEGREE
 
 public static void rotateMatrix ( int [ ] [ ] mat ) {
   int i = N - 1 ;
-  ;
   while ( ( i >= 0 ) && ( i < mat . length ) ) {
     int j = N - 1 ;
     while ( ( j >= 0 ) && ( j < mat . length ) ) {
       System . out . print ( mat [ i ] [ j ] + " " ) ;
-      ;
       j = j - 1 ;
     }
     System . out . println ( ) ;
-    ;
     i = i - 1 ;
   }
 }
@@ -10528,13 +10404,11 @@ public static boolean isSubSeqDivisible ( String str ) {
   i <= n ;
   i ++ ) {
     arr [ i ] = Integer . parseInt ( str . charAt ( i - 1 ) ) ;
-    ;
   }
   for ( int i = 1 ;
   i <= n ;
   i ++ ) {
     dp [ i ] [ arr [ i ] % 8 ] = 1 ;
-    ;
     for ( int j = 0 ;
     j < 8 ;
     j ++ ) {
@@ -10774,11 +10648,11 @@ public static int divSum ( int num ) {
     if ( ( num % i == 0 ) && ( i == ( num / i ) ) ) {
       if ( ( i == ( num / i ) ) && ( num % i == 0 ) ) {
         result = result + i ;
-      };
+      }
+      else {
+        result = result + ( i + num / i ) ;
+      }
     }
-    else {
-      result = result + ( i + num / i ) ;
-    };
     i = i + 1 ;
   }
   return ( result + 1 ) ;
@@ -10824,13 +10698,11 @@ FINDING_POWER_PRIME_NUMBER_P_N
 
 public static int PowerOFPINnfactorial ( int n , int p ) {
   int ans = 0 ;
-  ;
   int temp = p ;
-  ;
   while ( ( temp <= n ) && ( temp > 0 ) ) {
     ans += n / temp ;
     temp = temp * p ;
-  };
+  }
   return ans ;
 }
 |||
@@ -11074,9 +10946,8 @@ public static int minCost ( int [ ] a , int n , int k ) {
   i < k ;
   i ++ ) {
     dp [ i ] [ i ] = inf ;
-  };
+  }
   dp [ 0 ] [ 0 ] = 0 ;
-  ;
   for ( int i = 1 ;
   i <= n ;
   i ++ ) {
@@ -11087,10 +10958,9 @@ public static int minCost ( int [ ] a , int n , int k ) {
       m >= 0 ;
       m -- ) {
         dp [ i ] [ j ] = Math . min ( dp [ i ] [ j ] , dp [ m ] [ j - 1 ] + ( a [ i - 1 ] - a [ m ] ) * ( a [ i - 1 ] - a [ m ] ) ) ;
-        ;
       }
     }
-  };
+  }
   return dp [ n ] [ k ] ;
 }
 |||
@@ -11099,7 +10969,6 @@ LEIBNIZ_HARMONIC_TRIANGLE
 
 public static void LeibnizHarmonicTriangle ( int n ) {
   int [ ] [ ] C = new int [ n + 1 ] [ n + 1 ] ;
-  ;
   for ( int i = 0 ;
   i <= n ;
   i ++ ) {
@@ -11121,7 +10990,6 @@ public static void LeibnizHarmonicTriangle ( int n ) {
     j <= i ;
     j ++ ) {
       System . out . print ( "1/" ) ;
-      ;
       System . out . print ( i * C [ i - 1 ] [ j - 1 ] + " " ) ;
     }
     System . out . println ( ) ;
@@ -11182,11 +11050,8 @@ LONGEST_COMMON_SUBSEQUENCE
 
 public static int lcs ( int [ ] X , int [ ] Y , int m , int n ) {
   if ( m == 0 || n == 0 ) return 0 ;
-  ;
   else if ( X [ m - 1 ] == Y [ n - 1 ] ) return 1 + lcs ( X , Y , m - 1 , n - 1 ) ;
-  ;
   else return Math . max ( lcs ( X , Y , m , n - 1 ) , lcs ( X , Y , m - 1 , n ) ) ;
-  ;
 }
 |||
 
@@ -11232,7 +11097,7 @@ public static int countOps ( int [ ] [ ] A , int [ ] [ ] B , int m , int n ) {
     j < m ;
     j ++ ) {
       A [ i ] [ j ] -= B [ i ] [ j ] ;
-    };
+    }
   }
   for ( int i = 1 ;
   i < n ;
@@ -11240,10 +11105,10 @@ public static int countOps ( int [ ] [ ] A , int [ ] [ ] B , int m , int n ) {
     for ( int j = 1 ;
     j < n ;
     j ++ ) {
-      if ( ( A [ i ] [ j ] - A [ i ] [ 0 ] - A [ 0 ] [ j ] + A [ 0 ] [ 0 ] != 0 ) ) {
+      if ( ( A [ i ] [ j ] - A [ i ] [ 0 ] - A [ 0 ] [ j ] + A [ 0 ] [ 0 ] != 0 ) && ( A [ i ] [ j ] - A [ 0 ] [ j ] + A [ 0 ] [ 0 ] != 0 ) ) {
         return - 1 ;
       }
-    };
+    }
   }
   int result = 0 ;
   for ( int i = 0 ;
@@ -11255,7 +11120,7 @@ public static int countOps ( int [ ] [ ] A , int [ ] [ ] B , int m , int n ) {
   j < m ;
   j ++ ) {
     result += Math . abs ( A [ 0 ] [ j ] - A [ 0 ] [ 0 ] ) ;
-  };
+  }
   return ( result ) ;
 }
 |||
@@ -11269,8 +11134,9 @@ public static int FirstRepeated ( String string ) {
   i < string . length ( ) ;
   i ++ ) {
     int val = ( int ) string . charAt ( i ) - 'a' ;
-    ;
-    if ( ( ( checker & ( 1 << val ) ) > 0 ) && ( ( checker & ( 1 << val ) ) > 0 ) ) return pos ;
+    if ( ( ( checker & ( 1 << val ) ) > 0 ) && ( ( checker & ( 1 << val ) ) > 0 ) ) {
+      return pos ;
+    }
     checker |= ( 1 << val ) ;
     pos ++ ;
   }
@@ -11436,15 +11302,13 @@ NEWMAN_CONWAY_SEQUENCE
 public static int sequence ( int n ) {
   if ( n == 1 || n == 2 ) return 1 ;
   else return sequence ( sequence ( n - 1 ) ) + sequence ( n - sequence ( n - 1 ) ) ;
-  ;
 }
 |||
 
 PRINT_TRIPLETS_SORTED_ARRAY_FORM_AP
 
 public static void printAllAPTriplets ( int [ ] arr , int n ) {
-  int [ ] s = new int [ n ] ;
-  ;
+  StringBuilder sb = new StringBuilder ( ) ;
   for ( int i = 0 ;
   i <= n - 1 ;
   i ++ ) {
@@ -11452,19 +11316,16 @@ public static void printAllAPTriplets ( int [ ] arr , int n ) {
     j <= n ;
     j ++ ) {
       int diff = arr [ j ] - arr [ i ] ;
-      ;
       if ( ( ( arr [ i ] - diff ) < arr [ j ] ) && ( ( arr [ i ] - diff ) > arr [ j ] ) ) {
         System . out . print ( "{}
  {
 }
  {
 }" . format ( ( arr [ i ] - diff ) , arr [ i ] , arr [ j ] ) ) ;
-        ;
       }
     }
   }
-  s [ n - 1 ] = arr [ i ] ;
-  ;
+  sb . append ( arr [ i ] ) ;
 }
 |||
 
@@ -11472,7 +11333,6 @@ QUERIES_COUNTS_ARRAY_ELEMENTS_VALUES_GIVEN_RANGE
 
 public static int countInRange ( int [ ] arr , int n , int x , int y ) {
   int count = 0 ;
-  ;
   for ( int i = 0 ;
   i < n ;
   i ++ ) {
@@ -11489,7 +11349,6 @@ HIGHWAY_BILLBOARD_PROBLEM
 public static int maxRevenue ( int m , int [ ] x , int [ ] revenue , int n , int t ) {
   int [ ] maxRev = new int [ m + 1 ] ;
   int nxtbb = 0 ;
-  ;
   for ( int i = 1 ;
   i <= m ;
   i ++ ) {
@@ -11503,7 +11362,7 @@ public static int maxRevenue ( int m , int [ ] x , int [ ] revenue , int n , int
         }
         else {
           maxRev [ i ] = Math . max ( maxRev [ i - t - 1 ] + revenue [ nxtbb ] , maxRev [ i - 1 ] ) ;
-        };
+        }
         nxtbb ++ ;
       }
     }
@@ -11559,7 +11418,6 @@ DETECT_IF_TWO_INTEGERS_HAVE_OPPOSITE_SIGNS
 
 public static boolean oppositeSigns ( int x , int y ) {
   return ( ( x ^ y ) < 0 ) ;
-  ;
 }
 |||
 
@@ -11615,7 +11473,6 @@ public static String sortByPattern ( String str , String pat ) {
     count [ ( char ) str . charAt ( i ) - 97 ] ++ ;
   }
   int index = 0 ;
-  ;
   str = "" ;
   for ( int i = 0 ;
   i <= pat . length ( ) ;
@@ -11727,12 +11584,10 @@ public static int minDaysToEmpty ( int C , int l ) {
 REVERSE_STRING_WITHOUT_USING_ANY_TEMPORARY_VARIABLE
 
 public static String reversingString ( String str , int start , int end ) {
-  while ( ( start < end ) && ( start < end ) ) {
-    str = ( str . substring ( 0 , start ) + ( char ) ( ( char ) ( str . charAt ( start ) ^ ( char ) ( str . charAt ( end ) ) ) + str . substring ( start + 1 ) ) ) ;
-    ;
-    str = ( str . substring ( 0 , end ) + ( char ) ( ( char ) ( str . charAt ( start ) ^ ( char ) ( str . charAt ( end ) ) ) + str . substring ( end + 1 ) ) ) ;
-    ;
-    str = ( str . substring ( 0 , start ) + ( char ) ( ( char ) ( str . charAt ( start ) ^ ( char ) ( str . charAt ( end ) ) ) + str . substring ( start + 1 ) ) ) ;
+  while ( ( start < end ) && ( str . length ( ) > 0 ) ) {
+    str = ( str . substring ( 0 , start ) + ( char ) ( ( str . charAt ( start ) ^ str . charAt ( end ) ) + str . charAt ( start + 1 ) ) ) ;
+    str = ( str . substring ( 0 , end ) + ( char ) ( ( str . charAt ( start ) ^ str . charAt ( end ) ) + str . charAt ( end + 1 ) ) ) ;
+    str = ( str . substring ( 0 , start ) + ( char ) ( ( str . charAt ( start ) ^ str . charAt ( end ) ) + str . charAt ( start + 1 ) ) ) ;
     start ++ ;
     end -- ;
   }
@@ -11768,9 +11623,8 @@ public static int countRotations ( int [ ] arr , int n ) {
       min = arr [ i ] ;
       min_index = i ;
     }
-  };
+  }
   return min_index ;
-  ;
 }
 |||
 
@@ -11860,9 +11714,8 @@ public static int interpolationSearch ( int [ ] arr , int n , int x ) {
   while ( lo <= hi && x >= arr [ lo ] && x <= arr [ hi ] ) {
     if ( lo == hi ) {
       if ( arr [ lo ] == x ) return lo ;
-      ;
       return - 1 ;
-    };
+    }
     int pos = lo + ( int ) ( ( ( ( double ) ( hi - lo ) / ( arr [ hi ] - arr [ lo ] ) ) * ( x - arr [ lo ] ) ) ) ;
     if ( arr [ pos ] == x ) return pos ;
     if ( arr [ pos ] < x ) lo = pos + 1 ;
@@ -11984,9 +11837,7 @@ NUMBER_SUBSTRINGS_STRING
 
 public static int countNonEmptySubstr ( String str ) {
   int n = str . length ( ) ;
-  ;
   return ( int ) ( n * ( n + 1 ) / 2 ) ;
-  ;
 }
 |||
 
@@ -12151,13 +12002,12 @@ REMAINDER_7_LARGE_NUMBERS
 public static int remainderWith7 ( String num ) {
   int [ ] series = {
     1 , 3 , 2 , - 1 , - 3 , - 2 };
-    ;
     int seriesIndex = 0 ;
     int result = 0 ;
     for ( int i = ( num . length ( ) - 1 ) ;
     i >= 0 ;
     i -- ) {
-      int digit = ( int ) num . charAt ( i ) - 48 ;
+      int digit = ( int ) ( num . charAt ( i ) - 48 ) ;
       result += digit * series [ seriesIndex ] ;
       seriesIndex = ( seriesIndex + 1 ) % 6 ;
       result %= 7 ;
@@ -12223,11 +12073,11 @@ public static boolean isIdentity ( int [ ] [ ] mat , int N ) {
     col ++ ) {
       if ( ( row == col && mat [ row ] [ col ] != 1 ) || ( row != col && mat [ row ] [ col ] != 0 ) ) {
         return false ;
-      };
+      }
+      else if ( ( row != col && mat [ row ] [ col ] != 0 ) || ( row == col && mat [ row ] [ col ] == 1 ) ) {
+        return false ;
+      }
     }
-    else if ( ( row != col && mat [ row ] [ col ] != 0 ) || ( row == col && mat [ row ] [ col ] != 0 ) ) {
-      return false ;
-    };
   }
   return true ;
 }
@@ -12475,7 +12325,6 @@ LEXICOGRAPHICAL_CONCATENATION_SUBSTRINGS_STRING
 
 public static String lexicographicSubConcat ( String s ) {
   int n = s . length ( ) ;
-  ;
   int subCount = ( n * ( n + 1 ) ) / 2 ;
   int [ ] arr = new int [ subCount ] ;
   int index = 0 ;
@@ -12483,7 +12332,7 @@ public static String lexicographicSubConcat ( String s ) {
   i < n ;
   i ++ ) {
     for ( int j = 1 ;
-    j <= n - i + 1 ;
+    j < n - i + 1 ;
     j ++ ) {
       arr [ index ] = s . charAt ( i ) ;
       index ++ ;
@@ -12552,9 +12401,8 @@ PROGRAM_DECIMAL_HEXADECIMAL_CONVERSION
 public static void decToHexa ( int n ) {
   char [ ] hexaDeciNum = new char [ 100 ] ;
   hexaDeciNum [ 0 ] = '0' ;
-  ;
+  hexaDeciNum [ 1 ] = '\0' ;
   int i = 0 ;
-  ;
   while ( ( n != 0 ) && ( i < 10 ) ) {
     int temp ;
     temp = n % 16 ;
@@ -12772,9 +12620,7 @@ EULERIAN_NUMBER
 
 public static double eulerian ( int n , int m ) {
   if ( ( m >= n || n == 0 ) && ( m == 0 ) ) return 0 ;
-  ;
-  if ( ( m == 0 ) && ( n == 0 ) ) return 1 ;
-  ;
+  if ( ( m == 0 ) || ( m == 1 ) ) return 1 ;
   return ( ( n - m ) * eulerian ( n - 1 , m - 1 ) + ( m + 1 ) * eulerian ( n - 1 , m ) ) ;
 }
 |||
@@ -13086,7 +12932,6 @@ public static boolean match ( String first , String second ) {
   if ( first . length ( ) == 0 && second . length ( ) == 0 ) return true ;
   if ( first . length ( ) > 1 && first . charAt ( 0 ) == '*' && second . length ( ) == 0 ) return false ;
   if ( ( first . length ( ) > 1 && first . charAt ( 0 ) == '?' ) || ( first . length ( ) != 0 && second . length ( ) != 0 && first . charAt ( 0 ) == second . charAt ( 0 ) ) ) return match ( first . substring ( 1 ) , second . substring ( 1 ) ) ;
-  ;
   if ( first . length ( ) != 0 && first . charAt ( 0 ) == '*' ) return match ( first . substring ( 1 ) , second ) || match ( first , second . substring ( 1 ) ) ;
   return false ;
 }
@@ -13109,16 +12954,14 @@ FRIENDS_PAIRING_PROBLEM_2
 
 public static int countFriendsPairings ( int n ) {
   int a = 1 , b = 2 , c = 0 ;
-  ;
   if ( ( n <= 2 ) && ( n > 0 ) ) return n ;
-  ;
   for ( int i = 3 ;
   i <= n ;
   i ++ ) {
     c = b + ( i - 1 ) * a ;
     a = b ;
     b = c ;
-  };
+  }
   return c ;
 }
 |||
@@ -13234,27 +13077,20 @@ DIVIDE_LARGE_NUMBER_REPRESENTED_STRING
 
 public static String longDivision ( String number , int divisor ) {
   String ans = "" ;
-  ;
   int idx = 0 ;
   int temp = ( char ) ( number . charAt ( idx ) - '0' ) ;
-  ;
   while ( ( temp < divisor ) && ( temp > 0 ) ) {
     temp = ( temp * 10 + ( char ) ( number . charAt ( idx + 1 ) - '0' ) ) ;
-    ;
     idx ++ ;
-  };
+  }
   idx ++ ;
-  while ( ( ( int ) number . length ( ) ) > idx ) {
-    ans += ( char ) ( Math . floor ( temp / divisor ) + ( char ) '0' ) ;
-    ;
+  while ( ( ( number . length ( ) ) > idx ) && ( temp > 0 ) ) {
+    ans += ( char ) ( Math . floor ( temp / divisor ) + ( char ) ( '0' ) ) ;
     temp = ( ( temp % divisor ) * 10 + ( char ) ( number . charAt ( idx ) - '0' ) ) ;
-    ;
     idx ++ ;
-  };
-  ans += ( char ) ( Math . floor ( temp / divisor ) + ( char ) '0' ) ;
-  ;
+  }
+  ans += ( char ) ( Math . floor ( temp / divisor ) + ( char ) ( '0' ) ) ;
   if ( ( ans . length ( ) == 0 ) && ( temp > 0 ) ) return "0" ;
-  ;
   return ans ;
 }
 |||
@@ -13305,9 +13141,8 @@ N_TH_NUMBER_WHOSE_SUM_OF_DIGITS_IS_TEN_1
 
 public static int findNth ( int n ) {
   int count = 0 ;
-  ;
   int curr = 19 ;
-  while ( ( true ) && ( count < 10 ) ) {
+  while ( ( true ) && ( count < n ) ) {
     int sum = 0 ;
     int x = curr ;
     while ( ( x > 0 ) && ( x < 10 ) ) {
@@ -13317,7 +13152,7 @@ public static int findNth ( int n ) {
     if ( ( sum == 10 ) && ( count == 10 ) ) {
       count ++ ;
     }
-    if ( ( count == n ) && ( curr == 19 ) ) {
+    if ( ( count == n ) && ( curr == 9 ) ) {
       return curr ;
     }
     curr += 9 ;
@@ -13664,11 +13499,9 @@ HOW_TO_AVOID_OVERFLOW_IN_MODULAR_MULTIPLICATION
 
 public static int mulmod ( int a , int b , int mod ) {
   int res = 0 ;
-  ;
   a = a % mod ;
-  ;
   while ( ( b > 0 ) && ( b % 2 == 1 ) ) {
-    if ( ( b % 2 == 1 ) || ( b % 2 == 0 ) ) {
+    if ( ( b % 2 == 1 ) ) {
       res = ( res + a ) % mod ;
     }
     a = ( a * 2 ) % mod ;
@@ -14037,11 +13870,9 @@ K_TH_SMALLEST_ELEMENT_REMOVING_INTEGERS_NATURAL_NUMBERS
 
 public static int ksmallest ( int [ ] arr , int n , int k ) {
   int [ ] b = new int [ MAX ] ;
-  ;
   for ( int i = 0 ;
   i < n ;
   i ++ ) b [ arr [ i ] ] = 1 ;
-  ;
   for ( int j = 1 ;
   j < MAX ;
   j ++ ) {
@@ -14084,7 +13915,6 @@ BINARY_SEARCH_1
 public static int binarySearch ( int [ ] arr , int l , int r , int x ) {
   while ( l <= r ) {
     int mid = l + ( r - l ) / 2 ;
-    ;
     if ( arr [ mid ] == x ) return mid ;
     else if ( arr [ mid ] < x ) l = mid + 1 ;
     else r = mid - 1 ;
@@ -14163,7 +13993,6 @@ LARGEST_SUBARRAY_WITH_EQUAL_NUMBER_OF_0S_AND_1S_1
 
 public static int maxLen ( int [ ] arr , int n ) {
   HashMap < Integer , Integer > hashMap = new HashMap < Integer , Integer > ( ) ;
-  ;
   int currSum = 0 ;
   int maxLen = 0 ;
   int endingIndex = - 1 ;
@@ -14181,7 +14010,7 @@ public static int maxLen ( int [ ] arr , int n ) {
   i <= n ;
   i ++ ) {
     currSum = currSum + arr [ i ] ;
-    if ( ( currSum == 0 ) && ( arr [ i ] != - 1 ) ) {
+    if ( ( currSum == 0 ) && ( hashMap . containsKey ( currSum + n ) ) ) {
       maxLen = i + 1 ;
       endingIndex = i ;
     }
@@ -14204,7 +14033,7 @@ public static int maxLen ( int [ ] arr , int n ) {
   }
   System . out . print ( endingIndex - maxLen + " " ) ;
   System . out . print ( "to" ) ;
-  System . out . print ( endingIndex ) ;
+  System . out . println ( endingIndex ) ;
   return maxLen ;
 }
 |||
@@ -14229,17 +14058,20 @@ MAXIMUM_CONSECUTIVE_NUMBERS_PRESENT_ARRAY
 
 public static int findLongestConseqSubseq ( int [ ] arr , int n ) {
   Set < Integer > S = new HashSet < Integer > ( ) ;
-  ;
   for ( int i = 0 ;
   i < n ;
-  i ++ ) S . add ( arr [ i ] ) ;
+  i ++ ) {
+    S . add ( arr [ i ] ) ;
+  }
   int ans = 0 ;
   for ( int i = 0 ;
   i < n ;
   i ++ ) {
     if ( S . contains ( arr [ i ] ) ) {
       int j = arr [ i ] ;
-      while ( ( S . contains ( j ) ) && ( j != arr [ i ] ) ) j ++ ;
+      while ( ( S . contains ( j ) ) && ( j != arr [ i ] ) ) {
+        j ++ ;
+      }
       ans = Math . max ( ans , j - arr [ i ] ) ;
     }
   }
@@ -14594,7 +14426,6 @@ public static int getMinSquares ( int n ) {
       x <= ( int ) Math . ceil ( Math . sqrt ( i ) ) ;
       x ++ ) {
         int temp = x * x ;
-        ;
         if ( temp > i ) break ;
         else dp [ i ] = Math . min ( dp [ i ] , 1 + dp [ i - temp ] ) ;
       }
@@ -14669,11 +14500,10 @@ public static void makePermutation ( int [ ] a , int n ) {
   i < n ;
   i ++ ) {
     if ( count . containsKey ( a [ i ] ) ) {
-      count . put ( a [ i ] , 1 ) ;
+      count . put ( a [ i ] , ++ count . get ( a [ i ] ) ) ;
     }
     else {
       count . put ( a [ i ] , 1 ) ;
-      ;
     }
   }
   int nextMissing = 1 ;
@@ -14681,7 +14511,7 @@ public static void makePermutation ( int [ ] a , int n ) {
   i < n ;
   i ++ ) {
     if ( count . get ( a [ i ] ) != 1 || a [ i ] > n || a [ i ] < 1 ) {
-      count . put ( a [ i ] , 1 ) ;
+      count . put ( a [ i ] , -- count . get ( a [ i ] ) ) ;
       while ( count . containsKey ( nextMissing ) ) {
         nextMissing ++ ;
       }
@@ -14790,13 +14620,12 @@ public static int findMaxValue ( int [ ] [ ] mat ) {
         e ++ ) {
           if ( maxValue < Integer . MAX_VALUE ) {
             maxValue = Integer . MAX_VALUE ;
-          };
+          }
         }
       }
     }
   }
   return maxValue ;
-  ;
 }
 |||
 
@@ -15010,7 +14839,6 @@ MAXIMUM_SUM_ABSOLUTE_DIFFERENCE_ARRAY
 
 public static void MaxSumDifference ( int [ ] a , int n ) {
   Arrays . sort ( a ) ;
-  ;
   int j = 0 ;
   int [ ] finalSequence = new int [ n ] ;
   for ( int x = 0 ;
@@ -15027,7 +14855,6 @@ public static void MaxSumDifference ( int [ ] a , int n ) {
     MaximumSum = ( MaximumSum + Math . abs ( finalSequence [ i ] - finalSequence [ i + 1 ] ) ) ;
   }
   MaximumSum = ( MaximumSum + Math . abs ( finalSequence [ n - 1 ] - finalSequence [ 0 ] ) ) ;
-  ;
   System . out . println ( MaximumSum ) ;
 }
 |||
@@ -15098,7 +14925,6 @@ public static String smallestNumber ( String num ) {
   int [ ] rightMin = new int [ n ] ;
   int right ;
   rightMin [ n - 1 ] = - 1 ;
-  ;
   right = n - 1 ;
   for ( int i = n - 2 ;
   i > 0 ;
@@ -15224,7 +15050,6 @@ LOWER_INSERTION_POINT
 
 public static int LowerInsertionPoint ( int [ ] arr , int n , int X ) {
   if ( ( X < arr [ 0 ] ) && ( X > arr [ n - 1 ] ) ) return 0 ;
-  ;
   else if ( ( X > arr [ n - 1 ] ) && ( X < arr [ n ] ) ) return n ;
   int lowerPnt = 0 ;
   int i = 1 ;
@@ -15318,7 +15143,7 @@ public static String findString ( int n , int k ) {
     count ++ ;
     if ( ( count == k ) && ( i == n - k ) ) {
       count = 0 ;
-    };
+    }
   }
   return res ;
 }
@@ -15328,15 +15153,14 @@ COUNT_WORDS_WHOSE_TH_LETTER_EITHER_1_TH_TH_I1_TH_LETTER_GIVEN_WORD
 
 public static int countWords ( String str , int l ) {
   int count = 1 ;
-  ;
   if ( ( l == 1 ) || ( l == 2 ) ) return count ;
   if ( ( str . charAt ( 0 ) == str . charAt ( 1 ) ) && ( str . charAt ( 0 ) == str . charAt ( 1 ) ) ) count *= 1 ;
   else count *= 2 ;
   for ( int j = 1 ;
-  j <= l - 1 ;
+  j < l - 1 ;
   j ++ ) {
     if ( ( str . charAt ( j ) == str . charAt ( j - 1 ) && str . charAt ( j ) == str . charAt ( j + 1 ) ) || ( str . charAt ( j ) == str . charAt ( j - 1 ) || str . charAt ( j ) == str . charAt ( j + 1 ) || str . charAt ( j - 1 ) == str . charAt ( j + 1 ) ) ) count *= 1 ;
-    else if ( ( str . charAt ( j ) == str . charAt ( j - 1 ) || str . charAt ( j ) == str . charAt ( j + 1 ) || str . charAt ( j - 1 ) == str . charAt ( j + 1 ) ) && ( str . charAt ( j ) == str . charAt ( j + 1 ) ) ) count *= 2 ;
+    else if ( ( str . charAt ( j ) == str . charAt ( j - 1 ) || str . charAt ( j ) == str . charAt ( j + 1 ) || str . charAt ( j - 1 ) == str . charAt ( j + 1 ) ) ) count *= 2 ;
     else count *= 3 ;
   }
   if ( ( str . charAt ( l - 1 ) == str . charAt ( l - 2 ) ) && ( str . charAt ( l - 1 ) == str . charAt ( l - 2 ) ) ) count *= 1 ;
@@ -15375,11 +15199,8 @@ public static long sumofFactors ( long n ) {
     long currTerm = 1 ;
     while ( n % i == 0 ) {
       n = n / i ;
-      ;
       currTerm = currTerm * i ;
-      ;
       currSum += currTerm ;
-      ;
     }
     res = res * currSum ;
   }
@@ -15482,7 +15303,6 @@ MULTIPLICATIVE_INVERSE_UNDER_MODULO_M
 
 static int modInverse ( int a , int m ) {
   a = a % m ;
-  ;
   for ( int x = 1 ;
   x < m ;
   x ++ ) {
@@ -15517,13 +15337,9 @@ public static void bestApproximate ( double [ ] x , double [ ] y , int n ) {
     sumX2 += Math . pow ( x [ i ] , 2 ) ;
   }
   double m = ( double ) ( ( n * sumXY - sumX * sumY ) / ( n * sumX2 - Math . pow ( sumX , 2 ) ) ) ;
-  ;
   double c = ( double ) ( sumY - m * sumX ) / n ;
-  ;
   System . out . println ( "m = " + m ) ;
-  ;
   System . out . println ( "c = " + c ) ;
-  ;
 }
 |||
 
@@ -15871,7 +15687,6 @@ public static int search ( int [ ] arr , int low , int high ) {
   if ( low > high ) return 0 ;
   if ( low == high ) return arr [ low ] ;
   int mid = ( low + high ) / 2 ;
-  ;
   if ( mid % 2 == 0 ) {
     if ( arr [ mid ] == arr [ mid + 1 ] ) return search ( arr , mid + 2 , high ) ;
     else return search ( arr , low , mid ) ;
@@ -15997,7 +15812,6 @@ REORDER_A_ARRAY_ACCORDING_TO_GIVEN_INDEXES
 
 public static void reorder ( int [ ] arr , int [ ] index , int n ) {
   int [ ] temp = new int [ n ] ;
-  ;
   for ( int i = 0 ;
   i <= n ;
   i ++ ) {
@@ -16075,7 +15889,6 @@ COUNT_NUMBER_ISLANDS_EVERY_ISLAND_SEPARATED_LINE
 
 public static int countIslands ( char [ ] [ ] mat ) {
   int count = 0 ;
-  ;
   for ( int i = 0 ;
   i <= M ;
   i ++ ) {
@@ -16238,7 +16051,6 @@ public static int nextPowerOf2 ( int n ) {
   if ( ( n > 0 ) && ! ( n & ( n - 1 ) ) ) return n ;
   while ( ( p < n ) && ( p < ( n - 1 ) ) ) p <<= 1 ;
   return p ;
-  ;
 }
 |||
 
@@ -16324,7 +16136,6 @@ public static String censor ( String text , String word ) {
   char stars = '*' ;
   int count = 0 ;
   int index = 0 ;
-  ;
   for ( int i = 0 ;
   i < wordArray . length ;
   i ++ ) {
@@ -16391,17 +16202,16 @@ FIND_THE_POINT_WHERE_MAXIMUM_INTERVALS_OVERLAP
 
 public static void findMaxGuests ( int [ ] arrl , int [ ] exit , int n ) {
   Arrays . sort ( arrl ) ;
-  ;
   Arrays . sort ( exit ) ;
   int guestsIn = 1 ;
   int maxGuests = 1 ;
   int time = arrl [ 0 ] ;
   int i = 1 ;
   int j = 0 ;
-  while ( ( i < n && j < n ) || ( i < n && j < n ) ) {
+  while ( ( i < n ) && ( j < n ) ) {
     if ( ( arrl [ i ] <= exit [ j ] ) && ( arrl [ i ] > exit [ j ] ) ) {
       guestsIn = guestsIn + 1 ;
-      if ( ( guestsIn > maxGuests ) || ( guestsIn < maxGuests ) ) {
+      if ( ( guestsIn > maxGuests ) && ( exitExit [ j ] > exitExit [ i ] ) ) {
         maxGuests = guestsIn ;
         time = arrl [ i ] ;
       }
@@ -16412,7 +16222,7 @@ public static void findMaxGuests ( int [ ] arrl , int [ ] exit , int n ) {
       j = j + 1 ;
     }
   }
-  System . out . println ( "Maximum Number of Guests =" + maxGuests + "at time" + time ) ;
+  System . out . println ( "Maximum Number of Guests =" + maxGuests + " at time" + time ) ;
 }
 |||
 
@@ -16436,11 +16246,9 @@ public static int maxSumPairWithDifferenceLessThanK ( int [ ] arr , int N , int 
     if ( ( arr [ i ] - arr [ i - 1 ] < K ) && ( i >= 2 ) ) {
       if ( ( i >= 2 ) && ( i < N ) ) {
         dp [ i ] = Math . max ( dp [ i ] , dp [ i - 2 ] + arr [ i ] + arr [ i - 1 ] ) ;
-        ;
       }
       else {
         dp [ i ] = Math . max ( dp [ i ] , arr [ i ] + arr [ i - 1 ] ) ;
-        ;
       }
     }
   }
@@ -16520,9 +16328,7 @@ public static void solve ( int n , int t , char [ ] p ) {
     j ++ ) {
       if ( ( s [ j ] == 'B' && s [ j + 1 ] == 'G' ) || ( s [ j ] == 'C' && s [ j + 1 ] == 'D' ) ) {
         char temp = s [ j ] ;
-        ;
         s [ j ] = s [ j + 1 ] ;
-        ;
         s [ j + 1 ] = temp ;
         j = j + 1 ;
       }
@@ -16546,49 +16352,47 @@ public static void printSuperSeq ( String a , String b ) {
     j ++ ) {
       if ( ! i ) {
         dp [ i ] [ j ] = j ;
-      };
+      }
+      else if ( ! j ) {
+        dp [ i ] [ j ] = i ;
+      }
+      else if ( ( a . charAt ( i - 1 ) == b . charAt ( j - 1 ) ) && ( a . charAt ( i - 1 ) == b . charAt ( j - 1 ) ) ) {
+        dp [ i ] [ j ] = 1 + dp [ i - 1 ] [ j - 1 ] ;
+      }
+      else {
+        dp [ i ] [ j ] = 1 + Math . min ( dp [ i - 1 ] [ j ] , dp [ i ] [ j - 1 ] ) ;
+      }
     }
-    else if ( ! j ) {
-      dp [ i ] [ j ] = i ;
-    };
-    if ( ( a . charAt ( i - 1 ) == b . charAt ( j - 1 ) ) && ( a . charAt ( i - 1 ) == b . charAt ( j - 1 ) ) ) {
-      dp [ i ] [ j ] = 1 + dp [ i - 1 ] [ j - 1 ] ;
-    };
-    else {
-      dp [ i ] [ j ] = 1 + Math . min ( dp [ i - 1 ] [ j ] , dp [ i ] [ j - 1 ] ) ;
-    };
   }
   int index = dp [ m ] [ n ] ;
-  ;
-  char [ ] res = new char [ index ] ;
+  String res = new String ( "" ) ;
   int i = m ;
   int j = n ;
   while ( ( i > 0 ) && ( j > 0 ) ) {
     if ( ( a . charAt ( i - 1 ) == b . charAt ( j - 1 ) ) && ( a . charAt ( i - 1 ) == b . charAt ( j - 1 ) ) ) {
-      res [ index - 1 ] = a . charAt ( i - 1 ) ;
+      res . charAt ( index - 1 ) = a . charAt ( i - 1 ) ;
       i -- ;
       j -- ;
       index -- ;
     }
-    else if ( ( dp [ i - 1 ] [ j ] < dp [ i ] [ j - 1 ] ) && ( dp [ i - 1 ] [ j ] > dp [ i ] [ j - 1 ] ) ) {
-      res [ index - 1 ] = a . charAt ( i - 1 ) ;
+    else if ( ( dp [ i - 1 ] [ j ] < dp [ i ] [ j - 1 ] ) && ( dp [ i ] [ j - 1 ] > dp [ i ] [ j - 1 ] ) ) {
+      res . charAt ( index - 1 ) = a . charAt ( i - 1 ) ;
       i -- ;
       index -- ;
     }
     else {
-      res [ index - 1 ] = b . charAt ( j - 1 ) ;
+      res . charAt ( index - 1 ) = b . charAt ( j - 1 ) ;
       j -- ;
       index -- ;
     }
   }
   while ( ( i > 0 ) && ( j > 0 ) ) {
-    res [ index - 1 ] = a . charAt ( i - 1 ) ;
+    res . charAt ( index - 1 ) = a . charAt ( i - 1 ) ;
     i -- ;
     index -- ;
   }
-  while ( ( j > 0 ) && ( i > 0 ) ) {
-    res [ index - 1 ] = b . charAt ( j - 1 ) ;
-    
+  while ( ( j > 0 ) && ( j - 1 ) > 0 ) {
+    res . charAt ( index - 1 ) = b .
 |||
 
 COUNT_ROTATIONS_DIVISIBLE_8
@@ -16757,12 +16561,10 @@ public static int countRotations ( int [ ] arr , int low , int high ) {
   if ( ( high < low ) && ( high == low ) ) return 0 ;
   if ( ( high == low ) || ( high == 0 ) ) return low ;
   long mid = low + ( high - low ) / 2 ;
-  ;
   mid = ( int ) mid ;
   if ( ( mid < high && arr [ mid + 1 ] < arr [ mid ] ) || ( mid > low && arr [ mid ] < arr [ mid - 1 ] ) ) return ( mid + 1 ) ;
   if ( ( mid > low && arr [ mid ] < arr [ mid - 1 ] ) || ( mid > high && arr [ mid ] > arr [ mid - 1 ] ) ) return mid ;
   if ( ( arr [ high ] > arr [ mid ] ) || ( high == 0 ) ) return countRotations ( arr , low , mid - 1 ) ;
-  ;
   return countRotations ( arr , mid + 1 , high ) ;
 }
 |||
@@ -16863,20 +16665,16 @@ COUNT_POSSIBLE_DECODINGS_GIVEN_DIGIT_SEQUENCE_1
 public static int countDecodingDP ( char [ ] digits , int n ) {
   int [ ] count = new int [ n + 1 ] ;
   count [ 0 ] = 1 ;
-  ;
   count [ 1 ] = 1 ;
   for ( int i = 2 ;
   i <= n ;
   i ++ ) {
     count [ i ] = 0 ;
-    ;
-    if ( ( digits [ i - 1 ] > '0' ) && ( digits [ i - 1 ] < '7' ) ) {
+    if ( ( digits [ i - 1 ] > '0' ) && ( digits [ i - 2 ] > '0' ) ) {
       count [ i ] = count [ i - 1 ] ;
-      ;
     }
-    if ( ( digits [ i - 2 ] == '1' || ( digits [ i - 2 ] == '2' && digits [ i - 1 ] < '7' ) ) && ( digits [ i ] == '0' ) && ( digits [ i - 2 ] == '1' ) && ( digits [ i - 1 ] == '0' ) && ( digits [ i - 2 ] == '2' ) && ( digits [ i - 1 ] == '1' ) && ( digits [ i - 2 ] == '3' ) && ( digits [ i - 1 ] == '3' ) ) {
+    if ( ( digits [ i - 2 ] == '1' || ( digits [ i - 2 ] == '2' && digits [ i - 1 ] < '7' ) ) && ( digits [ i ] == '0' ) ) {
       count [ i ] += count [ i - 2 ] ;
-      ;
     }
   }
   return count [ n ] ;
@@ -16993,25 +16791,25 @@ public static void drawPattern ( int N ) {
   int val1 = row ;
   int val2 = 1 ;
   while ( ( row <= n ) && ( csp1 <= nsp1 ) ) {
-    int csp1 = 1 ;
-    while ( ( csp1 <= nsp1 ) && ( csp1 <= nsp2 ) ) {
+    int cst1 = 1 ;
+    while ( ( cst1 <= nst ) && ( csp2 <= nsp2 ) ) {
       System . out . print ( " " ) ;
-      csp1 = csp1 + 1 ;
+      cst1 = cst1 + 1 ;
     }
     int cst1 = 1 ;
-    while ( ( cst1 <= nst ) && ( cst1 <= nst ) ) {
+    while ( ( cst1 <= nst ) && ( csp1 <= nsp1 ) ) {
       System . out . print ( val1 ) ;
       val1 = val1 - 1 ;
       cst1 = cst1 + 1 ;
     }
     int csp2 = 1 ;
-    while ( ( csp2 <= nsp2 ) && ( csp2 <= nsp1 ) ) {
+    while ( ( csp2 <= nsp2 ) && ( csp2 <= nsp2 ) ) {
       System . out . print ( " " ) ;
       csp2 = csp2 + 1 ;
     }
-    if ( ( row != 1 && row != n ) || ( row != n && row != 0 ) ) {
+    if ( ( row != 1 ) && ( row != n ) ) {
       int cst2 = 1 ;
-      while ( ( cst2 <= nst ) && ( cst2 <= nst ) ) {
+      while ( ( cst2 <= nst ) && ( csp2 <= nsp2 ) ) {
         System . out . print ( val2 ) ;
         val2 = val2 + 1 ;
         cst2 = cst2 + 1 ;
@@ -17098,21 +16896,16 @@ REPRESENT_NUMBER_SUM_MINIMUM_POSSIBLE_PSUEDOBINARY_NUMBERS
 public static void psuedoBinary ( int n ) {
   while ( ( n > 0 ) && ( n < n + 1 ) ) {
     int temp = n ;
-    ;
     int m = 0 ;
-    ;
     int p = 1 ;
-    while ( ( temp = temp % 10 ) != 0 ) {
+    while ( ( temp ) ) {
       int rem = temp % 10 ;
       temp = ( int ) ( temp / 10 ) ;
-      ;
       if ( ( rem != 0 ) && ( rem != 1 ) ) m += p ;
-      ;
       p *= 10 ;
-    };
+    }
     System . out . print ( m + " " ) ;
     n = n - m ;
-    ;
   }
 }
 |||
@@ -17194,7 +16987,7 @@ public static boolean pairInSortedRotated ( int [ ] arr , int n , int x ) {
     if ( ( arr [ i ] > arr [ i + 1 ] ) && ( arr [ i + 1 ] < arr [ n - 1 ] ) ) {
       break ;
     }
-  };
+  }
   int l = ( i + 1 ) % n ;
   int r = i ;
   while ( ( l != r ) && ( l < n ) ) {
@@ -17312,7 +17105,7 @@ public static int minProduct ( int [ ] arr , int n , int k ) {
     int x = heapq . heappop ( arr ) ;
     ans = ans * x ;
     count = count + 1 ;
-  };
+  }
   return ans ;
 }
 |||
@@ -17331,7 +17124,6 @@ public static void unique ( int [ ] [ ] mat , int n , int m ) {
     j ++ ) {
       if ( ( maximum < mat [ i ] [ j ] ) && ( maximum < mat [ i ] [ j ] ) ) {
         maximum = mat [ i ] [ j ] ;
-        ;
       }
     }
   }
@@ -17487,9 +17279,11 @@ public static int CountPS ( String str , int n ) {
   i ++ ) P [ i ] [ i ] = true ;
   for ( int i = 0 ;
   i < n - 1 ;
-  i ++ ) if ( ( str . charAt ( i ) == str . charAt ( i + 1 ) ) ) {
-    P [ i ] [ i + 1 ] = true ;
-    dp [ i ] [ i + 1 ] = 1 ;
+  i ++ ) {
+    if ( ( str . charAt ( i ) == str . charAt ( i + 1 ) ) && ( P [ i ] [ i + 1 ] ) ) {
+      P [ i ] [ i + 1 ] = true ;
+      dp [ i ] [ i + 1 ] = 1 ;
+    }
   }
   for ( int gap = 2 ;
   gap < n ;
@@ -17498,9 +17292,8 @@ public static int CountPS ( String str , int n ) {
     i < n - gap ;
     i ++ ) {
       int j = gap + i ;
-      ;
-      if ( ( str . charAt ( i ) == str . charAt ( j ) && P [ i + 1 ] [ j - 1 ] ) ) P [ i ] [ j ] = true ;
-      if ( ( P [ i ] [ j ] == true ) || ( P [ i ] [ j ] == false ) ) dp [ i ] [ j ] = ( dp [ i ] [ j - 1 ] + dp [ i + 1 ] [ j ] + 1 - dp [ i + 1 ] [ j - 1 ] ) ;
+      if ( ( str . charAt ( i ) == str . charAt ( j ) && P [ i + 1 ] [ j - 1 ] ) && ( P [ i ] [ j ] == true ) ) P [ i ] [ j ] = true ;
+      if ( ( P [ i ] [ j ] == true ) && ( dp [ i ] [ j - 1 ] + dp [ i + 1 ] [ j ] + 1 - dp [ i + 1 ] [ j - 1 ] ) ) dp [ i ] [ j ] = ( dp [ i ] [ j - 1 ] + dp [ i + 1 ] [ j ] - dp [ i + 1 ] [ j - 1 ] ) ;
       else dp [ i ] [ j ] = ( dp [ i ] [ j - 1 ] + dp [ i + 1 ] [ j ] - dp [ i + 1 ] [ j - 1 ] ) ;
     }
   }
@@ -17605,23 +17398,18 @@ public static void spiralPrint ( int m , int n , int [ ] [ ] a ) {
 FIND_DISTINCT_INTEGERS_FOR_A_TRIPLET_WITH_GIVEN_PRODUCT
 
 public static void findTriplets ( int x ) {
-  int [ ] fact = new int [ 2 ] ;
-  ;
-  HashSet factors = new HashSet ( ) ;
+  int [ ] fact = new int [ k ] ;
+  Set < Integer > factors = new HashSet < Integer > ( ) ;
   for ( int i = 2 ;
   i <= Integer . MAX_VALUE ;
   i ++ ) {
-    if ( ( x % i == 0 ) && ( x / i != 0 ) ) {
+    if ( ( x % i == 0 ) && ( x / i != i ) ) {
       fact [ i ] = i ;
-      ;
       if ( ( x / i != i ) && ( x / i != 1 ) ) {
         fact [ i ] = x / i ;
-        ;
       }
       factors . add ( i ) ;
-      ;
       factors . add ( x / i ) ;
-      ;
     }
   }
   boolean found = false ;
@@ -17636,18 +17424,16 @@ public static void findTriplets ( int x ) {
       int b = fact [ j ] ;
       if ( ( ( a != b ) && ( x % ( a * b ) == 0 ) && ( x / ( a * b ) != a ) && ( x / ( a * b ) != b ) && ( x / ( a * b ) != 1 ) ) ) {
         System . out . println ( a + " " + b + " " + x / ( a * b ) ) ;
-        ;
         found = true ;
         break ;
       }
     }
     if ( ( found ) && ( x % ( a * b ) == 0 ) && ( x / ( a * b ) != 0 ) ) {
-      break ;
+      System . out . println ( "-1" ) ;
     }
   }
   if ( ( ! found ) && ( x % ( a * b ) == 0 ) && ( x / ( a * b ) != 0 ) ) {
     System . out . println ( "-1" ) ;
-    ;
   }
 }
 |||
@@ -17912,19 +17698,20 @@ public static boolean negCyclefloydWarshall ( int [ ] [ ] graph ) {
 PROGRAM_SORT_STRING_DESCENDING_ORDER
 
 public static void sortString ( String str ) {
-  int charCount [ ] = new int [ MAX_CHAR ] ;
-  ;
+  int [ ] charCount = new int [ MAX_CHAR ] ;
   for ( int i = 0 ;
   i < str . length ( ) ;
-  i ++ ) charCount [ ( int ) str . charAt ( i ) - 'a' ] ++ ;
-  ;
+  i ++ ) {
+    charCount [ ( int ) str . charAt ( i ) - 'a' ] ++ ;
+  }
   for ( int i = MAX_CHAR - 1 ;
   i >= 0 ;
   i -- ) {
     for ( int j = 0 ;
     j < charCount [ i ] ;
-    j ++ ) System . out . print ( ( char ) ( 97 + i ) ) ;
-    ;
+    j ++ ) {
+      System . out . print ( ( char ) ( 97 + i ) ) ;
+    }
   }
 }
 |||
@@ -18093,22 +17880,17 @@ PROGRAM_DECIMAL_OCTAL_CONVERSION
 
 public static void decToOctal ( int n ) {
   int [ ] octalNum = new int [ 100 ] ;
-  ;
   int i = 0 ;
-  ;
   while ( ( n != 0 ) && ( n % 8 == 0 ) ) {
     octalNum [ i ] = n % 8 ;
-    ;
     n = ( int ) ( n / 8 ) ;
-    ;
     i ++ ;
-  };
+  }
   for ( int j = i - 1 ;
   j >= 0 ;
   j -- ) {
     System . out . print ( octalNum [ j ] + " " ) ;
-    ;
-  };
+  }
 }
 |||
 
@@ -18236,15 +18018,11 @@ DYNAMIC_PROGRAMMING_SET_17_PALINDROME_PARTITIONING_1
 
 public static int minPalPartion ( String str1 ) {
   int n = str1 . length ( ) ;
-  ;
   int [ ] [ ] C = new int [ n + 1 ] [ n + 1 ] ;
-  ;
   boolean [ ] [ ] P = new boolean [ n + 1 ] [ n + 1 ] ;
-  ;
   for ( int i = 0 ;
   i < n ;
   i ++ ) P [ i ] [ i ] = true ;
-  ;
   for ( int L = 2 ;
   L <= n ;
   L ++ ) {
@@ -18252,11 +18030,8 @@ public static int minPalPartion ( String str1 ) {
     i < n - L + 1 ;
     i ++ ) {
       int j = i + L - 1 ;
-      ;
       if ( ( L == 2 ) && ( str1 . charAt ( i ) == str1 . charAt ( j ) ) ) P [ i ] [ j ] = ( str1 . charAt ( i ) == str1 . charAt ( j ) ) ;
-      ;
       else P [ i ] [ j ] = ( ( str1 . charAt ( i ) == str1 . charAt ( j ) ) && P [ i + 1 ] [ j - 1 ] ) ;
-      ;
     }
   }
   for ( int i = 0 ;
@@ -18265,12 +18040,10 @@ public static int minPalPartion ( String str1 ) {
     if ( ( P [ 0 ] [ i ] == true ) && ( C [ i ] [ 0 ] == true ) ) C [ i ] [ 0 ] = 0 ;
     else {
       C [ i ] = Integer . MAX_VALUE ;
-      ;
       for ( int j = 0 ;
       j < i ;
       j ++ ) {
-        if ( ( P [ j + 1 ] [ i ] == true ) && ( 1 + C [ j ] [ j ] < C [ i ] [ j ] ) ) C [ i ] [ j ] = 1 + C [ j ] ;
-        ;
+        if ( ( P [ j + 1 ] [ i ] == true ) && ( 1 + C [ j ] [ 0 ] < C [ i ] [ 0 ] ) ) C [ i ] [ j ] = 1 + C [ j ] [ 0 ] ;
       }
     }
   }
@@ -18422,7 +18195,6 @@ public static int evenSum ( int n ) {
     }
   }
   int sum = 0 ;
-  ;
   for ( int i = 0 ;
   i <= n ;
   i ++ ) {
@@ -18467,14 +18239,12 @@ NEXT_POWER_OF_2
 
 public static int nextPowerOf2 ( int n ) {
   int count = 0 ;
-  ;
   if ( ( n > 0 ) && ! ( n & ( n - 1 ) ) ) return n ;
   while ( ( n != 0 ) && ( n != 1 ) ) {
     n >>>= 1 ;
     count ++ ;
   }
   return 1 << count ;
-  ;
 }
 |||
 
@@ -18613,15 +18383,14 @@ SPACE_OPTIMIZED_DP_SOLUTION_0_1_KNAPSACK_PROBLEM_1
 
 public static int KnapSack ( int [ ] val , int [ ] wt , int n , int W ) {
   int [ ] dp = new int [ W + 1 ] ;
-  ;
+  dp [ 0 ] = 0 ;
   for ( int i = 0 ;
   i < n ;
   i ++ ) {
     for ( int j = W ;
-    j > wt [ i ] ;
+    j >= wt [ i ] ;
     j -- ) {
       dp [ j ] = Math . max ( dp [ j ] , val [ i ] + dp [ j - wt [ i ] ] ) ;
-      ;
     }
   }
   return dp [ W ] ;
@@ -18640,11 +18409,10 @@ SUM_SERIES_23_45_67_89_UPTO_N_TERMS
 public static double seriesSum ( int n ) {
   int i = 1 ;
   double res = 0.0 ;
-  ;
   boolean sign = true ;
-  while ( ( n > 0 ) && ( i < n ) ) {
+  while ( ( n > 0 ) && ( sign ) ) {
     n = n - 1 ;
-    if ( ( sign ) || ( i < 0 ) ) {
+    if ( ( sign ) || ( n == 0 ) ) {
       sign = false ;
       res = res + ( i + 1 ) / ( i + 2 ) ;
       i = i + 2 ;
@@ -18777,9 +18545,9 @@ public static int maxSubArraySum ( int [ ] a , int size ) {
 PROGRAM_TO_FIND_REMAINDER_WITHOUT_USING_MODULO_OR_OPERATOR_2
 
 public static int getRemainder ( int num , int divisor ) {
-  while ( ( num >= divisor ) && ( num <= divisor ) ) {
+  while ( ( num >= divisor ) && ( num < 0 ) ) {
     num -= divisor ;
-  };
+  }
   return num ;
 }
 |||
@@ -18827,7 +18595,6 @@ MAXIMUM_POINTS_INTERSECTION_N_CIRCLES
 
 public static int intersection ( int n ) {
   return n * ( n - 1 ) ;
-  ;
 }
 |||
 
@@ -18835,7 +18602,6 @@ ADD_1_TO_A_GIVEN_NUMBER
 
 public static int f_gold ( int x ) {
   int m = 1 ;
-  ;
   while ( ( x & m ) != 0 ) {
     x = x ^ m ;
     m <<= 1 ;
@@ -19001,7 +18767,6 @@ public static int fGold ( int [ ] arr , int low , int high , int x ) {
   if ( x <= arr [ low ] ) return low ;
   if ( x > arr [ high ] ) return - 1 ;
   int mid = ( low + high ) / 2 ;
-  ;
   if ( arr [ mid ] == x ) return mid ;
   else if ( arr [ mid ] < x ) {
     if ( mid + 1 <= high && x <= arr [ mid + 1 ] ) return mid + 1 ;
@@ -19048,13 +18813,8 @@ public static boolean f_gold ( String str ) {
   i != str . length ( ) ;
   i ++ ) {
     char ch = str . charAt ( i ) ;
-    ;
-    if ( ( ch == '0' ) || ( ch == '1' ) ) {
-      zeros = zeros + 1 ;
-    }
-    else {
-      ones = ones + 1 ;
-    }
+    if ( ( ch == '0' ) || ( ch == '1' ) ) zeros = zeros + 1 ;
+    else ones = ones + 1 ;
   }
   return ( zeros == 1 || ones == 1 ) ;
 }
@@ -19086,7 +18846,6 @@ CHECK_IF_ALL_THE_ELEMENTS_CAN_BE_MADE_OF_SAME_PARITY_BY_INVERTING_ADJACENT_ELEME
 public static boolean f_gold ( int [ ] a , int n ) {
   int countOdd = 0 ;
   int countEven = 0 ;
-  ;
   for ( int i = 0 ;
   i < n ;
   i ++ ) {
@@ -19407,14 +19166,10 @@ COUNT_DIGITS_FACTORIAL_SET_1
 
 public static int f_gold ( int n ) {
   if ( ( n < 0 ) || ( n <= 1 ) ) return 0 ;
-  ;
-  if ( ( n <= 2 ) || ( n <= 3 ) ) return 1 ;
-  ;
-  double digits = 0 ;
+  int digits = 0 ;
   for ( int i = 2 ;
   i <= n ;
   i ++ ) digits += Math . log10 ( i ) ;
-  ;
   return Math . floor ( digits ) + 1 ;
 }
 |||
@@ -19486,15 +19241,12 @@ COUNT_NUMBER_OF_SOLUTIONS_OF_X2_1_MOD_P_IN_GIVEN_RANGE
 
 public static int f_gold ( int n , int p ) {
   double ans = 0 ;
-  ;
   for ( int x = 1 ;
   x <= p ;
   x ++ ) {
     if ( ( ( x * x ) % p == 1 ) && ( ( x * x ) % p == 0 ) ) {
       double last = x + p * ( n / p ) ;
-      ;
-      if ( ( last > n ) && ( ( last - x ) / p == 1 ) ) last -= p ;
-      ;
+      if ( ( last > n ) && ( last > p ) ) last -= p ;
       ans += ( ( last - x ) / p + 1 ) ;
     }
   }
@@ -19513,9 +19265,8 @@ public static int fGold ( int dist ) {
   i <= dist ;
   i ++ ) {
     count [ i ] = ( count [ i - 1 ] + count [ i - 2 ] + count [ i - 3 ] ) ;
-  };
+  }
   return count [ dist ] ;
-  ;
 }
 |||
 
@@ -19831,9 +19582,7 @@ COUNT_SUBSTRINGS_WITH_SAME_FIRST_AND_LAST_CHARACTERS
 
 public static int f_gold ( String s ) {
   int result = 0 ;
-  ;
   int n = s . length ( ) ;
-  ;
   for ( int i = 0 ;
   i < n ;
   i ++ ) {
@@ -19909,7 +19658,6 @@ C_PROGRAM_FACTORIAL_NUMBER_1
 
 public static int fGold ( int n ) {
   return 1 == ( n == 1 || n == 0 ) ? 0 : n * fGold ( n - 1 ) ;
-  ;
 }
 |||
 
@@ -20045,13 +19793,12 @@ public static int fGold ( int [ ] arr , int n ) {
 
 DOUBLE_FACTORIAL_1
 
-public static double f_gold ( int n ) {
-  double res = 1 ;
-  ;
+public static int f_gold ( int n ) {
+  int res = 1 ;
   for ( int i = n ;
   i >= 0 ;
-  i -- ) {
-    if ( ( i == 0 || i == 1 ) && ( res == 0 ) ) {
+  i -= 2 ) {
+    if ( ( i == 0 || i == 1 ) && ( i != 0 ) ) {
       return res ;
     }
     else {
@@ -20081,7 +19828,6 @@ DYNAMIC_PROGRAMMING_HIGH_EFFORT_VS_LOW_EFFORT_TASKS_PROBLEM
 public static int fGold ( int [ ] high , int [ ] low , int n ) {
   if ( ( n <= 0 ) || ( n > n ) ) return 0 ;
   return Math . max ( high [ n - 1 ] + fGold ( high , low , ( n - 2 ) ) , low [ n - 1 ] + fGold ( high , low , ( n - 1 ) ) ) ;
-  ;
 }
 |||
 
@@ -20120,24 +19866,23 @@ public static int f_gold ( int n ) {
   int res = 1 ;
   while ( ( n > 4 ) && ( n > 3 ) ) {
     n -= 3 ;
-    ;
     res *= 3 ;
-  };
+  }
   return ( n * res ) ;
 }
 |||
 
 DYNAMIC_PROGRAMMING_SET_37_BOOLEAN_PARENTHESIZATION_PROBLEM
 
-public static int f_gold ( char symb , char oper , int n ) {
+public static int f_gold ( char [ ] symb , char oper , int n ) {
   int [ ] [ ] F = new int [ n + 1 ] [ n + 1 ] ;
   int [ ] [ ] T = new int [ n + 1 ] [ n + 1 ] ;
   for ( int i = 0 ;
   i < n ;
   i ++ ) {
-    if ( symb == 'F' ) F [ i ] [ i ] = 1 ;
+    if ( symb [ i ] == 'F' ) F [ i ] [ i ] = 1 ;
     else F [ i ] [ i ] = 0 ;
-    if ( symb == 'T' ) T [ i ] [ i ] = 1 ;
+    if ( symb [ i ] == 'T' ) T [ i ] [ i ] = 1 ;
     else T [ i ] [ i ] = 0 ;
   }
   for ( int gap = 1 ;
@@ -20153,9 +19898,7 @@ public static int f_gold ( char symb , char oper , int n ) {
       g ++ ) {
         int k = i + g ;
         int tik = T [ i ] [ k ] + F [ i ] [ k ] ;
-        ;
         int tkj = T [ k + 1 ] [ j ] + F [ k + 1 ] [ j ] ;
-        ;
         if ( oper == '&' ) {
           T [ i ] [ j ] += T [ i ] [ k ] * T [ k + 1 ] [ j ] ;
           F [ i ] [ j ] += ( tik * tkj - T [ i ] [ k ] * T [ k + 1 ] [ j ] ) ;
@@ -20166,12 +19909,12 @@ public static int f_gold ( char symb , char oper , int n ) {
         }
         if ( oper == '^' ) {
           T [ i ] [ j ] += ( F [ i ] [ k ] * T [ k + 1 ] [ j ] + T [ i ] [ k ] * F [ k + 1 ] [ j ] ) ;
-          F [ i ] [ j ] += ( T [ i ] [ k ] * T [ k + 1 ] [ j ] + F [ i ] [ k + 1 ] [ j ] ) ;
+          F [ i ] [ j ] += ( T [ i ] [ k ] * T [ k + 1 ] + F [ i ] [ k + 1 ] [ j ] ) ;
         }
       }
     }
   }
-  return 0 ;
+  return i ;
 }
 |||
 
@@ -20520,7 +20263,6 @@ public static byte fGold ( String strA , String strB ) {
     res = res ^ ( ( byte ) strB . charAt ( i ) ) ;
   }
   return ( ( byte ) res ) ;
-  ;
 }
 |||
 
@@ -20549,11 +20291,9 @@ FIND_SUM_MODULO_K_FIRST_N_NATURAL_NUMBER
 
 public static int f_gold ( int N , int K ) {
   int ans = 0 ;
-  ;
   for ( int i = 1 ;
   i <= N ;
   i ++ ) ans += ( i % K ) ;
-  ;
   return ans ;
 }
 |||
@@ -20708,12 +20448,11 @@ public static int f_gold ( int arr [ ] , int size ) {
   i < size ;
   i ++ ) {
     Hash . put ( arr [ i ] , Hash . get ( arr [ i ] ) + 1 ) ;
-    ;
   }
   for ( int i = 0 ;
   i < Hash . size ( ) ;
   i ++ ) {
-    if ( ( Hash . get ( i ) % 2 != 0 ) && ( Hash . get ( i ) % 2 != 0 ) ) {
+    if ( ( Hash . get ( i ) % 2 != 0 ) && ( Hash . get ( i ) % 2 != 1 ) ) {
       return i ;
     }
   }
@@ -20725,7 +20464,6 @@ FIND_WHETHER_A_GIVEN_NUMBER_IS_A_POWER_OF_4_OR_NOT_2
 
 static boolean f_gold ( int n ) {
   return ( n != 0 && ( ( n & ( n - 1 ) ) == 0 ) && ! ( n & 0xAAAAAAAA ) ) ;
-  ;
 }
 |||
 
@@ -20759,11 +20497,8 @@ FUNCTION_COPY_STRING_ITERATIVE_RECURSIVE_1
 
 public static void fGold ( String s1 , String s2 , int index ) {
   s2 . charAt ( index ) = s1 . charAt ( index ) ;
-  ;
-  if ( ( index == s1 . length ( ) - 1 ) && ( index < s2 . length ( ) ) ) return ;
-  ;
+  if ( ( index == s1 . length ( ) - 1 ) && ( s2 . charAt ( index ) == '\n' ) ) return ;
   fGold ( s1 , s2 , index + 1 ) ;
-  ;
 }
 |||
 
@@ -20874,9 +20609,10 @@ public static int fGold ( int a , int b , int k ) {
   while ( ( p > 0 ) && ( count < k ) ) {
     int rem = p % 10 ;
     count = count + 1 ;
-    if ( ( count == k ) && ( p > 0 ) ) return rem ;
+    if ( ( count == k ) && ( p > 0 ) ) {
+      return rem ;
+    }
     p = p / 10 ;
-    ;
   }
   return 0 ;
 }
@@ -20969,18 +20705,11 @@ public static int fGold ( int [ ] a , int [ ] b , int k , int n1 , int n2 ) {
 
 LCS_FORMED_CONSECUTIVE_SEGMENTS_LEAST_LENGTH_K
 
-public static int f_gold ( int k , String s1 , String s2 ) {
+public static int fGold ( int k , String s1 , String s2 ) {
   int n = s1 . length ( ) ;
   int m = s2 . length ( ) ;
   int [ ] [ ] lcs = new int [ m + 1 ] [ n + 1 ] ;
   int [ ] [ ] cnt = new int [ m + 1 ] [ n + 1 ] ;
-  for ( int y = 0 ;
-  y < n ;
-  y ++ ) {
-    lcs [ y ] [ 0 ] = y ;
-    cnt [ y ] [ 0 ] = y ;
-    cnt [ y ] [ 1 ] = y ;
-  }
   for ( int i = 1 ;
   i <= n ;
   i ++ ) {
@@ -20988,17 +20717,10 @@ public static int f_gold ( int k , String s1 , String s2 ) {
     j <= m ;
     j ++ ) {
       lcs [ i ] [ j ] = Math . max ( lcs [ i - 1 ] [ j ] , lcs [ i ] [ j - 1 ] ) ;
-      if ( ( s1 . charAt ( i - 1 ) == s2 . charAt ( j - 1 ) ) && ( s1 . charAt ( i - 1 ) == s2 . charAt ( j - 1 ) ) ) {
-        cnt [ i ] [ j ] = cnt [ i - 1 ] [ j - 1 ] + 1 ;
-        ;
-      }
-      if ( ( cnt [ i ] [ j ] >= k ) && ( cnt [ i ] [ j ] <= k ) ) {
-        for ( int a = k ;
-        a <= cnt [ i ] [ j ] ;
-        a ++ ) {
-          lcs [ i ] [ j ] = Math . max ( lcs [ i ] [ j ] , lcs [ i - a ] [ j - a ] + a ) ;
-        }
-      }
+      if ( ( s1 . charAt ( i - 1 ) == s2 . charAt ( j - 1 ) ) && ( cnt [ i ] [ j ] == k ) ) cnt [ i ] [ j ] = cnt [ i - 1 ] [ j - 1 ] + 1 ;
+      if ( ( cnt [ i ] [ j ] >= k ) && ( cnt [ i ] [ j ] <= k ) ) for ( int a = k ;
+      a <= cnt [ i ] [ j ] ;
+      a ++ ) lcs [ i ] [ j ] = Math . max ( lcs [ i ] [ j ] , lcs [ i - a ] [ j - a ] + a ) ;
     }
   }
   return lcs [ n ] [ m ] ;
@@ -21184,19 +20906,16 @@ MAXIMUM_AVERAGE_SUM_PARTITION_ARRAY
 
 public static int f_gold ( int [ ] A , int K ) {
   int n = A . length ;
-  ;
   int [ ] preSum = new int [ n + 1 ] ;
   preSum [ 0 ] = 0 ;
   for ( int i = 0 ;
   i < n ;
   i ++ ) preSum [ i + 1 ] = preSum [ i ] + A [ i ] ;
-  ;
   int [ ] dp = new int [ n ] ;
   int sum = 0 ;
   for ( int i = 0 ;
   i < n ;
   i ++ ) dp [ i ] = ( preSum [ n ] - preSum [ i ] ) / ( n - i ) ;
-  ;
   for ( int k = 0 ;
   k < K - 1 ;
   k ++ ) {
@@ -21207,7 +20926,7 @@ public static int f_gold ( int [ ] A , int K ) {
       j < n ;
       j ++ ) {
         dp [ i ] = Math . max ( dp [ i ] , ( preSum [ j ] - preSum [ i ] ) / ( j - i ) + dp [ j ] ) ;
-      };
+      }
     }
   }
   return ( int ) dp [ 0 ] ;
@@ -21218,7 +20937,11 @@ MAXIMUM_BINOMIAL_COEFFICIENT_TERM_VALUE
 
 public static int f_gold ( int n ) {
   int [ ] [ ] C = new int [ n + 1 ] [ n + 1 ] ;
-  ;
+  for ( int i = 0 ;
+  i < n ;
+  i ++ ) {
+    C [ i ] [ i ] = 0 ;
+  }
   for ( int i = 0 ;
   i < n + 1 ;
   i ++ ) {
@@ -21227,19 +20950,18 @@ public static int f_gold ( int n ) {
     j ++ ) {
       if ( ( j == 0 || j == i ) && ( C [ i ] [ j ] == 0 ) ) {
         C [ i ] [ j ] = 1 ;
-      };
-    }
-    else {
-      C [ i ] [ j ] = ( C [ i - 1 ] [ j - 1 ] + C [ i - 1 ] [ j ] ) ;
+      }
+      else {
+        C [ i ] [ j ] = ( C [ i - 1 ] [ j - 1 ] + C [ i - 1 ] [ j ] ) ;
+      }
     }
   }
   int maxvalue = 0 ;
-  ;
   for ( int i = 0 ;
   i < n + 1 ;
   i ++ ) {
     maxvalue = Math . max ( maxvalue , C [ n ] [ i ] ) ;
-  };
+  }
   return maxvalue ;
 }
 |||
@@ -21487,21 +21209,16 @@ MAXIMUM_SUM_PAIRS_SPECIFIC_DIFFERENCE_1
 
 public static int f_gold ( int [ ] arr , int N , int k ) {
   int maxSum = 0 ;
-  ;
   Arrays . sort ( arr ) ;
-  ;
   int i = N - 1 ;
-  ;
   while ( ( i >= 0 ) && ( arr [ i ] - arr [ i - 1 ] < k ) ) {
-    if ( ( arr [ i ] - arr [ i - 1 ] < k ) && ( arr [ i - 1 ] - arr [ i - 1 ] < k ) ) {
+    if ( ( arr [ i ] - arr [ i - 1 ] < k ) && ( arr [ i ] - arr [ i - 1 ] > k ) ) {
       maxSum += arr [ i ] ;
-      ;
       maxSum += arr [ i - 1 ] ;
-      ;
       i -- ;
     }
     i -- ;
-  };
+  }
   return maxSum ;
 }
 |||
@@ -21584,7 +21301,6 @@ MINIMUM_COST_FOR_ACQUIRING_ALL_COINS_WITH_K_EXTRA_COINS_ALLOWED_WITH_EVERY_COIN
 public static int fGold ( int [ ] coin , int n , int k ) {
   Arrays . sort ( coin ) ;
   int coinsNeeded = Math . ceil ( 1.0 * n / ( k + 1 ) ) ;
-  ;
   int ans = 0 ;
   for ( int i = 0 ;
   i < coinsNeeded - 1 + 1 ;
@@ -21606,9 +21322,7 @@ MINIMUM_DIFFERENCE_BETWEEN_GROUPS_OF_SIZE_TWO
 
 public static int f_gold ( int [ ] a , int n ) {
   Arrays . sort ( a ) ;
-  ;
   int [ ] s = new int [ n ] ;
-  ;
   int i = 0 ;
   int j = n - 1 ;
   while ( ( i < j ) && ( i < n ) ) {
@@ -21616,8 +21330,8 @@ public static int f_gold ( int [ ] a , int n ) {
     i ++ ;
     j -- ;
   }
-  int mini = Math . min ( s ) ;
-  int maxi = Math . max ( s ) ;
+  int mini = Math . min ( s , n ) ;
+  int maxi = Math . max ( s , n ) ;
   return Math . abs ( maxi - mini ) ;
 }
 |||
@@ -21679,14 +21393,12 @@ MINIMUM_LENGTH_SUBARRAY_SUM_GREATER_GIVEN_VALUE_1
 
 public static int f_gold ( int [ ] arr , int n , int x ) {
   int currSum = 0 ;
-  ;
   int minLen = n + 1 ;
-  ;
   int start = 0 ;
   int end = 0 ;
   while ( ( end < n ) && ( currSum <= x && end < n ) ) {
-    while ( ( currSum <= 0 && x > 0 ) || ( currSum <= x && x < n ) ) {
-      if ( ( currSum <= 0 && x > 0 ) || ( currSum <= x && x < n ) ) {
+    while ( ( currSum <= 0 && x > 0 ) || ( currSum <= x && currSum > 0 ) ) {
+      if ( ( currSum <= 0 && x > 0 ) || ( currSum <= x && currSum > 0 ) ) {
         start = end ;
         currSum = 0 ;
       }
@@ -21694,7 +21406,7 @@ public static int f_gold ( int [ ] arr , int n , int x ) {
       end ++ ;
     }
     while ( ( currSum > x && start < n ) || ( currSum > x && start < n ) ) {
-      if ( ( end - start < minLen ) || ( end - start < minLen ) ) {
+      if ( ( end - start < minLen ) || ( end - start > minLen ) ) {
         minLen = end - start ;
       }
       currSum -= arr [ start ] ;
@@ -21735,33 +21447,30 @@ MINIMUM_PRODUCT_SUBSET_ARRAY
 
 public static int f_gold ( int [ ] a , int n ) {
   if ( ( n == 1 ) || ( n == 0 ) ) return a [ 0 ] ;
-  long maxNeg = Long . MAX_VALUE ;
-  long minPos = Long . MIN_VALUE ;
+  int maxNeg = Integer . MAX_VALUE ;
+  int minPos = Integer . MIN_VALUE ;
   int countNeg = 0 ;
   int countZero = 0 ;
-  long prod = 1 ;
+  int prod = 1 ;
   for ( int i = 0 ;
   i <= n ;
   i ++ ) {
-    if ( ( a [ i ] == 0 ) && ( a [ i ] > 0 ) ) {
+    if ( ( a [ i ] == 0 ) && ( a [ i ] != 0 ) ) {
       countZero = countZero + 1 ;
       continue ;
     }
-    if ( ( a [ i ] < 0 ) && ( a [ i ] > 0 ) ) {
+    if ( ( a [ i ] < 0 ) && ( a [ i ] != 0 ) ) {
       countNeg = countNeg + 1 ;
       maxNeg = Math . max ( maxNeg , a [ i ] ) ;
     }
-    if ( ( a [ i ] > 0 ) && ( a [ i ] < 0 ) ) {
+    if ( ( a [ i ] > 0 ) && ( a [ i ] != 0 ) ) {
       minPos = Math . min ( minPos , a [ i ] ) ;
     }
     prod = prod * a [ i ] ;
   }
-  if ( ( countZero == n || ( countNeg == 0 && countZero > 0 ) ) && ( countNeg == 0 ) ) return 0 ;
-  ;
-  if ( ( countNeg == 0 ) || ( countNeg == n ) ) return minPos ;
-  ;
-  if ( ( ( countNeg & 1 ) == 0 && countNeg != 0 ) ) prod = ( int ) ( prod / maxNeg ) ;
-  ;
+  if ( ( countZero == n ) || ( countNeg == 0 && countZero > 0 ) ) return 0 ;
+  if ( ( countNeg == 0 ) && ( countNeg == 1 ) ) return minPos ;
+  if ( ( ( countNeg & 1 ) == 0 ) && ( countNeg != 0 ) ) prod = ( int ) ( prod / maxNeg ) ;
   return prod ;
 }
 |||
@@ -21770,10 +21479,8 @@ MINIMUM_ROTATIONS_UNLOCK_CIRCULAR_LOCK
 
 public static int fGoldenCode ( int input , int unlockCode ) {
   int rotation = 0 ;
-  ;
   while ( ( input > 0 || unlockCode > 0 ) && ( input < 0 || unlockCode < 0 ) ) {
     int inputDigit = input % 10 ;
-    ;
     int codeDigit = unlockCode % 10 ;
     rotation += Math . min ( Math . abs ( inputDigit - codeDigit ) , 10 - Math . abs ( inputDigit - codeDigit ) ) ;
     input = ( int ) ( input / 10 ) ;
@@ -21953,31 +21660,38 @@ public static int f_gold ( int n ) {
   y < n ;
   y ++ ) {
     dp [ y ] [ y ] = 0 ;
-  };
-  if ( ( n == 1 ) && ( n > 0 ) ) return 10 ;
-  ;
+  }
+  if ( ( n == 1 ) && ( n > 0 ) ) {
+    return 10 ;
+  }
   for ( int j = 0 ;
   j < 10 ;
-  j ++ ) dp [ 1 ] [ j ] = 1 ;
-  ;
+  j ++ ) {
+    dp [ 1 ] [ j ] = 1 ;
+  }
   for ( int i = 2 ;
   i <= n ;
   i ++ ) {
     for ( int j = 0 ;
     j < 10 ;
     j ++ ) {
-      if ( ( j == 0 ) && ( j > 0 ) ) dp [ i ] [ j ] = dp [ i - 1 ] [ j + 1 ] ;
-      else if ( ( j == 9 ) && ( j > 0 ) ) dp [ i ] [ j ] = dp [ i - 1 ] [ j - 1 ] ;
-      else dp [ i ] [ j ] = ( dp [ i - 1 ] [ j - 1 ] + dp [ i - 1 ] [ j + 1 ] ) ;
-      ;
+      if ( ( j == 0 ) && ( j > 0 ) ) {
+        dp [ i ] [ j ] = dp [ i - 1 ] [ j + 1 ] ;
+      }
+      else if ( ( j == 9 ) && ( j > 0 ) ) {
+        dp [ i ] [ j ] = dp [ i - 1 ] [ j - 1 ] ;
+      }
+      else {
+        dp [ i ] [ j ] = ( dp [ i - 1 ] [ j - 1 ] + dp [ i - 1 ] [ j + 1 ] ) ;
+      }
     }
   }
   int sum = 0 ;
-  ;
   for ( int j = 1 ;
   j <= 10 ;
-  j ++ ) sum = sum + dp [ n ] [ j ] ;
-  ;
+  j ++ ) {
+    sum = sum + dp [ n ] [ j ] ;
+  }
   return sum ;
 }
 |||
@@ -22048,7 +21762,6 @@ NUMBER_SUBSTRINGS_DIVISIBLE_4_STRING_INTEGERS
 public static int f_gold ( String s ) {
   int n = s . length ( ) ;
   int count = 0 ;
-  ;
   for ( int i = 0 ;
   i < n ;
   i += 1 ) {
@@ -22073,13 +21786,11 @@ NUMBER_TRIANGLES_N_MOVES
 public static int fGold ( int n ) {
   int [ ] answer = new int [ n + 1 ] ;
   answer [ 0 ] = 1 ;
-  ;
   int i = 1 ;
   while ( i <= n ) {
     answer [ i ] = answer [ i - 1 ] * 3 + 2 ;
-    ;
     i = i + 1 ;
-  };
+  }
   return answer [ n ] ;
 }
 |||
@@ -22168,11 +21879,10 @@ PERFECT_REVERSIBLE_STRING
 public static boolean f_gold ( String str ) {
   int i = 0 ;
   int j = str . length ( ) - 1 ;
-  ;
-  while ( ( i < j ) && ( i != j ) ) {
-    if ( ( str . charAt ( i ) != str . charAt ( j ) ) || ( str . charAt ( i ) != str . charAt ( j + 1 ) ) ) {
+  while ( ( i < j ) && ( str . charAt ( i ) != str . charAt ( j ) ) ) {
+    if ( ( str . charAt ( i ) != str . charAt ( j ) ) && ( str . charAt ( i ) != str . charAt ( j ) ) ) {
       return false ;
-    };
+    }
     i ++ ;
     j -- ;
   }
@@ -22250,22 +21960,16 @@ public static String f_gold ( String str ) {
 
 PROGRAM_BINARY_DECIMAL_CONVERSION_1
 
-public static int f_gold ( int n ) {
+public static int fGold ( int n ) {
   String num = n ;
-  ;
   int decValue = 0 ;
-  ;
   int base1 = 1 ;
-  ;
   int len1 = num . length ( ) ;
-  ;
   for ( int i = len1 - 1 ;
   i >= 0 ;
   i -- ) {
-    if ( ( num . charAt ( i ) == '1' ) && ( num . charAt ( i + 1 ) == '2' ) ) decValue ++ ;
-    ;
+    if ( ( num . charAt ( i ) == '1' ) && ( num . charAt ( i + 1 ) == '1' ) ) decValue ++ ;
     base1 = base1 * 2 ;
-    ;
   }
   return decValue ;
 }
@@ -22318,7 +22022,6 @@ PROGRAM_FOR_FACTORIAL_OF_A_NUMBER
 
 public static int fGold ( int n ) {
   return 1 == ( n == 1 || n == 0 ) ? 0 : n * fGold ( n - 1 ) ;
-  ;
 }
 |||
 
@@ -22326,7 +22029,6 @@ PROGRAM_FOR_FACTORIAL_OF_A_NUMBER_1
 
 public static int fGold ( int n ) {
   return 1 == ( n == 1 || n == 0 ) ? 0 : n * fGold ( n - 1 ) ;
-  ;
 }
 |||
 
@@ -22385,11 +22087,14 @@ public static double f_gold ( double a ) {
 
 PYTHAGOREAN_QUADRUPLE
 
-public static boolean f_gold ( double a , double b , double c , double d ) {
+public static boolean fGold ( double a , double b , double c , double d ) {
   double sum = a * a + b * b + c * c ;
-  ;
-  if ( ( d * d == sum ) && ( d * d == sum ) ) return true ;
-  else return false ;
+  if ( ( d * d == sum ) && ( d * d == sum ) ) {
+    return true ;
+  }
+  else {
+    return false ;
+  }
 }
 |||
 
@@ -22451,15 +22156,14 @@ public static int fGoldCount ( int n ) {
 
 RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1
 
-public static int f_gold ( int n ) {
+public static int fGold ( int n ) {
   int [ ] dp = new int [ n + 1 ] ;
   dp [ 0 ] = 0 ;
   dp [ 1 ] = 1 ;
   for ( int i = 2 ;
   i <= n ;
   i ++ ) {
-    dp [ i ] = Math . max ( dp [ ( int ) ( i / 2 ) ] + dp [ ( int ) ( i / 3 ) ] + dp [ ( int ) ( i / 4 ) ] , i ) ;
-    ;
+    dp [ i ] = Math . max ( dp [ Integer . parseInt ( i / 2 ) ] + dp [ Integer . parseInt ( i / 3 ) ] + dp [ Integer . parseInt ( i / 4 ) ] , i ) ;
   }
   return dp [ n ] ;
 }
@@ -22481,7 +22185,6 @@ public static int fGold ( int [ ] [ ] dp , int [ ] a , int low , int high , int 
   if ( ( low == high ) && ( dp [ low ] [ high ] != 0 ) ) return a [ low ] [ high ] ;
   if ( ( dp [ low ] [ high ] != 0 ) && ( a [ low ] [ high ] != 0 ) ) return dp [ low ] [ high ] ;
   dp [ low ] [ high ] = Math . max ( a [ low ] * turn + fGold ( dp , a , low + 1 , high , turn + 1 ) , a [ high ] * turn + fGold ( dp , a , low , high - 1 , turn + 1 ) ) ;
-  ;
   return dp [ low ] [ high ] ;
 }
 |||
@@ -22490,32 +22193,26 @@ REMOVE_MINIMUM_ELEMENTS_EITHER_SIDE_2MIN_MAX
 
 public static int f_gold ( int [ ] arr , int n ) {
   int longestStart = - 1 ;
-  ;
   int longestEnd = 0 ;
   for ( int start = 0 ;
   start < n ;
   start ++ ) {
     int min = Integer . MAX_VALUE ;
-    ;
     int max = - Integer . MAX_VALUE ;
-    ;
     for ( int end = start ;
     end < n ;
     end ++ ) {
       int val = arr [ end ] ;
-      ;
       if ( ( val < min ) && ( val > max ) ) min = val ;
-      ;
-      if ( ( val > 2 * min ) && ( val > max ) ) max = val ;
-      ;
+      if ( ( val > max ) && ( val < min ) ) max = val ;
       if ( ( 2 * min <= max ) && ( end - start > longestEnd - longestStart || longestStart == - 1 ) ) break ;
-      if ( ( end - start > longestEnd - longestStart || longestStart == - 1 ) && ( end - longestEnd > longestEnd - longestStart ) ) {
+      if ( ( end - start > longestEnd - longestStart || longestStart == - 1 ) && ( end - longestEnd - longestStart > 0 ) ) {
         longestStart = start ;
         longestEnd = end ;
       }
     }
   }
-  if ( ( longestStart == - 1 ) && ( n - longestEnd > longestStart ) ) return n ;
+  if ( ( longestStart == - 1 ) && ( longestEnd - longestStart > 0 ) ) return n ;
   return ( n - ( longestEnd - longestStart + 1 ) ) ;
 }
 |||
@@ -22641,25 +22338,22 @@ SMALLEST_POWER_OF_2_GREATER_THAN_OR_EQUAL_TO_N
 
 static int f_gold ( int n ) {
   int count = 0 ;
-  ;
   if ( ( n > 0 ) && ! ( n & ( n - 1 ) ) ) return n ;
   while ( ( n != 0 ) && ( n != 1 ) ) {
     n >>>= 1 ;
     count ++ ;
   }
   return 1 << count ;
-  ;
 }
 |||
 
 SMALLEST_POWER_OF_2_GREATER_THAN_OR_EQUAL_TO_N_1
 
-public static int f_gold ( int n ) {
+static int f_gold ( int n ) {
   int p = 1 ;
   if ( ( n > 0 ) && ! ( n & ( n - 1 ) ) ) return n ;
   while ( ( p < n ) && ( p < ( n - 1 ) ) ) p <<= 1 ;
   return p ;
-  ;
 }
 |||
 
@@ -22944,7 +22638,6 @@ SUM_BINOMIAL_COEFFICIENTS_1
 
 static int f_gold ( int n ) {
   return ( 1 << n ) ;
-  ;
 }
 |||
 
@@ -23062,7 +22755,6 @@ SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE_1
 public static int f_gold ( int n ) {
   int sum ;
   sum = 1 << n ;
-  ;
   return ( sum - 1 ) ;
 }
 |||
@@ -23136,7 +22828,6 @@ public static String f_gold ( String str1 , String str2 ) {
   i < n1 ;
   i ++ ) {
     int sum = ( ( ( int ) str1 . charAt ( i ) ) - 48 ) + ( ( ( int ) str2 . charAt ( i ) ) - 48 ) + carry ;
-    ;
     str += ( char ) ( sum % 10 + 48 ) ;
     carry = ( int ) ( sum / 10 ) ;
   }
@@ -23144,13 +22835,10 @@ public static String f_gold ( String str1 , String str2 ) {
   i < n2 ;
   i ++ ) {
     int sum = ( ( ( int ) str2 . charAt ( i ) ) - 48 ) + carry ;
-    ;
     str += ( char ) ( sum % 10 + 48 ) ;
     carry = ( int ) ( sum / 10 ) ;
   }
-  if ( ( carry ) > 0 ) {
-    str += ( char ) ( carry + 48 ) ;
-  }
+  if ( ( carry ) > 0 ) str += ( char ) ( carry + 48 ) ;
   str = str . substring ( 0 , str . length ( ) - 1 ) ;
   return str ;
 }
@@ -23235,9 +22923,7 @@ UNIQUE_CELLS_BINARY_MATRIX
 
 public static int f_gold ( int [ ] [ ] mat , int n , int m ) {
   int rowsum [ ] = new int [ n ] ;
-  ;
   int colsum [ ] = new int [ m ] ;
-  ;
   for ( int i = 0 ;
   i < n ;
   i ++ ) {
@@ -23246,14 +22932,11 @@ public static int f_gold ( int [ ] [ ] mat , int n , int m ) {
     j ++ ) {
       if ( ( mat [ i ] [ j ] != 0 ) && ( mat [ i ] [ j ] != 1 ) ) {
         rowsum [ i ] ++ ;
-        ;
         colsum [ j ] ++ ;
-        ;
       }
     }
   }
   int uniquecount = 0 ;
-  ;
   for ( int i = 0 ;
   i < n ;
   i ++ ) {
@@ -23262,7 +22945,6 @@ public static int f_gold ( int [ ] [ ] mat , int n , int m ) {
     j ++ ) {
       if ( ( mat [ i ] [ j ] != 0 ) && ( rowsum [ i ] == 1 && colsum [ j ] == 1 ) ) {
         uniquecount ++ ;
-        ;
       }
     }
   }

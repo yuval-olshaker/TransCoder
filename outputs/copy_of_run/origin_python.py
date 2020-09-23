@@ -23,7 +23,7 @@ EFFICIENTLY_COMPUTE_SUMS_OF_DIAGONALS_OF_A_MATRIX
 
 def printDiagonalSums ( mat , n ) :
     principal = 0
-    secondary = 0 ;
+    secondary = 0 
     for i in range ( 0 , n ) :
         for j in range ( 0 , n ) :
             if ( i == j ) :
@@ -51,7 +51,7 @@ def find3Numbers ( A , arr_size , sum ) :
         r = arr_size - 1
         while ( l < r ) :
             if ( A [ i ] + A [ l ] + A [ r ] == sum ) :
-                print ( "Triplet is" , A [ i ] , ', ' , A [ l ] , ', ' , A [ r ] ) ;
+                print ( "Triplet is" , A [ i ] , ', ' , A [ l ] , ', ' , A [ r ] ) 
                 return True
             elif ( A [ i ] + A [ l ] + A [ r ] < sum ) :
                 l += 1
@@ -72,7 +72,7 @@ def isMagicSquare ( mat ) :
     if ( s != s2 ) :
         return False
     for i in range ( 0 , N ) :
-        rowSum = 0 ;
+        rowSum = 0 
         for j in range ( 0 , N ) :
             rowSum += mat [ i ] [ j ]
         if ( rowSum != s ) :
@@ -134,15 +134,15 @@ DECIMAL_BINARY_CONVERSION_WITHOUT_USING_ARITHMETIC_OPERATORS
 
 def decToBin ( n ) :
     if ( n == 0 ) :
-        return "0" ;
-    bin = "" ;
+        return "0" 
+    bin = "" 
     while ( n > 0 ) :
         if ( n & 1 == 0 ) :
-            bin = '0' + bin ;
+            bin = '0' + bin 
         else :
-            bin = '1' + bin ;
-        n = n >> 1 ;
-    return bin ;
+            bin = '1' + bin 
+        n = n >> 1 
+    return bin 
 |||
 
 FIND_NTH_TERM_DRAGON_CURVE_SEQUENCE
@@ -257,7 +257,7 @@ def binaryMedian ( m , r , d ) :
     desired = ( r * d + 1 ) // 2
     while ( mi < mx ) :
         mid = mi + ( mx - mi ) // 2
-        place = [ 0 ] ;
+        place = [ 0 ] 
         for i in range ( r ) :
             j = upper_bound ( m [ i ] , mid )
             place [ 0 ] = place [ 0 ] + j
@@ -306,37 +306,37 @@ def maxDP ( n ) :
 QUERIES_ON_ARRAY_WITH_DISAPPEARING_AND_REAPPEARING_ELEMENTS
 
 def PerformQueries ( a , vec ) :
-    ans = [ ] ;
-    n = len ( a ) - 1 ;
-    q = len ( vec ) ;
+    ans = [ ] 
+    n = len ( a ) - 1 
+    q = len ( vec ) 
     for i in range ( q ) :
-        t = vec [ i ] [ 0 ] ;
-        m = vec [ i ] [ 1 ] ;
+        t = vec [ i ] [ 0 ] 
+        m = vec [ i ] [ 1 ] 
         if ( m > n ) :
-            ans.append ( - 1 ) ;
-            continue ;
-        turn = t // n ;
-        rem = t % n ;
+            ans.append ( - 1 ) 
+            continue 
+        turn = t // n 
+        rem = t % n 
         if ( rem == 0 and turn % 2 == 1 ) :
-            ans.append ( - 1 ) ;
-            continue ;
+            ans.append ( - 1 ) 
+            continue 
         if ( rem == 0 and turn % 2 == 0 ) :
-            ans.append ( a [ m ] ) ;
-            continue ;
+            ans.append ( a [ m ] ) 
+            continue 
         if ( turn % 2 == 0 ) :
-            cursize = n - rem ;
+            cursize = n - rem 
             if ( cursize < m ) :
-                ans.append ( - 1 ) ;
-                continue ;
-            ans.append ( a [ m + rem ] ) ;
+                ans.append ( - 1 ) 
+                continue 
+            ans.append ( a [ m + rem ] ) 
         else :
-            cursize = rem ;
+            cursize = rem 
             if ( cursize < m ) :
-                ans.append ( - 1 ) ;
-                continue ;
-            ans.append ( a [ m ] ) ;
+                ans.append ( - 1 ) 
+                continue 
+            ans.append ( a [ m ] ) 
     for i in ans :
-        print ( i ) ;
+        print ( i ) 
 |||
 
 FIND_THE_MINIMUM_DISTANCE_BETWEEN_TWO_NUMBERS_1
@@ -517,16 +517,16 @@ def calculate ( N ) :
 PROGRAM_BINARY_DECIMAL_CONVERSION
 
 def binaryToDecimal ( n ) :
-    num = n ;
-    dec_value = 0 ;
-    base = 1 ;
-    temp = num ;
+    num = n 
+    dec_value = 0 
+    base = 1 
+    temp = num 
     while ( temp ) :
-        last_digit = temp % 10 ;
-        temp = int ( temp / 10 ) ;
-        dec_value += last_digit * base ;
-        base = base * 2 ;
-    return dec_value ;
+        last_digit = temp % 10 
+        temp = int ( temp / 10 ) 
+        dec_value += last_digit * base 
+        base = base * 2 
+    return dec_value 
 |||
 
 HOW_CAN_WE_SUM_THE_DIGITS_OF_A_GIVEN_NUMBER_IN_SINGLE_STATEMENT
@@ -653,12 +653,12 @@ def maxSubArraySumRepeated ( a , n , k ) :
 LEONARDO_NUMBER_1
 
 def leonardo ( n ) :
-    dp = [ ] ;
-    dp.append ( 1 ) ;
-    dp.append ( 1 ) ;
+    dp = [ ] 
+    dp.append ( 1 ) 
+    dp.append ( 1 ) 
     for i in range ( 2 , n + 1 ) :
-        dp.append ( dp [ i - 1 ] + dp [ i - 2 ] + 1 ) ;
-    return dp [ n ] ;
+        dp.append ( dp [ i - 1 ] + dp [ i - 2 ] + 1 ) 
+    return dp [ n ] 
 |||
 
 SUM_OF_ALL_SUBSTRINGS_OF_A_STRING_REPRESENTING_A_NUMBER
@@ -724,7 +724,7 @@ def findMaxAverage ( arr , n , k ) :
     csum = [ 0 ] * n
     csum [ 0 ] = arr [ 0 ]
     for i in range ( 1 , n ) :
-        csum [ i ] = csum [ i - 1 ] + arr [ i ] ;
+        csum [ i ] = csum [ i - 1 ] + arr [ i ] 
     max_sum = csum [ k - 1 ]
     max_end = k - 1
     for i in range ( k , n ) :
@@ -818,15 +818,15 @@ def lbs ( arr ) :
 COUNT_PAIRS_WHOSE_PRODUCTS_EXIST_IN_ARRAY
 
 def countPairs ( arr , n ) :
-    result = 0 ;
+    result = 0 
     for i in range ( 0 , n ) :
         for j in range ( i + 1 , n ) :
-            product = arr [ i ] * arr [ j ] ;
+            product = arr [ i ] * arr [ j ] 
             for k in range ( 0 , n ) :
                 if ( arr [ k ] == product ) :
-                    result = result + 1 ;
-                    break ;
-    return result ;
+                    result = result + 1 
+                    break 
+    return result 
 |||
 
 COUNT_SINGLE_NODE_ISOLATED_SUB_GRAPHS_DISCONNECTED_GRAPH
@@ -876,14 +876,14 @@ def superSeq ( X , Y , m , n ) :
 POWER_SET
 
 def printPowerSet ( set , set_size ) :
-    pow_set_size = ( int ) ( math.pow ( 2 , set_size ) ) ;
-    counter = 0 ;
-    j = 0 ;
+    pow_set_size = ( int ) ( math.pow ( 2 , set_size ) ) 
+    counter = 0 
+    j = 0 
     for counter in range ( 0 , pow_set_size ) :
         for j in range ( 0 , set_size ) :
             if ( ( counter & ( 1 << j ) ) > 0 ) :
-                print ( set [ j ] , end = "" ) ;
-        print ( "" ) ;
+                print ( set [ j ] , end = "" ) 
+        print ( "" ) 
 |||
 
 CHECK_ARRAY_MAJORITY_ELEMENT
@@ -941,7 +941,7 @@ def isPrime ( n ) :
         return False
     for i in range ( 2 , n ) :
         if n % i == 0 :
-            return False ;
+            return False 
     return True
 |||
 
@@ -993,8 +993,8 @@ def countNumber ( n ) :
 FIND_FIRST_NATURAL_NUMBER_WHOSE_FACTORIAL_DIVISIBLE_X
 
 def firstFactorialDivisibleNumber ( x ) :
-    i = 1 ;
-    fact = 1 ;
+    i = 1 
+    fact = 1 
     for i in range ( 1 , x ) :
         fact = fact * i
         if ( fact % x == 0 ) :
@@ -1095,7 +1095,7 @@ def findMaxValue ( mat ) :
     maxValue = - sys.maxsize - 1
     maxArr = [ [ 0 for x in range ( N ) ] for y in range ( N ) ]
     maxArr [ N - 1 ] [ N - 1 ] = mat [ N - 1 ] [ N - 1 ]
-    maxv = mat [ N - 1 ] [ N - 1 ] ;
+    maxv = mat [ N - 1 ] [ N - 1 ] 
     for j in range ( N - 2 , - 1 , - 1 ) :
         if ( mat [ N - 1 ] [ j ] > maxv ) :
             maxv = mat [ N - 1 ] [ j ]
@@ -1162,16 +1162,16 @@ def findIndex ( n ) :
 PROGRAM_OCTAL_DECIMAL_CONVERSION
 
 def octalToDecimal ( n ) :
-    num = n ;
-    dec_value = 0 ;
-    base = 1 ;
-    temp = num ;
+    num = n 
+    dec_value = 0 
+    base = 1 
+    temp = num 
     while ( temp ) :
-        last_digit = temp % 10 ;
-        temp = int ( temp / 10 ) ;
-        dec_value += last_digit * base ;
-        base = base * 8 ;
-    return dec_value ;
+        last_digit = temp % 10 
+        temp = int ( temp / 10 ) 
+        dec_value += last_digit * base 
+        base = base * 8 
+    return dec_value 
 |||
 
 FIND_PERMUTED_ROWS_GIVEN_ROW_MATRIX
@@ -1186,7 +1186,7 @@ def permutatedRows ( mat , m , n , r ) :
         for j in range ( n ) :
             if mat [ i ] [ j ] not in s :
                 j = j - 2
-                break ;
+                break 
         if j + 1 != n :
             continue
         print ( i )
@@ -1249,22 +1249,22 @@ def lenOfLongSubarr ( arr , n ) :
 DIVIDE_CONQUER_SET_6_SEARCH_ROW_WISE_COLUMN_WISE_SORTED_2D_ARRAY
 
 def search ( mat , fromRow , toRow , fromCol , toCol , key ) :
-    i = fromRow + ( toRow - fromRow ) // 2 ;
-    j = fromCol + ( toCol - fromCol ) // 2 ;
+    i = fromRow + ( toRow - fromRow ) // 2 
+    j = fromCol + ( toCol - fromCol ) // 2 
     if ( mat [ i ] [ j ] == key ) :
-        print ( "Found " , key , " at " , i , " " , j ) ;
+        print ( "Found " , key , " at " , i , " " , j ) 
     else :
         if ( i != toRow or j != fromCol ) :
-            search ( mat , fromRow , i , j , toCol , key ) ;
+            search ( mat , fromRow , i , j , toCol , key ) 
         if ( fromRow == toRow and fromCol + 1 == toCol ) :
             if ( mat [ fromRow ] [ toCol ] == key ) :
-                print ( "Found " , key , " at " , fromRow , " " , toCol ) ;
+                print ( "Found " , key , " at " , fromRow , " " , toCol ) 
         if ( mat [ i ] [ j ] < key ) :
             if ( i + 1 <= toRow ) :
-                search ( mat , i + 1 , toRow , fromCol , toCol , key ) ;
+                search ( mat , i + 1 , toRow , fromCol , toCol , key ) 
         else :
             if ( j - 1 >= fromCol ) :
-                search ( mat , fromRow , toRow , fromCol , j - 1 , key ) ;
+                search ( mat , fromRow , toRow , fromCol , j - 1 , key ) 
 |||
 
 SHORTEST_COMMON_SUPERSEQUENCE
@@ -1319,8 +1319,8 @@ def MaximumPath ( Mat ) :
 COMPUTE_THE_INTEGER_ABSOLUTE_VALUE_ABS_WITHOUT_BRANCHING
 
 def getAbs ( n ) :
-    mask = n >> ( SIZE_INT * CHARBIT - 1 ) ;
-    return ( ( n + mask ) ^ mask ) ;
+    mask = n >> ( SIZE_INT * CHARBIT - 1 ) 
+    return ( ( n + mask ) ^ mask ) 
 |||
 
 COUNT_PALINDROMIC_SUBSEQUENCE_GIVEN_STRING_1
@@ -1362,26 +1362,26 @@ def maxSubArraySum ( a , size ) :
 COUNT_MINIMUM_STEPS_GET_GIVEN_DESIRED_ARRAY
 
 def countMinOperations ( target , n ) :
-    result = 0 ;
+    result = 0 
     while ( True ) :
-        zero_count = 0 ;
-        i = 0 ;
+        zero_count = 0 
+        i = 0 
         while ( i < n ) :
             if ( ( target [ i ] & 1 ) > 0 ) :
-                break ;
+                break 
             elif ( target [ i ] == 0 ) :
-                zero_count += 1 ;
-            i += 1 ;
+                zero_count += 1 
+            i += 1 
         if ( zero_count == n ) :
-            return result ;
+            return result 
         if ( i == n ) :
             for j in range ( n ) :
-                target [ j ] = target [ j ] // 2 ;
-            result += 1 ;
+                target [ j ] = target [ j ] // 2 
+            result += 1 
         for j in range ( i , n ) :
             if ( target [ j ] & 1 ) :
-                target [ j ] -= 1 ;
-                result += 1 ;
+                target [ j ] -= 1 
+                result += 1 
 |||
 
 PRINT_FIBONACCI_SEQUENCE_USING_2_VARIABLES_1
@@ -1583,7 +1583,7 @@ def countFriendsPairings ( n ) :
 FIRST_ELEMENT_OCCURRING_K_TIMES_ARRAY
 
 def firstElement ( arr , n , k ) :
-    count_map = { } ;
+    count_map = { } 
     for i in range ( 0 , n ) :
         if ( arr [ i ] in count_map.keys ( ) ) :
             count_map [ arr [ i ] ] += 1
@@ -1600,7 +1600,7 @@ def firstElement ( arr , n , k ) :
 SUM_SERIES_0_6_0_06_0_006_0_0006_N_TERMS
 
 def sumOfSeries ( n ) :
-    return ( ( 0.666 ) * ( 1 - 1 / pow ( 10 , n ) ) ) ;
+    return ( ( 0.666 ) * ( 1 - 1 / pow ( 10 , n ) ) ) 
 |||
 
 COUNT_WORDS_IN_A_GIVEN_STRING
@@ -1910,25 +1910,25 @@ def countStrings ( n , k ) :
 FINDING_K_MODULUS_ARRAY_ELEMENT
 
 def printEqualModNumbers ( arr , n ) :
-    arr.sort ( ) ;
-    d = arr [ n - 1 ] - arr [ 0 ] ;
-    v = [ ] ;
-    i = 1 ;
+    arr.sort ( ) 
+    d = arr [ n - 1 ] - arr [ 0 ] 
+    v = [ ] 
+    i = 1 
     while ( i * i <= d ) :
         if ( d % i == 0 ) :
-            v.append ( i ) ;
+            v.append ( i ) 
             if ( i != d / i ) :
-                v.append ( d / i ) ;
-        i += 1 ;
+                v.append ( d / i ) 
+        i += 1 
     for i in range ( len ( v ) ) :
-        temp = arr [ 0 ] % v [ i ] ;
-        j = 1 ;
+        temp = arr [ 0 ] % v [ i ] 
+        j = 1 
         while ( j < n ) :
             if ( arr [ j ] % v [ i ] != temp ) :
-                break ;
-            j += 1 ;
+                break 
+            j += 1 
         if ( j == n ) :
-            print ( v [ i ] , end = " " ) ;
+            print ( v [ i ] , end = " " ) 
 |||
 
 CIRCULAR_MATRIX_CONSTRUCT_A_MATRIX_WITH_NUMBERS_1_TO_MN_IN_SPIRAL_WAY
@@ -2001,7 +2001,7 @@ def countWays ( N ) :
 ONE_LINE_FUNCTION_FOR_FACTORIAL_OF_A_NUMBER
 
 def factorial ( n ) :
-    return 1 if ( n == 1 or n == 0 ) else n * factorial ( n - 1 ) ;
+    return 1 if ( n == 1 or n == 0 ) else n * factorial ( n - 1 ) 
 |||
 
 CHECK_GIVEN_MATRIX_SPARSE_NOT
@@ -2164,14 +2164,14 @@ def unitDigitXRaisedY ( x , y ) :
 MULTIPLY_LARGE_INTEGERS_UNDER_LARGE_MODULO
 
 def moduloMultiplication ( a , b , mod ) :
-    res = 0 ;
-    a = a % mod ;
+    res = 0 
+    a = a % mod 
     while ( b ) :
         if ( b & 1 ) :
-            res = ( res + a ) % mod ;
-        a = ( 2 * a ) % mod ;
-        b >>= 1 ;
-    return res ;
+            res = ( res + a ) % mod 
+        a = ( 2 * a ) % mod 
+        b >>= 1 
+    return res 
 |||
 
 FIND_SMALLEST_NUMBER_WITH_GIVEN_NUMBER_OF_DIGITS_AND_DIGIT_SUM
@@ -2281,9 +2281,9 @@ def countSeq ( n ) :
     nCr = 1
     res = 1
     for r in range ( 1 , n + 1 ) :
-        nCr = ( nCr * ( n + 1 - r ) ) / r ;
-        res += nCr * nCr ;
-    return res ;
+        nCr = ( nCr * ( n + 1 - r ) ) / r 
+        res += nCr * nCr 
+    return res 
 |||
 
 LONGEST_EVEN_LENGTH_SUBSTRING_SUM_FIRST_SECOND_HALF_1
@@ -2513,7 +2513,7 @@ FIND_NUMBER_PERFECT_SQUARES_TWO_GIVEN_NUMBERS
 def CountSquares ( a , b ) :
     cnt = 0
     for i in range ( a , b + 1 ) :
-        j = 1 ;
+        j = 1 
         while j * j <= i :
             if j * j == i :
                 cnt = cnt + 1
@@ -2935,11 +2935,11 @@ DYNAMIC_PROGRAMMING_SET_4_LONGEST_COMMON_SUBSEQUENCE
 
 def lcs ( X , Y , m , n ) :
     if m == 0 or n == 0 :
-        return 0 ;
+        return 0 
     elif X [ m - 1 ] == Y [ n - 1 ] :
-        return 1 + lcs ( X , Y , m - 1 , n - 1 ) ;
+        return 1 + lcs ( X , Y , m - 1 , n - 1 ) 
     else :
-        return max ( lcs ( X , Y , m , n - 1 ) , lcs ( X , Y , m - 1 , n ) ) ;
+        return max ( lcs ( X , Y , m , n - 1 ) , lcs ( X , Y , m - 1 , n ) ) 
 |||
 
 CHECK_GIVEN_SENTENCE_GIVEN_SET_SIMPLE_GRAMMER_RULES
@@ -2976,7 +2976,7 @@ def checkSentence ( string ) :
 CHECK_DIVISIBILITY_LARGE_NUMBER_999
 
 def isDivisible999 ( num ) :
-    n = len ( num ) ;
+    n = len ( num ) 
     if ( n == 0 or num [ 0 ] == '0' ) :
         return true
     if ( ( n % 3 ) == 1 ) :
@@ -3021,26 +3021,26 @@ def countTrees ( n ) :
 PROGRAM_SWAP_UPPER_DIAGONAL_ELEMENTS_LOWER_DIAGONAL_ELEMENTS_MATRIX
 
 def swapUpperToLower ( arr ) :
-    n = 4 ;
+    n = 4 
     for i in range ( 0 , n ) :
         for j in range ( i + 1 , n ) :
-            temp = arr [ i ] [ j ] ;
-            arr [ i ] [ j ] = arr [ j ] [ i ] ;
-            arr [ j ] [ i ] = temp ;
+            temp = arr [ i ] [ j ] 
+            arr [ i ] [ j ] = arr [ j ] [ i ] 
+            arr [ j ] [ i ] = temp 
     for i in range ( 0 , n ) :
         for j in range ( 0 , n ) :
-            print ( arr [ i ] [ j ] , end = " " ) ;
-        print ( " " ) ;
+            print ( arr [ i ] [ j ] , end = " " ) 
+        print ( " " ) 
 |||
 
 FIND_SUM_MODULO_K_FIRST_N_NATURAL_NUMBER_1
 
 def findSum ( N , K ) :
-    ans = 0 ;
-    y = N / K ;
-    x = N % K ;
-    ans = ( ( K * ( K - 1 ) / 2 ) * y + ( x * ( x + 1 ) ) / 2 ) ;
-    return int ( ans ) ;
+    ans = 0 
+    y = N / K 
+    x = N % K 
+    ans = ( ( K * ( K - 1 ) / 2 ) * y + ( x * ( x + 1 ) ) / 2 ) 
+    return int ( ans ) 
 |||
 
 WAYS_REMOVE_ONE_ELEMENT_BINARY_STRING_XOR_BECOMES_ZERO
@@ -3065,10 +3065,10 @@ def count ( S , m , n ) :
     if ( n == 0 ) :
         return 1
     if ( n < 0 ) :
-        return 0 ;
+        return 0 
     if ( m <= 0 and n >= 1 ) :
         return 0
-    return count ( S , m - 1 , n ) + count ( S , m , n - S [ m - 1 ] ) ;
+    return count ( S , m - 1 , n ) + count ( S , m , n - S [ m - 1 ] ) 
 |||
 
 MINIMUM_SUM_SUBSEQUENCE_LEAST_ONE_EVERY_FOUR_CONSECUTIVE_ELEMENTS_PICKED
@@ -3122,7 +3122,7 @@ def fib ( n , a = 0 , b = 1 ) :
         return a
     if n == 1 :
         return b
-    return fib ( n - 1 , b , a + b ) ;
+    return fib ( n - 1 , b , a + b ) 
 |||
 
 PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT
@@ -3167,11 +3167,11 @@ def printSumTricky ( mat , k ) :
 SCHEDULE_ELEVATOR_TO_REDUCE_THE_TOTAL_TIME_TAKEN
 
 def minTime ( n , k , a ) :
-    a.sort ( reverse = True ) ;
-    minTime = 0 ;
+    a.sort ( reverse = True ) 
+    minTime = 0 
     for i in range ( 0 , n , k ) :
-        minTime += ( 2 * a [ i ] ) ;
-    return minTime ;
+        minTime += ( 2 * a [ i ] ) 
+    return minTime 
 |||
 
 ODD_EVEN_SORT_BRICK_SORT
@@ -3199,7 +3199,7 @@ def getMaxOccuringChar ( str ) :
     max = - 1
     c = ''
     for i in str :
-        count [ ord ( i ) ] += 1 ;
+        count [ ord ( i ) ] += 1 
     for i in str :
         if max < count [ ord ( i ) ] :
             max = count [ ord ( i ) ]
@@ -3321,9 +3321,9 @@ MIDDLE_OF_THREE_USING_MINIMUM_COMPARISONS
 
 def middleOfThree ( a , b , c ) :
     if ( ( a < b and b < c ) or ( c < b and b < a ) ) :
-        return b ;
+        return b 
     if ( ( b < a and a < c ) or ( c < a and a < b ) ) :
-        return a ;
+        return a 
     else :
         return c
 |||
@@ -3383,8 +3383,8 @@ DOUBLE_FACTORIAL
 
 def doublefactorial ( n ) :
     if ( n == 0 or n == 1 ) :
-        return 1 ;
-    return n * doublefactorial ( n - 2 ) ;
+        return 1 
+    return n * doublefactorial ( n - 2 ) 
 |||
 
 REARRANGE_POSITIVE_AND_NEGATIVE_NUMBERS_PUBLISH
@@ -3446,7 +3446,7 @@ FUNCTION_COPY_STRING_ITERATIVE_RECURSIVE
 
 def myCopy ( s1 , s2 ) :
     for i in range ( len ( s1 ) ) :
-        s2 [ i ] = s1 [ i ] ;
+        s2 [ i ] = s1 [ i ] 
 |||
 
 GIVEN_TWO_STRINGS_FIND_FIRST_STRING_SUBSEQUENCE_SECOND_1
@@ -3595,7 +3595,7 @@ def count ( s , Len ) :
 ADD_1_TO_A_GIVEN_NUMBER_1
 
 def addOne ( x ) :
-    return ( - ( ~ x ) ) ;
+    return ( - ( ~ x ) ) 
 |||
 
 CHECK_STRING_FOLLOWS_ANBN_PATTERN_NOT
@@ -3723,22 +3723,22 @@ def findLongestRepeatingSubSeq ( X , m , n ) :
 COUNT_OF_N_DIGIT_NUMBERS_WHOSE_SUM_OF_DIGITS_EQUALS_TO_GIVEN_SUM
 
 def findCount ( n , sum ) :
-    start = math.pow ( 10 , n - 1 ) ;
-    end = math.pow ( 10 , n ) - 1 ;
-    count = 0 ;
-    i = start ;
+    start = math.pow ( 10 , n - 1 ) 
+    end = math.pow ( 10 , n ) - 1 
+    count = 0 
+    i = start 
     while ( i <= end ) :
-        cur = 0 ;
-        temp = i ;
+        cur = 0 
+        temp = i 
         while ( temp != 0 ) :
-            cur += temp % 10 ;
-            temp = temp // 10 ;
+            cur += temp % 10 
+            temp = temp // 10 
         if ( cur == sum ) :
-            count = count + 1 ;
-            i += 9 ;
+            count = count + 1 
+            i += 9 
         else :
-            i = i + 1 ;
-    print ( count ) ;
+            i = i + 1 
+    print ( count ) 
 |||
 
 MINIMUM_COST_CONNECT_WEIGHTED_NODES_REPRESENTED_ARRAY
@@ -3802,15 +3802,15 @@ def findFrequency ( arr , n , left , right , element ) :
 SERIES_LARGEST_GCD_SUM_EQUALS_N
 
 def print_sequence ( n , k ) :
-    b = int ( n / ( k * ( k + 1 ) / 2 ) ) ;
+    b = int ( n / ( k * ( k + 1 ) / 2 ) ) 
     if b == 0 :
         print ( "-1" )
     else :
-        r = 1 ;
+        r = 1 
         x = 1
         while x ** 2 <= n :
             if n % x != 0 :
-                continue ;
+                continue 
             elif x <= b and x > r :
                 r = x
             elif n / x <= b and n / x > r :
@@ -3843,7 +3843,7 @@ def findMaximum ( arr , low , high ) :
     if low == high :
         return arr [ low ]
     if high == low + 1 and arr [ low ] >= arr [ high ] :
-        return arr [ low ] ;
+        return arr [ low ] 
     if high == low + 1 and arr [ low ] < arr [ high ] :
         return arr [ high ]
     mid = ( low + high ) // 2
@@ -3904,7 +3904,7 @@ DIFFERENCE_MAXIMUM_SUM_MINIMUM_SUM_N_M_ELEMENTSIN_REVIEW
 
 def find_difference ( arr , n , m ) :
     max = 0 ; min = 0
-    arr.sort ( ) ;
+    arr.sort ( ) 
     j = n - 1
     for i in range ( m ) :
         min += arr [ i ]
@@ -3923,7 +3923,7 @@ def printNumbers ( numbers ) :
             result.append ( num )
     if not result :
         result = [ '-1' ]
-    return sorted ( result ) ;
+    return sorted ( result ) 
 |||
 
 DYNAMIC_PROGRAMMING_SET_3_LONGEST_INCREASING_SUBSEQUENCE
@@ -3993,8 +3993,8 @@ def minXOR ( arr , n ) :
     minXor = int ( sys.float_info.max )
     val = 0
     for i in range ( 0 , n - 1 ) :
-        val = arr [ i ] ^ arr [ i + 1 ] ;
-        minXor = min ( minXor , val ) ;
+        val = arr [ i ] ^ arr [ i + 1 ] 
+        minXor = min ( minXor , val ) 
     return minXor
 |||
 
@@ -4065,20 +4065,20 @@ def findPairs ( arr1 , arr2 , n , m , x ) :
 BINARY_REPRESENTATION_OF_NEXT_NUMBER
 
 def nextGreater ( num1 ) :
-    l = len ( num1 ) ;
-    num = list ( num1 ) ;
-    i = l - 1 ;
+    l = len ( num1 ) 
+    num = list ( num1 ) 
+    i = l - 1 
     while ( i >= 0 ) :
         if ( num [ i ] == '0' ) :
-            num [ i ] = '1' ;
-            break ;
+            num [ i ] = '1' 
+            break 
         else :
-            num [ i ] = '0' ;
-        i -= 1 ;
-    num1 = ''.join ( num ) ;
+            num [ i ] = '0' 
+        i -= 1 
+    num1 = ''.join ( num ) 
     if ( i < 0 ) :
-        num1 = '1' + num1 ;
-    return num1 ;
+        num1 = '1' + num1 
+    return num1 
 |||
 
 LARGEST_SUBARRAY_WITH_EQUAL_NUMBER_OF_0S_AND_1S
@@ -4094,9 +4094,9 @@ def findSubArray ( arr , n ) :
                 maxsize = j - i + 1
                 startindex = i
     if ( maxsize == - 1 ) :
-        print ( "No such subarray" ) ;
+        print ( "No such subarray" ) 
     else :
-        print ( startindex , "to" , startindex + maxsize - 1 ) ;
+        print ( startindex , "to" , startindex + maxsize - 1 ) 
     return maxsize
 |||
 
@@ -4130,7 +4130,7 @@ def lps ( str ) :
             elif str [ i ] == str [ j ] :
                 L [ i ] [ j ] = L [ i + 1 ] [ j - 1 ] + 2
             else :
-                L [ i ] [ j ] = max ( L [ i ] [ j - 1 ] , L [ i + 1 ] [ j ] ) ;
+                L [ i ] [ j ] = max ( L [ i ] [ j - 1 ] , L [ i + 1 ] [ j ] ) 
     return L [ 0 ] [ n - 1 ]
 |||
 
@@ -4143,7 +4143,7 @@ def getInvCount ( arr , n ) :
         for j in range ( i + 1 , n ) :
             if ( arr [ i ] > arr [ j ] ) :
                 small += 1
-        great = 0 ;
+        great = 0 
         for j in range ( i - 1 , - 1 , - 1 ) :
             if ( arr [ i ] < arr [ j ] ) :
                 great += 1
@@ -4243,11 +4243,11 @@ def thirdLargest ( arr , arr_size ) :
 FIND_SUM_NODES_GIVEN_PERFECT_BINARY_TREE_1
 
 def sumNodes ( l ) :
-    leafNodeCount = math.pow ( 2 , l - 1 ) ;
-    sumLastLevel = 0 ;
-    sumLastLevel = ( ( leafNodeCount * ( leafNodeCount + 1 ) ) / 2 ) ;
-    sum = sumLastLevel * l ;
-    return int ( sum ) ;
+    leafNodeCount = math.pow ( 2 , l - 1 ) 
+    sumLastLevel = 0 
+    sumLastLevel = ( ( leafNodeCount * ( leafNodeCount + 1 ) ) / 2 ) 
+    sum = sumLastLevel * l 
+    return int ( sum ) 
 |||
 
 MIDDLE_OF_THREE_USING_MINIMUM_COMPARISONS_2
@@ -4372,8 +4372,8 @@ def arraySortedOrNot ( arr ) :
 CHECK_TWO_GIVEN_CIRCLES_TOUCH_INTERSECT
 
 def circle ( x1 , y1 , x2 , y2 , r1 , r2 ) :
-    distSq = ( x1 - x2 ) * ( x1 - x2 ) + ( y1 - y2 ) * ( y1 - y2 ) ;
-    radSumSq = ( r1 + r2 ) * ( r1 + r2 ) ;
+    distSq = ( x1 - x2 ) * ( x1 - x2 ) + ( y1 - y2 ) * ( y1 - y2 ) 
+    radSumSq = ( r1 + r2 ) * ( r1 + r2 ) 
     if ( distSq == radSumSq ) :
         return 1
     elif ( distSq > radSumSq ) :
@@ -4404,7 +4404,7 @@ def pad ( n ) :
         pPrevPrev = pPrev
         pPrev = pCurr
         pCurr = pNext
-    return pNext ;
+    return pNext 
 |||
 
 CHECK_GIVEN_STRING_CAN_SPLIT_FOUR_DISTINCT_STRINGS
@@ -4536,12 +4536,12 @@ def maxDecimalValue ( mat , i , j , p ) :
 SQUARE_ROOT_OF_A_PERFECT_SQUARE_1
 
 def squareRoot ( n ) :
-    x = n ;
-    y = 1 ;
+    x = n 
+    y = 1 
     while ( x > y ) :
-        x = ( x + y ) / 2 ;
-        y = n / x ;
-    return x ;
+        x = ( x + y ) / 2 
+        y = n / x 
+    return x 
 |||
 
 FIND_MINIMUM_SHIFT_LONGEST_COMMON_PREFIX
@@ -4665,9 +4665,9 @@ COUNT_POSSIBLE_PATHS_TOP_LEFT_BOTTOM_RIGHT_NXM_MATRIX_1
 def numberOfPaths ( m , n ) :
     count = [ [ 0 for x in range ( m ) ] for y in range ( n ) ]
     for i in range ( m ) :
-        count [ i ] [ 0 ] = 1 ;
+        count [ i ] [ 0 ] = 1 
     for j in range ( n ) :
-        count [ 0 ] [ j ] = 1 ;
+        count [ 0 ] [ j ] = 1 
     for i in range ( 1 , m ) :
         for j in range ( n ) :
             count [ i ] [ j ] = count [ i - 1 ] [ j ] + count [ i ] [ j - 1 ]
@@ -4789,11 +4789,11 @@ NTH_MULTIPLE_NUMBER_FIBONACCI_SERIES
 def findPosition ( k , n ) :
     f1 = 0
     f2 = 1
-    i = 2 ;
+    i = 2 
     while i != 0 :
-        f3 = f1 + f2 ;
-        f1 = f2 ;
-        f2 = f3 ;
+        f3 = f1 + f2 
+        f1 = f2 
+        f2 = f3 
         if f2 % k == 0 :
             return n * i
         i += 1
@@ -4826,7 +4826,7 @@ def countNum ( arr , n ) :
     arr.sort ( )
     for i in range ( 0 , n - 1 ) :
         if ( arr [ i ] != arr [ i + 1 ] and arr [ i ] != arr [ i + 1 ] - 1 ) :
-            count += arr [ i + 1 ] - arr [ i ] - 1 ;
+            count += arr [ i + 1 ] - arr [ i ] - 1 
     return count
 |||
 
@@ -4875,32 +4875,32 @@ def subArray ( arr , n ) :
 MAXIMUM_SUM_INCREASING_ORDER_ELEMENTS_N_ARRAYS
 
 def maximumSum ( a , n ) :
-    global M ;
+    global M 
     for i in range ( 0 , n ) :
-        a [ i ].sort ( ) ;
-    sum = a [ n - 1 ] [ M - 1 ] ;
-    prev = a [ n - 1 ] [ M - 1 ] ;
+        a [ i ].sort ( ) 
+    sum = a [ n - 1 ] [ M - 1 ] 
+    prev = a [ n - 1 ] [ M - 1 ] 
     for i in range ( n - 2 , - 1 , - 1 ) :
         for j in range ( M - 1 , - 1 , - 1 ) :
             if ( a [ i ] [ j ] < prev ) :
-                prev = a [ i ] [ j ] ;
-                sum += prev ;
-                break ;
+                prev = a [ i ] [ j ] 
+                sum += prev 
+                break 
         if ( j == - 1 ) :
-            return 0 ;
-    return sum ;
+            return 0 
+    return sum 
 |||
 
 C_PROGRAM_FACTORIAL_NUMBER
 
 def factorial ( n ) :
-    return 1 if ( n == 1 or n == 0 ) else n * factorial ( n - 1 ) ;
+    return 1 if ( n == 1 or n == 0 ) else n * factorial ( n - 1 ) 
 |||
 
 PRINT_SQUARES_FIRST_N_NATURAL_NUMBERS_WITHOUT_USING
 
 def printSquares ( n ) :
-    square = 0 ; prev_x = 0 ;
+    square = 0 ; prev_x = 0 
     for x in range ( 0 , n ) :
         square = ( square + x + prev_x )
         print ( square , end = " " )
@@ -4984,13 +4984,13 @@ def solution ( a , b , n ) :
 EXPONENTIAL_SQUARING_FAST_MODULO_MULTIPLICATION_1
 
 def exponentiation ( bas , exp ) :
-    t = 1 ;
+    t = 1 
     while ( exp > 0 ) :
         if ( exp % 2 != 0 ) :
-            t = ( t * bas ) % N ;
-        bas = ( bas * bas ) % N ;
-        exp = int ( exp / 2 ) ;
-    return t % N ;
+            t = ( t * bas ) % N 
+        bas = ( bas * bas ) % N 
+        exp = int ( exp / 2 ) 
+    return t % N 
 |||
 
 CHECK_OCCURRENCES_CHARACTER_APPEAR_TOGETHER
@@ -5064,16 +5064,16 @@ def cycleSort ( array ) :
 SELECT_A_RANDOM_NUMBER_FROM_STREAM_WITH_O1_SPACE
 
 def selectRandom ( x ) :
-    res = 0 ;
-    count = 0 ;
-    count += 1 ;
+    res = 0 
+    count = 0 
+    count += 1 
     if ( count == 1 ) :
-        res = x ;
+        res = x 
     else :
-        i = random.randrange ( count ) ;
+        i = random.randrange ( count ) 
         if ( i == count - 1 ) :
-            res = x ;
-    return res ;
+            res = x 
+    return res 
 |||
 
 HOSOYAS_TRIANGLE
@@ -5215,7 +5215,7 @@ def countStrs ( n ) :
     for i in range ( 2 , n + 1 ) :
         for j in range ( 0 , 26 ) :
             if ( j == 0 ) :
-                dp [ i ] [ j ] = dp [ i - 1 ] [ j + 1 ] ;
+                dp [ i ] [ j ] = dp [ i - 1 ] [ j + 1 ] 
             else :
                 dp [ i ] [ j ] = ( dp [ i - 1 ] [ j - 1 ] + dp [ i - 1 ] [ j + 1 ] )
     sum = 0
@@ -5259,8 +5259,8 @@ LINEAR_SEARCH
 def search ( arr , n , x ) :
     for i in range ( 0 , n ) :
         if ( arr [ i ] == x ) :
-            return i ;
-    return - 1 ;
+            return i 
+    return - 1 
 |||
 
 FIND_THE_ELEMENT_THAT_APPEARS_ONCE_2
@@ -5384,7 +5384,7 @@ def findoptimal ( N ) :
     for n in range ( 1 , 7 ) :
         screen [ n - 1 ] = n
     for n in range ( 7 , N + 1 ) :
-        screen [ n - 1 ] = max ( 2 * screen [ n - 4 ] , max ( 3 * screen [ n - 5 ] , 4 * screen [ n - 6 ] ) ) ;
+        screen [ n - 1 ] = max ( 2 * screen [ n - 4 ] , max ( 3 * screen [ n - 5 ] , 4 * screen [ n - 6 ] ) ) 
     return screen [ N - 1 ]
 |||
 
@@ -5445,7 +5445,7 @@ def minRange ( arr , n , k ) :
 AREA_OF_A_HEXAGON
 
 def hexagonArea ( s ) :
-    return ( ( 3 * math.sqrt ( 3 ) * ( s * s ) ) / 2 ) ;
+    return ( ( 3 * math.sqrt ( 3 ) * ( s * s ) ) / 2 ) 
 |||
 
 NEXT_POWER_OF_2_2
@@ -5608,7 +5608,7 @@ def leftRotate ( arr , n , k ) :
 MINIMUM_SUM_CHOOSING_MINIMUM_PAIRS_ARRAY
 
 def minSum ( A ) :
-    min_val = min ( A ) ;
+    min_val = min ( A ) 
     return min_val * ( len ( A ) - 1 )
 |||
 
@@ -5739,7 +5739,7 @@ def decimalToBinary ( num , k_prec ) :
     fractional = num - Integral
     while ( Integral ) :
         rem = Integral % 2
-        binary += str ( rem ) ;
+        binary += str ( rem ) 
         Integral //= 2
     binary = binary [ : : - 1 ]
     binary += '.'
@@ -5805,7 +5805,7 @@ def area_of_segment ( radius , angle ) :
     area_of_triangle = 1 / 2 *
         ( radius * radius ) *
         math.sin ( ( angle * pi ) / 180 )
-    return area_of_sector - area_of_triangle ;
+    return area_of_sector - area_of_triangle 
 |||
 
 K_SMALLEST_ELEMENTS_ORDER_USING_O1_EXTRA_SPACE
@@ -5860,10 +5860,10 @@ def nearestSmallerEqFib ( n ) :
         return n
     f1 , f2 , f3 = 0 , 1 , 1
     while ( f3 <= n ) :
-        f1 = f2 ;
-        f2 = f3 ;
-        f3 = f1 + f2 ;
-    return f2 ;
+        f1 = f2 
+        f2 = f3 
+        f3 = f1 + f2 
+    return f2 
 |||
 
 PRINT_MAXIMUM_SHORTEST_DISTANCE
@@ -5957,7 +5957,7 @@ def difference ( arr , n ) :
                 d1 += arr [ i ] [ j ]
             if ( i == n - j - 1 ) :
                 d2 += arr [ i ] [ j ]
-    return abs ( d1 - d2 ) ;
+    return abs ( d1 - d2 ) 
 |||
 
 SHORTEST_UNCOMMON_SUBSEQUENCE
@@ -6018,13 +6018,13 @@ def findMinInsertions ( str , l , h ) :
 COUNT_CHARACTERS_STRING_DISTANCE_ENGLISH_ALPHABETS
 
 def countPairs ( str1 ) :
-    result = 0 ;
+    result = 0 
     n = len ( str1 )
     for i in range ( 0 , n ) :
         for j in range ( i + 1 , n ) :
             if ( abs ( ord ( str1 [ i ] ) - ord ( str1 [ j ] ) ) == abs ( i - j ) ) :
-                result += 1 ;
-    return result ;
+                result += 1 
+    return result 
 |||
 
 MULTISTAGE_GRAPH_SHORTEST_PATH
@@ -6146,8 +6146,8 @@ def minPalPartion ( str ) :
     k = 0
     L = 0
     for i in range ( n ) :
-        P [ i ] [ i ] = True ;
-        C [ i ] [ i ] = 0 ;
+        P [ i ] [ i ] = True 
+        C [ i ] [ i ] = 0 
     for L in range ( 2 , n + 1 ) :
         for i in range ( n - L + 1 ) :
             j = i + L - 1
@@ -6195,7 +6195,7 @@ def minSumPath ( A ) :
         memo [ i ] = A [ n ] [ i ]
     for i in range ( len ( A ) - 2 , - 1 , - 1 ) :
         for j in range ( len ( A [ i ] ) ) :
-            memo [ j ] = A [ i ] [ j ] + min ( memo [ j ] , memo [ j + 1 ] ) ;
+            memo [ j ] = A [ i ] [ j ] + min ( memo [ j ] , memo [ j + 1 ] ) 
     return memo [ 0 ]
 |||
 
@@ -6252,30 +6252,30 @@ def minJumps ( arr , n ) :
 MAXIMIZE_ARRAY_ELEMENTS_UPTO_GIVEN_NUMBER
 
 def findMaxVal ( arr , n , num , maxLimit ) :
-    ind = - 1 ;
-    val = - 1 ;
-    dp = [ [ 0 for i in range ( maxLimit + 1 ) ] for j in range ( n ) ] ;
+    ind = - 1 
+    val = - 1 
+    dp = [ [ 0 for i in range ( maxLimit + 1 ) ] for j in range ( n ) ] 
     for ind in range ( n ) :
         for val in range ( maxLimit + 1 ) :
             if ( ind == 0 ) :
                 if ( num - arr [ ind ] == val or num + arr [ ind ] == val ) :
-                    dp [ ind ] [ val ] = 1 ;
+                    dp [ ind ] [ val ] = 1 
                 else :
-                    dp [ ind ] [ val ] = 0 ;
+                    dp [ ind ] [ val ] = 0 
             else :
                 if ( val - arr [ ind ] >= 0 and val + arr [ ind ] <= maxLimit ) :
                     if ( dp [ ind - 1 ] [ val - arr [ ind ] ] == 1 or dp [ ind - 1 ] [ val + arr [ ind ] ] == 1 ) :
-                        dp [ ind ] [ val ] = 1 ;
+                        dp [ ind ] [ val ] = 1 
                 elif ( val - arr [ ind ] >= 0 ) :
-                    dp [ ind ] [ val ] = dp [ ind - 1 ] [ val - arr [ ind ] ] ;
+                    dp [ ind ] [ val ] = dp [ ind - 1 ] [ val - arr [ ind ] ] 
                 elif ( val + arr [ ind ] <= maxLimit ) :
-                    dp [ ind ] [ val ] = dp [ ind - 1 ] [ val + arr [ ind ] ] ;
+                    dp [ ind ] [ val ] = dp [ ind - 1 ] [ val + arr [ ind ] ] 
                 else :
-                    dp [ ind ] [ val ] = 0 ;
+                    dp [ ind ] [ val ] = 0 
     for val in range ( maxLimit , - 1 , - 1 ) :
         if ( dp [ n - 1 ] [ val ] == 1 ) :
-            return val ;
-    return - 1 ;
+            return val 
+    return - 1 
 |||
 
 PROGRAM_FOR_DEADLOCK_FREE_CONDITION_IN_OPERATING_SYSTEM
@@ -6347,7 +6347,7 @@ def getIndexInSortedArray ( arr , n , idx ) :
             result += 1
         if ( arr [ i ] == arr [ idx ] and i < idx ) :
             result += 1
-    return result ;
+    return result 
 |||
 
 MAXIMUM_SEGMENT_VALUE_PUTTING_K_BREAKPOINTS_NUMBER
@@ -6440,13 +6440,13 @@ def countFreq ( a , n ) :
 MINIMIZE_THE_SUM_OF_DIGITS_OF_A_AND_B_SUCH_THAT_A_B_N
 
 def minSum ( n ) :
-    sum = 0 ;
+    sum = 0 
     while ( n > 0 ) :
-        sum += ( n % 10 ) ;
-        n //= 10 ;
+        sum += ( n % 10 ) 
+        n //= 10 
     if ( sum == 1 ) :
-        return 10 ;
-    return sum ;
+        return 10 
+    return sum 
 |||
 
 DIVIDE_CUBOID_CUBES_SUM_VOLUMES_MAXIMUM
@@ -6608,7 +6608,7 @@ def maxProd ( n ) :
     max_val = 0
     for i in range ( 1 , n - 1 ) :
         max_val = max ( max_val , max ( i * ( n - i ) , maxProd ( n - i ) * i ) )
-    return max_val ;
+    return max_val 
 |||
 
 LONGEST_COMMON_SUBSTRING_SPACE_OPTIMIZED_DP_SOLUTION
@@ -6678,14 +6678,14 @@ FIND_BITONIC_POINT_GIVEN_BITONIC_SEQUENCE
 
 def binarySearch ( arr , left , right ) :
     if ( left <= right ) :
-        mid = ( left + right ) // 2 ;
+        mid = ( left + right ) // 2 
         if ( arr [ mid - 1 ] < arr [ mid ] and arr [ mid ] > arr [ mid + 1 ] ) :
-            return mid ;
+            return mid 
         if ( arr [ mid ] < arr [ mid + 1 ] ) :
-            return binarySearch ( arr , mid + 1 , right ) ;
+            return binarySearch ( arr , mid + 1 , right ) 
         else :
-            return binarySearch ( arr , left , mid - 1 ) ;
-    return - 1 ;
+            return binarySearch ( arr , left , mid - 1 ) 
+    return - 1 
 |||
 
 PRINT_ALL_DISTINCT_CHARACTERS_OF_A_STRING_IN_ORDER_3_METHODS_1
@@ -6779,7 +6779,7 @@ def calculateSum ( arr , n ) :
 SUM_MATRIX_ELEMENT_ELEMENT_INTEGER_DIVISION_ROW_COLUMN_1
 
 def findSum ( n ) :
-    ans = 0 ; temp = 0 ;
+    ans = 0 ; temp = 0 
     for i in range ( 1 , n + 1 ) :
         if temp < n :
             temp = i - 1
@@ -6807,30 +6807,30 @@ def shuffle ( card , n ) :
 DOOLITTLE_ALGORITHM_LU_DECOMPOSITION
 
 def luDecomposition ( mat , n ) :
-    lower = [ [ 0 for x in range ( n ) ] for y in range ( n ) ] ;
-    upper = [ [ 0 for x in range ( n ) ] for y in range ( n ) ] ;
+    lower = [ [ 0 for x in range ( n ) ] for y in range ( n ) ] 
+    upper = [ [ 0 for x in range ( n ) ] for y in range ( n ) ] 
     for i in range ( n ) :
         for k in range ( i , n ) :
-            sum = 0 ;
+            sum = 0 
             for j in range ( i ) :
-                sum += ( lower [ i ] [ j ] * upper [ j ] [ k ] ) ;
-            upper [ i ] [ k ] = mat [ i ] [ k ] - sum ;
+                sum += ( lower [ i ] [ j ] * upper [ j ] [ k ] ) 
+            upper [ i ] [ k ] = mat [ i ] [ k ] - sum 
         for k in range ( i , n ) :
             if ( i == k ) :
-                lower [ i ] [ i ] = 1 ;
+                lower [ i ] [ i ] = 1 
             else :
-                sum = 0 ;
+                sum = 0 
                 for j in range ( i ) :
-                    sum += ( lower [ k ] [ j ] * upper [ j ] [ i ] ) ;
-                lower [ k ] [ i ] = int ( ( mat [ k ] [ i ] - sum ) / upper [ i ] [ i ] ) ;
-    print ( "Lower Triangular\t\tUpper Triangular" ) ;
+                    sum += ( lower [ k ] [ j ] * upper [ j ] [ i ] ) 
+                lower [ k ] [ i ] = int ( ( mat [ k ] [ i ] - sum ) / upper [ i ] [ i ] ) 
+    print ( "Lower Triangular\t\tUpper Triangular" ) 
     for i in range ( n ) :
         for j in range ( n ) :
-            print ( lower [ i ] [ j ] , end = "\t" ) ;
-        print ( "" , end = "\t" ) ;
+            print ( lower [ i ] [ j ] , end = "\t" ) 
+        print ( "" , end = "\t" ) 
         for j in range ( n ) :
-            print ( upper [ i ] [ j ] , end = "\t" ) ;
-        print ( "" ) ;
+            print ( upper [ i ] [ j ] , end = "\t" ) 
+        print ( "" ) 
 |||
 
 PROGRAM_NTH_CATALAN_NUMBER
@@ -6847,28 +6847,28 @@ def catalan ( n ) :
 NUMBER_DIGITS_REMOVED_MAKE_NUMBER_DIVISIBLE_3
 
 def divisible ( num ) :
-    n = len ( num ) ;
-    sum = 0 ;
+    n = len ( num ) 
+    sum = 0 
     for i in range ( n ) :
-        sum += int ( num [ i ] ) ;
+        sum += int ( num [ i ] ) 
     if ( sum % 3 == 0 ) :
-        return 0 ;
+        return 0 
     if ( n == 1 ) :
-        return - 1 ;
+        return - 1 
     for i in range ( n ) :
         if ( sum % 3 == int ( num [ i ] ) % 3 ) :
-            return 1 ;
+            return 1 
     if ( n == 2 ) :
-        return - 1 ;
-    return 2 ;
+        return - 1 
+    return 2 
 |||
 
 CHECK_IF_A_NUMBER_IS_POWER_OF_ANOTHER_NUMBER_1
 
 def isPower ( x , y ) :
-    res1 = math.log ( y ) / math.log ( x ) ;
-    res2 = math.log ( y ) / math.log ( x ) ;
-    return 1 if ( res1 == res2 ) else 0 ;
+    res1 = math.log ( y ) / math.log ( x ) 
+    res2 = math.log ( y ) / math.log ( x ) 
+    return 1 if ( res1 == res2 ) else 0 
 |||
 
 LARGEST_SUBSEQUENCE_GCD_GREATER_1
@@ -6953,7 +6953,7 @@ def findFirstMissing ( array , start , end ) :
     if ( start > end ) :
         return end + 1
     if ( start != array [ start ] ) :
-        return start ;
+        return start 
     mid = int ( ( start + end ) / 2 )
     if ( array [ mid ] == mid ) :
         return findFirstMissing ( array , mid + 1 , end )
@@ -7029,13 +7029,13 @@ def MinimumCost ( cost , n , W ) :
 COUNT_CHARACTERS_STRING_DISTANCE_ENGLISH_ALPHABETS_1
 
 def countPairs ( str1 ) :
-    result = 0 ;
+    result = 0 
     n = len ( str1 )
     for i in range ( 0 , n ) :
         for j in range ( 1 , MAX_CHAR + 1 ) :
             if ( ( i + j ) < n ) :
                 if ( ( abs ( ord ( str1 [ i + j ] ) - ord ( str1 [ i ] ) ) == j ) ) :
-                    result += 1 ;
+                    result += 1 
     return result
 |||
 
@@ -7112,16 +7112,16 @@ def countOnes ( arr , low , high ) :
 POSSIBLE_MOVES_KNIGHT
 
 def findPossibleMoves ( mat , p , q ) :
-    global n , m ;
-    X = [ 2 , 1 , - 1 , - 2 , - 2 , - 1 , 1 , 2 ] ;
-    Y = [ 1 , 2 , 2 , 1 , - 1 , - 2 , - 2 , - 1 ] ;
-    count = 0 ;
+    global n , m 
+    X = [ 2 , 1 , - 1 , - 2 , - 2 , - 1 , 1 , 2 ] 
+    Y = [ 1 , 2 , 2 , 1 , - 1 , - 2 , - 2 , - 1 ] 
+    count = 0 
     for i in range ( 8 ) :
-        x = p + X [ i ] ;
-        y = q + Y [ i ] ;
+        x = p + X [ i ] 
+        y = q + Y [ i ] 
         if ( x >= 0 and y >= 0 and x < n and y < m and mat [ x ] [ y ] == 0 ) :
-            count += 1 ;
-    return count ;
+            count += 1 
+    return count 
 |||
 
 ROTATE_MATRIX_ELEMENTS
@@ -7340,7 +7340,7 @@ def smallestKFreq ( arr , n , k ) :
 MINIMUM_XOR_VALUE_PAIR
 
 def minXOR ( arr , n ) :
-    arr.sort ( ) ;
+    arr.sort ( ) 
     min_xor = 999999
     val = 0
     for i in range ( 0 , n - 1 ) :
@@ -7357,10 +7357,10 @@ def compute ( st , n ) :
     l = len ( st )
     answer = ""
     for i in range ( 0 , n ) :
-        answer = answer + st [ i ] ;
+        answer = answer + st [ i ] 
     for i in range ( n , l ) :
-        answer = ( answer + reverseAlphabet [ ord ( st [ i ] ) - ord ( 'a' ) ] ) ;
-    return answer ;
+        answer = ( answer + reverseAlphabet [ ord ( st [ i ] ) - ord ( 'a' ) ] ) 
+    return answer 
 |||
 
 PROGRAM_CHECK_PLUS_PERFECT_NUMBER
@@ -7414,14 +7414,14 @@ def findTrailingZeros ( n ) :
 ROTATE_MATRIX_180_DEGREE
 
 def rotateMatrix ( mat ) :
-    i = N - 1 ;
+    i = N - 1 
     while ( i >= 0 ) :
-        j = N - 1 ;
+        j = N - 1 
         while ( j >= 0 ) :
-            print ( mat [ i ] [ j ] , end = " " ) ;
-            j = j - 1 ;
-        print ( ) ;
-        i = i - 1 ;
+            print ( mat [ i ] [ j ] , end = " " ) 
+            j = j - 1 
+        print ( ) 
+        i = i - 1 
 |||
 
 SUM_FIBONACCI_NUMBERS
@@ -7491,9 +7491,9 @@ def isSubSeqDivisible ( str ) :
     dp = [ [ 0 for i in range ( 10 ) ] for i in range ( n + 1 ) ]
     arr = [ 0 for i in range ( n + 1 ) ]
     for i in range ( 1 , n + 1 ) :
-        arr [ i ] = int ( str [ i - 1 ] ) ;
+        arr [ i ] = int ( str [ i - 1 ] ) 
     for i in range ( 1 , n + 1 ) :
-        dp [ i ] [ arr [ i ] % 8 ] = 1 ;
+        dp [ i ] [ arr [ i ] % 8 ] = 1 
         for j in range ( 8 ) :
             if ( dp [ i - 1 ] [ j ] > dp [ i ] [ ( j * 10 + arr [ i ] ) % 8 ] ) :
                 dp [ i ] [ ( j * 10 + arr [ i ] ) % 8 ] = dp [ i - 1 ] [ j ]
@@ -7651,11 +7651,11 @@ def divSum ( num ) :
     while i <= ( math.sqrt ( num ) ) :
         if ( num % i == 0 ) :
             if ( i == ( num / i ) ) :
-                result = result + i ;
+                result = result + i 
             else :
-                result = result + ( i + num / i ) ;
+                result = result + ( i + num / i ) 
         i = i + 1
-    return ( result + 1 ) ;
+    return ( result + 1 ) 
 |||
 
 FIND_A_TRIPLET_THAT_SUM_TO_A_GIVEN_VALUE_2
@@ -7684,12 +7684,12 @@ def evenlength ( n ) :
 FINDING_POWER_PRIME_NUMBER_P_N
 
 def PowerOFPINnfactorial ( n , p ) :
-    ans = 0 ;
-    temp = p ;
+    ans = 0 
+    temp = p 
     while ( temp <= n ) :
-        ans += n / temp ;
-        temp = temp * p ;
-    return ans ;
+        ans += n / temp 
+        temp = temp * p 
+    return ans 
 |||
 
 MINIMUM_COST_MAKE_LONGEST_COMMON_SUBSEQUENCE_LENGTH_K
@@ -7865,30 +7865,30 @@ def findSum ( n ) :
 CLUSTERINGPARTITIONING_AN_ARRAY_SUCH_THAT_SUM_OF_SQUARE_DIFFERENCES_IS_MINIMUM_1
 
 def minCost ( a , n , k ) :
-    dp = [ [ inf for i in range ( k + 1 ) ] for j in range ( n + 1 ) ] ;
-    dp [ 0 ] [ 0 ] = 0 ;
+    dp = [ [ inf for i in range ( k + 1 ) ] for j in range ( n + 1 ) ] 
+    dp [ 0 ] [ 0 ] = 0 
     for i in range ( 1 , n + 1 ) :
         for j in range ( 1 , k + 1 ) :
             for m in range ( i - 1 , - 1 , - 1 ) :
-                dp [ i ] [ j ] = min ( dp [ i ] [ j ] , dp [ m ] [ j - 1 ] + ( a [ i - 1 ] - a [ m ] ) * ( a [ i - 1 ] - a [ m ] ) ) ;
-    return dp [ n ] [ k ] ;
+                dp [ i ] [ j ] = min ( dp [ i ] [ j ] , dp [ m ] [ j - 1 ] + ( a [ i - 1 ] - a [ m ] ) * ( a [ i - 1 ] - a [ m ] ) ) 
+    return dp [ n ] [ k ] 
 |||
 
 LEIBNIZ_HARMONIC_TRIANGLE
 
 def LeibnizHarmonicTriangle ( n ) :
-    C = [ [ 0 for x in range ( n + 1 ) ] for y in range ( n + 1 ) ] ;
+    C = [ [ 0 for x in range ( n + 1 ) ] for y in range ( n + 1 ) ] 
     for i in range ( 0 , n + 1 ) :
         for j in range ( 0 , min ( i , n ) + 1 ) :
             if ( j == 0 or j == i ) :
-                C [ i ] [ j ] = 1 ;
+                C [ i ] [ j ] = 1 
             else :
-                C [ i ] [ j ] = ( C [ i - 1 ] [ j - 1 ] + C [ i - 1 ] [ j ] ) ;
+                C [ i ] [ j ] = ( C [ i - 1 ] [ j - 1 ] + C [ i - 1 ] [ j ] ) 
     for i in range ( 1 , n + 1 ) :
         for j in range ( 1 , i + 1 ) :
-            print ( "1/" , end = "" ) ;
-            print ( i * C [ i - 1 ] [ j - 1 ] , end = " " ) ;
-        print ( ) ;
+            print ( "1/" , end = "" ) 
+            print ( i * C [ i - 1 ] [ j - 1 ] , end = " " ) 
+        print ( ) 
 |||
 
 CHECK_WHETHER_SECOND_STRING_CAN_FORMED_FIRST_STRING_USING_COUNT_ARRAY
@@ -7937,11 +7937,11 @@ LONGEST_COMMON_SUBSEQUENCE
 
 def lcs ( X , Y , m , n ) :
     if m == 0 or n == 0 :
-        return 0 ;
+        return 0 
     elif X [ m - 1 ] == Y [ n - 1 ] :
-        return 1 + lcs ( X , Y , m - 1 , n - 1 ) ;
+        return 1 + lcs ( X , Y , m - 1 , n - 1 ) 
     else :
-        return max ( lcs ( X , Y , m , n - 1 ) , lcs ( X , Y , m - 1 , n ) ) ;
+        return max ( lcs ( X , Y , m , n - 1 ) , lcs ( X , Y , m - 1 , n ) ) 
 |||
 
 MINIMUM_SUM_ABSOLUTE_DIFFERENCE_PAIRS_TWO_ARRAYS
@@ -7974,17 +7974,17 @@ FIND_NUMBER_TRANSFORMATION_MAKE_TWO_MATRIX_EQUAL
 def countOps ( A , B , m , n ) :
     for i in range ( n ) :
         for j in range ( m ) :
-            A [ i ] [ j ] -= B [ i ] [ j ] ;
+            A [ i ] [ j ] -= B [ i ] [ j ] 
     for i in range ( 1 , n ) :
         for j in range ( 1 , n ) :
             if ( A [ i ] [ j ] - A [ i ] [ 0 ] - A [ 0 ] [ j ] + A [ 0 ] [ 0 ] != 0 ) :
-                return - 1 ;
-    result = 0 ;
+                return - 1 
+    result = 0 
     for i in range ( n ) :
-        result += abs ( A [ i ] [ 0 ] ) ;
+        result += abs ( A [ i ] [ 0 ] ) 
     for j in range ( m ) :
-        result += abs ( A [ 0 ] [ j ] - A [ 0 ] [ 0 ] ) ;
-    return ( result ) ;
+        result += abs ( A [ 0 ] [ j ] - A [ 0 ] [ 0 ] ) 
+    return ( result ) 
 |||
 
 EFFICIENTLY_FIND_FIRST_REPEATED_CHARACTER_STRING_WITHOUT_USING_ADDITIONAL_DATA_STRUCTURE_ONE_TRAVERSAL
@@ -7993,7 +7993,7 @@ def FirstRepeated ( string ) :
     checker = 0
     pos = 0
     for i in string :
-        val = ord ( i ) - ord ( 'a' ) ;
+        val = ord ( i ) - ord ( 'a' ) 
         if ( ( checker & ( 1 << val ) ) > 0 ) :
             return pos
         checker |= ( 1 << val )
@@ -8093,25 +8093,25 @@ def sequence ( n ) :
     if n == 1 or n == 2 :
         return 1
     else :
-        return sequence ( sequence ( n - 1 ) ) + sequence ( n - sequence ( n - 1 ) ) ;
+        return sequence ( sequence ( n - 1 ) ) + sequence ( n - sequence ( n - 1 ) ) 
 |||
 
 PRINT_TRIPLETS_SORTED_ARRAY_FORM_AP
 
 def printAllAPTriplets ( arr , n ) :
-    s = [ ] ;
+    s = [ ] 
     for i in range ( 0 , n - 1 ) :
         for j in range ( i + 1 , n ) :
-            diff = arr [ j ] - arr [ i ] ;
+            diff = arr [ j ] - arr [ i ] 
             if ( ( arr [ i ] - diff ) in arr ) :
-                print ( "{} {} {}".format ( ( arr [ i ] - diff ) , arr [ i ] , arr [ j ] ) , end = "\n" ) ;
-    s.append ( arr [ i ] ) ;
+                print ( "{} {} {}".format ( ( arr [ i ] - diff ) , arr [ i ] , arr [ j ] ) , end = "\n" ) 
+    s.append ( arr [ i ] ) 
 |||
 
 QUERIES_COUNTS_ARRAY_ELEMENTS_VALUES_GIVEN_RANGE
 
 def countInRange ( arr , n , x , y ) :
-    count = 0 ;
+    count = 0 
     for i in range ( n ) :
         if ( arr [ i ] >= x and arr [ i ] <= y ) :
             count += 1
@@ -8122,7 +8122,7 @@ HIGHWAY_BILLBOARD_PROBLEM
 
 def maxRevenue ( m , x , revenue , n , t ) :
     maxRev = [ 0 ] * ( m + 1 )
-    nxtbb = 0 ;
+    nxtbb = 0 
     for i in range ( 1 , m + 1 ) :
         if ( nxtbb < n ) :
             if ( x [ nxtbb ] != i ) :
@@ -8131,7 +8131,7 @@ def maxRevenue ( m , x , revenue , n , t ) :
                 if ( i <= t ) :
                     maxRev [ i ] = max ( maxRev [ i - 1 ] , revenue [ nxtbb ] )
                 else :
-                    maxRev [ i ] = max ( maxRev [ i - t - 1 ] + revenue [ nxtbb ] , maxRev [ i - 1 ] ) ;
+                    maxRev [ i ] = max ( maxRev [ i - t - 1 ] + revenue [ nxtbb ] , maxRev [ i - 1 ] ) 
                 nxtbb += 1
         else :
             maxRev [ i ] = maxRev [ i - 1 ]
@@ -8164,7 +8164,7 @@ def printMat ( degseq , n ) :
 DETECT_IF_TWO_INTEGERS_HAVE_OPPOSITE_SIGNS
 
 def oppositeSigns ( x , y ) :
-    return ( ( x ^ y ) < 0 ) ;
+    return ( ( x ^ y ) < 0 ) 
 |||
 
 TRIANGULAR_NUMBERS_1
@@ -8217,7 +8217,7 @@ def sortByPattern ( str , pat ) :
     count = [ 0 ] * MAX_CHAR
     for i in range ( 0 , len ( str ) ) :
         count [ ord ( str [ i ] ) - 97 ] += 1
-    index = 0 ;
+    index = 0 
     str = ""
     for i in range ( 0 , len ( pat ) ) :
         j = 0
@@ -8306,12 +8306,12 @@ REVERSE_STRING_WITHOUT_USING_ANY_TEMPORARY_VARIABLE
 
 def reversingString ( str , start , end ) :
     while ( start < end ) :
-        str = ( str [ : start ] + chr ( ord ( str [ start ] ) ^ ord ( str [ end ] ) ) + str [ start + 1 : ] ) ;
-        str = ( str [ : end ] + chr ( ord ( str [ start ] ) ^ ord ( str [ end ] ) ) + str [ end + 1 : ] ) ;
-        str = ( str [ : start ] + chr ( ord ( str [ start ] ) ^ ord ( str [ end ] ) ) + str [ start + 1 : ] ) ;
-        start += 1 ;
-        end -= 1 ;
-    return str ;
+        str = ( str [ : start ] + chr ( ord ( str [ start ] ) ^ ord ( str [ end ] ) ) + str [ start + 1 : ] ) 
+        str = ( str [ : end ] + chr ( ord ( str [ start ] ) ^ ord ( str [ end ] ) ) + str [ end + 1 : ] ) 
+        str = ( str [ : start ] + chr ( ord ( str [ start ] ) ^ ord ( str [ end ] ) ) + str [ start + 1 : ] ) 
+        start += 1 
+        end -= 1 
+    return str 
 |||
 
 FREQUENCY_ELEMENT_UNSORTED_ARRAY
@@ -8337,7 +8337,7 @@ def countRotations ( arr , n ) :
         if ( min > arr [ i ] ) :
             min = arr [ i ]
             min_index = i
-    return min_index ;
+    return min_index 
 |||
 
 LONGEST_INCREASING_SUBSEQUENCE_1
@@ -8404,15 +8404,15 @@ def interpolationSearch ( arr , n , x ) :
     while lo <= hi and x >= arr [ lo ] and x <= arr [ hi ] :
         if lo == hi :
             if arr [ lo ] == x :
-                return lo ;
-            return - 1 ;
+                return lo 
+            return - 1 
         pos = lo + int ( ( ( float ( hi - lo ) / ( arr [ hi ] - arr [ lo ] ) ) * ( x - arr [ lo ] ) ) )
         if arr [ pos ] == x :
             return pos
         if arr [ pos ] < x :
-            lo = pos + 1 ;
+            lo = pos + 1 
         else :
-            hi = pos - 1 ;
+            hi = pos - 1 
     return - 1
 |||
 
@@ -8499,8 +8499,8 @@ def countOccurrences ( s , K ) :
 NUMBER_SUBSTRINGS_STRING
 
 def countNonEmptySubstr ( str ) :
-    n = len ( str ) ;
-    return int ( n * ( n + 1 ) / 2 ) ;
+    n = len ( str ) 
+    return int ( n * ( n + 1 ) / 2 ) 
 |||
 
 MAXIMUM_NUMBER_CHARACTERS_TWO_CHARACTER_STRING_1
@@ -8609,17 +8609,17 @@ def longestCommonSum ( arr1 , arr2 , n ) :
 REMAINDER_7_LARGE_NUMBERS
 
 def remainderWith7 ( num ) :
-    series = [ 1 , 3 , 2 , - 1 , - 3 , - 2 ] ;
-    series_index = 0 ;
-    result = 0 ;
+    series = [ 1 , 3 , 2 , - 1 , - 3 , - 2 ] 
+    series_index = 0 
+    result = 0 
     for i in range ( ( len ( num ) - 1 ) , - 1 , - 1 ) :
-        digit = ord ( num [ i ] ) - 48 ;
-        result += digit * series [ series_index ] ;
-        series_index = ( series_index + 1 ) % 6 ;
-        result %= 7 ;
+        digit = ord ( num [ i ] ) - 48 
+        result += digit * series [ series_index ] 
+        series_index = ( series_index + 1 ) % 6 
+        result %= 7 
     if ( result < 0 ) :
-        result = ( result + 7 ) % 7 ;
-    return result ;
+        result = ( result + 7 ) % 7 
+    return result 
 |||
 
 LEXICOGRAPHICALLY_PREVIOUS_PERMUTATION_IN_C
@@ -8665,10 +8665,10 @@ def isIdentity ( mat , N ) :
     for row in range ( N ) :
         for col in range ( N ) :
             if ( row == col and mat [ row ] [ col ] != 1 ) :
-                return False ;
+                return False 
             elif ( row != col and mat [ row ] [ col ] != 0 ) :
-                return False ;
-    return True ;
+                return False 
+    return True 
 |||
 
 MAXIMUM_POSSIBLE_DIFFERENCE_TWO_SUBSETS_ARRAY_1
@@ -8839,19 +8839,19 @@ def findFibSubset ( arr , n ) :
 LEXICOGRAPHICAL_CONCATENATION_SUBSTRINGS_STRING
 
 def lexicographicSubConcat ( s ) :
-    n = len ( s ) ;
-    sub_count = ( n * ( n + 1 ) ) // 2 ;
-    arr = [ 0 ] * sub_count ;
-    index = 0 ;
+    n = len ( s ) 
+    sub_count = ( n * ( n + 1 ) ) // 2 
+    arr = [ 0 ] * sub_count 
+    index = 0 
     for i in range ( n ) :
         for j in range ( 1 , n - i + 1 ) :
-            arr [ index ] = s [ i : i + j ] ;
-            index += 1 ;
-    arr.sort ( ) ;
-    res = "" ;
+            arr [ index ] = s [ i : i + j ] 
+            index += 1 
+    arr.sort ( ) 
+    res = "" 
     for i in range ( sub_count ) :
-        res += arr [ i ] ;
-    return res ;
+        res += arr [ i ] 
+    return res 
 |||
 
 COUNT_OPERATIONS_MAKE_STRINGAB_FREE
@@ -8890,22 +8890,22 @@ def maxvolume ( s ) :
 PROGRAM_DECIMAL_HEXADECIMAL_CONVERSION
 
 def decToHexa ( n ) :
-    hexaDeciNum = [ '0' ] * 100 ;
-    i = 0 ;
+    hexaDeciNum = [ '0' ] * 100 
+    i = 0 
     while ( n != 0 ) :
-        temp = 0 ;
-        temp = n % 16 ;
+        temp = 0 
+        temp = n % 16 
         if ( temp < 10 ) :
-            hexaDeciNum [ i ] = chr ( temp + 48 ) ;
-            i = i + 1 ;
+            hexaDeciNum [ i ] = chr ( temp + 48 ) 
+            i = i + 1 
         else :
-            hexaDeciNum [ i ] = chr ( temp + 55 ) ;
-            i = i + 1 ;
-        n = int ( n / 16 ) ;
-    j = i - 1 ;
+            hexaDeciNum [ i ] = chr ( temp + 55 ) 
+            i = i + 1 
+        n = int ( n / 16 ) 
+    j = i - 1 
     while ( j >= 0 ) :
-        print ( ( hexaDeciNum [ j ] ) , end = "" ) ;
-        j = j - 1 ;
+        print ( ( hexaDeciNum [ j ] ) , end = "" ) 
+        j = j - 1 
 |||
 
 SMALLEST_SUBARRAY_WITH_ALL_OCCURRENCES_OF_A_MOST_FREQUENT_ELEMENT
@@ -9036,9 +9036,9 @@ EULERIAN_NUMBER
 
 def eulerian ( n , m ) :
     if ( m >= n or n == 0 ) :
-        return 0 ;
+        return 0 
     if ( m == 0 ) :
-        return 1 ;
+        return 1 
     return ( ( n - m ) * eulerian ( n - 1 , m - 1 ) + ( m + 1 ) * eulerian ( n - 1 , m ) )
 |||
 
@@ -9056,9 +9056,9 @@ COUNT_POSSIBLE_PATHS_TOP_LEFT_BOTTOM_RIGHT_NXM_MATRIX_3
 
 def numberOfPaths ( m , n ) :
     for i in range ( n , ( m + n - 1 ) ) :
-        path *= i ;
-        path //= ( i - n + 1 ) ;
-    return path ;
+        path *= i 
+        path //= ( i - n + 1 ) 
+    return path 
 |||
 
 MODIFY_ARRAY_TO_MAXIMIZE_SUM_OF_ADJACENT_DIFFERENCES
@@ -9248,7 +9248,7 @@ def match ( first , second ) :
     if len ( first ) > 1 and first [ 0 ] == '*' and len ( second ) == 0 :
         return False
     if ( len ( first ) > 1 and first [ 0 ] == '?' ) or ( len ( first ) != 0 and len ( second ) != 0 and first [ 0 ] == second [ 0 ] ) :
-        return match ( first [ 1 : ] , second [ 1 : ] ) ;
+        return match ( first [ 1 : ] , second [ 1 : ] ) 
     if len ( first ) != 0 and first [ 0 ] == '*' :
         return match ( first [ 1 : ] , second ) or match ( first , second [ 1 : ] )
     return False
@@ -9268,14 +9268,14 @@ def printFactorialNums ( n ) :
 FRIENDS_PAIRING_PROBLEM_2
 
 def countFriendsPairings ( n ) :
-    a , b , c = 1 , 2 , 0 ;
+    a , b , c = 1 , 2 , 0 
     if ( n <= 2 ) :
-        return n ;
+        return n 
     for i in range ( 3 , n + 1 ) :
-        c = b + ( i - 1 ) * a ;
-        a = b ;
-        b = c ;
-    return c ;
+        c = b + ( i - 1 ) * a 
+        a = b 
+        b = c 
+    return c 
 |||
 
 FIND_THE_LARGEST_RECTANGLE_OF_1S_WITH_SWAPPING_OF_COLUMNS_ALLOWED
@@ -9349,21 +9349,21 @@ def isPower ( x , y ) :
 DIVIDE_LARGE_NUMBER_REPRESENTED_STRING
 
 def longDivision ( number , divisor ) :
-    ans = "" ;
-    idx = 0 ;
-    temp = ord ( number [ idx ] ) - ord ( '0' ) ;
+    ans = "" 
+    idx = 0 
+    temp = ord ( number [ idx ] ) - ord ( '0' ) 
     while ( temp < divisor ) :
-        temp = ( temp * 10 + ord ( number [ idx + 1 ] ) - ord ( '0' ) ) ;
-        idx += 1 ;
-    idx += 1 ;
+        temp = ( temp * 10 + ord ( number [ idx + 1 ] ) - ord ( '0' ) ) 
+        idx += 1 
+    idx += 1 
     while ( ( len ( number ) ) > idx ) :
-        ans += chr ( math.floor ( temp // divisor ) + ord ( '0' ) ) ;
-        temp = ( ( temp % divisor ) * 10 + ord ( number [ idx ] ) - ord ( '0' ) ) ;
-        idx += 1 ;
-    ans += chr ( math.floor ( temp // divisor ) + ord ( '0' ) ) ;
+        ans += chr ( math.floor ( temp // divisor ) + ord ( '0' ) ) 
+        temp = ( ( temp % divisor ) * 10 + ord ( number [ idx ] ) - ord ( '0' ) ) 
+        idx += 1 
+    ans += chr ( math.floor ( temp // divisor ) + ord ( '0' ) ) 
     if ( len ( ans ) == 0 ) :
-        return "0" ;
-    return ans ;
+        return "0" 
+    return ans 
 |||
 
 FIND_ROW_NUMBER_BINARY_MATRIX_MAXIMUM_NUMBER_1S
@@ -9401,20 +9401,20 @@ def numberOfPaths ( m , n ) :
 N_TH_NUMBER_WHOSE_SUM_OF_DIGITS_IS_TEN_1
 
 def findNth ( n ) :
-    count = 0 ;
-    curr = 19 ;
+    count = 0 
+    curr = 19 
     while ( True ) :
-        sum = 0 ;
-        x = curr ;
+        sum = 0 
+        x = curr 
         while ( x > 0 ) :
-            sum = sum + x % 10 ;
-            x = int ( x / 10 ) ;
+            sum = sum + x % 10 
+            x = int ( x / 10 ) 
         if ( sum == 10 ) :
-            count += 1 ;
+            count += 1 
         if ( count == n ) :
-            return curr ;
-        curr += 9 ;
-    return - 1 ;
+            return curr 
+        curr += 9 
+    return - 1 
 |||
 
 SUM_NODES_K_TH_LEVEL_TREE_REPRESENTED_STRING_1
@@ -9668,14 +9668,14 @@ def longestRepeatedSubstring ( str ) :
 HOW_TO_AVOID_OVERFLOW_IN_MODULAR_MULTIPLICATION
 
 def mulmod ( a , b , mod ) :
-    res = 0 ;
-    a = a % mod ;
+    res = 0 
+    a = a % mod 
     while ( b > 0 ) :
         if ( b % 2 == 1 ) :
-            res = ( res + a ) % mod ;
-        a = ( a * 2 ) % mod ;
-        b //= 2 ;
-    return res % mod ;
+            res = ( res + a ) % mod 
+        a = ( a * 2 ) % mod 
+        b //= 2 
+    return res % mod 
 |||
 
 PAIR_WITH_GIVEN_PRODUCT_SET_1_FIND_IF_ANY_PAIR_EXISTS_1
@@ -9962,14 +9962,14 @@ def findRepeatFirstN2 ( s ) :
 K_TH_SMALLEST_ELEMENT_REMOVING_INTEGERS_NATURAL_NUMBERS
 
 def ksmallest ( arr , n , k ) :
-    b = [ 0 ] * MAX ;
+    b = [ 0 ] * MAX 
     for i in range ( n ) :
-        b [ arr [ i ] ] = 1 ;
+        b [ arr [ i ] ] = 1 
     for j in range ( 1 , MAX ) :
         if ( b [ j ] != 1 ) :
-            k -= 1 ;
+            k -= 1 
         if ( k is not 1 ) :
-            return j ;
+            return j 
 |||
 
 CHECK_IF_STACK_ELEMENTS_ARE_PAIRWISE_CONSECUTIVE
@@ -9998,7 +9998,7 @@ BINARY_SEARCH_1
 
 def binarySearch ( arr , l , r , x ) :
     while l <= r :
-        mid = l + ( r - l ) // 2 ;
+        mid = l + ( r - l ) // 2 
         if arr [ mid ] == x :
             return mid
         elif arr [ mid ] < x :
@@ -10067,33 +10067,33 @@ def policeThief ( arr , n , k ) :
 LARGEST_SUBARRAY_WITH_EQUAL_NUMBER_OF_0S_AND_1S_1
 
 def maxLen ( arr , n ) :
-    hash_map = { } ;
-    curr_sum = 0 ;
-    max_len = 0 ;
-    ending_index = - 1 ;
+    hash_map = { } 
+    curr_sum = 0 
+    max_len = 0 
+    ending_index = - 1 
     for i in range ( 0 , n ) :
         if ( arr [ i ] == 0 ) :
-            arr [ i ] = - 1 ;
+            arr [ i ] = - 1 
         else :
-            arr [ i ] = 1 ;
+            arr [ i ] = 1 
     for i in range ( 0 , n ) :
-        curr_sum = curr_sum + arr [ i ] ;
+        curr_sum = curr_sum + arr [ i ] 
         if ( curr_sum == 0 ) :
-            max_len = i + 1 ;
-            ending_index = i ;
+            max_len = i + 1 
+            ending_index = i 
         if ( curr_sum + n ) in hash_map :
             max_len = max ( max_len , i - hash_map [ curr_sum + n ] )
         else :
-            hash_map [ curr_sum ] = i ;
+            hash_map [ curr_sum ] = i 
     for i in range ( 0 , n ) :
         if ( arr [ i ] == - 1 ) :
-            arr [ i ] = 0 ;
+            arr [ i ] = 0 
         else :
-            arr [ i ] = 1 ;
-    print ( ending_index - max_len + 1 , end = " " ) ;
-    print ( "to" , end = " " ) ;
-    print ( ending_index ) ;
-    return max_len ;
+            arr [ i ] = 1 
+    print ( ending_index - max_len + 1 , end = " " ) 
+    print ( "to" , end = " " ) 
+    print ( ending_index ) 
+    return max_len 
 |||
 
 MAXIMUM_DIFFERENCE_ZEROS_ONES_BINARY_STRING_SET_2_TIME
@@ -10112,17 +10112,17 @@ def findLength ( string , n ) :
 MAXIMUM_CONSECUTIVE_NUMBERS_PRESENT_ARRAY
 
 def findLongestConseqSubseq ( arr , n ) :
-    S = set ( ) ;
+    S = set ( ) 
     for i in range ( n ) :
-        S.add ( arr [ i ] ) ;
-    ans = 0 ;
+        S.add ( arr [ i ] ) 
+    ans = 0 
     for i in range ( n ) :
         if S.__contains__ ( arr [ i ] ) :
-            j = arr [ i ] ;
+            j = arr [ i ] 
             while ( S.__contains__ ( j ) ) :
-                j += 1 ;
-            ans = max ( ans , j - arr [ i ] ) ;
-    return ans ;
+                j += 1 
+            ans = max ( ans , j - arr [ i ] ) 
+    return ans 
 |||
 
 LEXICOGRAPHICALLY_NEXT_STRING
@@ -10389,7 +10389,7 @@ def getMinSquares ( n ) :
     for i in range ( 4 , n + 1 ) :
         dp.append ( i )
         for x in range ( 1 , int ( ceil ( sqrt ( i ) ) ) + 1 ) :
-            temp = x * x ;
+            temp = x * x 
             if temp > i :
                 break
             else :
@@ -10449,7 +10449,7 @@ def makePermutation ( a , n ) :
         if count.get ( a [ i ] ) :
             count [ a [ i ] ] += 1
         else :
-            count [ a [ i ] ] = 1 ;
+            count [ a [ i ] ] = 1 
     next_missing = 1
     for i in range ( n ) :
         if count [ a [ i ] ] != 1 or a [ i ] > n or a [ i ] < 1 :
@@ -10532,8 +10532,8 @@ def findMaxValue ( mat ) :
             for d in range ( a + 1 , N ) :
                 for e in range ( b + 1 , N ) :
                     if maxValue < int ( mat [ d ] [ e ] - mat [ a ] [ b ] ) :
-                        maxValue = int ( mat [ d ] [ e ] - mat [ a ] [ b ] ) ;
-    return maxValue ;
+                        maxValue = int ( mat [ d ] [ e ] - mat [ a ] [ b ] ) 
+    return maxValue 
 |||
 
 MULTIPLY_TWO_NUMBERS_WITHOUT_USING_MULTIPLY_DIVISION_BITWISE_OPERATORS_AND_NO_LOOPS
@@ -10676,7 +10676,7 @@ def count ( n ) :
 MAXIMUM_SUM_ABSOLUTE_DIFFERENCE_ARRAY
 
 def MaxSumDifference ( a , n ) :
-    np.sort ( a ) ;
+    np.sort ( a ) 
     j = 0
     finalSequence = [ 0 for x in range ( n ) ]
     for i in range ( 0 , int ( n / 2 ) ) :
@@ -10686,7 +10686,7 @@ def MaxSumDifference ( a , n ) :
     MaximumSum = 0
     for i in range ( 0 , n - 1 ) :
         MaximumSum = ( MaximumSum + abs ( finalSequence [ i ] - finalSequence [ i + 1 ] ) )
-    MaximumSum = ( MaximumSum + abs ( finalSequence [ n - 1 ] - finalSequence [ 0 ] ) ) ;
+    MaximumSum = ( MaximumSum + abs ( finalSequence [ n - 1 ] - finalSequence [ 0 ] ) ) 
     print ( MaximumSum )
 |||
 
@@ -10754,8 +10754,8 @@ def smallestNumber ( num ) :
     n = len ( num )
     rightMin = [ 0 ] * n
     right = 0
-    rightMin [ n - 1 ] = - 1 ;
-    right = n - 1 ;
+    rightMin [ n - 1 ] = - 1 
+    right = n - 1 
     for i in range ( n - 2 , 0 , - 1 ) :
         if num [ i ] > num [ right ] :
             rightMin [ i ] = right
@@ -10847,7 +10847,7 @@ LOWER_INSERTION_POINT
 
 def LowerInsertionPoint ( arr , n , X ) :
     if ( X < arr [ 0 ] ) :
-        return 0 ;
+        return 0 
     elif ( X > arr [ n - 1 ] ) :
         return n
     lowerPnt = 0
@@ -10921,14 +10921,14 @@ def findString ( n , k ) :
         res = res + chr ( ord ( 'a' ) + count )
         count += 1
         if ( count == k ) :
-            count = 0 ;
+            count = 0 
     return res
 |||
 
 COUNT_WORDS_WHOSE_TH_LETTER_EITHER_1_TH_TH_I1_TH_LETTER_GIVEN_WORD
 
 def countWords ( str , l ) :
-    count = 1 ;
+    count = 1 
     if ( l == 1 ) :
         return count
     if ( str [ 0 ] == str [ 1 ] ) :
@@ -10972,13 +10972,13 @@ def sumofFactors ( n ) :
         curr_sum = 1
         curr_term = 1
         while n % i == 0 :
-            n = n / i ;
-            curr_term = curr_term * i ;
-            curr_sum += curr_term ;
+            n = n / i 
+            curr_term = curr_term * i 
+            curr_sum += curr_term 
         res = res * curr_sum
     if n > 2 :
         res = res * ( 1 + n )
-    return res ;
+    return res 
 |||
 
 DELETE_CONSECUTIVE_WORDS_SEQUENCE
@@ -11051,7 +11051,7 @@ def isSubsetSum ( arr , n , sum ) :
 MULTIPLICATIVE_INVERSE_UNDER_MODULO_M
 
 def modInverse ( a , m ) :
-    a = a % m ;
+    a = a % m 
     for x in range ( 1 , m ) :
         if ( ( a * x ) % m == 1 ) :
             return x
@@ -11076,10 +11076,10 @@ def bestApproximate ( x , y , n ) :
         sum_y += y [ i ]
         sum_xy += x [ i ] * y [ i ]
         sum_x2 += pow ( x [ i ] , 2 )
-    m = ( float ) ( ( n * sum_xy - sum_x * sum_y ) / ( n * sum_x2 - pow ( sum_x , 2 ) ) ) ;
-    c = ( float ) ( sum_y - m * sum_x ) / n ;
-    print ( "m = " , m ) ;
-    print ( "c = " , c ) ;
+    m = ( float ) ( ( n * sum_xy - sum_x * sum_y ) / ( n * sum_x2 - pow ( sum_x , 2 ) ) ) 
+    c = ( float ) ( sum_y - m * sum_x ) / n 
+    print ( "m = " , m ) 
+    print ( "c = " , c ) 
 |||
 
 SPLIT_ARRAY_ADD_FIRST_PART_END
@@ -11334,7 +11334,7 @@ def search ( arr , low , high ) :
         return None
     if low == high :
         return arr [ low ]
-    mid = ( low + high ) / 2 ;
+    mid = ( low + high ) / 2 
     if mid % 2 == 0 :
         if arr [ mid ] == arr [ mid + 1 ] :
             return search ( arr , mid + 2 , high )
@@ -11426,7 +11426,7 @@ def countSetBits ( n ) :
 REORDER_A_ARRAY_ACCORDING_TO_GIVEN_INDEXES
 
 def reorder ( arr , index , n ) :
-    temp = [ 0 ] * n ;
+    temp = [ 0 ] * n 
     for i in range ( 0 , n ) :
         temp [ index [ i ] ] = arr [ i ]
     for i in range ( 0 , n ) :
@@ -11481,7 +11481,7 @@ def MatrixChainOrder ( p , n ) :
 COUNT_NUMBER_ISLANDS_EVERY_ISLAND_SEPARATED_LINE
 
 def countIslands ( mat ) :
-    count = 0 ;
+    count = 0 
     for i in range ( 0 , M ) :
         for j in range ( 0 , N ) :
             if ( mat [ i ] [ j ] == 'X' ) :
@@ -11618,7 +11618,7 @@ def nextPowerOf2 ( n ) :
         return n
     while ( p < n ) :
         p <<= 1
-    return p ;
+    return p 
 |||
 
 REORDER_A_ARRAY_ACCORDING_TO_GIVEN_INDEXES_1
@@ -11676,7 +11676,7 @@ def censor ( text , word ) :
     result = ''
     stars = '*' * len ( word )
     count = 0
-    index = 0 ;
+    index = 0 
     for i in word_list :
         if i == word :
             word_list [ index ] = stars
@@ -11718,23 +11718,23 @@ def maxLength ( s , n ) :
 FIND_THE_POINT_WHERE_MAXIMUM_INTERVALS_OVERLAP
 
 def findMaxGuests ( arrl , exit , n ) :
-    arrl.sort ( ) ;
-    exit.sort ( ) ;
-    guests_in = 1 ;
-    max_guests = 1 ;
-    time = arrl [ 0 ] ;
-    i = 1 ;
-    j = 0 ;
+    arrl.sort ( ) 
+    exit.sort ( ) 
+    guests_in = 1 
+    max_guests = 1 
+    time = arrl [ 0 ] 
+    i = 1 
+    j = 0 
     while ( i < n and j < n ) :
         if ( arrl [ i ] <= exit [ j ] ) :
-            guests_in = guests_in + 1 ;
+            guests_in = guests_in + 1 
             if ( guests_in > max_guests ) :
-                max_guests = guests_in ;
-                time = arrl [ i ] ;
-            i = i + 1 ;
+                max_guests = guests_in 
+                time = arrl [ i ] 
+            i = i + 1 
         else :
-            guests_in = guests_in - 1 ;
-            j = j + 1 ;
+            guests_in = guests_in - 1 
+            j = j + 1 
     print ( "Maximum Number of Guests =" , max_guests , "at time" , time )
 |||
 
@@ -11754,9 +11754,9 @@ def maxSumPairWithDifferenceLessThanK ( arr , N , K ) :
         dp [ i ] = dp [ i - 1 ]
         if ( arr [ i ] - arr [ i - 1 ] < K ) :
             if ( i >= 2 ) :
-                dp [ i ] = max ( dp [ i ] , dp [ i - 2 ] + arr [ i ] + arr [ i - 1 ] ) ;
+                dp [ i ] = max ( dp [ i ] , dp [ i - 2 ] + arr [ i ] + arr [ i - 1 ] ) 
             else :
-                dp [ i ] = max ( dp [ i ] , arr [ i ] + arr [ i - 1 ] ) ;
+                dp [ i ] = max ( dp [ i ] , arr [ i ] + arr [ i - 1 ] ) 
     return dp [ N - 1 ]
 |||
 
@@ -11808,9 +11808,9 @@ def solve ( n , t , p ) :
     for i in range ( 0 , t ) :
         for j in range ( 0 , n - 1 ) :
             if ( s [ j ] == 'B' and s [ j + 1 ] == 'G' ) :
-                temp = s [ j ] ;
-                s [ j ] = s [ j + 1 ] ;
-                s [ j + 1 ] = temp ;
+                temp = s [ j ] 
+                s [ j ] = s [ j + 1 ] 
+                s [ j + 1 ] = temp 
                 j = j + 1
     print ( ''.join ( s ) )
 |||
@@ -11824,20 +11824,20 @@ def printSuperSeq ( a , b ) :
     for i in range ( 0 , m + 1 ) :
         for j in range ( 0 , n + 1 ) :
             if not i :
-                dp [ i ] [ j ] = j ;
+                dp [ i ] [ j ] = j 
             elif not j :
-                dp [ i ] [ j ] = i ;
+                dp [ i ] [ j ] = i 
             elif ( a [ i - 1 ] == b [ j - 1 ] ) :
-                dp [ i ] [ j ] = 1 + dp [ i - 1 ] [ j - 1 ] ;
+                dp [ i ] [ j ] = 1 + dp [ i - 1 ] [ j - 1 ] 
             else :
-                dp [ i ] [ j ] = 1 + min ( dp [ i - 1 ] [ j ] , dp [ i ] [ j - 1 ] ) ;
-    index = dp [ m ] [ n ] ;
+                dp [ i ] [ j ] = 1 + min ( dp [ i - 1 ] [ j ] , dp [ i ] [ j - 1 ] ) 
+    index = dp [ m ] [ n ] 
     res = [ "" ] * ( index )
     i = m
-    j = n ;
+    j = n 
     while ( i > 0 and j > 0 ) :
         if ( a [ i - 1 ] == b [ j - 1 ] ) :
-            res [ index - 1 ] = a [ i - 1 ] ;
+            res [ index - 1 ] = a [ i - 1 ] 
             i -= 1
             j -= 1
             index -= 1
@@ -12000,14 +12000,14 @@ def countRotations ( arr , low , high ) :
         return 0
     if ( high == low ) :
         return low
-    mid = low + ( high - low ) / 2 ;
+    mid = low + ( high - low ) / 2 
     mid = int ( mid )
     if ( mid < high and arr [ mid + 1 ] < arr [ mid ] ) :
         return ( mid + 1 )
     if ( mid > low and arr [ mid ] < arr [ mid - 1 ] ) :
         return mid
     if ( arr [ high ] > arr [ mid ] ) :
-        return countRotations ( arr , low , mid - 1 ) ;
+        return countRotations ( arr , low , mid - 1 ) 
     return countRotations ( arr , mid + 1 , high )
 |||
 
@@ -12069,16 +12069,16 @@ def getMinSteps ( n ) :
 COUNT_POSSIBLE_DECODINGS_GIVEN_DIGIT_SEQUENCE_1
 
 def countDecodingDP ( digits , n ) :
-    count = [ 0 ] * ( n + 1 ) ;
-    count [ 0 ] = 1 ;
-    count [ 1 ] = 1 ;
+    count = [ 0 ] * ( n + 1 ) 
+    count [ 0 ] = 1 
+    count [ 1 ] = 1 
     for i in range ( 2 , n + 1 ) :
-        count [ i ] = 0 ;
+        count [ i ] = 0 
         if ( digits [ i - 1 ] > '0' ) :
-            count [ i ] = count [ i - 1 ] ;
+            count [ i ] = count [ i - 1 ] 
         if ( digits [ i - 2 ] == '1' or ( digits [ i - 2 ] == '2' and digits [ i - 1 ] < '7' ) ) :
-            count [ i ] += count [ i - 2 ] ;
-    return count [ n ] ;
+            count [ i ] += count [ i - 2 ] 
+    return count [ n ] 
 |||
 
 EULERS_FOUR_SQUARE_IDENTITY_1
@@ -12145,47 +12145,47 @@ def knapSack ( W , wt , val , n ) :
 PROGRAM_TO_PRINT_DOUBLE_HEADED_ARROW_PATTERN
 
 def drawPattern ( N ) :
-    n = N ;
-    row = 1 ;
-    nst = 1 ;
-    nsp1 = n - 1 ;
-    nsp2 = - 1 ;
-    val1 = row ;
-    val2 = 1 ;
+    n = N 
+    row = 1 
+    nst = 1 
+    nsp1 = n - 1 
+    nsp2 = - 1 
+    val1 = row 
+    val2 = 1 
     while ( row <= n ) :
-        csp1 = 1 ;
+        csp1 = 1 
         while ( csp1 <= nsp1 ) :
-            print ( " " , end = " " ) ;
-            csp1 = csp1 + 1 ;
-        cst1 = 1 ;
+            print ( " " , end = " " ) 
+            csp1 = csp1 + 1 
+        cst1 = 1 
         while ( cst1 <= nst ) :
-            print ( val1 , end = " " ) ;
-            val1 = val1 - 1 ;
-            cst1 = cst1 + 1 ;
-        csp2 = 1 ;
+            print ( val1 , end = " " ) 
+            val1 = val1 - 1 
+            cst1 = cst1 + 1 
+        csp2 = 1 
         while ( csp2 <= nsp2 ) :
-            print ( " " , end = " " ) ;
-            csp2 = csp2 + 1 ;
+            print ( " " , end = " " ) 
+            csp2 = csp2 + 1 
         if ( row != 1 and row != n ) :
-            cst2 = 1 ;
+            cst2 = 1 
             while ( cst2 <= nst ) :
-                print ( val2 , end = " " ) ;
-                val2 = val2 + 1 ;
-                cst2 = cst2 + 1 ;
+                print ( val2 , end = " " ) 
+                val2 = val2 + 1 
+                cst2 = cst2 + 1 
         print ( )
         if ( row <= n // 2 ) :
-            nst = nst + 1 ;
-            nsp1 = nsp1 - 2 ;
-            nsp2 = nsp2 + 2 ;
-            val1 = row + 1 ;
-            val2 = 1 ;
+            nst = nst + 1 
+            nsp1 = nsp1 - 2 
+            nsp2 = nsp2 + 2 
+            val1 = row + 1 
+            val2 = 1 
         else :
-            nst = nst - 1 ;
-            nsp1 = nsp1 + 2 ;
-            nsp2 = nsp2 - 2 ;
-            val1 = n - row ;
-            val2 = 1 ;
-        row = row + 1 ;
+            nst = nst - 1 
+            nsp1 = nsp1 + 2 
+            nsp2 = nsp2 - 2 
+            val1 = n - row 
+            val2 = 1 
+        row = row + 1 
 |||
 
 INTEGER_POSITIVE_VALUE_POSITIVE_NEGATIVE_VALUE_ARRAY
@@ -12230,17 +12230,17 @@ REPRESENT_NUMBER_SUM_MINIMUM_POSSIBLE_PSUEDOBINARY_NUMBERS
 
 def psuedoBinary ( n ) :
     while ( n > 0 ) :
-        temp = n ;
-        m = 0 ;
-        p = 1 ;
+        temp = n 
+        m = 0 
+        p = 1 
         while ( temp ) :
-            rem = temp % 10 ;
-            temp = int ( temp / 10 ) ;
+            rem = temp % 10 
+            temp = int ( temp / 10 ) 
             if ( rem != 0 ) :
-                m += p ;
-            p *= 10 ;
-        print ( m , end = " " ) ;
-        n = n - m ;
+                m += p 
+            p *= 10 
+        print ( m , end = " " ) 
+        n = n - m 
 |||
 
 FIND_NUMBER_CURRENCY_NOTES_SUM_UPTO_GIVEN_AMOUNT
@@ -12293,17 +12293,17 @@ GIVEN_A_SORTED_AND_ROTATED_ARRAY_FIND_IF_THERE_IS_A_PAIR_WITH_A_GIVEN_SUM
 def pairInSortedRotated ( arr , n , x ) :
     for i in range ( 0 , n - 1 ) :
         if ( arr [ i ] > arr [ i + 1 ] ) :
-            break ;
+            break 
     l = ( i + 1 ) % n
     r = i
     while ( l != r ) :
         if ( arr [ l ] + arr [ r ] == x ) :
-            return True ;
+            return True 
         if ( arr [ l ] + arr [ r ] < x ) :
-            l = ( l + 1 ) % n ;
+            l = ( l + 1 ) % n 
         else :
-            r = ( n + r - 1 ) % n ;
-    return False ;
+            r = ( n + r - 1 ) % n 
+    return False 
 |||
 
 PROGRAM_TO_FIND_REMAINDER_WITHOUT_USING_MODULO_OR_OPERATOR_1
@@ -12379,7 +12379,7 @@ def minProduct ( arr , n , k ) :
         x = heapq.heappop ( arr )
         ans = ans * x
         count = count + 1
-    return ans ;
+    return ans 
 |||
 
 FIND_UNIQUE_ELEMENTS_MATRIX
@@ -12389,7 +12389,7 @@ def unique ( mat , n , m ) :
     for i in range ( 0 , n ) :
         for j in range ( 0 , m ) :
             if ( maximum < mat [ i ] [ j ] ) :
-                maximum = mat [ i ] [ j ] ;
+                maximum = mat [ i ] [ j ] 
     uniqueElementDict = [ 0 ] * ( maximum + 1 )
     for i in range ( 0 , n ) :
         for j in range ( 0 , m ) :
@@ -12491,7 +12491,7 @@ def CountPS ( str , n ) :
             dp [ i ] [ i + 1 ] = 1
     for gap in range ( 2 , n ) :
         for i in range ( n - gap ) :
-            j = gap + i ;
+            j = gap + i 
             if ( str [ i ] == str [ j ] and P [ i + 1 ] [ j - 1 ] ) :
                 P [ i ] [ j ] = True
             if ( P [ i ] [ j ] == True ) :
@@ -12563,29 +12563,29 @@ def spiralPrint ( m , n , a ) :
 FIND_DISTINCT_INTEGERS_FOR_A_TRIPLET_WITH_GIVEN_PRODUCT
 
 def findTriplets ( x ) :
-    fact = [ ] ;
-    factors = set ( ) ;
+    fact = [ ] 
+    factors = set ( ) 
     for i in range ( 2 , int ( sqrt ( x ) ) ) :
         if ( x % i == 0 ) :
-            fact.append ( i ) ;
+            fact.append ( i ) 
             if ( x / i != i ) :
-                fact.append ( x // i ) ;
-            factors.add ( i ) ;
-            factors.add ( x // i ) ;
-    found = False ;
-    k = len ( fact ) ;
+                fact.append ( x // i ) 
+            factors.add ( i ) 
+            factors.add ( x // i ) 
+    found = False 
+    k = len ( fact ) 
     for i in range ( k ) :
-        a = fact [ i ] ;
+        a = fact [ i ] 
         for j in range ( k ) :
-            b = fact [ j ] ;
+            b = fact [ j ] 
             if ( ( a != b ) and ( x % ( a * b ) == 0 ) and ( x / ( a * b ) != a ) and ( x / ( a * b ) != b ) and ( x / ( a * b ) != 1 ) ) :
-                print ( a , b , x // ( a * b ) ) ;
-                found = True ;
-                break ;
+                print ( a , b , x // ( a * b ) ) 
+                found = True 
+                break 
         if ( found ) :
-            break ;
+            break 
     if ( not found ) :
-        print ( "-1" ) ;
+        print ( "-1" ) 
 |||
 
 SUM_TWO_LARGE_NUMBERS_1
@@ -12770,12 +12770,12 @@ def negCyclefloydWarshall ( graph ) :
 PROGRAM_SORT_STRING_DESCENDING_ORDER
 
 def sortString ( str ) :
-    charCount = [ 0 ] * MAX_CHAR ;
+    charCount = [ 0 ] * MAX_CHAR 
     for i in range ( len ( str ) ) :
-        charCount [ ord ( str [ i ] ) - ord ( 'a' ) ] += 1 ;
+        charCount [ ord ( str [ i ] ) - ord ( 'a' ) ] += 1 
     for i in range ( MAX_CHAR - 1 , - 1 , - 1 ) :
         for j in range ( charCount [ i ] ) :
-            print ( chr ( 97 + i ) , end = "" ) ;
+            print ( chr ( 97 + i ) , end = "" ) 
 |||
 
 COUNT_PAIRS_WITH_GIVEN_SUM
@@ -12885,14 +12885,14 @@ def knapSack ( W , wt , val , n ) :
 PROGRAM_DECIMAL_OCTAL_CONVERSION
 
 def decToOctal ( n ) :
-    octalNum = [ 0 ] * 100 ;
-    i = 0 ;
+    octalNum = [ 0 ] * 100 
+    i = 0 
     while ( n != 0 ) :
-        octalNum [ i ] = n % 8 ;
-        n = int ( n / 8 ) ;
-        i += 1 ;
+        octalNum [ i ] = n % 8 
+        n = int ( n / 8 ) 
+        i += 1 
     for j in range ( i - 1 , - 1 , - 1 ) :
-        print ( octalNum [ j ] , end = "" ) ;
+        print ( octalNum [ j ] , end = "" ) 
 |||
 
 SUBSEQUENCES_SIZE_THREE_ARRAY_WHOSE_SUM_DIVISIBLE_M_1
@@ -12988,27 +12988,27 @@ def findSum ( arr , n ) :
 DYNAMIC_PROGRAMMING_SET_17_PALINDROME_PARTITIONING_1
 
 def minPalPartion ( str1 ) :
-    n = len ( str1 ) ;
-    C = [ 0 ] * ( n + 1 ) ;
-    P = [ [ False for x in range ( n + 1 ) ] for y in range ( n + 1 ) ] ;
+    n = len ( str1 ) 
+    C = [ 0 ] * ( n + 1 ) 
+    P = [ [ False for x in range ( n + 1 ) ] for y in range ( n + 1 ) ] 
     for i in range ( n ) :
-        P [ i ] [ i ] = True ;
+        P [ i ] [ i ] = True 
     for L in range ( 2 , n + 1 ) :
         for i in range ( n - L + 1 ) :
-            j = i + L - 1 ;
+            j = i + L - 1 
             if ( L == 2 ) :
-                P [ i ] [ j ] = ( str1 [ i ] == str1 [ j ] ) ;
+                P [ i ] [ j ] = ( str1 [ i ] == str1 [ j ] ) 
             else :
-                P [ i ] [ j ] = ( ( str1 [ i ] == str1 [ j ] ) and P [ i + 1 ] [ j - 1 ] ) ;
+                P [ i ] [ j ] = ( ( str1 [ i ] == str1 [ j ] ) and P [ i + 1 ] [ j - 1 ] ) 
     for i in range ( n ) :
         if ( P [ 0 ] [ i ] == True ) :
-            C [ i ] = 0 ;
+            C [ i ] = 0 
         else :
-            C [ i ] = sys.maxsize ;
+            C [ i ] = sys.maxsize 
             for j in range ( i ) :
                 if ( P [ j + 1 ] [ i ] == True and 1 + C [ j ] < C [ i ] ) :
-                    C [ i ] = 1 + C [ j ] ;
-    return C [ n - 1 ] ;
+                    C [ i ] = 1 + C [ j ] 
+    return C [ n - 1 ] 
 |||
 
 MINIMUM_POSITIVE_POINTS_TO_REACH_DESTINATION
@@ -13112,7 +13112,7 @@ def evenSum ( n ) :
                 C [ i ] [ j ] = 1
             else :
                 C [ i ] [ j ] = C [ i - 1 ] [ j - 1 ] + C [ i - 1 ] [ j ]
-    sum = 0 ;
+    sum = 0 
     for i in range ( 0 , n + 1 ) :
         if n % 2 == 0 :
             sum = sum + C [ n ] [ i ]
@@ -13143,13 +13143,13 @@ def maxLen ( arr ) :
 NEXT_POWER_OF_2
 
 def nextPowerOf2 ( n ) :
-    count = 0 ;
+    count = 0 
     if ( n and not ( n & ( n - 1 ) ) ) :
         return n
     while ( n != 0 ) :
         n >>= 1
         count += 1
-    return 1 << count ;
+    return 1 << count 
 |||
 
 LONGEST_GEOMETRIC_PROGRESSION
@@ -13262,11 +13262,11 @@ def subArraySum ( arr , n , sum ) :
 SPACE_OPTIMIZED_DP_SOLUTION_0_1_KNAPSACK_PROBLEM_1
 
 def KnapSack ( val , wt , n , W ) :
-    dp = [ 0 ] * ( W + 1 ) ;
+    dp = [ 0 ] * ( W + 1 ) 
     for i in range ( n ) :
         for j in range ( W , wt [ i ] , - 1 ) :
-            dp [ j ] = max ( dp [ j ] , val [ i ] + dp [ j - wt [ i ] ] ) ;
-    return dp [ W ] ;
+            dp [ j ] = max ( dp [ j ] , val [ i ] + dp [ j - wt [ i ] ] ) 
+    return dp [ W ] 
 |||
 
 FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X
@@ -13278,20 +13278,20 @@ def yMod ( y , x ) :
 SUM_SERIES_23_45_67_89_UPTO_N_TERMS
 
 def seriesSum ( n ) :
-    i = 1 ;
-    res = 0.0 ;
-    sign = True ;
+    i = 1 
+    res = 0.0 
+    sign = True 
     while ( n > 0 ) :
-        n = n - 1 ;
+        n = n - 1 
         if ( sign ) :
-            sign = False ;
-            res = res + ( i + 1 ) / ( i + 2 ) ;
-            i = i + 2 ;
+            sign = False 
+            res = res + ( i + 1 ) / ( i + 2 ) 
+            i = i + 2 
         else :
-            sign = True ;
-            res = res - ( i + 1 ) / ( i + 2 ) ;
-            i = i + 2 ;
-    return res ;
+            sign = True 
+            res = res - ( i + 1 ) / ( i + 2 ) 
+            i = i + 2 
+    return res 
 |||
 
 LENGTH_LONGEST_STRICT_BITONIC_SUBSEQUENCE
@@ -13383,8 +13383,8 @@ PROGRAM_TO_FIND_REMAINDER_WITHOUT_USING_MODULO_OR_OPERATOR_2
 
 def getRemainder ( num , divisor ) :
     while ( num >= divisor ) :
-        num -= divisor ;
-    return num ;
+        num -= divisor 
+    return num 
 |||
 
 CHECK_LARGE_NUMBER_DIVISIBLE_4_NOT
@@ -13424,13 +13424,13 @@ def rectCount ( n , m ) :
 MAXIMUM_POINTS_INTERSECTION_N_CIRCLES
 
 def intersection ( n ) :
-    return n * ( n - 1 ) ;
+    return n * ( n - 1 ) 
 |||
 
 ADD_1_TO_A_GIVEN_NUMBER
 
 def f_gold ( x ) :
-    m = 1 ;
+    m = 1 
     while ( x & m ) :
         x = x ^ m
         m <<= 1
@@ -13561,7 +13561,7 @@ def f_gold ( arr , low , high , x ) :
         return low
     if x > arr [ high ] :
         return - 1
-    mid = ( low + high ) / 2 ;
+    mid = ( low + high ) / 2 
     if arr [ mid ] == x :
         return mid
     elif arr [ mid ] < x :
@@ -13603,12 +13603,12 @@ def f_gold ( str ) :
     zeros = 0
     ones = 0
     for i in range ( 0 , len ( str ) ) :
-        ch = str [ i ] ;
+        ch = str [ i ] 
         if ( ch == '0' ) :
             zeros = zeros + 1
         else :
             ones = ones + 1
-    return ( zeros == 1 or ones == 1 ) ;
+    return ( zeros == 1 or ones == 1 ) 
 |||
 
 CHECK_ARRAY_CONTAINS_CONTIGUOUS_INTEGERS_DUPLICATES_ALLOWED
@@ -13631,16 +13631,16 @@ def f_gold ( arr , n ) :
 CHECK_IF_ALL_THE_ELEMENTS_CAN_BE_MADE_OF_SAME_PARITY_BY_INVERTING_ADJACENT_ELEMENTS
 
 def f_gold ( a , n ) :
-    count_odd = 0 ; count_even = 0 ;
+    count_odd = 0 ; count_even = 0 
     for i in range ( n ) :
         if ( a [ i ] & 1 ) :
-            count_odd += 1 ;
+            count_odd += 1 
         else :
-            count_even += 1 ;
+            count_even += 1 
     if ( count_odd % 2 and count_even % 2 ) :
-        return False ;
+        return False 
     else :
-        return True ;
+        return True 
 |||
 
 CHECK_IF_A_NUMBER_IS_JUMBLED_OR_NOT
@@ -13902,13 +13902,13 @@ COUNT_DIGITS_FACTORIAL_SET_1
 
 def f_gold ( n ) :
     if ( n < 0 ) :
-        return 0 ;
+        return 0 
     if ( n <= 1 ) :
-        return 1 ;
-    digits = 0 ;
+        return 1 
+    digits = 0 
     for i in range ( 2 , n + 1 ) :
-        digits += math.log10 ( i ) ;
-    return math.floor ( digits ) + 1 ;
+        digits += math.log10 ( i ) 
+    return math.floor ( digits ) + 1 
 |||
 
 COUNT_ENTRIES_EQUAL_TO_X_IN_A_SPECIAL_MATRIX
@@ -13961,14 +13961,14 @@ def f_gold ( arr , n ) :
 COUNT_NUMBER_OF_SOLUTIONS_OF_X2_1_MOD_P_IN_GIVEN_RANGE
 
 def f_gold ( n , p ) :
-    ans = 0 ;
+    ans = 0 
     for x in range ( 1 , p ) :
         if ( ( x * x ) % p == 1 ) :
-            last = x + p * ( n / p ) ;
+            last = x + p * ( n / p ) 
             if ( last > n ) :
-                last -= p ;
-            ans += ( ( last - x ) / p + 1 ) ;
-    return int ( ans ) ;
+                last -= p 
+            ans += ( ( last - x ) / p + 1 ) 
+    return int ( ans ) 
 |||
 
 COUNT_NUMBER_OF_WAYS_TO_COVER_A_DISTANCE_1
@@ -13980,7 +13980,7 @@ def f_gold ( dist ) :
     count [ 2 ] = 2
     for i in range ( 3 , dist + 1 ) :
         count [ i ] = ( count [ i - 1 ] + count [ i - 2 ] + count [ i - 3 ] )
-    return count [ dist ] ;
+    return count [ dist ] 
 |||
 
 COUNT_NUMBER_OF_WAYS_TO_FILL_A_N_X_4_GRID_USING_1_X_4_TILES
@@ -14201,8 +14201,8 @@ def f_gold ( arr , n ) :
 COUNT_SUBSTRINGS_WITH_SAME_FIRST_AND_LAST_CHARACTERS
 
 def f_gold ( s ) :
-    result = 0 ;
-    n = len ( s ) ;
+    result = 0 
+    n = len ( s ) 
     for i in range ( n ) :
         for j in range ( i , n ) :
             if ( s [ i ] == s [ j ] ) :
@@ -14255,7 +14255,7 @@ def f_gold ( stri , n ) :
 C_PROGRAM_FACTORIAL_NUMBER_1
 
 def f_gold ( n ) :
-    return 1 if ( n == 1 or n == 0 ) else n * f_gold ( n - 1 ) ;
+    return 1 if ( n == 1 or n == 0 ) else n * f_gold ( n - 1 ) 
 |||
 
 C_PROGRAM_FACTORIAL_NUMBER_2
@@ -14350,12 +14350,12 @@ def f_gold ( arr , n ) :
 DOUBLE_FACTORIAL_1
 
 def f_gold ( n ) :
-    res = 1 ;
+    res = 1 
     for i in range ( n , - 1 , - 2 ) :
         if ( i == 0 or i == 1 ) :
-            return res ;
+            return res 
         else :
-            res *= i ;
+            res *= i 
 |||
 
 DYCK_PATH
@@ -14373,7 +14373,7 @@ DYNAMIC_PROGRAMMING_HIGH_EFFORT_VS_LOW_EFFORT_TASKS_PROBLEM
 def f_gold ( high , low , n ) :
     if ( n <= 0 ) :
         return 0
-    return max ( high [ n - 1 ] + f_gold ( high , low , ( n - 2 ) ) , low [ n - 1 ] + f_gold ( high , low , ( n - 1 ) ) ) ;
+    return max ( high [ n - 1 ] + f_gold ( high , low , ( n - 2 ) ) , low [ n - 1 ] + f_gold ( high , low , ( n - 1 ) ) ) 
 |||
 
 DYNAMIC_PROGRAMMING_SET_14_MAXIMUM_SUM_INCREASING_SUBSEQUENCE
@@ -14400,8 +14400,8 @@ def f_gold ( n ) :
         return ( n - 1 )
     res = 1
     while ( n > 4 ) :
-        n -= 3 ;
-        res *= 3 ;
+        n -= 3 
+        res *= 3 
     return ( n * res )
 |||
 
@@ -14425,8 +14425,8 @@ def f_gold ( symb , oper , n ) :
             T [ i ] [ j ] = F [ i ] [ j ] = 0
             for g in range ( gap ) :
                 k = i + g
-                tik = T [ i ] [ k ] + F [ i ] [ k ] ;
-                tkj = T [ k + 1 ] [ j ] + F [ k + 1 ] [ j ] ;
+                tik = T [ i ] [ k ] + F [ i ] [ k ] 
+                tkj = T [ k + 1 ] [ j ] + F [ k + 1 ] [ j ] 
                 if oper [ k ] == '&' :
                     T [ i ] [ j ] += T [ i ] [ k ] * T [ k + 1 ] [ j ]
                     F [ i ] [ j ] += ( tik * tkj - T [ i ] [ k ] * T [ k + 1 ] [ j ] )
@@ -14692,7 +14692,7 @@ def f_gold ( strA , strB ) :
         res = res ^ ( ord ) ( strA [ i ] )
     for i in range ( 0 , len ( strB ) ) :
         res = res ^ ( ord ) ( strB [ i ] )
-    return ( ( chr ) ( res ) ) ;
+    return ( ( chr ) ( res ) ) 
 |||
 
 FIND_PERIMETER_CYLINDER
@@ -14716,10 +14716,10 @@ def f_gold ( n ) :
 FIND_SUM_MODULO_K_FIRST_N_NATURAL_NUMBER
 
 def f_gold ( N , K ) :
-    ans = 0 ;
+    ans = 0 
     for i in range ( 1 , N + 1 ) :
-        ans += ( i % K ) ;
-    return ans ;
+        ans += ( i % K ) 
+    return ans 
 |||
 
 FIND_SUM_ODD_FACTORS_NUMBER
@@ -14825,7 +14825,7 @@ FIND_THE_NUMBER_OCCURRING_ODD_NUMBER_OF_TIMES_1
 def f_gold ( arr , size ) :
     Hash = dict ( )
     for i in range ( size ) :
-        Hash [ arr [ i ] ] = Hash.get ( arr [ i ] , 0 ) + 1 ;
+        Hash [ arr [ i ] ] = Hash.get ( arr [ i ] , 0 ) + 1 
     for i in Hash :
         if ( Hash [ i ] % 2 != 0 ) :
             return i
@@ -14835,7 +14835,7 @@ def f_gold ( arr , size ) :
 FIND_WHETHER_A_GIVEN_NUMBER_IS_A_POWER_OF_4_OR_NOT_2
 
 def f_gold ( n ) :
-    return ( n != 0 and ( ( n & ( n - 1 ) ) == 0 ) and not ( n & 0xAAAAAAAA ) ) ;
+    return ( n != 0 and ( ( n & ( n - 1 ) ) == 0 ) and not ( n & 0xAAAAAAAA ) ) 
 |||
 
 FIRST_UPPERCASE_LETTER_IN_A_STRING_ITERATIVE_AND_RECURSIVE
@@ -14867,10 +14867,10 @@ def f_gold ( arr , low , high , x ) :
 FUNCTION_COPY_STRING_ITERATIVE_RECURSIVE_1
 
 def f_gold ( s1 , s2 , index ) :
-    s2 [ index ] = s1 [ index ] ;
+    s2 [ index ] = s1 [ index ] 
     if ( index == len ( s1 ) - 1 ) :
-        return ;
-    f_gold ( s1 , s2 , index + 1 ) ;
+        return 
+    f_gold ( s1 , s2 , index + 1 ) 
 |||
 
 GIVEN_LARGE_NUMBER_CHECK_SUBSEQUENCE_DIGITS_DIVISIBLE_8
@@ -14964,7 +14964,7 @@ def f_gold ( a , b , k ) :
         count = count + 1
         if ( count == k ) :
             return rem
-        p = p / 10 ;
+        p = p / 10 
 |||
 
 K_TH_ELEMENT_TWO_SORTED_ARRAYS
@@ -15041,7 +15041,7 @@ def f_gold ( k , s1 , s2 ) :
         for j in range ( 1 , m + 1 ) :
             lcs [ i ] [ j ] = max ( lcs [ i - 1 ] [ j ] , lcs [ i ] [ j - 1 ] )
             if ( s1 [ i - 1 ] == s2 [ j - 1 ] ) :
-                cnt [ i ] [ j ] = cnt [ i - 1 ] [ j - 1 ] + 1 ;
+                cnt [ i ] [ j ] = cnt [ i - 1 ] [ j - 1 ] + 1 
             if ( cnt [ i ] [ j ] >= k ) :
                 for a in range ( k , cnt [ i ] [ j ] + 1 ) :
                     lcs [ i ] [ j ] = max ( lcs [ i ] [ j ] , lcs [ i - a ] [ j - a ] + a )
@@ -15169,36 +15169,36 @@ def f_gold ( arr , n ) :
 MAXIMUM_AVERAGE_SUM_PARTITION_ARRAY
 
 def f_gold ( A , K ) :
-    n = len ( A ) ;
-    pre_sum = [ 0 ] * ( n + 1 ) ;
-    pre_sum [ 0 ] = 0 ;
+    n = len ( A ) 
+    pre_sum = [ 0 ] * ( n + 1 ) 
+    pre_sum [ 0 ] = 0 
     for i in range ( n ) :
-        pre_sum [ i + 1 ] = pre_sum [ i ] + A [ i ] ;
-    dp = [ 0 ] * n ;
-    sum = 0 ;
+        pre_sum [ i + 1 ] = pre_sum [ i ] + A [ i ] 
+    dp = [ 0 ] * n 
+    sum = 0 
     for i in range ( n ) :
-        dp [ i ] = ( pre_sum [ n ] - pre_sum [ i ] ) / ( n - i ) ;
+        dp [ i ] = ( pre_sum [ n ] - pre_sum [ i ] ) / ( n - i ) 
     for k in range ( K - 1 ) :
         for i in range ( n ) :
             for j in range ( i + 1 , n ) :
-                dp [ i ] = max ( dp [ i ] , ( pre_sum [ j ] - pre_sum [ i ] ) / ( j - i ) + dp [ j ] ) ;
-    return int ( dp [ 0 ] ) ;
+                dp [ i ] = max ( dp [ i ] , ( pre_sum [ j ] - pre_sum [ i ] ) / ( j - i ) + dp [ j ] ) 
+    return int ( dp [ 0 ] ) 
 |||
 
 MAXIMUM_BINOMIAL_COEFFICIENT_TERM_VALUE
 
 def f_gold ( n ) :
-    C = [ [ 0 for x in range ( n + 1 ) ] for y in range ( n + 1 ) ] ;
+    C = [ [ 0 for x in range ( n + 1 ) ] for y in range ( n + 1 ) ] 
     for i in range ( n + 1 ) :
         for j in range ( min ( i , n ) + 1 ) :
             if ( j == 0 or j == i ) :
-                C [ i ] [ j ] = 1 ;
+                C [ i ] [ j ] = 1 
             else :
-                C [ i ] [ j ] = ( C [ i - 1 ] [ j - 1 ] + C [ i - 1 ] [ j ] ) ;
-    maxvalue = 0 ;
+                C [ i ] [ j ] = ( C [ i - 1 ] [ j - 1 ] + C [ i - 1 ] [ j ] ) 
+    maxvalue = 0 
     for i in range ( n + 1 ) :
-        maxvalue = max ( maxvalue , C [ n ] [ i ] ) ;
-    return maxvalue ;
+        maxvalue = max ( maxvalue , C [ n ] [ i ] ) 
+    return maxvalue 
 |||
 
 MAXIMUM_CONSECUTIVE_REPEATING_CHARACTER_STRING_1
@@ -15377,16 +15377,16 @@ def f_gold ( arr , n ) :
 MAXIMUM_SUM_PAIRS_SPECIFIC_DIFFERENCE_1
 
 def f_gold ( arr , N , k ) :
-    maxSum = 0 ;
-    arr.sort ( ) ;
-    i = N - 1 ;
+    maxSum = 0 
+    arr.sort ( ) 
+    i = N - 1 
     while ( i >= 0 ) :
         if ( arr [ i ] - arr [ i - 1 ] < k ) :
-            maxSum += arr [ i ] ;
-            maxSum += arr [ i - 1 ] ;
-            i -= 1 ;
-        i -= 1 ;
-    return maxSum ;
+            maxSum += arr [ i ] 
+            maxSum += arr [ i - 1 ] 
+            i -= 1 
+        i -= 1 
+    return maxSum 
 |||
 
 MAXIMUM_SUM_SUBSEQUENCE_LEAST_K_DISTANT_ELEMENTS
@@ -15449,7 +15449,7 @@ MINIMUM_COST_FOR_ACQUIRING_ALL_COINS_WITH_K_EXTRA_COINS_ALLOWED_WITH_EVERY_COIN
 
 def f_gold ( coin , n , k ) :
     coin.sort ( )
-    coins_needed = math.ceil ( 1.0 * n // ( k + 1 ) ) ;
+    coins_needed = math.ceil ( 1.0 * n // ( k + 1 ) ) 
     ans = 0
     for i in range ( coins_needed - 1 + 1 ) :
         ans += coin [ i ]
@@ -15465,17 +15465,17 @@ def f_gold ( a , n ) :
 MINIMUM_DIFFERENCE_BETWEEN_GROUPS_OF_SIZE_TWO
 
 def f_gold ( a , n ) :
-    a.sort ( ) ;
-    s = [ ] ;
-    i = 0 ;
-    j = n - 1 ;
+    a.sort ( ) 
+    s = [ ] 
+    i = 0 
+    j = n - 1 
     while ( i < j ) :
-        s.append ( ( a [ i ] + a [ j ] ) ) ;
-        i += 1 ;
-        j -= 1 ;
-    mini = min ( s ) ;
-    maxi = max ( s ) ;
-    return abs ( maxi - mini ) ;
+        s.append ( ( a [ i ] + a [ j ] ) ) 
+        i += 1 
+        j -= 1 
+    mini = min ( s ) 
+    maxi = max ( s ) 
+    return abs ( maxi - mini ) 
 |||
 
 MINIMUM_DIFFERENCE_MAX_MIN_K_SIZE_SUBSETS
@@ -15516,23 +15516,23 @@ def f_gold ( arr , n , k ) :
 MINIMUM_LENGTH_SUBARRAY_SUM_GREATER_GIVEN_VALUE_1
 
 def f_gold ( arr , n , x ) :
-    curr_sum = 0 ;
-    min_len = n + 1 ;
-    start = 0 ;
-    end = 0 ;
+    curr_sum = 0 
+    min_len = n + 1 
+    start = 0 
+    end = 0 
     while ( end < n ) :
         while ( curr_sum <= x and end < n ) :
             if ( curr_sum <= 0 and x > 0 ) :
-                start = end ;
-                curr_sum = 0 ;
-            curr_sum += arr [ end ] ;
-            end += 1 ;
+                start = end 
+                curr_sum = 0 
+            curr_sum += arr [ end ] 
+            end += 1 
         while ( curr_sum > x and start < n ) :
             if ( end - start < min_len ) :
-                min_len = end - start ;
-            curr_sum -= arr [ start ] ;
-            start += 1 ;
-    return min_len ;
+                min_len = end - start 
+            curr_sum -= arr [ start ] 
+            start += 1 
+    return min_len 
 |||
 
 MINIMUM_NUMBER_PLATFORMS_REQUIRED_RAILWAYBUS_STATION
@@ -15577,25 +15577,25 @@ def f_gold ( a , n ) :
             min_pos = min ( min_pos , a [ i ] )
         prod = prod * a [ i ]
     if ( count_zero == n or ( count_neg == 0 and count_zero > 0 ) ) :
-        return 0 ;
+        return 0 
     if ( count_neg == 0 ) :
         return min_pos
     if ( ( count_neg & 1 ) == 0 and count_neg != 0 ) :
         prod = int ( prod / max_neg )
-    return prod ;
+    return prod 
 |||
 
 MINIMUM_ROTATIONS_UNLOCK_CIRCULAR_LOCK
 
 def f_gold ( input , unlock_code ) :
-    rotation = 0 ;
+    rotation = 0 
     while ( input > 0 or unlock_code > 0 ) :
-        input_digit = input % 10 ;
-        code_digit = unlock_code % 10 ;
-        rotation += min ( abs ( input_digit - code_digit ) , 10 - abs ( input_digit - code_digit ) ) ;
-        input = int ( input / 10 ) ;
-        unlock_code = int ( unlock_code / 10 ) ;
-    return rotation ;
+        input_digit = input % 10 
+        code_digit = unlock_code % 10 
+        rotation += min ( abs ( input_digit - code_digit ) , 10 - abs ( input_digit - code_digit ) ) 
+        input = int ( input / 10 ) 
+        unlock_code = int ( unlock_code / 10 ) 
+    return rotation 
 |||
 
 MINIMUM_SUM_SUBSEQUENCE_LEAST_ONE_EVERY_FOUR_CONSECUTIVE_ELEMENTS_PICKED_1
@@ -15749,23 +15749,23 @@ def f_gold ( n ) :
 NUMBER_N_DIGIT_STEPPING_NUMBERS
 
 def f_gold ( n ) :
-    dp = [ [ 0 for x in range ( 10 ) ] for y in range ( n + 1 ) ] ;
+    dp = [ [ 0 for x in range ( 10 ) ] for y in range ( n + 1 ) ] 
     if ( n == 1 ) :
-        return 10 ;
+        return 10 
     for j in range ( 10 ) :
-        dp [ 1 ] [ j ] = 1 ;
+        dp [ 1 ] [ j ] = 1 
     for i in range ( 2 , n + 1 ) :
         for j in range ( 10 ) :
             if ( j == 0 ) :
-                dp [ i ] [ j ] = dp [ i - 1 ] [ j + 1 ] ;
+                dp [ i ] [ j ] = dp [ i - 1 ] [ j + 1 ] 
             elif ( j == 9 ) :
-                dp [ i ] [ j ] = dp [ i - 1 ] [ j - 1 ] ;
+                dp [ i ] [ j ] = dp [ i - 1 ] [ j - 1 ] 
             else :
-                dp [ i ] [ j ] = ( dp [ i - 1 ] [ j - 1 ] + dp [ i - 1 ] [ j + 1 ] ) ;
-    sum = 0 ;
+                dp [ i ] [ j ] = ( dp [ i - 1 ] [ j - 1 ] + dp [ i - 1 ] [ j + 1 ] ) 
+    sum = 0 
     for j in range ( 1 , 10 ) :
-        sum = sum + dp [ n ] [ j ] ;
-    return sum ;
+        sum = sum + dp [ n ] [ j ] 
+    return sum 
 |||
 
 NUMBER_OF_SUBSTRINGS_WITH_ODD_DECIMAL_VALUE_IN_A_BINARY_STRING
@@ -15808,7 +15808,7 @@ NUMBER_SUBSTRINGS_DIVISIBLE_4_STRING_INTEGERS
 
 def f_gold ( s ) :
     n = len ( s )
-    count = 0 ;
+    count = 0 
     for i in range ( 0 , n , 1 ) :
         if ( s [ i ] == '4' or s [ i ] == '8' or s [ i ] == '0' ) :
             count += 1
@@ -15822,13 +15822,13 @@ def f_gold ( s ) :
 NUMBER_TRIANGLES_N_MOVES
 
 def f_gold ( n ) :
-    answer = [ None ] * ( n + 1 ) ;
-    answer [ 0 ] = 1 ;
+    answer = [ None ] * ( n + 1 ) 
+    answer [ 0 ] = 1 
     i = 1
     while i <= n :
-        answer [ i ] = answer [ i - 1 ] * 3 + 2 ;
+        answer [ i ] = answer [ i - 1 ] * 3 + 2 
         i = i + 1
-    return answer [ n ] ;
+    return answer [ n ] 
 |||
 
 NUMBER_UNIQUE_RECTANGLES_FORMED_USING_N_UNIT_SQUARES
@@ -15894,13 +15894,13 @@ def f_gold ( arr , n , x ) :
 PERFECT_REVERSIBLE_STRING
 
 def f_gold ( str ) :
-    i = 0 ; j = len ( str ) - 1 ;
+    i = 0 ; j = len ( str ) - 1 
     while ( i < j ) :
         if ( str [ i ] != str [ j ] ) :
-            return False ;
-        i += 1 ;
-        j -= 1 ;
-    return True ;
+            return False 
+        i += 1 
+        j -= 1 
+    return True 
 |||
 
 PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES
@@ -15962,15 +15962,15 @@ def f_gold ( str ) :
 PROGRAM_BINARY_DECIMAL_CONVERSION_1
 
 def f_gold ( n ) :
-    num = n ;
-    dec_value = 0 ;
-    base1 = 1 ;
-    len1 = len ( num ) ;
+    num = n 
+    dec_value = 0 
+    base1 = 1 
+    len1 = len ( num ) 
     for i in range ( len1 - 1 , - 1 , - 1 ) :
         if ( num [ i ] == '1' ) :
-            dec_value += base1 ;
-        base1 = base1 * 2 ;
-    return dec_value ;
+            dec_value += base1 
+        base1 = base1 * 2 
+    return dec_value 
 |||
 
 PROGRAM_CALCULATE_AREA_OCTAGON
@@ -16010,13 +16010,13 @@ def f_gold ( s , c ) :
 PROGRAM_FOR_FACTORIAL_OF_A_NUMBER
 
 def f_gold ( n ) :
-    return 1 if ( n == 1 or n == 0 ) else n * f_gold ( n - 1 ) ;
+    return 1 if ( n == 1 or n == 0 ) else n * f_gold ( n - 1 ) 
 |||
 
 PROGRAM_FOR_FACTORIAL_OF_A_NUMBER_1
 
 def f_gold ( n ) :
-    return 1 if ( n == 1 or n == 0 ) else n * f_gold ( n - 1 ) ;
+    return 1 if ( n == 1 or n == 0 ) else n * f_gold ( n - 1 ) 
 |||
 
 PROGRAM_FOR_FACTORIAL_OF_A_NUMBER_2
@@ -16064,7 +16064,7 @@ def f_gold ( a ) :
 PYTHAGOREAN_QUADRUPLE
 
 def f_gold ( a , b , c , d ) :
-    sum = a * a + b * b + c * c ;
+    sum = a * a + b * b + c * c 
     if ( d * d == sum ) :
         return True
     else :
@@ -16119,7 +16119,7 @@ def f_gold ( n ) :
     dp [ 0 ] = 0
     dp [ 1 ] = 1
     for i in range ( 2 , n + 1 ) :
-        dp [ i ] = max ( dp [ int ( i / 2 ) ] + dp [ int ( i / 3 ) ] + dp [ int ( i / 4 ) ] , i ) ;
+        dp [ i ] = max ( dp [ int ( i / 2 ) ] + dp [ int ( i / 3 ) ] + dp [ int ( i / 4 ) ] , i ) 
     return dp [ n ]
 |||
 
@@ -16142,32 +16142,32 @@ def f_gold ( dp , a , low , high , turn ) :
         return a [ low ] * turn
     if ( dp [ low ] [ high ] != 0 ) :
         return dp [ low ] [ high ]
-    dp [ low ] [ high ] = max ( a [ low ] * turn + f_gold ( dp , a , low + 1 , high , turn + 1 ) , a [ high ] * turn + f_gold ( dp , a , low , high - 1 , turn + 1 ) ) ;
+    dp [ low ] [ high ] = max ( a [ low ] * turn + f_gold ( dp , a , low + 1 , high , turn + 1 ) , a [ high ] * turn + f_gold ( dp , a , low , high - 1 , turn + 1 ) ) 
     return dp [ low ] [ high ]
 |||
 
 REMOVE_MINIMUM_ELEMENTS_EITHER_SIDE_2MIN_MAX
 
 def f_gold ( arr , n ) :
-    longest_start = - 1 ;
-    longest_end = 0 ;
+    longest_start = - 1 
+    longest_end = 0 
     for start in range ( n ) :
-        min = sys.maxsize ;
-        max = - sys.maxsize ;
+        min = sys.maxsize 
+        max = - sys.maxsize 
         for end in range ( start , n ) :
-            val = arr [ end ] ;
+            val = arr [ end ] 
             if ( val < min ) :
-                min = val ;
+                min = val 
             if ( val > max ) :
-                max = val ;
+                max = val 
             if ( 2 * min <= max ) :
-                break ;
+                break 
             if ( end - start > longest_end - longest_start or longest_start == - 1 ) :
-                longest_start = start ;
-                longest_end = end ;
+                longest_start = start 
+                longest_end = end 
     if ( longest_start == - 1 ) :
-        return n ;
-    return ( n - ( longest_end - longest_start + 1 ) ) ;
+        return n 
+    return ( n - ( longest_end - longest_start + 1 ) ) 
 |||
 
 REMOVE_MINIMUM_NUMBER_ELEMENTS_NO_COMMON_ELEMENT_EXIST_ARRAY
@@ -16263,13 +16263,13 @@ def f_gold ( x , y , z ) :
 SMALLEST_POWER_OF_2_GREATER_THAN_OR_EQUAL_TO_N
 
 def f_gold ( n ) :
-    count = 0 ;
+    count = 0 
     if ( n and not ( n & ( n - 1 ) ) ) :
         return n
     while ( n != 0 ) :
         n >>= 1
         count += 1
-    return 1 << count ;
+    return 1 << count 
 |||
 
 SMALLEST_POWER_OF_2_GREATER_THAN_OR_EQUAL_TO_N_1
@@ -16280,7 +16280,7 @@ def f_gold ( n ) :
         return n
     while ( p < n ) :
         p <<= 1
-    return p ;
+    return p 
 |||
 
 SMALLEST_SUM_CONTIGUOUS_SUBARRAY
@@ -16308,7 +16308,7 @@ def f_gold ( arr , n , A , B , C ) :
         if maximum < arr [ i ] :
             index = i
             maximum = arr [ i ]
-    i = 0 ; j = n - 1 ;
+    i = 0 ; j = n - 1 
     new_arr = [ 0 ] * n
     k = 0
     while i < index and j > index :
@@ -16505,7 +16505,7 @@ def f_gold ( n ) :
 SUM_BINOMIAL_COEFFICIENTS_1
 
 def f_gold ( n ) :
-    return ( 1 << n ) ;
+    return ( 1 << n ) 
 |||
 
 SUM_DIVISORS_1_N_1
@@ -16586,7 +16586,7 @@ SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE_1
 
 def f_gold ( n ) :
     sum = 0
-    sum = 1 << n ;
+    sum = 1 << n 
     return ( sum - 1 )
 |||
 
@@ -16631,27 +16631,27 @@ SUM_TWO_LARGE_NUMBERS
 
 def f_gold ( str1 , str2 ) :
     if ( len ( str1 ) > len ( str2 ) ) :
-        t = str1 ;
-        str1 = str2 ;
-        str2 = t ;
-    str = "" ;
-    n1 = len ( str1 ) ;
-    n2 = len ( str2 ) ;
-    str1 = str1 [ : : - 1 ] ;
-    str2 = str2 [ : : - 1 ] ;
-    carry = 0 ;
+        t = str1 
+        str1 = str2 
+        str2 = t 
+    str = "" 
+    n1 = len ( str1 ) 
+    n2 = len ( str2 ) 
+    str1 = str1 [ : : - 1 ] 
+    str2 = str2 [ : : - 1 ] 
+    carry = 0 
     for i in range ( n1 ) :
-        sum = ( ( ord ( str1 [ i ] ) - 48 ) + ( ( ord ( str2 [ i ] ) - 48 ) + carry ) ) ;
-        str += chr ( sum % 10 + 48 ) ;
-        carry = int ( sum / 10 ) ;
+        sum = ( ( ord ( str1 [ i ] ) - 48 ) + ( ( ord ( str2 [ i ] ) - 48 ) + carry ) ) 
+        str += chr ( sum % 10 + 48 ) 
+        carry = int ( sum / 10 ) 
     for i in range ( n1 , n2 ) :
-        sum = ( ( ord ( str2 [ i ] ) - 48 ) + carry ) ;
-        str += chr ( sum % 10 + 48 ) ;
-        carry = ( int ) ( sum / 10 ) ;
+        sum = ( ( ord ( str2 [ i ] ) - 48 ) + carry ) 
+        str += chr ( sum % 10 + 48 ) 
+        carry = ( int ) ( sum / 10 ) 
     if ( carry ) :
-        str += chr ( carry + 48 ) ;
-    str = str [ : : - 1 ] ;
-    return str ;
+        str += chr ( carry + 48 ) 
+    str = str [ : : - 1 ] 
+    return str 
 |||
 
 SWAP_BITS_IN_A_GIVEN_NUMBER
@@ -16715,19 +16715,19 @@ def f_gold ( n ) :
 UNIQUE_CELLS_BINARY_MATRIX
 
 def f_gold ( mat , n , m ) :
-    rowsum = [ 0 ] * n ;
-    colsum = [ 0 ] * m ;
+    rowsum = [ 0 ] * n 
+    colsum = [ 0 ] * m 
     for i in range ( n ) :
         for j in range ( m ) :
             if ( mat [ i ] [ j ] != 0 ) :
-                rowsum [ i ] += 1 ;
-                colsum [ j ] += 1 ;
-    uniquecount = 0 ;
+                rowsum [ i ] += 1 
+                colsum [ j ] += 1 
+    uniquecount = 0 
     for i in range ( n ) :
         for j in range ( m ) :
             if ( mat [ i ] [ j ] != 0 and rowsum [ i ] == 1 and colsum [ j ] == 1 ) :
-                uniquecount += 1 ;
-    return uniquecount ;
+                uniquecount += 1 
+    return uniquecount 
 |||
 
 WAYS_TRANSFORMING_ONE_STRING_REMOVING_0_CHARACTERS
