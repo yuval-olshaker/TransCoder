@@ -4,6 +4,7 @@ import argparse
 import translate
 import html_templates
 from datetime import datetime
+from tqdm import tqdm
 
 from create_readable_corpus import get_origin_codes_from_test_files, get_origin_codes_from_tok_files
 from slice_python_code import slice_corpus, integrate_corpus
@@ -34,11 +35,11 @@ def translate_lines(is_from_java, file_readable, sliced = False):
         return list(map(lambda line: (line[0], line[1],
                                       translator.translate(line[1], lang1=t_params.src_lang, lang2=t_params.tgt_lang,
                                                            beam_size=t_params.beam_size)[0]),
-                        file_readable))
+                        tqdm(file_readable)))
     return list(map(lambda line: (line[0], line[1],
                                   list(map(lambda sliced: (sliced[0], translator.translate(sliced[1], lang1=t_params.src_lang, lang2=t_params.tgt_lang,
                                                        beam_size=t_params.beam_size)[0]), line[2]))),
-                    file_readable))
+                    tqdm(file_readable)))
 
 
 # create the params for translation
