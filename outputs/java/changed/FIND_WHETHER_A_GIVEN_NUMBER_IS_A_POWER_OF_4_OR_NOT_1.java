@@ -26,19 +26,20 @@ static int f_gold ( int n ) {
 
 //
 public static boolean f_filled ( int n ) {
-    int count = 0 ;
-    if ( ( n > 0 ) && ( ! ( n & ( n - 1 ) ) ) ) {
-        while ( ( n > 1 ) && ( n % 2 == 0 ) ) {
-            n >>= 1 ;
-            count ++ ;
-        }
-        if ( ( count % 2 == 0 ) && ( count % 4 == 0 ) ) {
-            return true ;
-        }
-        else {
-            return false ;
-        }
+  int count = 0 ;
+  if ( ( n > 0 ) && ( ! ( n & ( n - 1 ) ) ) ) {
+    while ( ( n > 1 ) ) {
+      n >>= 1 ;
+      count ++ ;
     }
+    if ( ( count % 2 == 0 ) && ( n > 0 ) ) {
+      return true ;
+    }
+    else {
+      return false ;
+    }
+  }
+  return false ;
 }
 
 public static void main(String args[]) {

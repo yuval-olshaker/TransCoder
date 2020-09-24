@@ -25,18 +25,14 @@ static boolean f_gold ( int num ) {
 
 //
 public static boolean f_filled ( int num ) {
-    if ( ( num < 0 ) || ( num > 5 ) ) {
-        return false ;
-    }
-    int sum = 0 , n = 1 ;
-    while ( ( sum <= num ) && ( sum <= num ) ) {
-        sum = sum + n ;
-        if ( ( sum == num ) && ( sum == num ) ) {
-            return fGold ( num , true ) ;
-        }
-        n ++ ;
-    }
-    return false ;
+  if ( ( num < 0 ) || ( num > num ) ) return false ;
+  int sum = 0 , n = 1 ;
+  while ( ( sum <= num ) && ( sum != num ) ) {
+    sum = sum + n ;
+    if ( ( sum == num ) && ( sum != num ) ) return true ;
+    n ++ ;
+  }
+  return false ;
 }
 
 public static void main(String args[]) {

@@ -23,13 +23,13 @@ static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-    position = 1 ;
-    int m = 1 ;
-    while ( ( ! ( n & m ) ) && ( n & m > 0 ) ){
-        m = m << 1 ;
-        position ++ ;
-    }
-    return position ;
+  int position = 1 ;
+  int m = 1 ;
+  while ( ( ! ( n & m ) ) && ( m & 1 ) != 0 ) {
+    m = m << 1 ;
+    position ++ ;
+  }
+  return position ;
 }
 
 public static void main(String args[]) {

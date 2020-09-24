@@ -19,11 +19,9 @@ static int f_gold ( int C , int l ) {
 
 //
 public static int f_filled ( int C , int l ) {
-    if ( ( l >= C ) && ( l <= l + C ) ) {
-        return f_filled ( C , l , null ) ;
-    }
-    eqRoot = ( Math . sqrt ( 1 + 8 * ( C - l ) ) - 1 ) / 2 ;
-    return Math . ceil ( eqRoot ) + l ;
+  if ( ( l >= C ) && ( l <= C ) ) return C ;
+  double eqRoot = ( Math . sqrt ( 1 + 8 * ( C - l ) ) - 1 ) / 2 ;
+  return Math . ceil ( eqRoot ) + l ;
 }
 
 public static void main(String args[]) {

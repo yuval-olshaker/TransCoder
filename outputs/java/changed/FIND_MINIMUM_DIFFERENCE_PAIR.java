@@ -23,15 +23,19 @@ static int f_gold ( int [ ] arr , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-    int diff = 10 * 20 ;
-    for ( int i = 0 ;  i < n - 1 ;  i ++ ) {
-        for ( int j = i + 1 ;  j < n ;  j ++ ) {
-            if ( Math . abs ( arr [ i ] - arr [ j ] ) < diff ){
-                int diff = Math . abs ( arr [ i ] - arr [ j ] ) ;
-            }
-        }
+  int diff = 10 * 20 ;
+  for ( int i = 0 ;
+  i < n - 1 ;
+  i ++ ) {
+    for ( int j = i + 1 ;
+    j < n ;
+    j ++ ) {
+      if ( Math . abs ( arr [ i ] - arr [ j ] ) < diff ) {
+        diff = Math . abs ( arr [ i ] - arr [ j ] ) ;
+      }
     }
-    return diff ;
+  }
+  return diff ;
 }
 
 public static void main(String args[]) {

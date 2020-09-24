@@ -23,11 +23,13 @@ static long f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-    int sum = 0 ;
-    for ( int row = 0 ;  row < n ;  row ++ ) {
-        sum = sum + ( 1 << row ) ;
-    }
-    return sum ;
+  int sum = 0 ;
+  for ( int row = 0 ;
+  row < n ;
+  row ++ ) {
+    sum = sum + ( 1 << row ) ;
+  }
+  return sum ;
 }
 
 public static void main(String args[]) {

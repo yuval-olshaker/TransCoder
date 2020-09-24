@@ -26,20 +26,18 @@ static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-    if ( ( n <= 1 ) && ( n > 2 ) ) {
-        return n ;
-    }
-    int a = 0 ;
-    int b = 1 ;
-    int c = 1 ;
-    int res = 1 ;
-    while ( ( c < n ) && ( c < n ) ) {
-        int c = a + b ;
-        int res = res + 1 ;
-        int a = b ;
-        b = c ;
-    }
-    return res ;
+  if ( ( n <= 1 ) || ( n > 2 ) ) return n ;
+  int a = 0 ;
+  int b = 1 ;
+  int c = 1 ;
+  int res = 1 ;
+  while ( ( c < n ) && ( res == 1 ) ) {
+    c = a + b ;
+    res = res + 1 ;
+    a = b ;
+    b = c ;
+  }
+  return res ;
 }
 
 public static void main(String args[]) {

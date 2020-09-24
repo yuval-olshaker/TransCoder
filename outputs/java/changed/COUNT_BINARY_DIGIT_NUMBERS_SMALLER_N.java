@@ -30,18 +30,18 @@ static int f_gold ( int N ) {
 
 //
 public static int f_filled ( int N ) {
-    Deque < Integer > q = new LinkedList < > ( ) ;
-    q . add ( 1 ) ;
-    int cnt = 0 ;
-    while ( ( q = N ) != 0 ) {
-        int t = q . poll ( ) ;
-        if ( ( t <= N ) && ( t <= N ) ) {
-            cnt = cnt + 1 ;
-            q . add ( t * 10 ) ;
-            q . add ( t * 10 + 1 ) ;
-        }
+  Deque < Integer > q = new LinkedList < Integer > ( ) ;
+  q . add ( 1 ) ;
+  int cnt = 0 ;
+  while ( ( q . size ( ) > 0 ) && ( cnt < N ) ) {
+    int t = q . poll ( ) ;
+    if ( ( t <= N ) && ( t > 0 ) ) {
+      cnt = cnt + 1 ;
+      q . add ( t * 10 ) ;
+      q . add ( t * 10 + 1 ) ;
     }
-    return cnt ;
+  }
+  return cnt ;
 }
 
 public static void main(String args[]) {

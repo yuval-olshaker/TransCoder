@@ -30,18 +30,22 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-    int minPrefixSum = 0 ;
-    double res = - Double . MAX_VALUE ;
-    int [ ] prefixSum = new int [ n ] ;
-    prefixSum . add ( arr [ 0 ] ) ;
-    for ( int i = 1 ;  i < n ;  i ++ ) {
-        prefixSum . add ( prefixSum . get ( i - 1 ) + arr [ i ] ) ;
-    }
-    for ( int i = 0 ;  i < n ;  i ++ ) {
-        res = Math . max ( res , prefixSum [ i ] - minPrefixSum ) ;
-        minPrefixSum = Math . min ( minPrefixSum , prefixSum [ i ] ) ;
-    }
-    return res ;
+  int min_prefix_sum = 0 ;
+  int res = - Integer . MAX_VALUE ;
+  int [ ] prefix_sum = new int [ n ] ;
+  prefix_sum [ 0 ] = arr [ 0 ] ;
+  for ( int i = 1 ;
+  i < n ;
+  i ++ ) {
+    prefix_sum [ i ] = prefix_sum [ i - 1 ] + arr [ i ] ;
+  }
+  for ( int i = 0 ;
+  i < n ;
+  i ++ ) {
+    res = Math . max ( res , prefix_sum [ i ] - min_prefix_sum ) ;
+    min_prefix_sum = Math . min ( min_prefix_sum , prefix_sum [ i ] ) ;
+  }
+  return res ;
 }
 
 public static void main(String args[]) {

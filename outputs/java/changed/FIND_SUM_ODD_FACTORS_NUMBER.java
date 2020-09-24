@@ -33,26 +33,28 @@ static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-    int res = 1 ;
-    while ( n % 2 == 0 ) {
-        n = n / 2 ;
+  int res = 1 ;
+  while ( n % 2 == 0 ) {
+    n = n / 2 ;
+  }
+  for ( int i = 3 ;
+  i < Integer . MAX_VALUE ;
+  i ++ ) {
+    int count = 0 ;
+    int currSum = 1 ;
+    int currTerm = 1 ;
+    while ( n % i == 0 ) {
+      count ++ ;
+      n = n / i ;
+      currTerm *= i ;
+      currSum += currTerm ;
     }
-    for ( int i = 3 ;  i < ( int ) ( Math . sqrt ( n ) + 1 ) ;  i ++ ) {
-        int count = 0 ;
-        currSum = 1 ;
-        curr_term = 1 ;
-        while ( n % i == 0 ){
-            count ++ ;
-            n = n / i ;
-            currTerm *= i ;
-            currSum += currTerm ;
-        }
-        res *= currSum ;
-    }
-    if ( n >= 2 ) {
-        res *= ( 1 + n ) ;
-    }
-    return res ;
+    res *= currSum ;
+  }
+  if ( n >= 2 ) {
+    res *= ( 1 + n ) ;
+  }
+  return res ;
 }
 
 public static void main(String args[]) {

@@ -24,12 +24,15 @@ static int f_gold ( int a [ ] , int n ) {
 
 //
 static int f_filled ( int [ ] a , int n ) {
-    int i = 0 , total = 1 ;
-    for ( int i = 2 ;  i <= n ;  i += 2 ) {
-        total += i ;
-        total -= a [ i - 2 ] ;
-    }
-    return total ;
+  int i , total = 0 ;
+  total = 1 ;
+  for ( i = 2 ;
+  i <= n ;
+  i ++ ) {
+    total += i ;
+    total -= a [ i - 2 ] ;
+  }
+  return total ;
 }
 
 public static void main(String args[]) {

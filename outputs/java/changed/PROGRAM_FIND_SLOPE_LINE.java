@@ -17,7 +17,7 @@ static float f_gold ( float x1 , float y1 , float x2 , float y2 ) {
 
 //
 public static float f_filled ( float x1 , float y1 , float x2 , float y2 ) {
-    return ( float ) ( y2 - y1 ) / ( x2 - x1 ) ;
+  return ( float ) ( y2 - y1 ) / ( x2 - x1 ) ;
 }
 
 public static void main(String args[]) {

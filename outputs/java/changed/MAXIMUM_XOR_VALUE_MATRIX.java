@@ -32,19 +32,23 @@ static int f_gold ( int mat [ ] [ ] , int N ) {
 
 //
 public static int f_filled ( int [ ] [ ] mat , int N ) {
-    maxXor = 0 ;
-    for ( int i = 0 ;  i < N ;  i ++ ) {
-        r_xor = 0 ;
-        c_xor = 0 ;
-        for ( int j = 0 ;  j < N ;  j ++ ) {
-            r_xor = r_xor ^ mat [ i ] [ j ] ;
-            c_xor = c_xor ^ mat [ j ] [ i ] ;
-        }
-        if ( ( maxXor < Math . max ( rXor , cXor ) ) && ( maxXor < Math . max ( rXor , cXor ) ) ){
-            maxXor = Math . max ( rXor , cXor ) ;
-        }
+  int maxXor = 0 ;
+  for ( int i = 0 ;
+  i < N ;
+  i ++ ) {
+    int rXor = 0 ;
+    int cXor = 0 ;
+    for ( int j = 0 ;
+    j < N ;
+    j ++ ) {
+      rXor = rXor ^ mat [ i ] [ j ] ;
+      cXor = cXor ^ mat [ j ] [ i ] ;
     }
-    return f_filled ;
+    if ( ( maxXor < Math . max ( rXor , cXor ) ) && ( maxXor < Math . max ( rXor , cXor ) ) ) {
+      maxXor = Math . max ( rXor , cXor ) ;
+    }
+  }
+  return maxXor ;
 }
 
 public static void main(String args[]) {

@@ -21,11 +21,11 @@ static int f_gold ( int N , int K ) {
 
 //
 public static int f_filled ( int N , int K ) {
-    int ans = 0 ;
-    int y = N / K ;
-    int x = N % K ;
-    int ans = ( ( K * ( K - 1 ) / 2 ) * y + ( x * ( x + 1 ) ) / 2 ) ;
-    return ( int ) ans ;
+  double ans ;
+  double y = N / K ;
+  double x = N % K ;
+  ans = ( ( K * ( K - 1 ) / 2 ) * y + ( x * ( x + 1 ) ) / 2 ) ;
+  return ( int ) ans ;
 }
 
 public static void main(String args[]) {

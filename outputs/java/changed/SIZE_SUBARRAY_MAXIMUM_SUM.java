@@ -32,23 +32,26 @@ static int f_gold ( int a [ ] , int size ) {
 
 //
 public static int f_filled ( int [ ] a , int size ) {
-    maxSoFar = - maxsize - 1 ;
-    int maxEndingHere = 0 ;
-    int start = 0 ;
-    int end = 0 ;
-    int s = 0 ;
-    for ( int i = 0 ;
-        maxEndingHere += a [ i ] ;
-        if ( maxSo_far < maxEndingHere ) {
-            maxSoFar = maxEndingHere ;
-            int start = s ;
-            int end = i ;
-        }
-        if ( maxEndingHere < 0 ) {
-            int maxEndingHere = 0 ;
-            int s = i + 1 ;
-        }
-    return ( end - start + 1 ) ;
+  int maxSo_far = - Integer . MAX_VALUE - 1 ;
+  int maxEndingHere = 0 ;
+  int start = 0 ;
+  int end = 0 ;
+  int s = 0 ;
+  for ( int i = 0 ;
+  i <= size ;
+  i ++ ) {
+    maxEndingHere += a [ i ] ;
+    if ( maxSo_far < maxEndingHere ) {
+      maxSo_far = maxEndingHere ;
+      start = s ;
+      end = i ;
+    }
+    if ( maxEndingHere < 0 ) {
+      maxEndingHere = 0 ;
+      s = i + 1 ;
+    }
+  }
+  return ( end - start + 1 ) ;
 }
 
 public static void main(String args[]) {

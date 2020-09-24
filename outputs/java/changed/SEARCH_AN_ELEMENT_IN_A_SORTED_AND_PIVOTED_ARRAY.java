@@ -25,23 +25,15 @@ static int f_gold ( int arr [ ] , int l , int h , int key ) {
 
 //
 public static int f_filled ( int [ ] arr , int l , int h , int key ) {
-    if ( l > h ) {
-        return - 1 ;
-    }
-    int mid = ( l + h ) / 2 ;
-    if ( arr [ mid ] == key ){
-        return mid ;
-    }
-    if ( arr [ l ] <= arr [ mid ] ){
-        if ( key >= arr [ l ] && key <= arr [ mid ] ){
-            return f_filled ( arr , l , mid - 1 , key ) ;
-        }
-        return f_filled ( arr , mid + 1 , h , key ) ;
-    }
-    if ( key >= arr [ mid ] && key <= arr [ h ] ){
-        return f_filled ( a , mid + 1 , h , key ) ;
-    }
-    return f_filled ( arr , l , mid - 1 , key ) ;
+  if ( l > h ) return - 1 ;
+  int mid = ( l + h ) / 2 ;
+  if ( arr [ mid ] == key ) return mid ;
+  if ( arr [ l ] <= arr [ mid ] ) {
+    if ( key >= arr [ l ] && key <= arr [ mid ] ) return f_filled ( arr , l , mid - 1 , key ) ;
+    return f_filled ( arr , mid + 1 , h , key ) ;
+  }
+  if ( key >= arr [ mid ] && key <= arr [ h ] ) return f_filled ( a , mid + 1 , h , key ) ;
+  return f_filled ( arr , l , mid - 1 , key ) ;
 }
 
 public static void main(String args[]) {

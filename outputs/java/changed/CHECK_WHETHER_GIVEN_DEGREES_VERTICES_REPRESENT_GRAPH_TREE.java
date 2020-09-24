@@ -23,13 +23,13 @@ static boolean f_gold ( int degree [ ] , int n ) {
 
 //
 public static boolean f_filled ( int [ ] degree , int n ) {
-    int degSum = sum ( degree ) ;
-    if ( ( 2 * ( n - 1 ) ) == deg_sum ) {
-        return f_filled ( degree , n , 0 ) ;
-    }
-    else {
-        return false ;
-    }
+  int degSum = sum ( degree ) ;
+  if ( ( 2 * ( n - 1 ) == degSum ) && ( 2 * ( n - 2 ) == degSum ) ) {
+    return true ;
+  }
+  else {
+    return false ;
+  }
 }
 
 public static void main(String args[]) {

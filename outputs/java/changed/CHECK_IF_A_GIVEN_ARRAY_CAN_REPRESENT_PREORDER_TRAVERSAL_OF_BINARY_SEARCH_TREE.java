@@ -31,18 +31,14 @@ static boolean f_gold ( int pre [ ] , int n ) {
 
 //
 public static boolean f_filled ( int [ ] pre ) {
-    StringBuilder sb = new StringBuilder ( ) ;
-    int root = INT_MIN ;
-    for ( Integer value : pre ) {
-        if ( value < root ){
-            return false ;
-        }
-        while ( ( s . length ( ) > 0 ) && s . charAt ( s . length ( ) - 1 ) < value ) {
-            Node root = s . remove ( ) ;
-        }
-        s . add ( value ) ;
-    }
-    return true ;
+  Stack < Integer > s = new Stack < Integer > ( ) ;
+  int root = INT_MIN ;
+  for ( int value : pre ) {
+    if ( value < root ) return false ;
+    while ( ( s . size ( ) > 0 ) && s . peek ( ) < value ) root = s . pop ( ) ;
+    s . push ( value ) ;
+  }
+  return true ;
 }
 
 public static void main(String args[]) {

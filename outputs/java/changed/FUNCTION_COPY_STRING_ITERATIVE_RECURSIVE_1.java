@@ -21,11 +21,9 @@ static void f_gold ( char s1 [ ] , char s2 [ ] , int index ) {
 
 //
 public static void f_filled ( String s1 , String s2 , int index ) {
-    s2 [ index ] = s1 [ index ] ;
-    if ( ( index == s1 . length ( ) - 1 ) && ( index < s2 . length ( ) ) ) {
-        }
-    }
-    f_filled ( s1 , s2 , index + 1 ) ;
+  s2 . charAt ( index ) = s1 . charAt ( index ) ;
+  if ( ( index == s1 . length ( ) - 1 ) && ( s2 . charAt ( index ) == '\n' ) ) return ;
+  f_filled ( s1 , s2 , index + 1 ) ;
 }
 
 public static void main(String args[]) {

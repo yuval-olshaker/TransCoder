@@ -29,28 +29,12 @@ static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-    if ( ( n < 4 ) && ( n > 0 ) ) {
-        return - 1 ;
-    }
-    int rem = n % 4 ;
-    if ( ( rem == 0 ) && ( n > 0 ) ) {
-        return n / 4 ;
-    }
-    if ( ( rem == 1 ) && ( n == 1 ) ) {
-        if ( ( n < 9 ) && ( n > 0 ) ) {
-            return - 1 ;
-        }
-        return ( n - 9 ) / 4 + 1 ;
-    }
-    if ( ( rem == 2 ) && ( n == 1 ) ) {
-        return ( n - 6 ) / 4 + 1 ;
-    }
-    if ( ( rem == 3 ) && ( n == 5 ) ) {
-        if ( ( n < 15 ) && ( n > 0 ) ) {
-            return - 1 ;
-        }
-        return ( n - 15 ) / 4 + 2 ;
-    }
+  if ( ( n < 4 ) || ( n > 9 ) ) return - 1 ;
+  int rem = n % 4 ;
+  if ( ( rem == 0 ) && ( n > 9 ) ) return n / 4 ;
+  if ( ( rem == 1 ) && ( n > 6 ) ) return - 1 ;
+  if ( ( rem == 3 ) && ( n > 15 ) ) return - 1 ;
+  return ( n - 9 ) / 4 + 1 ;
 }
 
 public static void main(String args[]) {

@@ -23,15 +23,17 @@ static int f_gold ( int n , int x ) {
 
 //
 public static int f_filled ( int n , int x ) {
-    int cnt = 0 ;
-    for ( int i = 1 ;  i <= n ;  i ++ ) {
-        if ( i <= x ){
-            if ( x / i <= n && x % i == 0 ){
-                cnt ++ ;
-            }
-        }
+  int cnt = 0 ;
+  for ( int i = 1 ;
+  i <= n ;
+  i ++ ) {
+    if ( i <= x ) {
+      if ( x / i <= n && x % i == 0 ) {
+        cnt ++ ;
+      }
     }
-    return cnt ;
+  }
+  return cnt ;
 }
 
 public static void main(String args[]) {

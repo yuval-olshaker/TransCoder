@@ -20,12 +20,14 @@ static int f_gold ( int arr [ ] , int n , int key ) {
 
 //
 public static int f_filled ( int [ ] arr , int n , int key ) {
-    for ( int i = 0 ;  i < n ;  i ++ ) {
-        if ( ( arr [ i ] == key ) && ( arr [ i + 1 ] == key ) ) {
-            return i ;
-        }
+  for ( int i = 0 ;
+  i < n ;
+  i ++ ) {
+    if ( ( arr [ i ] == key ) && ( arr [ i + 1 ] == key ) ) {
+      return i ;
     }
-    return - 1 ;
+  }
+  return - 1 ;
 }
 
 public static void main(String args[]) {

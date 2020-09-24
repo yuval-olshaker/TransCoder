@@ -40,36 +40,38 @@ static int f_gold ( Integer X [ ] , Integer Y [ ] , int m , int n ) {
 
 //
 public static double f_filled ( double [ ] X , double [ ] Y , int m , int n ) {
-    int res = 0 ;
-    Arrays . sort ( X , 0 , m , n ) ;
-    Arrays . sort ( X , 0 , m , n ) ;
-    int hzntl = 1 ;
-    int i = 0 ;
-    while ( ( i < m && j < n ) || ( i < n && j < m && i < m && j < n ) ) {
-        if ( ( X [ i ] > Y [ j ] ) && ( X [ j ] > Y [ i ] ) ) {
-            res += X [ i ] * vert ;
-            hzntl ++ ;
-            i ++ ;
-        }
-        if ( m > 0 ) {
-            res += Y [ j ] * hzntl ;
-            vert ++ ;
-            j ++ ;
-        }
+  double res = 0 ;
+  Arrays . sort ( X ) ;
+  Arrays . sort ( Y ) ;
+  double hzntl = 1 ;
+  double vert = 1 ;
+  int i = 0 ;
+  int j = 0 ;
+  while ( ( i < m && j < n ) || ( i < n && j < m ) ) {
+    if ( ( X [ i ] > Y [ j ] ) || ( X [ i ] > Y [ j ] ) ) {
+      res += X [ i ] * vert ;
+      hzntl ++ ;
+      i ++ ;
     }
-    int total = 0 ;
-    while ( ( i < m ) && ( i < n ) ) {
-        total += X [ i ] [ m ] ;
-        i ++ ;
+    else {
+      res += Y [ j ] * hzntl ;
+      vert ++ ;
+      j ++ ;
     }
-    res += total * vert ;
-    int total = 0 ;
-    while ( ( j < n ) && ( j < m ) ) {
-        total += Y [ j ] ;
-        j ++ ;
-    }
-    res += total * hzntl ;
-    return res ;
+  }
+  double total = 0 ;
+  while ( ( i < m ) || ( i < n ) ) {
+    total += X [ i ] ;
+    i ++ ;
+  }
+  res += total * vert ;
+  total = 0 ;
+  while ( ( j < n ) || ( j < m ) ) {
+    total += Y [ j ] ;
+    j ++ ;
+  }
+  res += total * hzntl ;
+  return res ;
 }
 
 public static void main(String args[]) {

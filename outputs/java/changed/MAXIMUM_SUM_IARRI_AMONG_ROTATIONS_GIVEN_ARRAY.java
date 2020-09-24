@@ -30,16 +30,20 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-    int res = - Integer . MAX_VALUE ;
-    for ( int i = 0 ;  i <= n ;  i ++ ) {
-        int currSum = 0 ;
-        for ( int j = 0 ;  j <= n ;  j ++ ) {
-            int index = ( int ) ( ( i + j ) % n ) ;
-            currSum += j * arr [ index ] ;
-        }
-        res = Math . max ( res , currSum ) ;
+  int res = - Integer . MAX_VALUE ;
+  for ( int i = 0 ;
+  i <= n ;
+  i ++ ) {
+    int currSum = 0 ;
+    for ( int j = 0 ;
+    j <= n ;
+    j ++ ) {
+      int index = ( int ) ( ( i + j ) % n ) ;
+      currSum += j * arr [ index ] ;
     }
-    return res ;
+    res = Math . max ( res , currSum ) ;
+  }
+  return res ;
 }
 
 public static void main(String args[]) {

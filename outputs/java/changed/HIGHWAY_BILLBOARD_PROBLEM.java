@@ -35,28 +35,30 @@ static int f_gold ( int m , int [ ] x , int [ ] revenue , int n , int t ) {
 
 //
 public static int f_filled ( int m , int [ ] x , int [ ] revenue , int n , int t ) {
-    int [ ] maxRev = new int [ m + 1 ] ;
-    nxtbb = 0 ;
-    for ( int i = 1 ;  i <= m ;  i ++ ) {
-        if ( ( nxtbb < n ) && ( m < x ) && ( x < revenue ) ) {
-            if ( ( x [ nxtbb ++ ] != i ) && ( x [ nxtbb ++ ] != j ) ){
-                maxRev [ i ] = maxRev [ i - 1 ] ;
-            }
-            if ( m > 0 ) {
-                if ( ( i <= t ) && ( i <= m ) ) {
-                    maxRev [ i ] = Math . max ( maxRev [ i - 1 ] , revenue [ nxtbb ] ) ;
-                }
-                if ( m > 0 ) {
-                    maxRev [ i ] = Math . max ( maxRev [ i - t - 1 ] + revenue [ nxtbb ] , maxRev [ i - 1 ] ) ;
-                }
-                nxtbb ++ ;
-            }
+  int [ ] maxRev = new int [ m + 1 ] ;
+  int nxtbb = 0 ;
+  for ( int i = 1 ;
+  i <= m ;
+  i ++ ) {
+    if ( ( nxtbb < n ) && ( x [ nxtbb ] != i ) ) {
+      if ( ( x [ nxtbb ] != i ) && ( x [ nxtbb ] != x [ nxtbb ] ) ) {
+        maxRev [ i ] = maxRev [ i - 1 ] ;
+      }
+      else {
+        if ( ( i <= t ) && ( x [ nxtbb ] != i ) ) {
+          maxRev [ i ] = Math . max ( maxRev [ i - 1 ] , revenue [ nxtbb ] ) ;
         }
-        if ( m > 0 ) {
-            maxRev [ i ] = maxRev [ i - 1 ] ;
+        else {
+          maxRev [ i ] = Math . max ( maxRev [ i - t - 1 ] + revenue [ nxtbb ] , maxRev [ i - 1 ] ) ;
         }
+        nxtbb ++ ;
+      }
     }
-    return maxRev [ m ] ;
+    else {
+      maxRev [ i ] = maxRev [ i - 1 ] ;
+    }
+  }
+  return maxRev [ m ] ;
 }
 
 public static void main(String args[]) {

@@ -21,11 +21,11 @@ static int f_gold ( int N , int K ) {
 
 //
 public static int f_filled ( int N , int K ) {
-    int ans = 0 ;
-    for ( int i = 1 ;  i <= N ;  i ++ ) {
-        ans += ( i % K ) ;
-    }
-    return ans ;
+  int ans = 0 ;
+  for ( int i = 1 ;
+  i <= N ;
+  i ++ ) ans += ( i % K ) ;
+  return ans ;
 }
 
 public static void main(String args[]) {

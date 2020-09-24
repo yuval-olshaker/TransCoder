@@ -31,27 +31,27 @@ static String f_gold ( String str ) {
 
 //
 public static String f_filled ( String str ) {
-    int i = str . length ( ) - 1 ;
-    start = end = i ++ ;
-    String result = "" ;
-    while ( i >= 0 ) {
-        if ( str . charAt ( i ) == ' ' ) {
-            int start = i ++ ;
-            while ( start != end ) {
-                result += str . charAt ( start ) ;
-                start ++ ;
-            }
-            result += " " ;
-            int end = i ;
-        }
-        i -- ;
-    }
-    int start = 0 ;
-    while ( start != end ) {
-        result += str . charAt ( start ) ;
+  int i = str . length ( ) - 1 ;
+  int start = end = i + 1 ;
+  StringBuffer sb = new StringBuffer ( ) ;
+  while ( i >= 0 ) {
+    if ( str . charAt ( i ) == ' ' ) {
+      start = i + 1 ;
+      while ( start != end ) {
+        sb . append ( str . charAt ( start ) ) ;
         start ++ ;
+      }
+      sb . append ( ' ' ) ;
+      end = i ;
     }
-    return result ;
+    i -- ;
+  }
+  start = 0 ;
+  while ( start != end ) {
+    sb . append ( str . charAt ( start ) ) ;
+    start ++ ;
+  }
+  return sb . toString ( ) ;
 }
 
 public static void main(String args[]) {

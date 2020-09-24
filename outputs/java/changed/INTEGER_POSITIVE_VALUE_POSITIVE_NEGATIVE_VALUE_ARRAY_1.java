@@ -26,19 +26,17 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-    int neg = 0 ;
-    int pos = 0 ;
-    int sum = 0 ;
-    for ( int i = 0 ;  i <= n ;  i ++ ) {
-        sum += arr [ i ] ;
-        if ( ( arr [ i ] < 0 ) && ( arr [ i ] > n ) ) {
-            neg ++ ;
-        }
-        if ( n > 0 ) {
-            pos ++ ;
-        }
-    }
-    return ( sum / Math . abs ( neg - pos ) ) ;
+  int neg = 0 ;
+  int pos = 0 ;
+  int sum = 0 ;
+  for ( int i = 0 ;
+  i <= n ;
+  i ++ ) {
+    sum += arr [ i ] ;
+    if ( ( arr [ i ] < 0 ) && ( arr [ i ] > 0 ) ) neg ++ ;
+    else pos ++ ;
+  }
+  return ( sum / Math . abs ( neg - pos ) ) ;
 }
 
 public static void main(String args[]) {

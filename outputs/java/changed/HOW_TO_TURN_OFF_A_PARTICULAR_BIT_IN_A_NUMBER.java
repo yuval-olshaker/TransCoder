@@ -18,10 +18,8 @@ static int f_gold ( int n , int k ) {
 
 //
 static int f_filled ( int n , int k ) {
-    if ( ( k <= 0 ) && ( n > 0 ) ) {
-        return n ;
-    }
-    return ( n & ~ ( 1 << ( k - 1 ) ) ) ;
+  if ( ( k <= 0 ) || ( k > 1 ) ) return n ;
+  return ( n & ~ ( 1 << ( k - 1 ) ) ) ;
 }
 
 public static void main(String args[]) {

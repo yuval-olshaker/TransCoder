@@ -26,6 +26,12 @@ def find_function_name_index(temp):
         i+=1
     return i - 1
 
+
+# counts how many conditions are in the code. because conditions are the hardest part
+def conditions_num(relevant_lines):
+    relevant_lines_str = ''.join(relevant_lines)
+    return relevant_lines_str.count('if') + relevant_lines_str.count('while')
+
 # add pur translated code into the tests so we will able to check it
 def add_code_to_tests(lang, lines):
     titles = []  # return the titles and lines counting to it
@@ -57,7 +63,7 @@ def add_code_to_tests(lang, lines):
             with open(changed_test_path, 'w') as specific_test_write:
                 specific_test_write.write(specific_test_str)
 
-            titles.append([lines[0], len(relevant_lines)])  # add the title and lines amount
+            titles.append([lines[0], len(relevant_lines), conditions_num(relevant_lines)])  # add the title and lines amount
         else:
             not_exists.append(lines[0] + '\n')
         lines = lines[i + 1:]
@@ -93,9 +99,9 @@ def run_python_tests(titles):
             run_process('python3 ' + dir_path + title[0] + '.py > ' + dir_path + 'temp.txt') # runs python test
             with open(dir_path + 'temp.txt') as result:  # take the result we printed
                 res = result.read()[:-1].split()  # no EOL, split by ' '
-                results.append([title[0], title[1], res[-2], res[-1]])
+                results.append([title[0], title[1], title[2], res[-2], res[-1]])
         except:
-            results.append([title[0], title[1], -1, -1])
+            results.append([title[0], title[1], title[2], -1, -1])
         os.system('rm ' + dir_path + 'temp.txt')
     return results
 
@@ -112,9 +118,9 @@ def run_java_tests(titles):
             run_process('cd ' + dir_path + ' ; ', 'java ' + title[0] + ' > temp.txt')
             with open(dir_path + 'temp.txt') as result:  # take the result we printed
                 res = result.read()[:-1].split()  # no EOL, split by ' '
-                results.append([title[0], title[1], res[-2], res[-1]])
+                results.append([title[0], title[1], title[2], res[-2], res[-1]])
         except:
-            results.append([title[0], title[1], -1, -1])
+            results.append([title[0], title[1], title[2], -1, -1])
         os.system('rm ' + dir_path + 'temp.txt')
     return results
 
@@ -122,8 +128,8 @@ def run_java_tests(titles):
 # order the results so we will print them
 def order_results(results):
     return list(map(
-        lambda res: (res[0] + ' lines: ' + str(res[1]) + ' successes: ' + str(res[2]) + ' tests: ' + str(
-            res[3]) + '\n'), results))
+        lambda res: (res[0] + ' lines: ' + str(res[1]) + ' conditions: ' + str(res[2]) + ' successes: ' + str(res[3]) + ' tests: ' + str(
+            res[4]) + '\n'), results))
 
 
 if __name__ == '__main__':

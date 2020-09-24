@@ -22,13 +22,16 @@ static boolean f_gold ( Integer a [ ] , int b [ ] , int n , int k ) {
 
 //
 public static boolean f_filled ( int [ ] a , int [ ] b , int n , int k ) {
-    Arrays . sort ( a , 0 , a . length - n ) ;
-    Arrays . sort ( a , 0 , a . length ) ;
-    for ( int i = 0 ;  i < n ;  i ++ ) {
-        if ( ( a [ i ] + b [ i ] < k ) && ( a [ i ] + b [ i ] < n ) ) a [ i ] = 5 ;
-            return false ;
+  Arrays . sort ( a , 0 , n ) ;
+  Arrays . sort ( b , 0 , n ) ;
+  for ( int i = 0 ;
+  i < n ;
+  i ++ ) {
+    if ( ( a [ i ] + b [ i ] ) < k ) {
+      return false ;
     }
-    return true ;
+  }
+  return true ;
 }
 
 public static void main(String args[]) {

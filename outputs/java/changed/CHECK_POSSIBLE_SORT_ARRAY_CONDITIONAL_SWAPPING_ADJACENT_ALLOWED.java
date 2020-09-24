@@ -29,17 +29,19 @@ static boolean f_gold ( int arr [ ] , int n ) {
 
 //
 public static boolean f_filled ( int [ ] arr , int n ) {
-    for ( int i = 0 ;  i <= n - 1 ;  i ++ ) {
-        if ( ( arr [ i ] > arr [ i + 1 ] ) && ( arr [ i + 1 ] < arr [ n ] ) ) {
-            if ( ( arr [ i ] - arr [ i + 1 ] == 1 ) && ( arr [ i + 1 ] - arr [ n ] == 1 ) ) {
-                arr [ i ] = arr [ i + 1 ] = arr [ i ] ;
-            }
-            if ( n > 0 ) {
-                return false ;
-            }
-        }
+  for ( int i = 0 ;
+  i <= n - 1 ;
+  i ++ ) {
+    if ( ( arr [ i ] > arr [ i + 1 ] ) && ( arr [ i ] - arr [ i + 1 ] == 1 ) ) {
+      if ( ( arr [ i ] - arr [ i + 1 ] == 1 ) && ( arr [ i ] > arr [ i + 1 ] ) ) {
+        arr [ i ] = arr [ i + 1 ] ;
+      }
+      else {
+        return false ;
+      }
     }
-    return fGold ( arr , 0 , n ) ;
+  }
+  return true ;
 }
 
 public static void main(String args[]) {

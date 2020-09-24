@@ -21,13 +21,15 @@ static boolean f_gold ( String s ) {
 
 //
 public static boolean f_filled ( String s ) {
-    int n = s . length ( ) ;
-    for ( int i = 1 ;  i <= n ;  i ++ ) {
-        if ( s . charAt ( i ) != s . charAt ( 0 ) ){
-            return false ;
-        }
+  int n = s . length ( ) ;
+  for ( int i = 1 ;
+  i < n ;
+  i ++ ) {
+    if ( s . charAt ( i ) != s . charAt ( 0 ) ) {
+      return false ;
     }
-    return true ;
+  }
+  return true ;
 }
 
 public static void main(String args[]) {

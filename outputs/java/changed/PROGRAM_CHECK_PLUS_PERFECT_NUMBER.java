@@ -29,19 +29,19 @@ static boolean f_gold ( int x ) {
 
 //
 public static boolean f_filled ( int x ) {
-    int temp = x ;
-    int n = 0 ;
-    while ( ( x != 0 ) && ( x != 1 ) ) {
-        x = x / 10 ;
-        n = n + 1 ;
-    }
-    x = temp ;
-    sm = 0 ;
-    while ( ( x != 0 ) && ( x != 1 ) ) {
-        sm = sm + ( int ) ( Math . pow ( x % 10 , n ) ) ;
-        x = x / 10 ;
-    }
-    return ( sm == temp ) ;
+  int temp = x ;
+  int n = 0 ;
+  while ( ( x != 0 ) && ( n < 10 ) ) {
+    x = x / 10 ;
+    n = n + 1 ;
+  }
+  x = temp ;
+  int sm = 0 ;
+  while ( ( x != 0 ) && ( n < 10 ) ) {
+    sm = sm + ( int ) ( Math . pow ( x % 10 , n ) ) ;
+    x = x / 10 ;
+  }
+  return ( sm == temp ) ;
 }
 
 public static void main(String args[]) {

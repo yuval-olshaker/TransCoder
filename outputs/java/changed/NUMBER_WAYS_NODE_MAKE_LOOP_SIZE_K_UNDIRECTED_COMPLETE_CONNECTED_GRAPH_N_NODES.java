@@ -19,11 +19,9 @@ static int f_gold ( int n , int k ) {
 
 //
 public static double f_filled ( int n , int k ) {
-    int p = 1 ;
-    if ( ( k % 2 ) != 0 ){
-        int p = - 1 ;
-    }
-    return ( Math . pow ( n - 1 , k ) + p * ( n - 1 ) ) / n ;
+  double p = 1 ;
+  if ( ( k % 2 ) != 0 ) p = - 1 ;
+  return ( Math . pow ( n - 1 , k ) + p * ( n - 1 ) ) / n ;
 }
 
 public static void main(String args[]) {

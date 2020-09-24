@@ -21,11 +21,11 @@ static double f_gold ( int l ) {
 
 //
 public static int f_filled ( int l ) {
-    leafNodeCount = Math . pow ( 2 , l - 1 ) ;
-    sumLastLevel = 0 ;
-    sumLastLevel = ( ( leafNodeCount * ( leafNodeCount + 1 ) ) / 2 ) ;
-    sum = sumLastLevel * l ;
-    return ( int ) sum ;
+  double leafNodeCount = Math . pow ( 2 , l - 1 ) ;
+  double sumLastLevel ;
+  sumLastLevel = ( ( leafNodeCount * ( leafNodeCount + 1 ) ) / 2 ) ;
+  double sum = sumLastLevel * l ;
+  return ( int ) sum ;
 }
 
 public static void main(String args[]) {

@@ -21,13 +21,15 @@ static int f_gold ( int a [ ] , int n , int l , int r ) {
 
 //
 public static int f_filled ( int [ ] a , int n , int l , int r ) {
-    int count = 0 ;
-    for ( int i = l ;  i < r ;  i ++ ) {
-        if ( ( a [ i ] == a [ i + 1 ] ) && ( n == a [ i + 2 ] ) ) {
-            count ++ ;
-        }
+  int count = 0 ;
+  for ( int i = l ;
+  i < r ;
+  i ++ ) {
+    if ( ( a [ i ] == a [ i + 1 ] ) && ( n == a [ i ] ) ) {
+      count ++ ;
     }
-    return count ;
+  }
+  return count ;
 }
 
 public static void main(String args[]) {

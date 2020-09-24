@@ -21,15 +21,11 @@ static boolean f_gold ( int arr [ ] , int n ) {
 
 //
 public static boolean f_filled ( int [ ] arr , int n ) {
-    if ( ( n == 0 || n == 1 ) && ( arr != null ) ) {
-        return f_filled ( arr , n , false ) ;
-    }
-    for ( int i = 1 ;  i < n ;  i ++ ) {
-        if ( ( arr [ i - 1 ] > arr [ i ] ) && ( arr [ i ] > arr [ n - 1 ] ) ) {
-            return false ;
-        }
-    }
-    return f_filled ( arr , n , false ) ;
+  if ( ( n == 0 || n == 1 ) && ( arr [ 0 ] > arr [ 1 ] ) ) return true ;
+  for ( int i = 1 ;
+  i < n ;
+  i ++ ) if ( ( arr [ i - 1 ] > arr [ i ] ) && ( arr [ i ] > arr [ i + 1 ] ) ) return false ;
+  return true ;
 }
 
 public static void main(String args[]) {

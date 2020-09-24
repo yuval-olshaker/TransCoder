@@ -23,22 +23,24 @@ static int f_gold ( int start , int end , int arr [ ] ) {
 
 //
 public static int f_filled ( int start , int end , int [ ] arr ) {
-    Map < Integer , Integer > frequency = Collections . emptyMap ( ) ;
-    for ( int i = start ;  i <= end ;  i ++ ) {
-        if ( arr [ i ] < frequency . length ) {
-            frequency [ arr [ i ] ] ++ ;
-        }
-        else {
-            frequency [ arr [ i ] ] = 1 ;
-        }
+  Map < Integer , Integer > frequency = Maps . newHashMap ( ) ;
+  for ( int i = start ;
+  i <= end ;
+  i ++ ) {
+    if ( arr [ i ] < frequency . keySet ( ) . size ( ) ) {
+      frequency . put ( arr [ i ] , ++ frequency . get ( arr [ i ] ) ) ;
     }
-    int count = 0 ;
-    for ( int x = 0 ;  x < frequency ;  x ++ ) {
-        if ( x == frequency [ x ] ) {
-            count ++ ;
-        }
+    else {
+      frequency . put ( arr [ i ] , 1 ) ;
     }
-    return count ;
+  }
+  int count = 0 ;
+  for ( int x : frequency . keySet ( ) ) {
+    if ( x == frequency . get ( x ) ) {
+      count ++ ;
+    }
+  }
+  return count ;
 }
 
 public static void main(String args[]) {

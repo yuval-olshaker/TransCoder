@@ -20,10 +20,10 @@ public static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-    int nthElement = 19 + ( n - 1 ) * 9 ;
-    outliersCount = ( int ) Math . log10 ( nthElement ) - 1 ;
-    nthElement += 9 * outliersCount ;
-    return nthElement ;
+  int nthElement = 19 + ( n - 1 ) * 9 ;
+  int outliersCount = ( int ) Math . log10 ( nthElement ) - 1 ;
+  nthElement += 9 * outliersCount ;
+  return nthElement ;
 }
 
 public static void main(String args[]) {

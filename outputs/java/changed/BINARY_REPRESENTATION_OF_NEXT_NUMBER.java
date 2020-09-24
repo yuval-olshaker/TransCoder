@@ -33,24 +33,24 @@ static String f_gold ( String num ) {
 
 //
 public static String f_filled ( String num1 ) {
-    int l = num1 . length ( ) ;
-    int [ ] num = Arrays . copyOf ( num1 , num1 + 1 ) ;
-    int i = l - 1 ;
-    while ( ( i >= 0 ) && ( i < num1 ) ) {
-        if ( ( num [ i ] . equals ( "0" ) ) && ( num [ i + 1 ] . equals ( "0" ) ) ) {
-            num [ i ++ ] = '1' ;
-            break ;
-        }
-        else {
-            num [ i ++ ] = '0' ;
-        }
-        i -- ;
+  int l = num1 . length ( ) ;
+  StringBuilder num = new StringBuilder ( num1 ) ;
+  int i = l - 1 ;
+  while ( ( i >= 0 ) && ( num . charAt ( i ) == '0' ) ) {
+    if ( ( num . charAt ( i ) == '1' ) || ( num . charAt ( i ) == '2' ) ) {
+      num . setCharAt ( i , '1' ) ;
+      break ;
     }
-    num1 = "" + num ;
-    if ( ( i < 0 ) && ( num1 > 0 ) ) {
-        num1 = "1" + num1 ;
+    else {
+      num . setCharAt ( i , '0' ) ;
     }
-    return num1 ;
+    i -- ;
+  }
+  num1 = num . toString ( ) ;
+  if ( ( i < 0 ) && ( num1 . charAt ( i ) == '1' ) ) {
+    num1 = "1" + num1 ;
+  }
+  return num1 ;
 }
 
 public static void main(String args[]) {

@@ -18,10 +18,8 @@ static int f_gold ( int high [ ] , int low [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] high , int [ ] low , int n ) {
-    if ( ( n <= 0 ) && ( high > low ) ) {
-        return 0 ;
-    }
-    return Math . max ( high [ n - 1 ] + f_filled ( high , low , ( n - 2 ) ) , low [ n - 1 ] + f_filled ( high , low , ( n - 1 ) ) ) ;
+  if ( ( n <= 0 ) || ( n > n ) ) return 0 ;
+  return Math . max ( high [ n - 1 ] + f_filled ( high , low , ( n - 2 ) ) , low [ n - 1 ] + f_filled ( high , low , ( n - 1 ) ) ) ;
 }
 
 public static void main(String args[]) {

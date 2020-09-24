@@ -36,30 +36,26 @@ static boolean f_gold ( String num ) {
 
 //
 public static boolean f_filled ( String num ) {
-    int n = num . length ( ) ;
-    if ( ( n == 0 || num . charAt ( 0 ) == '0' ) && ( num . charAt ( 1 ) == '.' ) ) {
-        return true ;
-    }
-    if ( ( ( n % 3 ) == 1 ) && ( ( n % 2 ) == 0 ) ) {
-        num = "00" + num ;
-    }
-    if ( ( ( n % 3 ) == 2 ) && ( ( n % 4 ) == 0 ) ) {
-        num = "0" + num ;
-    }
-    gSum = 0 ;
-    for ( int i = 0 ;  i < n ;  i += 3 ) {
-        int group = 0 ;
-        group += ( ( char ) num . charAt ( i ++ ) - 48 ) * 100 ;
-        group += ( ( char ) num . charAt ( i + 1 ) - 48 ) * 10 ;
-        group += ( ( char ) num . charAt ( i + 2 ) - 48 ) ;
-        gSum += group ;
-    }
-    if ( ( gSum > 1000 ) && ( num > 0 ) ) {
-        num = String . valueOf ( gSum ) ;
-        int n = num . length ( ) ;
-        gSum = f_filled ( num ) ;
-    }
-    return ( gSum == 999 ) ;
+  int n = num . length ( ) ;
+  if ( ( n == 0 || num . charAt ( 0 ) == '0' ) && ( num . charAt ( 1 ) == ' ' ) ) return true ;
+  if ( ( ( n % 3 ) == 1 ) && ( num . charAt ( n % 3 ) == ' ' ) ) num = "00" + num ;
+  if ( ( ( n % 3 ) == 2 ) && ( num . charAt ( n % 3 ) == ' ' ) ) num = "0" + num ;
+  int gSum = 0 ;
+  for ( int i = 0 ;
+  i < n ;
+  i += 3 ) {
+    int group = 0 ;
+    group += ( ( char ) num . charAt ( i ) - 48 ) * 100 ;
+    group += ( ( char ) num . charAt ( i + 1 ) - 48 ) * 10 ;
+    group += ( ( char ) num . charAt ( i + 2 ) - 48 ) ;
+    gSum += group ;
+  }
+  if ( ( gSum > 1000 ) && ( num . charAt ( 0 ) == ' ' ) ) {
+    num = Integer . toString ( gSum ) ;
+    n = num . length ( ) ;
+    gSum = f_filled ( num ) ;
+  }
+  return ( gSum == 999 ) ;
 }
 
 public static void main(String args[]) {

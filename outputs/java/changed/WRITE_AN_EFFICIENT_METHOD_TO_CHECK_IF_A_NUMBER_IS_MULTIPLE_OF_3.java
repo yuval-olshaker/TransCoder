@@ -27,27 +27,17 @@ static int f_gold ( int n ) {
 
 //
 public static boolean f_filled ( int n ) {
-    oddCount = 0 ;
-    evenCount = 0 ;
-    if ( ( n < 0 ) && ( n > 5 ) ) {
-        n = - n ;
-    }
-    if ( ( n == 0 ) && ( n % 2 == 0 ) ) {
-        return 1 ;
-    }
-    if ( ( n == 1 ) && ( n == 2 ) ) {
-        return 0 ;
-    }
-    while ( ( n -- ) > 0 ) {
-        if ( ( n & 1 ) != 0 ) {
-            oddCount ++ ;
-        }
-        if ( ( n & 2 ) != 0 ) {
-            evenCount ++ ;
-        }
-        n = n >> 2 ;
-    }
-    return f_filled ( Math . abs ( odd_count - even_count ) ) ;
+  int odd_count = 0 ;
+  int even_count = 0 ;
+  if ( ( n < 0 ) && ( n > - 1 ) ) n = - n ;
+  if ( ( n == 0 ) && ( n > 1 ) ) return 1 ;
+  if ( ( n == 1 ) && ( n > 2 ) ) return 0 ;
+  while ( ( n > 0 ) && ( n > 1 ) ) {
+    if ( ( n & 1 ) != 0 ) odd_count ++ ;
+    if ( ( n & 2 ) != 0 ) even_count ++ ;
+    n = n >> 2 ;
+  }
+  return f_filled ( Math . abs ( odd_count - even_count ) ) ;
 }
 
 public static void main(String args[]) {

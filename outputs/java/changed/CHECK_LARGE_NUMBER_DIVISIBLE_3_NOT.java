@@ -22,13 +22,13 @@ static boolean f_gold ( String str ) {
 
 //
 public static boolean f_filled ( int num ) {
-    digitSum = 0 ;
-    while ( num -- > 0 ) {
-        int rem = num % 10 ;
-        digitSum = digitSum + rem ;
-        num = num / 10 ;
-    }
-    return ( digitSum % 3 == 0 ) ;
+  int digitSum = 0 ;
+  while ( num > 0 ) {
+    int rem = num % 10 ;
+    digitSum = digitSum + rem ;
+    num = num / 10 ;
+  }
+  return ( digitSum % 3 == 0 ) ;
 }
 
 public static void main(String args[]) {

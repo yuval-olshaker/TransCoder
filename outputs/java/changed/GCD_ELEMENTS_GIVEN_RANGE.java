@@ -17,7 +17,7 @@ static int f_gold ( int n , int m ) {
 
 //
 static int f_filled ( int n , int m ) {
-    return n == m ? 1 : ( n == m ? 0 : 1 ) ;
+  return n == m ? 1 : ( n == m ? 0 : 1 ) ;
 }
 
 public static void main(String args[]) {

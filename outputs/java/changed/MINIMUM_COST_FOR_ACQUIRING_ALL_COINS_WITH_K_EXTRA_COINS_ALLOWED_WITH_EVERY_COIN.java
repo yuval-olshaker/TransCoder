@@ -23,13 +23,15 @@ static int f_gold ( int coin [ ] , int n , int k ) {
 
 //
 public static int f_filled ( int [ ] coin , int n , int k ) {
-    coin . forEach ( i -> f_filledcoin ( coin , n , k ) ) ;
-    coinsNeeded = Math . ceil ( 1.0 * n / ( k + 1 ) ) ;
-    int ans = 0 ;
-    for ( int i = 0 ;  i < coinsNeeded - 1 + 1 ;  i ++ ) {
-        ans += coin [ i ] ;
-    }
-    return ans ;
+  Arrays . sort ( coin ) ;
+  int coinsNeeded = Math . ceil ( 1.0 * n / ( k + 1 ) ) ;
+  int ans = 0 ;
+  for ( int i = 0 ;
+  i < coinsNeeded - 1 + 1 ;
+  i ++ ) {
+    ans += coin [ i ] ;
+  }
+  return ans ;
 }
 
 public static void main(String args[]) {

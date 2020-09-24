@@ -18,8 +18,8 @@ static int f_gold ( int n ) {
 
 //
 public static double f_filled ( double n ) {
-    double fibo = 2.078087 * Math . log ( n ) + 1.672276 ;
-    return Math . round ( fibo ) ;
+  double fibo = 2.078087 * Math . log ( n ) + 1.672276 ;
+  return Math . round ( fibo ) ;
 }
 
 public static void main(String args[]) {

@@ -28,23 +28,19 @@ static int f_gold ( int arr [ ] , int n , int k ) {
 
 //
 public static int f_filled ( int [ ] arr , int n , int k ) {
-    distCount = 0 ;
-    for ( int i = 0 ;  i < n ;  i ++ ) {
-        int j = 0 ;
-        while ( j < n ) {
-            if ( ( i != j && arr [ j ] == arr [ i ] ) || ( i == j && arr [ i ] == arr [ j ] ) ) {
-                break ;
-            }
-            j ++ ;
-        }
-        if ( ( j == n ) && ( k == n ) ) {
-            distCount ++ ;
-        }
-        if ( ( distCount == k ) && ( n > 0 ) ) {
-            return arr [ i ++ ] ;
-        }
+  int distCount = 0 ;
+  for ( int i = 0 ;
+  i < n ;
+  i ++ ) {
+    int j = 0 ;
+    while ( j < n ) {
+      if ( ( i != j && arr [ j ] == arr [ i ] ) || ( j == n ) ) break ;
+      j ++ ;
     }
-    return - 1 ;
+    if ( ( j == n ) && ( arr [ j ] == arr [ i ] ) ) distCount ++ ;
+    if ( ( distCount == k ) && ( arr [ i ] == arr [ j ] ) ) return arr [ i ] ;
+  }
+  return - 1 ;
 }
 
 public static void main(String args[]) {

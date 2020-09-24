@@ -24,13 +24,22 @@ static int f_gold ( int A [ ] , int B [ ] , int m , int n ) {
 
 //
 public static double f_filled ( double [ ] A , double [ ] B , int m , int n ) {
-    double [ ] dp = new double [ m + 1 ] ;
-    for ( int i = 1 ;  i <= n ;  i += 1 ) {
-        for ( int j = i ;  j <= m ;{
-            dp [ i ] [ j ] = Math . max ( ( dp [ i - 1 ] [ j - 1 ] + ( A [ j - 1 ] * B [ i - 1 ] ) ) , dp [ i ] [ j - 1 ] ) ;
-        }
+  int [ ] [ ] dp = new int [ m + 1 ] [ n + 1 ] ;
+  for ( int i = 0 ;
+  i < m + 1 ;
+  i ++ ) {
+    dp [ i ] [ i ] = 0 ;
+  }
+  for ( int i = 1 ;
+  i < n ;
+  i ++ ) {
+    for ( int j = i ;
+    j < m ;
+    j ++ ) {
+      dp [ i ] [ j ] = Math . max ( ( dp [ i - 1 ] [ j - 1 ] + ( A [ j - 1 ] * B [ i - 1 ] ) ) , dp [ i ] [ j - 1 ] ) ;
     }
-    return dp [ n ] [ m ] ;
+  }
+  return dp [ n ] [ m ] ;
 }
 
 public static void main(String args[]) {

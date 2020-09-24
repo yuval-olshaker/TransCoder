@@ -26,30 +26,16 @@ static int f_gold ( int a , int b ) {
 
 //
 public static int f_filled ( int a , int b ) {
-    if ( ( a == b ) && ( a != 0 ) ) {
-        return a % b ;
-    }
-    if ( ( a == 0 ) && ( b == 0 ) ) {
-        return b ;
-    }
-    if ( ( b == 0 ) && ( a != 0 ) ){
-        return a % b ;
-    }
-    if ( ( ( ~ a & 1 ) == 1 ) && ( ( ~ b & 1 ) == 1 ) ){
-        if ( ( ( b & 1 ) == 1 ) && ( ( a & 2 ) == 2 ) ){
-            return f_filled ( a >>> 1 , b ) ;
-        }
-        if ( a == 0 ) {
-            return ( f_filled ( a >>> 1 , b >>> 1 ) << 1 ) ;
-        }
-    }
-    if ( ( ( ~ b & 1 ) == 1 ) && ( ( a & 1 ) == 0 ) ){
-        return f_filled ( a , b >>> 1 ) ;
-    }
-    if ( ( a > b ) && ( a < 0 ) ){
-        return f_filled ( ( a - b ) >>> 1 , b ) ;
-    }
-    return f_filled ( ( b - a ) >>> 1 , a ) ;
+  if ( ( a == b ) && ( a == 0 ) ) return a ;
+  if ( ( a == 0 ) && ( b == 0 ) ) return b ;
+  if ( ( b == 0 ) && ( a == 0 ) ) return a ;
+  if ( ( ( ~ a & 1 ) == 1 ) && ( ( b & 1 ) == 1 ) ) {
+    if ( ( ( b & 1 ) == 1 ) && ( ( a & 1 ) == 1 ) ) return f_filled ( a >>> 1 , b ) ;
+    else return ( f_filled ( a >>> 1 , b >>> 1 ) << 1 ) ;
+  }
+  if ( ( ( ~ b & 1 ) == 1 ) && ( ( a & 1 ) == 1 ) ) return f_filled ( a , b >>> 1 ) ;
+  if ( ( a > b ) && ( ( a - b ) >>> 1 ) ) return f_filled ( ( a - b ) >>> 1 , b ) ;
+  return f_filled ( ( b - a ) >>> 1 , a ) ;
 }
 
 public static void main(String args[]) {

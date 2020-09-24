@@ -34,22 +34,21 @@ static boolean f_gold ( int arr [ ] , int n ) {
 
 //
 public static boolean f_filled ( int [ ] arr , int n ) {
-    int max1 = Math . max ( arr ) ;
-    int min1 = Math . min ( arr ) ;
-    int m = max1 - min1 + 1 ;
-    if ( ( m > n ) && ( m < n ) ) {
-        return false ;
-    }
-    int visited [ ] = new int [ m ] ;
-    for ( int i = 0 ;  i <= n ;  i ++ ) {
-        visited [ arr [ i ] - min1 ] = true ;
-    }
-    for ( int i = 0 ;  i <= m ;  i ++ ) {
-        if ( ( visited [ i ] == false ) && ( n > 0 ) ) {
-            return false ;
-        }
-    }
-    return f_filled ( arr , 0 , n ) ;
+  int max1 = max ( arr ) ;
+  int min1 = min ( arr ) ;
+  int m = max1 - min1 + 1 ;
+  if ( ( m > n ) && ( m < n ) ) return false ;
+  boolean [ ] visited = new boolean [ m ] ;
+  visited [ arr [ i ] - min1 ] = true ;
+  for ( int i = 0 ;
+  i <= n ;
+  i ++ ) visited [ arr [ i ] - min1 ] = true ;
+  for ( int i = 0 ;
+  i <= m ;
+  i ++ ) {
+    if ( ( visited [ i ] == false ) == ( visited [ i ] == true ) ) return false ;
+  }
+  return true ;
 }
 
 public static void main(String args[]) {

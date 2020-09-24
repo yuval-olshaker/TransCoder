@@ -35,25 +35,21 @@ static int f_gold ( int arr [ ] , int n , int k ) {
 
 //
 public static int f_filled ( int [ ] arr , int n , int k ) {
-    int um = 0 , currRem = 0 , maxSum = 0 ;
-    int [ ] sm = new int [ n ] ;
-    sm [ 0 ] = arr [ 0 ] ;
-    for ( int i = 1 ;  i < n ;  i ++ ) {
-        sm [ i ] = sm [ i - 1 ] + arr [ i ] ;
-    }
-    for ( int i = 0 ;  i < n ;  i ++ ) {
-        int currRem = sm [ i ] % k ;
-        if ( ( ! currRem && maxSum < sm [ i ] ) || ( ! currRem && maxSum < sm [ k ] ) ){
-            int maxSum = sm [ i ] ;
-        }
-        else if ( ( ! currRem . contains ( um ) ) && ( ! currRem . contains ( um ) ) ) {
-            um [ currRem ++ ] = i ;
-        }
-        if ( ( maxSum < ( sm [ i ] - sm [ um [ currRem ] ] ) ) && ( maxSum > ( sm [ um [ currRem ] ] - sm [ um [ currRem ] ] ) ) ) {
-            int maxSum = sm [ i ] - sm [ um [ currRem ] ] ;
-        }
-    }
-    return maxSum / k ;
+  int [ ] um = new int [ n ] , currRem = 0 , maxSum = 0 ;
+  int [ ] sm = new int [ n ] ;
+  sm [ 0 ] = arr [ 0 ] ;
+  for ( int i = 1 ;
+  i < n ;
+  i ++ ) sm [ i ] = sm [ i - 1 ] + arr [ i ] ;
+  for ( int i = 0 ;
+  i < n ;
+  i ++ ) {
+    currRem = sm [ i ] % k ;
+    if ( ( ! currRem && maxSum < sm [ i ] ) || ( ! currRem && maxSum < um [ currRem ] ) ) maxSum = sm [ i ] ;
+    else if ( ( ! currRem && maxSum < um [ currRem ] ) || ( ! currRem && maxSum < um [ currRem ] ) ) um [ currRem ] = i ;
+    else if ( ( maxSum < ( sm [ i ] - sm [ um [ currRem ] ] ) ) || ( ! currRem && maxSum < um [ currRem ] ) ) maxSum = sm [ i ] - sm [ um [ currRem ] ] ;
+  }
+  return maxSum / k ;
 }
 
 public static void main(String args[]) {

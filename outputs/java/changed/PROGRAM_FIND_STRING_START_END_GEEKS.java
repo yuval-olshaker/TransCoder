@@ -20,12 +20,10 @@ static boolean f_gold ( String str , String corner ) {
 
 //
 public static boolean f_filled ( String str , String corner ) {
-    int n = str . length ( ) ;
-    int cl = corner . length ;
-    if ( ( n < cl ) && ( corner < n + 1 ) ){
-        return false ;
-    }
-    return ( ( str . substring ( 0 , cl ) . equals ( corner ) ) && ( str . substring ( n - cl , n ) . equals ( corner ) ) ) ;
+  int n = str . length ( ) ;
+  int cl = corner . length ( ) ;
+  if ( ( n < cl ) || ( n > cl ) ) return false ;
+  return ( ( str . substring ( 0 , cl ) . equals ( corner ) ) && ( str . substring ( n - cl , n ) . equals ( corner ) ) ) ;
 }
 
 public static void main(String args[]) {

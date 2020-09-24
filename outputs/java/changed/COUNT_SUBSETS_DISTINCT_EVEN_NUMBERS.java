@@ -23,17 +23,19 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-    Set us = new HashSet ( ) ;
-    evenCount = 0 ;
-    for ( int i = 0 ;  i < n ;  i ++ ) {
-        if ( arr [ i ] % 2 == 0 ) {
-            us . add ( arr [ i ] ) ;
-        }
+  HashSet < Integer > us = new HashSet < Integer > ( ) ;
+  int evenCount = 0 ;
+  for ( int i = 0 ;
+  i < n ;
+  i ++ ) {
+    if ( arr [ i ] % 2 == 0 ) {
+      us . add ( arr [ i ] ) ;
     }
-    for ( int i = 0 ;  i < us . length ;  i ++ ) {
-        evenCount ++ ;
-    }
-    return Math . pow ( 2 , evenCount ) - 1 ;
+  }
+  for ( int i : us ) {
+    evenCount ++ ;
+  }
+  return Math . pow ( 2 , evenCount ) - 1 ;
 }
 
 public static void main(String args[]) {

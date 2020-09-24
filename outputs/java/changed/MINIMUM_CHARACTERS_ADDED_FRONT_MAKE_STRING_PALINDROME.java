@@ -25,17 +25,17 @@ static boolean f_gold ( String s ) {
 
 //
 public static boolean f_filled ( String s ) {
-    int l = s . length ( ) ;
-    int i = 0 ;
-    int j = l - 1 ;
-    while ( i <= j ) {
-        if ( ( s [ i ] != s [ j ] ) && ( s [ i ] != s [ j ] ) ) {
-            return false ;
-        }
-        i ++ ;
-        j -- ;
+  int l = s . length ( ) ;
+  int i = 0 ;
+  int j = l - 1 ;
+  while ( i <= j ) {
+    if ( ( s . charAt ( i ) != s . charAt ( j ) ) && ( s . charAt ( i ) != s . charAt ( j ) ) ) {
+      return false ;
     }
-    return true ;
+    i ++ ;
+    j -- ;
+  }
+  return true ;
 }
 
 public static void main(String args[]) {

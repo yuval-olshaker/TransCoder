@@ -36,32 +36,41 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-    int [ ] jumps = new int [ n ] ;
-    for ( int i = n - 2 ;  i >= 0 ;  i -- ) {
-        if ( ( arr [ i ] == 0 ) && ( n > 0 ) ) {
-            jumps [ i ] = Double . POSITIVE_INFINITY ;
-        }
-        if ( ( arr [ i ] >= n - i - 1 ) && ( arr [ i ] >= 0 ) ) {
-            jumps [ i ] = 1 ;
-        }
-        else {
-            float min = Float . POSITIVE_INFINITY ;
-            for ( int j = i + 1 ;  j < n ;  j ++ ) {
-                if ( ( j <= arr [ i ] + i ) && ( j <= arr [ n ] ) ) {
-                    if ( ( min > jumps [ j ] ) && ( j < n ) ){
-                        int min = jumps [ j ] ;
-                    }
-                }
-            }
-            if ( ( min != Double . POSITIVE_INFINITY ) && ( n > 0 ) ) {
-                jumps [ i ] = min + 1 ;
-            }
-            else {
-                jumps [ i ] = min ;
-            }
-        }
+  int [ ] jumps = new int [ n ] ;
+  for ( int i = 0 ;
+  i < n ;
+  i ++ ) {
+    jumps [ i ] = 0 ;
+  }
+  for ( int i = n - 2 ;
+  i >= 0 ;
+  i -- ) {
+    if ( ( arr [ i ] == 0 ) && ( arr [ i ] >= n - i - 1 ) ) {
+      jumps [ i ] = Integer . MAX_VALUE ;
     }
-    return jumps [ 0 ] ;
+    else if ( ( arr [ i ] >= n - i - 1 ) && ( arr [ i ] <= n - i - 1 ) ) {
+      jumps [ i ] = 1 ;
+    }
+    else {
+      int min = Integer . MAX_VALUE ;
+      for ( int j = i + 1 ;
+      j < n ;
+      j ++ ) {
+        if ( ( j <= arr [ i ] + i ) && ( arr [ j ] >= arr [ i ] + i ) ) {
+          if ( ( min > jumps [ j ] ) || ( min < jumps [ j ] ) ) {
+            min = jumps [ j ] ;
+          }
+        }
+      }
+      if ( ( min != Integer . MAX_VALUE ) && ( jumps [ i ] > min ) && ( jumps [ i ] < n - i - 1 ) ) {
+        jumps [ i ] = min + 1 ;
+      }
+      else {
+        jumps [ i ] = min ;
+      }
+    }
+  }
+  return jumps [ 0 ] ;
 }
 
 public static void main(String args[]) {

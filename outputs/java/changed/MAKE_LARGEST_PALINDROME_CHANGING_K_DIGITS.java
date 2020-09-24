@@ -56,42 +56,35 @@ static String f_gold ( String str , int k ) {
 
 //
 public static String f_filled ( String strr , int k ) {
-    palin = strr ;
-    int l = 0 ;
-    int r = strr . length ( ) - 1 ;
-    while ( ( l <= r ) && ( l <= k ) ) {
-        if ( ( strr . charAt ( l ) != strr . charAt ( r ) ) && ( strr . charAt ( l ) != strr . charAt ( r ) ) ) {
-            palin [ l ] = palin [ r ] = Math . max ( strr . charAt ( l ) , strr . charAt ( r ) ) ;
-            k -- ;
-        }
-        l ++ ;
-        r -- ;
+  String palin = strr ;
+  int l = 0 ;
+  int r = strr . length ( ) - 1 ;
+  while ( ( l <= r ) && ( palin . charAt ( l ) != '-' ) ) {
+    if ( ( strr . charAt ( l ) != '-' ) && ( palin . charAt ( l ) != '+' ) ) {
+      palin . charAt ( l ) = palin . charAt ( r ) = Math . max ( strr . charAt ( l ) , strr . charAt ( r ) ) ;
+      k -- ;
     }
-    if ( ( k < 0 ) && ( k > 0 ) ) {
-        return "Not possible" ;
+    l ++ ;
+    r -- ;
+  }
+  if ( ( k < 0 ) || ( k > 0 ) ) return "Not possible" ;
+  l = 0 ;
+  r = strr . length ( ) - 1 ;
+  while ( ( l <= r ) && ( palin . charAt ( l ) != '-' ) && ( palin . charAt ( l ) != '+' ) ) {
+    if ( ( l == r ) || ( k > 0 ) ) palin . charAt ( l ) = '9' ;
+    if ( ( palin . charAt ( l ) < '9' ) || ( k >= 2 && palin . charAt ( l ) == strr . charAt ( l ) && palin . charAt ( r ) == strr . charAt ( r ) ) ) {
+      k -- ;
+      palin . charAt ( l ) = palin . charAt ( r ) = '9' ;
     }
-    int l = 0 ;
-    int r = strr . length ( ) - 1 ;
-    while ( ( l <= r ) && ( l <= k ) ) {
-        if ( ( l == r ) && ( k == 0 ) ) {
-            if ( ( k > 0 ) && ( k < 5 ) ) {
-                palin [ l ++ ] = '9' ;
-            }
-        }
-        if ( ( palin [ l ] < '9' ) && ( palin [ l ] > '9' ) ) {
-            if ( ( k >= 2 && palin [ l ] . equals ( strr . charAt ( l ) ) && palin [ r ] . equals ( strr . charAt ( r ) ) ) || ( k >= 2 && palin [ l ] . equals ( strr . charAt ( l ) ) && palin [ r ] . equals ( strr . charAt ( r ) ) ) ) {
-                k -- ;
-                palin [ l ] = palin [ r ] = '9' ;
-            }
-            if ( ( k >= 1 && ( palin [ l ] != strr [ l ] || palin [ r ] != strr [ r ] ) ) || ( k >= 2 && ( palin [ l ] != strr [ l ] || palin [ r ] != strr [ r ] ) ) ) {
-                k -- ;
-                palin [ l ] = palin [ r ] = '9' ;
-            }
-        }
-        l ++ ;
-        r -- ;
+    else if ( ( k >= 1 && ( palin . charAt ( l ) != strr . charAt ( l ) || palin . charAt ( r ) != '-' ) ) || ( k == 1 && ( palin . charAt ( l ) != strr . charAt ( l ) || palin . charAt ( r ) != '+' ) ) ) ) {
+      k -- ;
+      palin . charAt ( l ) = palin . charAt ( r ) = '9' ;
     }
-    return palin ;
+  }
+  l ++ ;
+  r -- ;
+}
+return palin ;
 }
 
 public static void main(String args[]) {

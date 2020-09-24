@@ -42,52 +42,52 @@ static String f_gold ( String str ) {
 
 //
 public static String f_filled ( String Str ) {
-    int Len = Str . length ( ) ;
-    String [ ] res = new String [ Len ] ;
-    int index = 0 ;
-    int i = 0 ;
-    StringBuilder sb = new StringBuilder ( ) ;
-    s . add ( 0 ) ;
-    while ( ( i < Len ) && ( i < Len ) ) {
-        if ( ( Str . charAt ( i ) == '+' ) && ( Str . charAt ( i + 1 ) == '-' ) ) {
-            if ( ( s . charAt ( s . length ( ) - 1 ) == 1 ) && ( s . charAt ( s . length ( ) - 2 ) == 1 ) ) {
-                res [ index ++ ] = '-' ;
-                index ++ ;
-            }
-            if ( ( s . charAt ( s . length ( ) - 1 ) == 0 ) && ( s . charAt ( s . length ( ) - 1 ) == 1 ) ) {
-                res [ index ++ ] = '+' ;
-                index ++ ;
-            }
-        }
-        if ( ( Str . charAt ( i ) == '-' ) && ( Str . charAt ( i + 1 ) == '-' ) ) {
-            if ( ( s . charAt ( s . length ( ) - 1 ) == 1 ) && ( s . charAt ( s . length ( ) - 2 ) == 1 ) ) {
-                res [ index ++ ] = '+' ;
-                index ++ ;
-            }
-            if ( ( s . charAt ( s . length ( ) - 1 ) == 0 ) && ( s . charAt ( s . length ( ) - 1 ) == 1 ) ) {
-                res [ index ++ ] = '-' ;
-                index ++ ;
-            }
-        }
-        if ( ( Str . charAt ( i ) == '(' ) && i > 0 ) {
-            if ( ( Str . charAt ( i - 1 ) == '-' ) && ( Str . charAt ( i - 2 ) == '-' ) ) {
-                int x = Str . length ( ) == 0 ? 1 : 0 ;
-                s . add ( x ) ;
-            }
-            else if ( ( Str . charAt ( i - 1 ) == '+' ) && ( Str . charAt ( i - 2 ) == '-' ) ) {
-                s . add ( s . charAt ( s . length ( ) - 1 ) ) ;
-            }
-        }
-        if ( ( Str . charAt ( i ) == ')' ) && ( Str . charAt ( i + 1 ) == '(' ) ) {
-            s . remove ( ) ;
-        }
-        if ( Str == null ) {  }  else {
-            res [ index ++ ] = Str . charAt ( i ++ ) ;
-            index ++ ;
-        }
-        i ++ ;
+  int Len = Str . length ( ) ;
+  String res = new String ( null ) ;
+  int index = 0 ;
+  int i = 0 ;
+  Stack s = new Stack ( ) ;
+  s . push ( 0 ) ;
+  while ( ( i < Len ) && ( i < Str . length ( ) ) ) {
+    if ( ( Str . charAt ( i ) == '+' ) ) {
+      if ( ( s . pop ( ) == 1 ) ) {
+        res . charAt ( index ) = '-' ;
+        index ++ ;
+      }
+      if ( ( s . pop ( ) == 0 ) ) {
+        res . charAt ( index ) = '+' ;
+        index ++ ;
+      }
     }
-    return res ;
+    else if ( ( Str . charAt ( i ) == '-' ) ) {
+      if ( ( s . pop ( ) == 1 ) ) {
+        res . charAt ( index ) = '+' ;
+        index ++ ;
+      }
+      else if ( ( s . pop ( ) == 0 ) ) {
+        res . charAt ( index ) = '-' ;
+        index ++ ;
+      }
+    }
+    else if ( ( Str . charAt ( i ) == '(' ) && i > 0 ) ) {
+      if ( ( Str . charAt ( i - 1 ) == '-' ) ) {
+        int x = 0 == ( s . pop ( ) == 1 ) ? 1 : 0 ;
+        s . push ( x ) ;
+      }
+      else if ( ( Str . charAt ( i - 1 ) == '+' ) ) {
+        s . push ( s . pop ( ) ) ;
+      }
+    }
+    else if ( ( Str . charAt ( i ) == ')' ) ) {
+      s . pop ( ) ;
+    }
+    else {
+      res . charAt ( index ) = Str . charAt ( i ) ;
+      index ++ ;
+    }
+    i ++ ;
+  }
+  return res ;
 }
 
 public static void main(String args[]) {

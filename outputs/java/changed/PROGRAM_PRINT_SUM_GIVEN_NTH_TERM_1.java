@@ -17,7 +17,7 @@ static int f_gold ( long n ) {
 
 //
 public static double f_filled ( double n ) {
-    return Math . pow ( n , 2 ) ;
+  return Math . pow ( n , 2 ) ;
 }
 
 public static void main(String args[]) {

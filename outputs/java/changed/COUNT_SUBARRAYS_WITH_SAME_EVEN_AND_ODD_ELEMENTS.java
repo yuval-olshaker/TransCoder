@@ -40,28 +40,30 @@ static int f_gold ( int [ ] arr , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-    int difference = 0 ;
-    int ans = 0 ;
-    int [ ] hashPositive = new int [ n + 1 ] ;
-    int [ ] hashNegative = new int [ n + 1 ] ;
-    hash_positive [ 0 ] = 1 ;
-    for ( int i = 0 ;  i < n ;  i ++ ) {
-        if ( ( arr [ i ] & 1 == 1 ) != 0 ) {
-            difference = difference + 1 ;
-        }
-        if ( n > 0 ) {
-            int difference = difference - 1 ;
-        }
-        if ( ( difference < 0 ) && ( n > 0 ) ) {
-            ans += hashNegative [ - difference ] ;
-            hash_negative [ - difference ] = hash_negative [ - difference ] + 1 ;
-        }
-        if ( n > 0 ) {
-            ans += hashPositive [ difference ] ;
-            hashPositive [ difference ] = hashPositive [ difference ] + 1 ;
-        }
+  int difference = 0 ;
+  int ans = 0 ;
+  int [ ] hashPositive = new int [ n + 1 ] ;
+  int [ ] hashNegative = new int [ n + 1 ] ;
+  hashPositive [ 0 ] = 1 ;
+  for ( int i = 0 ;
+  i < n ;
+  i ++ ) {
+    if ( ( arr [ i ] & 1 == 1 ) && ( arr [ i ] & 2 ) != 0 ) {
+      difference = difference + 1 ;
     }
-    return ans ;
+    else {
+      difference = difference - 1 ;
+    }
+    if ( ( difference < 0 ) && ( hashNegative [ - difference ] == 0 ) ) {
+      ans += hashNegative [ - difference ] ;
+      hashNegative [ - difference ] = hashNegative [ - difference ] + 1 ;
+    }
+    else {
+      ans += hashPositive [ difference ] ;
+      hashPositive [ difference ] = hashPositive [ difference ] + 1 ;
+    }
+  }
+  return ans ;
 }
 
 public static void main(String args[]) {

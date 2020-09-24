@@ -25,17 +25,20 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-    sort ( arr , 0 , n ) ;
-    int a = 0 ;
-    for ( int i = 0 ;  i < n ;  i ++ ) {
-        if ( ( i % 2 != 0 ) && ( i % 2 == 0 ) ){
-            a = a * 10 + arr [ i ] ;
-        }
-        else{
-            b = b * 10 + arr [ i ] ;
-        }
+  Arrays . sort ( arr ) ;
+  int a = 0 ;
+  int b = 0 ;
+  for ( int i = 0 ;
+  i < n ;
+  i ++ ) {
+    if ( ( i % 2 != 0 ) && ( arr [ i ] > 0 ) ) {
+      a = a * 10 + arr [ i ] ;
     }
-    return a + b ;
+    else {
+      b = b * 10 + arr [ i ] ;
+    }
+  }
+  return a + b ;
 }
 
 public static void main(String args[]) {

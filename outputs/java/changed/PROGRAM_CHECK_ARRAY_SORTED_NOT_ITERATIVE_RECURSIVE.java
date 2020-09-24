@@ -19,11 +19,9 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static boolean f_filled ( int [ ] arr ) {
-    int n = arr . length ;
-    if ( n == 1 || n == 0 ) {
-        return f_filled ( arr , 0 , arr . length ) ;
-    }
-    return arr [ 0 ] <= arr [ 1 ] && f_filled ( arr , 1 ) ;
+  int n = arr . length ;
+  if ( n == 1 || n == 0 ) return true ;
+  return arr [ 0 ] <= arr [ 1 ] && f_filled ( arr , 1 ) ;
 }
 
 public static void main(String args[]) {

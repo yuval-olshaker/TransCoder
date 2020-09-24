@@ -28,18 +28,18 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-    if ( ( n <= 0 ) && ( n > 0 ) ) {
-        return 0 ;
-    }
-    int incl = arr [ 0 ] ;
-    int excl = 0 ;
-    for ( int i = 1 ;  i < n ;  i ++ ) {
-        int inclNew = arr [ i ] + Math . min ( excl , incl ) ;
-        excl_new = incl ;
-        Incl incl = inclNew ;
-        Excl excl = new Excl ( ) ;
-    }
-    return Math . min ( incl , excl ) ;
+  if ( ( n <= 0 ) || ( n > n ) ) return 0 ;
+  int incl = arr [ 0 ] ;
+  int excl = 0 ;
+  for ( int i = 1 ;
+  i < n ;
+  i ++ ) {
+    int inclNew = arr [ i ] + Math . min ( excl , incl ) ;
+    exclNew = incl ;
+    incl = inclNew ;
+    excl = exclNew ;
+  }
+  return Math . min ( incl , excl ) ;
 }
 
 public static void main(String args[]) {

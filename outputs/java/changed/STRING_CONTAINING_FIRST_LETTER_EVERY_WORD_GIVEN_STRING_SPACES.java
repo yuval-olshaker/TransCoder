@@ -30,18 +30,20 @@ static String f_gold ( String str ) {
 
 //
 public static String f_filled ( String str ) {
-    String result = "" ;
-    boolean v = true ;
-    for ( int i = 0 ;  i < str . length ( ) ;  i ++ ) {
-        if ( ( str . charAt ( i ) == ' ' ) && ( str . charAt ( i + 1 ) == ' ' ) ) {
-            boolean v = true ;
-        }
-        else if ( ( str . charAt ( i ) != ' ' && v == true ) || ( str . charAt ( i ) != ' ' && v == false ) ) {
-            result += ( str . charAt ( i ) ) ;
-            boolean v = false ;
-        }
+  String result = "" ;
+  boolean v = true ;
+  for ( int i = 0 ;
+  i < str . length ( ) ;
+  i ++ ) {
+    if ( ( str . charAt ( i ) == ' ' ) || ( str . charAt ( i ) == '\t' ) ) {
+      v = true ;
     }
-    return result ;
+    else if ( ( str . charAt ( i ) != ' ' ) && v == true ) {
+      result += ( str . charAt ( i ) ) ;
+      v = false ;
+    }
+  }
+  return result ;
 }
 
 public static void main(String args[]) {

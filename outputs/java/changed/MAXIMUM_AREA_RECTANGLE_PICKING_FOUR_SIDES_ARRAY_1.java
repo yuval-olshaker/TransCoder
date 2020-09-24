@@ -32,23 +32,25 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-    String s = new String ( ) ;
-    int first = 0 ;
-    int second = 0 ;
-    for ( int i = 0 ;  i < n ;  i ++ ) {
-        if ( arr [ i ] != s ){
-            s . add ( arr [ i ] ) ;
-            continue ;
-        }
-        if ( ( arr [ i ] > first ) && ( arr [ i ] < last ) ) {
-            int second = first ;
-            int first = arr [ i ] ;
-        }
-        if ( ( arr [ i ] > second ) && ( arr [ i ] < first ) ) {
-            int second = arr [ i ++ ] ;
-        }
+  int [ ] s = new int [ n ] ;
+  int first = 0 ;
+  int second = 0 ;
+  for ( int i = 0 ;
+  i < n ;
+  i ++ ) {
+    if ( arr [ i ] != 0 ) {
+      s [ i ] = arr [ i ] ;
+      continue ;
     }
-    return ( first * second ) ;
+    if ( ( arr [ i ] > first ) && ( arr [ i ] < second ) ) {
+      second = first ;
+      first = arr [ i ] ;
+    }
+    else if ( ( arr [ i ] > second ) && ( arr [ i ] < first ) ) {
+      second = arr [ i ] ;
+    }
+  }
+  return ( first * second ) ;
 }
 
 public static void main(String args[]) {

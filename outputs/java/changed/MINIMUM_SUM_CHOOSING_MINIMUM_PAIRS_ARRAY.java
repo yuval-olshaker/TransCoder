@@ -18,8 +18,8 @@ static int f_gold ( int [ ] A , int n ) {
 
 //
 static int f_filled ( int [ ] A ) {
-    int minVal = Math . min ( A ) ;
-    return min_val * ( A . length - 1 ) ;
+  int minVal = Math . min ( A ) ;
+  return minVal * ( A . length - 1 ) ;
 }
 
 public static void main(String args[]) {

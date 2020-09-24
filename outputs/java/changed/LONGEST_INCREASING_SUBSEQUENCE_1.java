@@ -30,20 +30,26 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr ) {
-    int n = arr . length ;
-    f_filled = new int [ n ] ;
-    for ( int i = 1 ;  i <= n ;  i ++ ) {
-        for ( int j = 0 ;  j <= i ;  j ++ ) {
-            if ( arr [ i ] > arr [ j ] && f_filled [ i ] < f_filled [ j ] + 1 ) {
-                f_filled [ i ] = f_filled [ j ] + 1 ;
-            }
-        }
+  int n = arr . length ;
+  int [ ] f_filled = new int [ n ] ;
+  for ( int i = 1 ;
+  i < n ;
+  i ++ ) {
+    for ( int j = 0 ;
+    j <= i ;
+    j ++ ) {
+      if ( arr [ i ] > arr [ j ] && f_filled [ i ] < f_filled [ j ] + 1 ) {
+        f_filled [ i ] = f_filled [ j ] + 1 ;
+      }
     }
-    int maximum = 0 ;
-    for ( int i = 0 ;  i < n ;  i ++ ) {
-        maximum = Math . max ( maximum , f_filled [ i ] ) ;
-    }
-    return maximum ;
+  }
+  int maximum = 0 ;
+  for ( int i = 0 ;
+  i < n ;
+  i ++ ) {
+    maximum = Math . max ( maximum , f_filled [ i ] ) ;
+  }
+  return maximum ;
 }
 
 public static void main(String args[]) {

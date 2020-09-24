@@ -22,16 +22,19 @@ static boolean f_gold ( int p ) {
 
 //
 public static boolean f_filled ( int p ) {
-    int checkNumber = 2 * p - 1 ;
-    nextval = 4 % checkNumber ;
-    for ( int i = 1 ;  i <= p - 1 ;  i ++ ) {
-        nextval = ( nextval * nextval - 2 ) % checkNumber ;
-    }
-    if ( ( nextval == 0 ) && ( p > 0 ) ) {
-        return true ;
-    }
-    }
-        return false ;
+  int checkNumber = 2 * p - 1 ;
+  int nextval = 4 % checkNumber ;
+  for ( int i = 1 ;
+  i <= p - 1 ;
+  i ++ ) {
+    nextval = ( nextval * nextval - 2 ) % checkNumber ;
+  }
+  if ( ( nextval == 0 ) && ( nextval != 1 ) ) {
+    return true ;
+  }
+  else {
+    return false ;
+  }
 }
 
 public static void main(String args[]) {

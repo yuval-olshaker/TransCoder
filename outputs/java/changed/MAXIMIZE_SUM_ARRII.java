@@ -22,12 +22,14 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-    Arrays . sort ( arr , 0 , n ) ;
-    int sum = 0 ;
-    for ( int i = 0 ;  i < n ;  i ++ ) {
-        sum += arr [ i ] * i ;
-    }
-    return sum ;
+  Arrays . sort ( arr ) ;
+  int sum = 0 ;
+  for ( int i = 0 ;
+  i < n ;
+  i ++ ) {
+    sum += arr [ i ] * i ;
+  }
+  return sum ;
 }
 
 public static void main(String args[]) {

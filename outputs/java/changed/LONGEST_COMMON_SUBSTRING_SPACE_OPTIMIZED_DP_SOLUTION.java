@@ -41,27 +41,31 @@ static int f_gold ( String X , String Y ) {
 
 //
 public static int f_filled ( String X , String Y ) {
-    int m = X . length ( ) ;
-    int n = Y . length ( ) ;
-    f_filled result = 0 ;
-    int [ ] lenMat = new int [ 2 ] ;
-    currRow = 0 ;
-    for ( int i = 0 ;  i < m ;  i ++ ) {
-        for ( int j = 0 ;  j < n ;  j ++ ) {
-            if ( ( i == 0 | j == 0 ) && ( i == 1 || j == 1 ) ){
-                lenMat [ currRow ] [ j ] = 0 ;
-            }
-            else if ( ( X . charAt ( i - 1 ) == Y . charAt ( j - 1 ) ) && ( X . charAt ( i - 1 ) == Y . charAt ( j - 1 ) ) ) {
-                lenMat [ currRow ] [ j ] = lenMat [ 1 - currRow ] [ j - 1 ] + 1 ;
-                result = Math . max ( result , lenMat [ currRow ] [ j ] ) ;
-            }
-            else {
-                lenMat [ currRow ] [ j ] = 0 ;
-            }
-        }
-        currRow = 1 - currRow ;
+  int m = X . length ( ) ;
+  int n = Y . length ( ) ;
+  int result = 0 ;
+  int [ ] [ ] lenMat = new int [ 2 ] [ n ] ;
+  int currRow = 0 ;
+  for ( int i = 0 ;
+  i < m ;
+  i ++ ) {
+    for ( int j = 0 ;
+    j < n ;
+    j ++ ) {
+      if ( ( i == 0 | j == 0 ) && ( X . charAt ( i - 1 ) == Y . charAt ( j - 1 ) ) ) {
+        lenMat [ currRow ] [ j ] = 0 ;
+      }
+      else if ( ( X . charAt ( i - 1 ) == Y . charAt ( j - 1 ) ) && ( X . charAt ( i - 1 ) == Y . charAt ( j - 1 ) ) ) {
+        lenMat [ currRow ] [ j ] = lenMat [ 1 - currRow ] [ j - 1 ] + 1 ;
+        result = Math . max ( result , lenMat [ currRow ] [ j ] ) ;
+      }
+      else {
+        lenMat [ currRow ] [ j ] = 0 ;
+      }
     }
-    return result ;
+    currRow = 1 - currRow ;
+  }
+  return result ;
 }
 
 public static void main(String args[]) {

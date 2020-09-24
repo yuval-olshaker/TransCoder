@@ -41,31 +41,35 @@ static String f_gold ( String str1 , String str2 ) {
 
 //
 public static String f_filled ( String str1 , String str2 ) {
-    if ( str1 . length ( ) > str2 . length ( ) ) {
-        String temp = str1 ;
-        str1 = str2 ;
-        str2 = temp ;
-    }
-    String str3 = "" ;
-    int n1 = str1 . length ( ) ;
-    int n2 = str2 . length ( ) ;
-    int diff = n2 - n1 ;
-    int carry = 0 ;
-    for ( int i = n1 - 1 ;  i >= 0 ;  i -- ) {
-        int sum = ( ( Character . digit ( str1 . charAt ( i ) , 16 ) - '0' ) + ( Character . digit ( str2 . charAt ( i + diff ) , 16 ) - '0' ) ) + carry ;
-        str3 = str1 + String . valueOf ( sum % 10 ) ;
-        int carry = sum / 10 ;
-    }
-    for ( int i = n2 - n1 - 1 ;  i >= 0 ;  i -- ) {
-        sum = ( ( Character . digit ( str2 . charAt ( i ) , 16 ) - '0' ) + carry ) ;
-        str3 = str1 + String . valueOf ( sum % 10 ) ;
-        int carry = sum / 10 ;
-    }
-    if ( ( carry ) && ( str1 . length ( ) > 0 ) ) {
-        return str3 + String . valueOf ( carry + '0' ) ;
-    }
-    String str3 = str1 ;
-    return str3 ;
+  if ( str1 . length ( ) > str2 . length ( ) ) {
+    String temp = str1 ;
+    str1 = str2 ;
+    str2 = temp ;
+  }
+  String str3 = "" ;
+  int n1 = str1 . length ( ) ;
+  int n2 = str2 . length ( ) ;
+  int diff = n2 - n1 ;
+  int carry = 0 ;
+  for ( int i = n1 - 1 ;
+  i >= 0 ;
+  i -- ) {
+    int sum = ( ( Character . digit ( str1 . charAt ( i ) , 16 ) - '0' ) + ( Character . digit ( str2 . charAt ( i + diff ) , 16 ) - '0' ) ) + carry ;
+    str3 = str3 + Integer . toString ( sum % 10 , 16 ) ;
+    carry = sum / 10 ;
+  }
+  for ( int i = n2 - n1 - 1 ;
+  i >= 0 ;
+  i -- ) {
+    int sum = ( ( Character . digit ( str2 . charAt ( i ) , 16 ) - '0' ) + carry ) ;
+    str3 = str3 + Integer . toString ( sum % 10 , 16 ) ;
+    carry = sum / 10 ;
+  }
+  if ( ( carry > 0 ) && ( carry < 10 ) ) {
+    str3 = str3 + Integer . toString ( carry + '0' , 16 ) ;
+  }
+  str3 = str3 . substring ( 0 , str3 . length ( ) - 1 ) ;
+  return str3 ;
 }
 
 public static void main(String args[]) {

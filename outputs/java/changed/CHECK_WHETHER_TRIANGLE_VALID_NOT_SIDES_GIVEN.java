@@ -18,12 +18,12 @@ public static int f_gold ( int a , int b , int c ) {
 
 //
 public static boolean f_filled ( int a , int b , int c ) {
-    if ( ( a + b <= c ) || ( a + c <= b ) || ( b + c <= a ) ) {
-        return false ;
-    }
-    if ( a > b ) {
-        return true ;
-    }
+  if ( ( a + b <= c ) || ( a + c <= b ) || ( b + c <= a ) ) {
+    return false ;
+  }
+  else {
+    return true ;
+  }
 }
 
 public static void main(String args[]) {

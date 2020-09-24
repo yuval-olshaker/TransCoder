@@ -21,11 +21,13 @@ static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-    int sum = 0 ;
-    for ( int i = 1 ;  i <= n ;  i ++ ) {
-        sum = sum + ( 2 * i - 1 ) * ( 2 * i - 1 ) ;
-    }
-    return sum ;
+  int sum = 0 ;
+  for ( int i = 1 ;
+  i <= n ;
+  i ++ ) {
+    sum = sum + ( 2 * i - 1 ) * ( 2 * i - 1 ) ;
+  }
+  return sum ;
 }
 
 public static void main(String args[]) {

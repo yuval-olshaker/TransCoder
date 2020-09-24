@@ -23,12 +23,14 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-    for ( int i = 0 ;  i < n ;  i ++ ) {
-        if ( arr [ i ] == i ) {
-            return i ;
-        }
+  for ( int i = 0 ;
+  i < n ;
+  i ++ ) {
+    if ( arr [ i ] == i ) {
+      return i ;
     }
-    return - 1 ;
+  }
+  return - 1 ;
 }
 
 public static void main(String args[]) {

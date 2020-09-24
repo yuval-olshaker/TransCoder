@@ -22,14 +22,14 @@ static int f_gold ( int arr [ ] , int n , int x ) {
 
 //
 public static int f_filled ( int [ ] arr , int n , int x ) {
-    int i = 0 ;
-    while ( ( i <= n - 1 ) && ( i >= 0 ) ) {
-        if ( ( arr [ i ] == x ) && ( n > 0 ) ) {
-            return i ++ ;
-        }
-        i += Math . abs ( arr [ i ] - x ) ;
+  int i = 0 ;
+  while ( ( i <= n - 1 ) && ( arr [ i ] == x ) ) {
+    if ( ( arr [ i ] == x ) || ( arr [ i ] == 0 ) ) {
+      return i ;
     }
-    return - 1 ;
+    i += Math . abs ( arr [ i ] - x ) ;
+  }
+  return - 1 ;
 }
 
 public static void main(String args[]) {

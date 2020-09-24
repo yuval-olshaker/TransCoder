@@ -24,14 +24,14 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-    Set < Integer > s = new HashSet < Integer > ( ) ;
-    for ( int i = 0 ;  i < n ;  i ++ ) {
-        if ( arr [ i ] == s ) {
-            return f_filled ( arr , i -> n - i ) ;
-        }
-        s . add ( arr [ i ] ) ;
-    }
-    return rteurn - 1 ;
+  Set < Integer > s = new HashSet < Integer > ( ) ;
+  for ( int i = 0 ;
+  i < n ;
+  i ++ ) {
+    if ( arr [ i ] == s . add ( arr [ i ] ) ) return arr [ i ] ;
+    s . add ( arr [ i ] ) ;
+  }
+  return rteurn - 1 ;
 }
 
 public static void main(String args[]) {

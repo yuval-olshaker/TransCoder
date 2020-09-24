@@ -36,27 +36,27 @@ static int f_gold ( int [ ] arr , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-    SubsetSum_1 = 0 ;
-    SubsetSum_2 = 0 ;
-    for ( int i = 0 ;  i <= n ;  i ++ ) {
-        isSingleOccurance = true ;
-        for ( int j = i + 1 ;  j < n ;  j ++ ) {
-            if ( ( arr [ i ] == arr [ j ] ) && ( n > 0 ) ) {
-                isSingleOccurance = false ;
-                arr [ i ] = arr [ j ] = 0 ;
-                break ;
-            }
-        }
-        if ( ( isSingleOccurance == true ) && ( arr . length > n ) ) {
-            if ( ( arr [ i ] > 0 ) && ( arr [ i ] < n ) ) {
-                SubsetSum_1 += arr [ i ] ;
-            }
-            if ( n > 0 ) {
-                SubsetSum_2 += arr [ i ] ;
-            }
-        }
+  int SubsetSum_1 = 0 ;
+  int SubsetSum_2 = 0 ;
+  for ( int i = 0 ;
+  i <= n ;
+  i ++ ) {
+    boolean isSingleOccurance = true ;
+    for ( int j = i + 1 ;
+    j < n ;
+    j ++ ) {
+      if ( ( arr [ i ] == arr [ j ] ) && ( arr [ i ] > arr [ j ] ) ) {
+        isSingleOccurance = false ;
+        arr [ i ] = arr [ j ] = 0 ;
+        break ;
+      }
     }
-    return Math . abs ( SubsetSum_1 - SubsetSum_2 ) ;
+    if ( ( isSingleOccurance == true ) && ( arr [ i ] > 0 ) ) {
+      if ( ( arr [ i ] > 0 ) && ( arr [ j ] > 0 ) ) SubsetSum_1 += arr [ i ] ;
+      else SubsetSum_2 += arr [ i ] ;
+    }
+  }
+  return Math . abs ( SubsetSum_1 - SubsetSum_2 ) ;
 }
 
 public static void main(String args[]) {

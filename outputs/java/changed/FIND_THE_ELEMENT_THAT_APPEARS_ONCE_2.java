@@ -29,7 +29,7 @@ static int f_gold ( int a [ ] , int n ) {
 
 //
 public static int f_filled ( List < Integer > nums ) {
-    return ( 3 * sum ( Sets . newHashSet ( nums ) ) . size ( ) - sum ( nums ) ) / 2 ;
+  return ( 3 * sum ( Sets . newHashSet ( nums ) ) . size ( ) - sum ( nums ) ) / 2 ;
 }
 
 public static void main(String args[]) {

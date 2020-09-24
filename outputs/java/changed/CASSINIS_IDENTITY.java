@@ -17,7 +17,7 @@ static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-    return n == 0 ? 1 : - 1 ;
+  return n == 0 ? 1 : - 1 ;
 }
 
 public static void main(String args[]) {

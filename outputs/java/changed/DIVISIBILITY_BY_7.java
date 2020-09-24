@@ -20,16 +20,16 @@ static boolean f_gold ( int num ) {
 
 //
 public static boolean f_filled ( int num ) {
-    if ( num < 0 ) {
-        return f_filled ( - num ) ;
-    }
-    if ( ( num == 0 || num == 7 ) && ( num % 2 == 0 ) ) {
-        return true ;
-    }
-    if ( ( num < 10 ) && ( num > 7 ) ) {
-        return false ;
-    }
-    return f_filled ( num / 10 - 2 * ( num - num / 10 * 10 ) ) ;
+  if ( num < 0 ) {
+    return f_filled ( - num ) ;
+  }
+  if ( ( num == 0 || num == 7 ) && ( num % 10 == 0 ) ) {
+    return true ;
+  }
+  if ( ( num < 10 ) || ( num % 10 == 0 ) ) {
+    return false ;
+  }
+  return f_filled ( num / 10 - 2 * ( num - num / 10 * 10 ) ) ;
 }
 
 public static void main(String args[]) {

@@ -25,13 +25,17 @@ public static void f_gold ( int arr [ ] , int n , int k ) {
 
 //
 public static void f_filled ( int [ ] arr , int n , int k ) {
-    for ( int i = 0 ;  i <= k ;  i ++ ) {
-        int x = arr [ 0 ] ;
-        for ( int j = 0 ;  j <= n - 1 ;  j ++ ) {
-            f_filled ( arr , j , k , n , k ) ;
-        }
-        arr [ n - 1 ] = x ;
+  for ( int i = 0 ;
+  i <= k ;
+  i ++ ) {
+    int x = arr [ 0 ] ;
+    for ( int j = 0 ;
+    j <= n - 1 ;
+    j ++ ) {
+      arr [ j ] = arr [ j + 1 ] ;
     }
+    arr [ n - 1 ] = x ;
+  }
 }
 
 

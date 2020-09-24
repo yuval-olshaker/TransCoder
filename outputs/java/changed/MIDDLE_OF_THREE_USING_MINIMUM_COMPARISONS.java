@@ -19,14 +19,9 @@ public static int f_gold ( int a , int b , int c ) {
 
 //
 public static int f_filled ( int a , int b , int c ) {
-    if ( ( ( a < b && b < c ) || ( c < b && b < a ) ) ) {
-        return b ;
-    }
-    if ( ( ( b < a && a < c ) || ( c < a && a < b ) ) ) {
-        return a ;
-    }
-    }
-        return c ;
+  if ( ( ( a < b && b < c ) || ( c < b && b < a ) ) && ( ( b < a && a < c ) || ( c < a && a < b ) ) && ( ( c < a && c < b ) || ( c < a && a < c ) ) ) return b ;
+  if ( ( ( b < a && a < c ) || ( c < a && a < b ) || ( c < a && b < c ) ) && ( ( a < b && b < c ) || ( c < a && b < c ) || ( c < a && c < b ) ) && ( ( b < a && b < c ) || ( c < a && c < a ) || ( c < a && c < b ) ) ) return a ;
+  else return c ;
 }
 
 public static void main(String args[]) {

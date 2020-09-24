@@ -19,9 +19,9 @@ static int f_gold ( int process , int need ) {
 
 //
 public static int f_filled ( int process , int need ) {
-    minf_filled = 0 ;
-    minf_filled = process * ( need - 1 ) + 1 ;
-    return minf_filled ;
+  int minf_filled ;
+  minf_filled = process * ( need - 1 ) + 1 ;
+  return minf_filled ;
 }
 
 public static void main(String args[]) {

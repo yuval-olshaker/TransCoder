@@ -40,29 +40,35 @@ static int f_gold ( int arr [ ] , int n , int k ) {
 
 //
 public static int f_filled ( int [ ] arr , int n , int k ) {
-    int [ ] sum = new int [ k ] ;
-    sum . add ( 0 ) ;
-    sum . add ( arr [ 0 ] ) ;
-    for ( int i = 2 ;  i <= n ;  i ++ ) {
-        sum . add ( sum [ i - 1 ] + arr [ i - 1 ] ) ;
-    }
-    int [ ] Q = new int [ n ] ;
-    HeapUtils . heapify ( Q ) ;
-    for ( int i = 1 ;  i <= n ;  i ++ ) {
-        for ( int j = i ;  j <= n ;  j ++ ) {
-            int x = sum [ j ] - sum [ i - 1 ] ;
-            if ( Q . length < k ){
-                heappush ( Q , arr , n , k ) ;
-            }
-            else {
-                if ( Q [ 0 ] < x ){
-                    heapPop ( Q ) ;
-                    heappush ( Q , arr , n , k ) ;
-                }
-            }
+  int [ ] sum = new int [ n + 1 ] ;
+  sum [ 0 ] = 0 ;
+  sum [ 1 ] = arr [ 0 ] ;
+  for ( int i = 2 ;
+  i <= n ;
+  i ++ ) {
+    sum [ i ] = sum [ i - 1 ] + arr [ i - 1 ] ;
+  }
+  int [ ] Q = new int [ n + 1 ] ;
+  heapify ( Q ) ;
+  for ( int i = 1 ;
+  i <= n ;
+  i ++ ) {
+    for ( int j = i ;
+    j <= n ;
+    j ++ ) {
+      int x = sum [ j ] - sum [ i - 1 ] ;
+      if ( Q . length < k ) {
+        heapify ( Q , x ) ;
+      }
+      else {
+        if ( Q [ 0 ] < x ) {
+          heapify ( Q , x ) ;
+          heappush ( Q , x ) ;
         }
+      }
     }
-    return Q [ 0 ] ;
+  }
+  return Q [ 0 ] ;
 }
 
 public static void main(String args[]) {

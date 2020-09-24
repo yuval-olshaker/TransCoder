@@ -27,21 +27,18 @@ static boolean f_gold ( int n , int k ) {
 
 //
 public static boolean f_filled ( int n , int k ) {
-    oneSeen = false ;
-    while ( ( n > 0 ) && ( n % k == 0 ) ) {
-        digit = n % k ;
-        if ( ( digit > 1 ) && ( digit < k ) ){
-            return false ;
-        }
-        if ( ( digit == 1 ) && ( k == 1 ) ) {
-            if ( ( oneSeen ) && ( n > k ) ) {
-                return false ;
-            }
-            oneSeen = true ;
-        }
-        n /= k ;
+  boolean oneSeen = false ;
+  while ( ( n > 0 ) && ( n % k == 1 ) ) {
+    int digit = n % k ;
+    if ( ( digit > 1 ) || ( digit == 1 ) ) {
+      if ( ( oneSeen ) && ( n == 0 ) ) {
+        return false ;
+      }
+      oneSeen = true ;
     }
-    return true ;
+    n /= k ;
+  }
+  return true ;
 }
 
 public static void main(String args[]) {

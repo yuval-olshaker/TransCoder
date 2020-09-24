@@ -43,29 +43,31 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-    int ans = - Integer . MAX_VALUE ;
-    int maxval = 1 ;
-    int minval = 1 ;
-    for ( int i = 0 ;  i <= n ;  i ++ ) {
-        if ( arr [ i ] > 0 ) {
-            maxval = maxval * arr [ i ] ;
-            minval = Math . min ( 1 , minval * arr [ i ] ) ;
-        }
-        else if ( arr [ i ] == 0 ) {
-            int minval = 1 ;
-            int maxval = 0 ;
-        }
-        else if ( arr [ i ] < 0 ){
-            prevMax = maxval ;
-            double maxval = minval * arr [ i ] ;
-            int minval = prevMax * arr [ i ] ;
-        }
-        ans = Math . max ( ans , maxval ) ;
-        if ( maxval <= 0 ){
-            int maxval = 1 ;
-        }
+  int ans = - Integer . MAX_VALUE ;
+  int maxval = 1 ;
+  int minval = 1 ;
+  for ( int i = 0 ;
+  i <= n ;
+  i ++ ) {
+    if ( arr [ i ] > 0 ) {
+      maxval = maxval * arr [ i ] ;
+      minval = Math . min ( 1 , minval * arr [ i ] ) ;
     }
-    return ans ;
+    else if ( arr [ i ] == 0 ) {
+      minval = 1 ;
+      maxval = 0 ;
+    }
+    else if ( arr [ i ] < 0 ) {
+      int prevMax = maxval ;
+      maxval = minval * arr [ i ] ;
+      minval = prevMax * arr [ i ] ;
+    }
+    ans = Math . max ( ans , maxval ) ;
+    if ( maxval <= 0 ) {
+      maxval = 1 ;
+    }
+  }
+  return ans ;
 }
 
 public static void main(String args[]) {

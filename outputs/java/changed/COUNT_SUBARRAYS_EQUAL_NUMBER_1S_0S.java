@@ -30,27 +30,31 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-    Map < Integer , Integer > um = Collections . synchronizedMap ( new HashMap < Integer , Integer > ( ) ) ;
-    int currSum = 0 ;
-    for ( int i = 0 ;  i < n ;  i ++ ) {
-        currSum += ( - 1 == ( arr [ i ] == 0 ) ? 0 : arr [ i ] ) ;
-        if ( um . get ( currSum ) ) {
-            um [ currSum ] ++ ;
-        }
-        if ( n > 0 ) {
-            um [ currSum ++ ] = 1 ;
-        }
+  Map < Integer , Integer > um = Maps . newHashMap ( ) ;
+  int currSum = 0 ;
+  for ( int i = 0 ;
+  i < n ;
+  i ++ ) {
+    currSum += ( - 1 == ( arr [ i ] == 0 ) ? arr [ i ] : arr [ i ] ) ;
+    if ( um . containsKey ( currSum ) ) {
+      um . put ( currSum , ++ currSum ) ;
     }
-    int count = 0 ;
-    for ( Iterator itr = um . iterator ( ) ;  itr . hasNext ( ) ;  ) {
-        if ( um [ itr ] > 1 ){
-            count += ( ( um [ itr ] * ( int ) ( um [ itr ] - 1 ) ) / 2 ) ;
-        }
+    else {
+      um . put ( currSum , 1 ) ;
     }
-    if ( um . get ( 0 ) ) {
-        count += um [ 0 ] ;
+  }
+  int count = 0 ;
+  for ( int itr = 0 ;
+  itr < um . size ( ) ;
+  itr ++ ) {
+    if ( um . get ( itr ) > 1 ) {
+      count += ( ( um . get ( itr ) * Integer . MAX_VALUE ) / 2 ) ;
     }
-    return ( int ) count ;
+  }
+  if ( um . containsKey ( 0 ) ) {
+    count += um . get ( 0 ) ;
+  }
+  return ( int ) count ;
 }
 
 public static void main(String args[]) {

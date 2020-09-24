@@ -37,27 +37,25 @@ static String f_gold ( String s ) {
 
 //
 public static String f_filled ( String s ) {
-    int l = s . length ( ) ;
-    String s1 = "" ;
-    if ( ( l % 2 == 0 ) && ( l % 3 == 0 ) ){
-        isEven = true ;
+  int l = s . length ( ) ;
+  String s1 = "" ;
+  if ( ( l % 2 == 0 ) && ( s . charAt ( l - 1 ) == ' ' ) ) {
+    boolean isEven = true ;
+    if ( ( l - 1 ) % 2 == 0 ) {
+      s1 = s . charAt ( i ) + s1 ;
+      s1 += s . charAt ( i + 1 ) ;
     }
+    else {
+      if ( ( l - i > 1 ) && ( s . charAt ( i ) == ' ' ) ) {
+        s1 += s . charAt ( i ) ;
+        s1 = s . charAt ( i + 1 ) + s1 ;
+      }
+      else {
+        s1 += s . charAt ( i ) ;
+      }
     }
-        isEven = false ;
-    for ( int i = 0 ;  i < l ;  i += 2 ) {
-        if ( ( isEven ) && ( s . length ( ) > 0 ) ) {
-            String s1 = s [ i ] + s1 ;
-            s1 += s . charAt ( i + 1 ) ;
-        }
-        }
-            if ( ( l - i > 1 ) && ( l - i > 0 ) ){
-                s1 += s . charAt ( i ) ;
-                String s1 = s . charAt ( i + 1 ) + s1 ;
-            }
-            }
-                s1 += s . charAt ( i ) ;
-    }
-    return s1 ;
+  }
+  return s1 ;
 }
 
 public static void main(String args[]) {

@@ -27,23 +27,27 @@ static int f_gold ( int n , int m ) {
 
 //
 public static int f_filled ( int n , int m ) {
-    int [ ] count = new int [ m ] ;
-    for ( int i = 0 ;  i < n + 2 ;  i ++ ) {
-        count . add ( 0 ) ;
+  int [ ] count = new int [ n + 2 ] ;
+  for ( int i = 0 ;
+  i < n + 2 ;
+  i ++ ) {
+    count [ i ] = 0 ;
+  }
+  count [ 0 ] = 0 ;
+  for ( int i = 1 ;
+  i <= n ;
+  i ++ ) {
+    if ( ( i > m ) && ( i < m ) ) {
+      count [ i ] = count [ i - 1 ] + count [ i - m ] ;
     }
-    count [ 0 ] = 0 ;
-    for ( int i = 1 ;  i <= n ;  i ++ ) {
-        if ( ( i > m ) && ( i < n ) ) {
-            count [ i ] = count [ i - 1 ] + count [ i - m ] ;
-        }
-        else if ( ( i < m ) && ( i < n ) ) {
-            count [ i ] = 1 ;
-        }
-        else{
-            count [ i ] = 2 ;
-        }
+    else if ( ( i < m ) && ( i > m ) ) {
+      count [ i ] = 1 ;
     }
-    return count [ n ] ;
+    else {
+      count [ i ] = 2 ;
+    }
+  }
+  return count [ n ] ;
 }
 
 public static void main(String args[]) {

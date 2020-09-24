@@ -30,24 +30,24 @@ static int f_gold ( int arr [ ] , int n , int k ) {
 
 //
 public static int f_filled ( int [ ] arr , int n , int k ) {
-    int count = 0 ;
-    Arrays . sort ( arr , 0 , n ) ;
-    int l = 0 ;
-    int r = 0 ;
-    while ( r < n ) {
-        if ( arr [ r ] - arr [ l ] == k ){
-            count ++ ;
-            l ++ ;
-            r ++ ;
-        }
-        else if ( arr [ r ] - arr [ l ] > k ){
-            l ++ ;
-        }
-        else {
-            r ++ ;
-        }
+  int count = 0 ;
+  Arrays . sort ( arr ) ;
+  int l = 0 ;
+  int r = 0 ;
+  while ( r < n ) {
+    if ( arr [ r ] - arr [ l ] == k ) {
+      count ++ ;
+      l ++ ;
+      r ++ ;
     }
-    return count ;
+    else if ( arr [ r ] - arr [ l ] > k ) {
+      l ++ ;
+    }
+    else {
+      r ++ ;
+    }
+  }
+  return count ;
 }
 
 public static void main(String args[]) {

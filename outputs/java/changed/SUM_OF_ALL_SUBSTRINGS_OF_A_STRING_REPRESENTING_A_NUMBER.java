@@ -28,16 +28,18 @@ public static int f_gold ( String num ) {
 
 //
 public static int f_filled ( String num ) {
-    int n = num . length ( ) ;
-    String [ ] sumofdigit = new String [ num . length ( ) ] ;
-    sumofdigit . add ( Integer . parseInt ( num . substring ( 0 , 1 ) ) ) ;
-    int res = sumofdigit [ 0 ] ;
-    for ( int i = 1 ;  i <= n ;  i ++ ) {
-        int numi = Integer . parseInt ( num . substring ( i ) ) ;
-        sumofdigit . add ( ( i + 1 ) * numi + 10 * sumofdigit . get ( i - 1 ) ) ;
-        res += sumofdigit [ i ] ;
-    }
-    return res ;
+  int n = num . length ( ) ;
+  int [ ] sumofdigit = new int [ n ] ;
+  sumofdigit [ 0 ] = Integer . parseInt ( num . substring ( 0 , 1 ) ) ;
+  int res = sumofdigit [ 0 ] ;
+  for ( int i = 1 ;
+  i < n ;
+  i ++ ) {
+    int numi = Integer . parseInt ( num . substring ( i , i + 1 ) ) ;
+    sumofdigit [ i ] = ( i + 1 ) * numi + 10 * sumofdigit [ i - 1 ] ;
+    res += sumofdigit [ i ] ;
+  }
+  return res ;
 }
 
 public static void main(String args[]) {

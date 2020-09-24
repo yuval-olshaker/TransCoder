@@ -25,17 +25,19 @@ static int f_gold ( int [ ] a , int n ) {
 
 //
 public static int f_filled ( int a , int n ) {
-    int result = 1 ;
-    for ( int i = 1 ;  i < n ;  i ++ ) {
-        int y = ( i * ( i + 1 ) ) / 2 ;
-        if ( ( y < n ) && ( y < a ) ){
-            int result = i ;
-        }
-        if ( n > 0 ) {
-            break ;
-        }
+  int result = 1 ;
+  for ( int i = 1 ;
+  i < n ;
+  i ++ ) {
+    int y = ( i * ( i + 1 ) ) / 2 ;
+    if ( ( y < n ) && ( y > 0 ) ) {
+      result = i ;
     }
-    return result ;
+    else {
+      break ;
+    }
+  }
+  return result ;
 }
 
 public static void main(String args[]) {

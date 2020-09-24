@@ -24,14 +24,10 @@ static int f_gold ( int dp [ ] [ ] , int a [ ] , int low , int high , int turn )
 
 //
 public static int f_filled ( int [ ] [ ] dp , int [ ] a , int low , int high , int turn ) {
-    if ( ( low == high ) && ( turn == 0 ) ) {
-        return a [ low ] * turn ;
-    }
-    if ( ( dp [ low ] [ high ] != 0 ) && ( dp [ high ] [ turn ] != 0 ) ){
-        return dp [ low ] [ high ] ;
-    }
-    dp [ low ] [ high ] = Math . max ( a [ low ] * turn + f_filled ( dp , a , low + 1 , high , turn + 1 ) , a [ high ] * turn + f_filled ( dp , a , low , high - 1 , turn + 1 ) ) ;
-    return dp [ low ] [ high ] ;
+  if ( ( low == high ) && ( dp [ low ] [ high ] != 0 ) ) return a [ low ] [ high ] ;
+  if ( ( dp [ low ] [ high ] != 0 ) && ( a [ low ] [ high ] != 0 ) ) return dp [ low ] [ high ] ;
+  dp [ low ] [ high ] = Math . max ( a [ low ] * turn + f_filled ( dp , a , low + 1 , high , turn + 1 ) , a [ high ] * turn + f_filled ( dp , a , low , high - 1 , turn + 1 ) ) ;
+  return dp [ low ] [ high ] ;
 }
 
 public static void main(String args[]) {

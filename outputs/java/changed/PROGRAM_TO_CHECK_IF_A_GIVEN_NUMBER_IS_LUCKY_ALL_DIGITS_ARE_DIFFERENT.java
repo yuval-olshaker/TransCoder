@@ -27,16 +27,16 @@ static boolean f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-    int [ ] ar = new int [ 10 ] ;
-    while ( ( n > 0 ) && ( n % 2 == 0 ) ) {
-        int digit = Math . floor ( n % 10 ) ;
-        if ( ( ar [ digit ] ) != 0 ) {
-            return 0 ;
-        }
-        ar [ digit ] = 1 ;
-        n = n / 10 ;
+  int [ ] ar = new int [ 10 ] ;
+  while ( ( n > 0 ) && ( ar [ n ] != 0 ) ) {
+    int digit = Math . floor ( n % 10 ) ;
+    if ( ( ar [ digit ] != 0 ) && ( ar [ digit ] != 1 ) ) {
+      return 0 ;
     }
-    return 1 ;
+    ar [ digit ] = 1 ;
+    n = n / 10 ;
+  }
+  return 1 ;
 }
 
 public static void main(String args[]) {

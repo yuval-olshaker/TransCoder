@@ -17,7 +17,7 @@ static int f_gold ( int a , int b ) {
 
 //
 public static int f_filled ( int a , int b ) {
-    return ( a / 2 ) + ( b / 2 ) + ( ( a % 2 + b % 2 ) / 2 ) ;
+  return ( a / 2 ) + ( b / 2 ) + ( ( a % 2 + b % 2 ) / 2 ) ;
 }
 
 public static void main(String args[]) {

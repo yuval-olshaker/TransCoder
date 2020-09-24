@@ -17,7 +17,7 @@ static boolean f_gold ( int x ) {
 
 //
 public static boolean f_filled ( int x ) {
-    return ( x > 0 && ( ! ( x & ( x - 1 ) ) ) ) ;
+  return ( x > 0 && ( ! ( x & ( x - 1 ) ) ) ) ;
 }
 
 public static void main(String args[]) {

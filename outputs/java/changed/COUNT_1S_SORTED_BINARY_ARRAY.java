@@ -23,17 +23,17 @@ static int f_gold ( int arr [ ] , int low , int high ) {
 
 //
 public static int f_filled ( int [ ] arr , int low , int high ) {
-    if ( high >= low ) {
-        int mid = low + ( high - low ) / 2 ;
-        if ( ( ( mid == high || arr [ mid + 1 ] == 0 ) && ( arr [ mid ] == 1 ) ) || ( ( mid == low || arr [ mid ] == 0 ) && ( arr [ mid + 1 ] == 1 ) ) ) {
-            return mid + 1 ;
-        }
-        if ( arr [ mid ] == 1 ) {
-            return f_filled ( arr , ( mid + 1 ) , high ) ;
-        }
-        return f_filled ( arr , low , mid - 1 ) ;
+  if ( high >= low ) {
+    int mid = low + ( high - low ) / 2 ;
+    if ( ( ( mid == high || arr [ mid + 1 ] == 0 ) && ( arr [ mid ] == 1 ) ) || ( ( mid == high ) && ( arr [ mid ] == 1 ) ) ) {
+      return mid + 1 ;
     }
-    return 0 ;
+    if ( arr [ mid ] == 1 ) {
+      return f_filled ( arr , ( mid + 1 ) , high ) ;
+    }
+    return f_filled ( arr , low , mid - 1 ) ;
+  }
+  return 0 ;
 }
 
 public static void main(String args[]) {

@@ -26,17 +26,17 @@ static int f_gold ( String num ) {
 
 //
 public static int f_filled ( String num ) {
-    int l = num . length ( ) ;
-    int countZero = 0 ;
-    int i = 1 ;
-    while ( i < l ) {
-        char ch = num [ i ++ ] ;
-        if ( ( ch == "0" ) || ( ch == "1" ) ) {
-            countZero = countZero + 1 ;
-        }
-        i = i + 1 ;
+  int l = num . length ( ) ;
+  int countZero = 0 ;
+  int i = 1 ;
+  while ( i < l ) {
+    char ch = num . charAt ( i ) ;
+    if ( ( ch == '0' ) || ( ch == '1' ) || ( ch == '2' ) || ( ch == '3' ) || ( ch == '4' ) || ( ch == '5' ) || ( ch == '6' ) || ( ch == '7' ) || ( ch == '8' ) || ( ch == '9' ) ) {
+      countZero = countZero + 1 ;
     }
-    return countZero ;
+    i = i + 1 ;
+  }
+  return countZero ;
 }
 
 public static void main(String args[]) {

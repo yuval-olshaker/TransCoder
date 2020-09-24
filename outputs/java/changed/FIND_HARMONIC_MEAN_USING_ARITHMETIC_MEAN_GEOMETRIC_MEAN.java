@@ -21,10 +21,10 @@ static double f_gold ( int a , int b ) {
 
 //
 public static double f_filled ( double a , double b ) {
-    AM = ( a + b ) / 2 ;
-    double GM = Math . sqrt ( a * b ) ;
-    HM = ( GM * GM ) / AM ;
-    return new HM ( ) ;
+  double AM = ( a + b ) / 2 ;
+  double GM = Math . sqrt ( a * b ) ;
+  double HM = ( GM * GM ) / AM ;
+  return HM ;
 }
 
 public static void main(String args[]) {

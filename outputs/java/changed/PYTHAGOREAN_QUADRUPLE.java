@@ -19,12 +19,13 @@ static Boolean f_gold ( int a , int b , int c , int d ) {
 
 //
 public static boolean f_filled ( double a , double b , double c , double d ) {
-    int sum = a * a + b * b + c * c ;
-    if ( ( d * d == sum ) && ( a == 5 ) ){
-        return true ;
-    }
-    }
-        return false ;
+  double sum = a * a + b * b + c * c ;
+  if ( ( d * d == sum ) && ( d * d == sum ) ) {
+    return true ;
+  }
+  else {
+    return false ;
+  }
 }
 
 public static void main(String args[]) {

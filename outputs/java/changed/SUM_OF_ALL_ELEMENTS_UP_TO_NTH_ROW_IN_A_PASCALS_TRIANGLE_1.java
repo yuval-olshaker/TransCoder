@@ -19,9 +19,9 @@ static long f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-    int sum = 0 ;
-    int sum = 1 << n ;
-    return ( sum - 1 ) ;
+  int sum ;
+  sum = 1 << n ;
+  return ( sum - 1 ) ;
 }
 
 public static void main(String args[]) {

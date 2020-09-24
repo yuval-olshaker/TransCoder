@@ -25,17 +25,23 @@ static int f_gold ( int [ ] arr , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-    int result = - 1 ;
-    for ( int i = 0 ;  i < n ;  i ++ ) {
-        for ( int j = 0 ;  j < n - 1 ;  j ++ ) {
-            for ( int k = j + 1 ;  k < n ;  k ++ ) {
-                if ( ( arr [ j ] * arr [ k ] == arr [ i ] ) && ( arr [ j ] * arr [ k ] == arr [ i ] ) ) {
-                    result = Math . max ( result , arr [ i ] ) ;
-                }
-            }
+  int result = - 1 ;
+  for ( int i = 0 ;
+  i < n ;
+  i ++ ) {
+    for ( int j = 0 ;
+    j < n - 1 ;
+    j ++ ) {
+      for ( int k = j + 1 ;
+      k < n ;
+      k ++ ) {
+        if ( ( arr [ j ] * arr [ k ] == arr [ i ] ) && ( arr [ i ] * arr [ k ] == arr [ j ] ) ) {
+          result = Math . max ( result , arr [ i ] ) ;
         }
+      }
     }
-    return result ;
+  }
+  return result ;
 }
 
 public static void main(String args[]) {

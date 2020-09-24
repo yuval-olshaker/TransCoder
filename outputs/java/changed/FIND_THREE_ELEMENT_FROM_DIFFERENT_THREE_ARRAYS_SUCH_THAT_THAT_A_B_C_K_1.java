@@ -35,18 +35,24 @@ static boolean f_gold ( int a1 [ ] , int a2 [ ] , int a3 [ ] , int n1 , int n2 ,
 
 //
 public static boolean f_filled ( int [ ] a1 , int [ ] a2 , int [ ] a3 , int n1 , int n2 , int n3 , int sum ) {
-    Set < Integer > s = new HashSet < Integer > ( ) ;
-    for ( int i = 0 ;  i < n1 ;  i ++ ) {
-        s . add ( a1 [ i ] ) ;
+  Set < Integer > s = new HashSet < Integer > ( ) ;
+  for ( int i = 0 ;
+  i < n1 ;
+  i ++ ) {
+    s . add ( a1 [ i ] ) ;
+  }
+  for ( int i = 0 ;
+  i < n2 ;
+  i ++ ) {
+    for ( int j = 0 ;
+    j < n3 ;
+    j ++ ) {
+      if ( sum - a2 [ i ] - a3 [ j ] == s . size ( ) ) {
+        return true ;
+      }
     }
-    for ( int i = 0 ;  i < n2 ;  i ++ ) {
-        for ( int j = 0 ;  j < n3 ;  j ++ ) {
-            if ( sum - a2 [ i ] - a3 [ j ] in s ){
-                return f_filled ( a1 , a2 , a3 , n1 , n2 , n3 , sum , 0 ) ;
-            }
-        }
-    }
-    return false ;
+  }
+  return false ;
 }
 
 public static void main(String args[]) {

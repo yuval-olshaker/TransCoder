@@ -22,12 +22,12 @@ static int f_gold ( int x , int y ) {
 
 //
 public static int f_filled ( int x , int y ) {
-    while ( ( y != 0 ) && ( x != 0 ) ) {
-        int carry = x & y ;
-        x = x ^ y ;
-        y = carry << 1 ;
-    }
-    return x ;
+  while ( ( y != 0 ) && ( y != 1 ) ) {
+    int carry = x & y ;
+    x = x ^ y ;
+    y = carry << 1 ;
+  }
+  return x ;
 }
 
 public static void main(String args[]) {

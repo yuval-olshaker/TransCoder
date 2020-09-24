@@ -23,15 +23,17 @@ static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-    int ans = 0 ;
-    for ( int length = 1 ;  length <= Integer . MAX_VALUE ;  length ++ ) {
-        height = length ;
-        while ( ( height * length <= n ) && ( height * length <= n ) ) {
-            ans ++ ;
-            height ++ ;
-        }
+  int ans = 0 ;
+  for ( int length = 1 ;
+  length <= Integer . MAX_VALUE ;
+  length ++ ) {
+    int height = length ;
+    while ( ( height * length <= n ) && ( height * length <= n ) ) {
+      ans ++ ;
+      height ++ ;
     }
-    return ans ;
+  }
+  return ans ;
 }
 
 public static void main(String args[]) {

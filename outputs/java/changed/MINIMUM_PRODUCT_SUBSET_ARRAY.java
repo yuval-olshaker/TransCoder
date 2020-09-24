@@ -41,36 +41,32 @@ static int f_gold ( int a [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] a , int n ) {
-    if ( ( n == 1 ) && ( a == 5 ) ) {
-        return a [ 0 ] ;
+  if ( ( n == 1 ) || ( n == 0 ) ) return a [ 0 ] ;
+  int maxNeg = Integer . MAX_VALUE ;
+  int minPos = Integer . MIN_VALUE ;
+  int countNeg = 0 ;
+  int countZero = 0 ;
+  int prod = 1 ;
+  for ( int i = 0 ;
+  i <= n ;
+  i ++ ) {
+    if ( ( a [ i ] == 0 ) && ( a [ i ] != 0 ) ) {
+      countZero = countZero + 1 ;
+      continue ;
     }
-    float maxNeg = Float . NEGATIVE_INFINITY ;
-    int minPos = Integer . MAX_VALUE ;
-    int count_neg = 0 ;
-    int count_zero = 0 ;
-    int prod = 1 ;
-    for ( int i = 0 ;  i <= n ;  i ++ ) {
-        if ( ( a [ i ] == 0 ) && ( n > 0 ) ) {
-            count_zero = count_zero + 1 ;
-            continue ;
-        }
-        if ( ( a [ i ] < 0 ) && ( a [ i ] > n ) ) a [ i ] = 5 ;
-            count_neg = count_neg + 1 ;
-            maxNeg = Math . max ( maxNeg , a [ i ] ) ;
-        if ( ( a [ i ] > 0 ) && ( a [ i ] < n ) ) a [ i ] = 5 ;
-            min_pos = Math . min ( min_pos , a [ i ] ) ;
-        prod = prod * a [ i ] ;
+    if ( ( a [ i ] < 0 ) && ( a [ i ] != 0 ) ) {
+      countNeg = countNeg + 1 ;
+      maxNeg = Math . max ( maxNeg , a [ i ] ) ;
     }
-    if ( ( countZero == n || ( countNeg == 0 && countZero > 0 ) ) && ( countNeg == 0 || countZero == 0 ) ) {
-        return 0 ;
+    if ( ( a [ i ] > 0 ) && ( a [ i ] != 0 ) ) {
+      minPos = Math . min ( minPos , a [ i ] ) ;
     }
-    if ( ( countNeg == 0 ) && ( n > 0 ) ){
-        return minPos ;
-    }
-    if ( ( ( countNeg & 1 ) == 0 && countNeg != 0 ) || ( ( countNeg & 1 ) == 0 && countNeg != 1 ) ){
-        int prod = ( int ) ( prod / maxNeg ) ;
-    }
-    return prod ;
+    prod = prod * a [ i ] ;
+  }
+  if ( ( countZero == n ) || ( countNeg == 0 && countZero > 0 ) ) return 0 ;
+  if ( ( countNeg == 0 ) && ( countNeg == 1 ) ) return minPos ;
+  if ( ( ( countNeg & 1 ) == 0 ) && ( countNeg != 0 ) ) prod = ( int ) ( prod / maxNeg ) ;
+  return prod ;
 }
 
 public static void main(String args[]) {

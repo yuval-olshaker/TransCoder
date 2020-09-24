@@ -17,7 +17,7 @@ static int f_gold ( int no ) {
 
 //
 public static int f_filled ( int no ) {
-    return no == 0 ? 0 : ( int ) ( no % 10 ) + f_filled ( ( int ) ( no / 10 ) ) ;
+  return no == 0 ? 0 : ( int ) ( no % 10 ) + f_filled ( ( int ) ( no / 10 ) ) ;
 }
 
 public static void main(String args[]) {

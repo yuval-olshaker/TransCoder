@@ -22,12 +22,12 @@ static boolean f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-    parity = 0 ;
-    while ( n -- > 0 ) {
-        parity = ~ parity ;
-        n = n & ( n - 1 ) ;
-    }
-    return parity ;
+  int parity = 0 ;
+  while ( n > 0 ) {
+    parity = ~ parity ;
+    n = n & ( n - 1 ) ;
+  }
+  return parity ;
 }
 
 public static void main(String args[]) {

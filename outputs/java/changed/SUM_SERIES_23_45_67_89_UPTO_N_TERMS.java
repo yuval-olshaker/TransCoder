@@ -31,23 +31,23 @@ static double f_gold ( int n ) {
 
 //
 public static double f_filled ( int n ) {
-    int i = 1 ;
-    double res = 0.0 ;
-    sign = true ;
-    while ( ( n -- > 0 ) && ( n > 0 ) ) {
-        n = n - 1 ;
-        if ( ( sign ) && ( n > 0 ) ) {
-            sign = false ;
-            res = res + ( i + 1 ) / ( i + 2 ) ;
-            i = i + 2 ;
-        }
-        else {
-            sign = true ;
-            res = res - ( i + 1 ) / ( i + 2 ) ;
-            i = i + 2 ;
-        }
+  int i = 1 ;
+  double res = 0.0 ;
+  boolean sign = true ;
+  while ( ( n > 0 ) && ( sign ) ) {
+    n = n - 1 ;
+    if ( ( sign ) || ( n == 0 ) ) {
+      sign = false ;
+      res = res + ( i + 1 ) / ( i + 2 ) ;
+      i = i + 2 ;
     }
-    return res ;
+    else {
+      sign = true ;
+      res = res - ( i + 1 ) / ( i + 2 ) ;
+      i = i + 2 ;
+    }
+  }
+  return res ;
 }
 
 public static void main(String args[]) {

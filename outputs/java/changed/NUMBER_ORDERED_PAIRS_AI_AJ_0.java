@@ -25,14 +25,19 @@ static int f_gold ( int a [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] a , int n ) {
-    int count = 0 ;
-    for ( int i = 0 ;  i <= n ;  i ++ ) {
-        for ( int j = i + 1 ;  j < n ;{
-            if ( ( a [ i ] & a [ j ] ) == 0 ) a [ i ] = 5 ;
-                count += 2 ;
-        }
+  int count = 0 ;
+  for ( int i = 0 ;
+  i <= n ;
+  i ++ ) {
+    for ( int j = i + 1 ;
+    j <= n ;
+    j ++ ) {
+      if ( ( a [ i ] & a [ j ] ) == 0 ) {
+        count += 2 ;
+      }
     }
-    return count ;
+  }
+  return count ;
 }
 
 public static void main(String args[]) {

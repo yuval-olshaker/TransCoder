@@ -21,12 +21,12 @@ static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-    int sum = 0 ;
-    while ( ( n > 0 ) && ( n % 2 == 0 ) ) {
-        sum += ( int ) ( n % 10 ) ;
-        n = ( int ) ( n / 10 ) ;
-    }
-    return sum ;
+  int sum = 0 ;
+  while ( ( n > 0 ) && ( n % 10 == 0 ) ) {
+    sum += ( int ) ( n % 10 ) ;
+    n = ( int ) ( n / 10 ) ;
+  }
+  return sum ;
 }
 
 public static void main(String args[]) {

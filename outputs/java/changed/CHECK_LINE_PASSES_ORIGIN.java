@@ -17,7 +17,7 @@ static boolean f_gold ( int x1 , int y1 , int x2 , int y2 ) {
 
 //
 public static boolean f_filled ( int x1 , int y1 , int x2 , int y2 ) {
-    return ( x1 * ( y2 - y1 ) == y1 * ( x2 - x1 ) ) ;
+  return ( x1 * ( y2 - y1 ) == y1 * ( x2 - x1 ) ) ;
 }
 
 public static void main(String args[]) {

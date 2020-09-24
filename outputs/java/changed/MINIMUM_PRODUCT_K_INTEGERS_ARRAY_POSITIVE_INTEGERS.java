@@ -27,15 +27,15 @@ public static int f_gold ( int [ ] arr , int n , int k ) {
 
 //
 public static int f_filled ( int [ ] arr , int n , int k ) {
-    heapify ( arr , n , k ) ;
-    int count = 0 ;
-    int ans = 1 ;
-    while ( ( arr != null ) && count < k ) {
-        int x = heapMaxProduct ( arr , n , k ) ;
-        ans = ans * x ;
-        count = count + 1 ;
-    }
-    return ans ;
+  heapq . heapify ( arr ) ;
+  int count = 0 ;
+  int ans = 1 ;
+  while ( ( arr != null ) && count < k ) {
+    int x = heapq . heappop ( arr ) ;
+    ans = ans * x ;
+    count = count + 1 ;
+  }
+  return ans ;
 }
 
 public static void main(String args[]) {

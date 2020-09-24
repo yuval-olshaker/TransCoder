@@ -21,7 +21,7 @@ static int f_gold ( int [ ] arr , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-    return Arrays . hashCode ( arr ) - ( ( ( n - 1 ) * n ) / 2 ) ;
+  return Arrays . hashCode ( arr ) - ( ( ( n - 1 ) * n ) / 2 ) ;
 }
 
 public static void main(String args[]) {

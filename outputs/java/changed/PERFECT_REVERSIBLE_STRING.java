@@ -23,15 +23,16 @@ static boolean f_gold ( String str ) {
 
 //
 public static boolean f_filled ( String str ) {
-    int i = 0 ;
-    while ( ( i < j ) && ( i < j ) ) {
-        if ( ( str . charAt ( i ) != str . charAt ( j ) ) && ( str . charAt ( i ) != str . charAt ( j ) ) ) {
-            return false ;
-        }
-        i ++ ;
-        j -- ;
+  int i = 0 ;
+  int j = str . length ( ) - 1 ;
+  while ( ( i < j ) && ( str . charAt ( i ) != str . charAt ( j ) ) ) {
+    if ( ( str . charAt ( i ) != str . charAt ( j ) ) && ( str . charAt ( i ) != str . charAt ( j ) ) ) {
+      return false ;
     }
-    return fGoldString ( str , true ) ;
+    i ++ ;
+    j -- ;
+  }
+  return true ;
 }
 
 public static void main(String args[]) {

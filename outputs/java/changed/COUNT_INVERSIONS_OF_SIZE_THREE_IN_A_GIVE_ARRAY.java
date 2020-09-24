@@ -33,20 +33,26 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr ) {
-    int n = arr . length ;
-    invcount = 0 ;
-    for ( int i = 0 ;  i <= n - 1 ;  i ++ ) {
-        for ( int j = i + 1 ;  j < n ;  j ++ ) {
-            if ( arr [ i ] > arr [ j ] ) {
-                for ( int k = j + 1 ;  k < n ;  k ++ ) {
-                    if ( arr [ j ] > arr [ k ] ) {
-                        invcount ++ ;
-                    }
-                }
-            }
+  int n = arr . length ;
+  int invcount = 0 ;
+  for ( int i = 0 ;
+  i <= n - 1 ;
+  i ++ ) {
+    for ( int j = i + 1 ;
+    j < n ;
+    j ++ ) {
+      if ( arr [ i ] > arr [ j ] ) {
+        for ( int k = j + 1 ;
+        k < n ;
+        k ++ ) {
+          if ( arr [ j ] > arr [ k ] ) {
+            invcount ++ ;
+          }
         }
+      }
     }
-    return invcount ;
+  }
+  return invcount ;
 }
 
 public static void main(String args[]) {

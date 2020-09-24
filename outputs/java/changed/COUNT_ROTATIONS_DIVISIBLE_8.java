@@ -42,42 +42,44 @@ static int f_gold ( String n ) {
 
 //
 public static int f_filled ( String n ) {
-    int l = n . length ;
-    int count = 0 ;
-    if ( ( l == 1 ) && ( n == 2 ) ) {
-        int oneDigit = Integer . parseInt ( n . substring ( 0 , 1 ) ) ;
-        if ( ( oneDigit % 8 == 0 ) && ( n % 8 == 0 ) ) {
-            return 1 ;
-        }
-        return 0 ;
+  int l = n . length ( ) ;
+  int count = 0 ;
+  if ( ( l == 1 ) && ( n . charAt ( 0 ) == '-' ) ) {
+    int oneDigit = Integer . parseInt ( n . substring ( 0 , 1 ) ) ;
+    if ( ( oneDigit % 8 == 0 ) && ( n . charAt ( 1 ) == '-' ) ) {
+      return 1 ;
     }
-    if ( ( l == 2 ) && ( n == 3 ) ) {
-        int first = ( int ) n [ 0 ] * 10 + ( int ) n [ 1 ] ;
-        int second = Integer . parseInt ( n . substring ( 1 ) ) * 10 + Integer . parseInt ( n . substring ( 0 ) ) ;
-        if ( ( first % 8 == 0 ) && ( n % 8 == 0 ) ) {
-            count ++ ;
-        }
-        if ( ( second % 8 == 0 ) && ( n % 8 == 0 ) ) {
-            count ++ ;
-        }
-        return count ;
+    return 0 ;
+  }
+  if ( ( l == 2 ) && ( n . charAt ( 0 ) == '-' ) ) {
+    int first = Integer . parseInt ( n . substring ( 0 , 1 ) ) * 10 + Integer . parseInt ( n . substring ( 1 , 2 ) ) ;
+    int second = Integer . parseInt ( n . substring ( 1 , 2 ) ) * 10 + Integer . parseInt ( n . substring ( 0 , 2 ) ) ;
+    if ( ( first % 8 == 0 ) && ( n . charAt ( 0 ) == '-' ) ) {
+      count ++ ;
     }
-    threeDigit = 0 ;
-    for ( int i = 0 ;  i <= ( l - 2 ) ;  i ++ ) {
-        int threeDigit = ( Integer . parseInt ( n . substring ( i , i + 3 ) ) * 100 + Integer . parseInt ( n . substring ( i + 1 , i + 3 ) ) * 10 + Integer . parseInt ( n . substring ( i + 2 ) ) ) ;
-        if ( ( threeDigit % 8 == 0 ) && ( n % 8 == 0 ) ) {
-            count ++ ;
-        }
-    }
-    threeDigit = ( Integer . parseInt ( n . charAt ( l - 1 ) ) * 100 + Integer . parseInt ( n . charAt ( 0 ) ) * 10 + Integer . parseInt ( n . charAt ( 1 ) ) ) ;
-    if ( ( threeDigit % 8 == 0 ) && ( n % 8 == 0 ) ) {
-        count ++ ;
-    }
-    threeDigit = ( Integer . parseInt ( n . charAt ( l - 2 ) ) * 100 + Integer . parseInt ( n . charAt ( l - 1 ) ) * 10 + Integer . parseInt ( n . charAt ( 0 ) ) ) ;
-    if ( ( threeDigit % 8 == 0 ) && ( n % 8 == 0 ) ) {
-        count ++ ;
+    if ( ( second % 8 == 0 ) && ( n . charAt ( 0 ) == '-' ) ) {
+      count ++ ;
     }
     return count ;
+  }
+  int threeDigit ;
+  for ( int i = 0 ;
+  i <= ( l - 2 ) ;
+  i ++ ) {
+    threeDigit = ( Integer . parseInt ( n . substring ( i , i + 1 ) ) * 100 + Integer . parseInt ( n . substring ( i + 1 , i + 2 ) ) ) ;
+    if ( ( threeDigit % 8 == 0 ) && ( n . charAt ( 0 ) == '-' ) ) {
+      count ++ ;
+    }
+  }
+  threeDigit = ( Integer . parseInt ( n . substring ( l - 1 , l - 2 ) ) * 100 + Integer . parseInt ( n . substring ( 0 , l - 1 ) ) ) ;
+  if ( ( threeDigit % 8 == 0 ) && ( n . charAt ( 0 ) == '-' ) ) {
+    count ++ ;
+  }
+  threeDigit = ( Integer . parseInt ( n . substring ( l - 2 , l - 3 ) ) * 100 + Integer . parseInt ( n . substring ( l - 1 , l - 3 ) ) ) ;
+  if ( ( threeDigit % 8 == 0 ) && ( n . charAt ( 0 ) == '-' ) ) {
+    count ++ ;
+  }
+  return count ;
 }
 
 public static void main(String args[]) {

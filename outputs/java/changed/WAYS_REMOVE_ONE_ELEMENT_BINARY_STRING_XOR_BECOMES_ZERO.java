@@ -25,21 +25,23 @@ static int f_gold ( String s ) {
 
 //
 public static int f_filled ( String str ) {
-    oneCount = 0 ;
-    zeroCount = 0 ;
-    int n = str . length ( ) ;
-    for ( int i = 0 ;  i <= n ;  i += 1 ) {
-        if ( ( str . charAt ( i ) == '1' ) && ( str . charAt ( i + 1 ) == '0' ) ) {
-            oneCount ++ ;
-        }
-        else {
-            zeroCount ++ ;
-        }
+  int oneCount = 0 ;
+  int zeroCount = 0 ;
+  int n = str . length ( ) ;
+  for ( int i = 0 ;
+  i < n ;
+  i += 1 ) {
+    if ( ( str . charAt ( i ) == '1' ) && ( str . charAt ( i + 1 ) == '0' ) ) {
+      oneCount ++ ;
     }
-    if ( ( oneCount % 2 == 0 ) && ( oneCount % 3 == 0 ) ) {
-        return zeroCount ;
+    else {
+      zeroCount ++ ;
     }
-    return oneCount ;
+  }
+  if ( ( oneCount % 2 == 0 ) && ( zeroCount == 0 ) ) {
+    return zeroCount ;
+  }
+  return oneCount ;
 }
 
 public static void main(String args[]) {

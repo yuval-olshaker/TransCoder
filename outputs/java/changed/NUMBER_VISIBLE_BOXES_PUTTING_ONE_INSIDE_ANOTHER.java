@@ -27,17 +27,17 @@ static int f_gold ( int [ ] arr , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-    Queue < Double > q = new LinkedList < Double > ( ) ;
-    Arrays . sort ( arr ) ;
-    q . add ( arr [ 0 ] ) ;
-    for ( int i = 1 ;  i < n ;  i ++ ) {
-        int now = q [ 0 ] ;
-        if ( ( arr [ i ] >= 2 * now ) && ( arr [ i ] <= 2 * now ) ){
-            q . popFront ( ) ;
-        }
-        q . add ( arr [ i ] ) ;
-    }
-    return q . length ;
+  Queue < Integer > q = new LinkedList < Integer > ( ) ;
+  Arrays . sort ( arr ) ;
+  q . add ( arr [ 0 ] ) ;
+  for ( int i = 1 ;
+  i < n ;
+  i ++ ) {
+    int now = q . poll ( ) ;
+    if ( ( arr [ i ] >= 2 * now ) && ( arr [ i ] <= 2 * now ) ) q . remove ( i ) ;
+    q . add ( arr [ i ] ) ;
+  }
+  return q . size ( ) ;
 }
 
 public static void main(String args[]) {

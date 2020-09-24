@@ -18,10 +18,8 @@ static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-    if ( ( n == 0 || n == 1 ) && ( n == 2 ) ) {
-        return n ;
-    }
-    return Math . max ( ( fGoldenCount ( n / 2 ) + fGoldenCount ( n / 3 ) + fGoldenCount ( n / 4 ) ) , n ) ;
+  if ( ( n == 0 || n == 1 ) && ( n % 2 == 0 ) ) return n ;
+  return Math . max ( ( f_filled ( n / 2 ) + f_filled ( n / 3 ) + f_filled ( n / 4 ) ) , n ) ;
 }
 
 public static void main(String args[]) {

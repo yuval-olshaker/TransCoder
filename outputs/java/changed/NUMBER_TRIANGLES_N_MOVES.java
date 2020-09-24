@@ -22,15 +22,14 @@ public static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-    Object [ ] answer = {
-    }
-    answer [ 0 ] = 1 ;
-    int i = 1 ;
-    while ( i <= n ) {
-        answer [ i ] = answer [ i - 1 ] * 3 + 2 ;
-        i = i + 1 ;
-    }
-    return answer [ n ] ;
+  int [ ] answer = new int [ n + 1 ] ;
+  answer [ 0 ] = 1 ;
+  int i = 1 ;
+  while ( i <= n ) {
+    answer [ i ] = answer [ i - 1 ] * 3 + 2 ;
+    i = i + 1 ;
+  }
+  return answer [ n ] ;
 }
 
 public static void main(String args[]) {

@@ -27,17 +27,17 @@ static int f_gold ( int num ) {
 
 //
 public static int f_filled ( int num ) {
-    int sum = 0 ;
-    int i = 2 ;
-    while ( ( i * i <= num ) && ( i * i <= num ) ) {
-        while ( ( num % i == 0 ) && ( num % i == 0 ) ) {
-            sum += i ;
-            num /= i ;
-        }
-        i ++ ;
+  int sum = 0 ;
+  int i = 2 ;
+  while ( ( i * i <= num ) && ( num % i == 0 ) ) {
+    while ( ( num % i == 0 ) && ( num % i == 0 ) ) {
+      sum += i ;
+      num /= i ;
     }
-    sum += num ;
-    return sum ;
+    i ++ ;
+  }
+  sum += num ;
+  return sum ;
 }
 
 public static void main(String args[]) {

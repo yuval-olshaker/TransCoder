@@ -22,11 +22,12 @@ static int f_gold ( int x ) {
 
 //
 public static int f_filled ( int x ) {
-    if ( x == 0 || x == 1 ) {
-        return 1 ;
-    }
-    }
-        return ( f_filled ( x - 1 ) + ( x - 1 ) * f_filled ( x - 2 ) ) ;
+  if ( x == 0 || x == 1 ) {
+    return 1 ;
+  }
+  else {
+    return ( f_filled ( x - 1 ) + ( x - 1 ) * f_filled ( x - 2 ) ) ;
+  }
 }
 
 public static void main(String args[]) {

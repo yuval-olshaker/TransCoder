@@ -24,11 +24,11 @@ static int f_gold ( int ar [ ] , int ar_size ) {
 
 //
 public static int f_filled ( int [ ] arr ) {
-    int res = 0 ;
-    for ( int element : arr ) {
-        int res = arr [ 0 ] ^ element ;
-    }
-    return res ;
+  int res = 0 ;
+  for ( int element : arr ) {
+    res = res ^ element ;
+  }
+  return res ;
 }
 
 public static void main(String args[]) {

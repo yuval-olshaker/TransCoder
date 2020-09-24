@@ -17,7 +17,7 @@ static int f_gold ( int N ) {
 
 //
 public static int f_filled ( int N ) {
-    return Math . ceil ( Math . log2 ( N + 1 ) ) - 1 ;
+  return Math . ceil ( Math . log2 ( N + 1 ) ) - 1 ;
 }
 
 public static void main(String args[]) {

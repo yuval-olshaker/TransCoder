@@ -25,18 +25,16 @@ public static int f_gold ( int a [ ] , int n , int k ) {
 
 //
 public static int f_filled ( int [ ] arr , int n , int k ) {
-    TreeMap < Integer , Integer > mp = new TreeMap < Integer , Integer > ( ) ;
-    for ( int i = 0 ;  i < n ;  i ++ ) {
-        mp [ arr [ i ] ] ++ ;
-    }
-    int res = Integer . MAX_VALUE ;
-    int res1 = Integer . MAX_VALUE ;
-    for ( Map . Entry < Integer , Integer > entry : mp . entrySet ( ) ) {
-        if ( values == k ) {
-            res = Math . min ( res , key ) ;
-        }
-    }
-    return res == res1 ? - 1 : res ;
+  TreeMap < Integer , Integer > mp = new TreeMap < Integer , Integer > ( ) ;
+  for ( int i = 0 ;
+  i < n ;
+  i ++ ) mp . put ( arr [ i ] , i ) ;
+  int res = Integer . MAX_VALUE ;
+  int res1 = Integer . MAX_VALUE ;
+  for ( Entry < Integer , Integer > entry : mp . entrySet ( ) ) {
+    if ( entry . getValue ( ) == k ) res = Math . min ( res , entry . getKey ( ) ) ;
+  }
+  return res == res1 ? - 1 : res ;
 }
 
 public static void main(String args[]) {

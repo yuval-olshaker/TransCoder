@@ -37,23 +37,26 @@ static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-    int i ;
-    int ans = 0 ;
-    while ( ( ( 1 << i ) <= n ) && ( i < n ) ){
-        int k = 0 ;
+  int i = 0 ;
+  int ans = 0 ;
+  while ( ( ( 1 << i ) <= n ) && ( ( 1 << i ) <= n ) ) {
+    boolean k = 0 ;
+    int change = 1 << i ;
+    for ( int j = 0 ;
+    j <= n ;
+    j ++ ) {
+      ans += k ;
+      if ( change == 1 ) {
+        k = ! k ;
         change = 1 << i ;
-        for ( int j = 0 ;  j <= n ;  j ++ ) {
-            ans += k ;
-            if ( change == 1 ){
-                boolean k = ! k ;
-                change = 1 << i ;
-            }
-            }
-                change -- ;
-        }
-        i ++ ;
+      }
+      else {
+        change -- ;
+      }
     }
-    return ans ;
+    i ++ ;
+  }
+  return ans ;
 }
 
 public static void main(String args[]) {

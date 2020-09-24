@@ -31,21 +31,17 @@ static int f_gold ( int n , int index , int modulo , int M , int arr [ ] , int d
 
 //
 public static boolean f_filled ( int n , int index , int modulo , int M , int [ ] arr , int [ ] [ ] dp ) {
-    modulo = ( ( modulo % M ) + M ) % M ;
-    if ( ( index == n ) && ( modulo == M ) ) {
-        if ( ( modulo == 0 ) && ( index == 0 ) ) {
-            return 1 ;
-        }
-        return 0 ;
-    }
-    if ( ( dp [ index ] [ modulo ] != - 1 ) && ( dp [ index ] [ modulo ] != 0 ) ){
-        return dp [ index ] [ modulo ] ;
-    }
-    int placeAdd = f_gold ( n , index + 1 , modulo + arr [ index ] , M , arr , dp ) ;
-    int placeMinus = f_filled ( n , index + 1 , modulo - arr [ index ] , M , arr , dp ) ;
-    boolean res = Boolean . valueOf ( placeAdd || placeMinus ) . booleanValue ( ) ;
-    dp [ index ] [ modulo ] = res ;
-    return res ;
+  modulo = ( ( modulo % M ) + M ) % M ;
+  if ( ( index == n ) && ( modulo == 0 ) ) {
+    if ( ( modulo == 0 ) && ( arr [ index ] != - 1 ) ) return true ;
+    return false ;
+  }
+  if ( ( dp [ index ] [ modulo ] != - 1 ) && ( arr [ index ] != - 1 ) ) return dp [ index ] [ modulo ] ;
+  boolean placeAdd = f_filled ( n , index + 1 , modulo + arr [ index ] , M , arr , dp ) ;
+  boolean placeMinus = f_filled ( n , index + 1 , modulo - arr [ index ] , M , arr , dp ) ;
+  boolean res = ( placeAdd != placeMinus ) ? true : false ;
+  dp [ index ] [ modulo ] = res ;
+  return res ;
 }
 
 public static void main(String args[]) {

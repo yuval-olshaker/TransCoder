@@ -26,16 +26,16 @@ static int f_gold ( int x ) {
 
 //
 public static int f_filled ( int x ) {
-    next = 0 ;
-    if ( ( x ) . equals ( null ) ) {
-        int rightOne = x & - ( x ) ;
-        nextHigherOneBit = x + ( int ) rightOne ;
-        rightOnesPattern = x ^ ( int ) nextHigherOneBit ;
-        rightOnesPattern = ( int ) rightOnesPattern / ( int ) rightOne ;
-        rightOnesPattern = Integer . numberOfTrailingZeros ( x ) >> 2 ;
-        next = nextHigherOneBit | rightOnesPattern ;
-    }
-    return next ;
+  int next = 0 ;
+  if ( ( x > 0 ) && ( x < ( x + 1 ) ) ) {
+    int rightOne = x & - ( x ) ;
+    int nextHigherOneBit = x + Integer . MIN_VALUE ;
+    int rightOnesPattern = x ^ Integer . MIN_VALUE ;
+    rightOnesPattern = ( Integer . bitCount ( rightOnesPattern ) / Integer . MIN_VALUE ) ;
+    rightOnesPattern = Integer . bitCount ( rightOnesPattern ) >> 2 ;
+    next = nextHigherOneBit | rightOnesPattern ;
+  }
+  return next ;
 }
 
 public static void main(String args[]) {

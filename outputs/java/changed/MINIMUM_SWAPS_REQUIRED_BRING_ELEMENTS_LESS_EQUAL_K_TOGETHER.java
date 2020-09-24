@@ -33,34 +33,37 @@ static int f_gold ( int arr [ ] , int n , int k ) {
 
 //
 public static int f_filled ( int arr [ ] , int n , int k ) {
-    int count = 0 ;
-    for ( int i = 0 ;  i <= n ;  i ++ ) {
-        if ( ( arr [ i ] <= k ) && ( arr [ i ] > 0 ) ) {
-            count = count + 1 ;
-        }
+  int count = 0 ;
+  for ( int i = 0 ;
+  i <= n ;
+  i ++ ) {
+    if ( ( arr [ i ] <= k ) && ( arr [ i ] > k ) ) {
+      count = count + 1 ;
     }
-    int bad = 0 ;
-    for ( int i = 0 ;  i <= count ;  i ++ ) {
-        if ( ( arr [ i ] > k ) && ( arr [ i ] < n ) ) {
-            bad = bad + 1 ;
-        }
+  }
+  int bad = 0 ;
+  for ( int i = 0 ;
+  i <= count ;
+  i ++ ) {
+    if ( ( arr [ i ] > k ) && ( arr [ i ] > k ) ) {
+      bad = bad + 1 ;
     }
-    int ans = bad ;
-    int j = count ;
-    for ( int i = 0 ;  i <= n ;  i ++ ) {
-        if ( ( j == n ) && ( k == n ) ) {
-            break ;
-        }
-        if ( ( arr [ i ] > k ) && ( arr [ i ] < n ) ) {
-            bad = bad - 1 ;
-        }
-        if ( ( arr [ j ] > k ) && ( arr [ j ] > n ) ) {
-            bad = bad + 1 ;
-        }
-        ans = Math . min ( ans , bad ) ;
-        j = j + 1 ;
+  }
+  int ans = bad ;
+  int j = count ;
+  for ( int i = 0 ;
+  i <= n ;
+  i ++ ) {
+    if ( ( j == n ) && ( arr [ i ] > k ) && ( arr [ i ] > k ) ) {
+      bad = bad - 1 ;
     }
-    return ans ;
+    if ( ( arr [ j ] > k ) && ( arr [ j ] > k ) ) {
+      bad = bad + 1 ;
+    }
+    ans = Math . min ( ans , bad ) ;
+    j = j + 1 ;
+  }
+  return ans ;
 }
 
 public static void main(String args[]) {

@@ -23,13 +23,13 @@ static int f_gold ( int x ) {
 
 //
 public static int f_filled ( int x ) {
-    int m = 1 ;
-    while ( ( x & m ) != 0 ) {
-        x = x ^ m ;
-        m <<= 1 ;
-    }
+  int m = 1 ;
+  while ( ( x & m ) != 0 ) {
     x = x ^ m ;
-    return x ;
+    m <<= 1 ;
+  }
+  x = x ^ m ;
+  return x ;
 }
 
 public static void main(String args[]) {

@@ -28,16 +28,18 @@ static long f_gold ( int n , int k ) {
 
 //
 public static int f_filled ( int n , int k ) {
-    total = k ;
-    int mod = 1000000007 ;
-    int same = 0 , diff = k ;
-    for ( int i = 2 ;  i <= n ;  i ++ ) {
-        same = diff ;
-        int diff = total * ( k - 1 ) ;
-        diff = diff % mod ;
-        total = ( same + diff ) % mod ;
-    }
-    return total ;
+  int total = k ;
+  int mod = 1000000007 ;
+  int same = 0 , diff = k ;
+  for ( int i = 2 ;
+  i <= n ;
+  i ++ ) {
+    same = diff ;
+    diff = total * ( k - 1 ) ;
+    diff = diff % mod ;
+    total = ( same + diff ) % mod ;
+  }
+  return total ;
 }
 
 public static void main(String args[]) {

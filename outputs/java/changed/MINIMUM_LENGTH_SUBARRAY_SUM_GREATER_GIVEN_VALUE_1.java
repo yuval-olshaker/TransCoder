@@ -32,28 +32,28 @@ static int f_gold ( int arr [ ] , int n , int x ) {
 
 //
 public static int f_filled ( int [ ] arr , int n , int x ) {
-    int currSum = 0 ;
-    int minLen = n + 1 ;
-    int start = 0 ;
-    int end = 0 ;
-    while ( ( end < n ) && ( end < arr . length ) ) {
-        while ( ( currSum <= x && end < n ) || ( currSum > x && end < n ) ) {
-            if ( ( currSum <= 0 && x > 0 ) || ( currSum > n && x < n ) ) {
-                int start = end ;
-                int currSum = 0 ;
-            }
-            currSum += arr [ end ] ;
-            end ++ ;
-        }
-        while ( ( currSum > x && start < n ) || ( currSum < x && start < n ) ) {
-            if ( ( end - start ) < minLen ){
-                int min_len = end - start ;
-            }
-            currSum -= arr [ start ] ;
-            start ++ ;
-        }
+  int currSum = 0 ;
+  int minLen = n + 1 ;
+  int start = 0 ;
+  int end = 0 ;
+  while ( ( end < n ) && ( currSum <= x && end < n ) ) {
+    while ( ( currSum <= 0 && x > 0 ) || ( currSum <= x && currSum > 0 ) ) {
+      if ( ( currSum <= 0 && x > 0 ) || ( currSum <= x && currSum > 0 ) ) {
+        start = end ;
+        currSum = 0 ;
+      }
+      currSum += arr [ end ] ;
+      end ++ ;
     }
-    return minLen ;
+    while ( ( currSum > x && start < n ) || ( currSum > x && start < n ) ) {
+      if ( ( end - start < minLen ) || ( end - start > minLen ) ) {
+        minLen = end - start ;
+      }
+      currSum -= arr [ start ] ;
+      start ++ ;
+    }
+  }
+  return minLen ;
 }
 
 public static void main(String args[]) {

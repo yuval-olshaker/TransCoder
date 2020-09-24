@@ -18,8 +18,8 @@ static int f_gold ( int side ) {
 
 //
 public static int f_filled ( int side ) {
-    area = side * side ;
-    return area ;
+  int area = side * side ;
+  return area ;
 }
 
 public static void main(String args[]) {

@@ -22,16 +22,16 @@ static int f_gold ( int n ) {
 
 //
 public static boolean f_filled ( int n ) {
-    if ( ( n == 0 ) && ( n % 2 == 0 ) ) {
-        return false ;
+  if ( ( n == 0 ) || ( n % 4 != 0 ) ) {
+    return false ;
+  }
+  while ( ( n != 1 ) && ( n % 4 != 0 ) ) {
+    if ( ( n % 4 != 0 ) || ( n % 4 != 1 ) ) {
+      return false ;
     }
-    while ( ( n != 1 ) && ( n % 2 == 0 ) ) {
-        if ( ( n % 4 != 0 ) && ( n % 4 != 0 ) ) {
-            return false ;
-        }
-        n = n / 4 ;
-    }
-    return true ;
+    n = n / 4 ;
+  }
+  return true ;
 }
 
 public static void main(String args[]) {

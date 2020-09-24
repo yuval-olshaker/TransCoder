@@ -39,31 +39,34 @@ static boolean f_gold ( String num ) {
 
 //
 public static boolean f_filled ( String num ) {
-    int length = num . length ( ) ;
-    if ( ( length == 1 && num . charAt ( 0 ) == '0' ) || ( length == 2 && num . charAt ( 0 ) == '1' ) ) {
-        return f_filled ( num , false ) ;
-    }
-    if ( ( length % 3 == 1 ) && ( num % 2 == 1 ) ) {
-        num = Integer . toString ( num ) + "00" ;
-        length += 2 ;
-    }
-    }
-        num = String . valueOf ( num ) + "0" ;
-        length ++ ;
-    int sum = 0 ;
-    int p = 1 ;
-    for ( int i = length - 1 ;  i >= 0 ;  i -- ) {
-        int group = 0 ;
-        group += ( char ) num . charAt ( i ++ ) - '0' ;
-        i -- ;
-        group += ( ( char ) num . charAt ( i ++ ) - '0' ) * 10 ;
-        i -- ;
-        group += ( ( char ) num . charAt ( i ++ ) - '0' ) * 100 ;
-        sum = sum + group * p ;
-        p *= ( - 1 ) ;
-    }
-    sum = Math . abs ( sum ) ;
-    return ( sum % 13 == 0 ) ;
+  int length = num . length ( ) ;
+  if ( ( length == 1 && num . charAt ( 0 ) == '0' ) || ( length == 2 && num . charAt ( 0 ) == '1' ) ) {
+    return true ;
+  }
+  if ( ( length % 3 == 1 ) || ( length % 3 == 2 ) ) {
+    num = String . valueOf ( num ) + "00" ;
+    length += 2 ;
+  }
+  else if ( ( length % 3 == 2 ) || ( length % 3 == 3 ) ) {
+    num = String . valueOf ( num ) + "0" ;
+    length += 1 ;
+  }
+  long sum = 0 ;
+  long p = 1 ;
+  for ( int i = length - 1 ;
+  i >= 0 ;
+  i -- ) {
+    long group = 0 ;
+    group += ( num . charAt ( i ) - '0' ) ;
+    i -- ;
+    group += ( num . charAt ( i ) - '0' ) * 10 ;
+    i -- ;
+    group += ( num . charAt ( i ) - '0' ) * 100 ;
+    sum = sum + group * p ;
+    p *= ( - 1 ) ;
+  }
+  sum = Math . abs ( sum ) ;
+  return ( sum % 13 == 0 ) ;
 }
 
 public static void main(String args[]) {

@@ -43,34 +43,28 @@ static int f_gold ( int m [ ] [ ] , int r , int c ) {
 
 //
 public static void f_filled ( int [ ] [ ] m , int r , int d ) {
-    double mi = m [ 0 ] [ 0 ] ;
-    int mx = 0 ;
-    for ( int i = 0 ;  i < r ;  i ++ ) {
-        if ( m [ i ] [ 0 ] < mi ){
-            int mi = m [ i ] [ 0 ] ;
-        }
-        if ( m [ i ] [ d - 1 ] > mx ){
-            int mx = m [ i ] [ d - 1 ] ;
-        }
+  int mi = m [ 0 ] [ 0 ] ;
+  int mx = 0 ;
+  for ( int i = 0 ;
+  i < r ;
+  i ++ ) {
+    if ( m [ i ] [ 0 ] < mi ) mi = m [ i ] [ 0 ] ;
+    if ( m [ i ] [ d - 1 ] > mx ) mx = m [ i ] [ d - 1 ] ;
+  }
+  int desired = ( r * d + 1 ) / 2 ;
+  while ( ( mi < mx ) && ( mx > desired ) ) {
+    int mid = mi + ( mx - mi ) / 2 ;
+    int [ ] place = new int [ r ] ;
+    for ( int i = 0 ;
+    i < r ;
+    i ++ ) {
+      int j = upperBound ( m [ i ] , mid ) ;
+      place [ 0 ] = place [ 0 ] + j ;
     }
-    int desired = ( r * d + 1 ) / 2 ;
-    while ( ( mi < mx ) && ( mi < d ) ){
-        int mid = mi + ( mx - mi ) / 2 ;
-        int [ ] place = {
-        }
-        for ( int i = 0 ;  i < r ;  i ++ ) {
-            int j = upperBound ( m [ i ] , mid ) ;
-            place [ 0 ] = place [ 0 ] + j ;
-        }
-        if ( place [ 0 ] < desired ){
-            int mi = mid + 1 ;
-        }
-        else{
-            mx = mid ;
-        }
-    }
-    System . out . println ( "Median is" + mi ) ;
-    }
+    if ( place [ 0 ] < desired ) mi = mid + 1 ;
+    else mx = mid ;
+  }
+  System . out . println ( "Median is" + mi ) ;
 }
 
 public static void main(String args[]) {
