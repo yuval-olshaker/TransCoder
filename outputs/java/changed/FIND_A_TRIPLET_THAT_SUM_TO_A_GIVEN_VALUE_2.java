@@ -32,22 +32,18 @@ static boolean f_gold ( int A [ ] , int arr_size , int sum ) {
 
 //
 public static boolean f_filled ( int [ ] A , int arrSize , int sum ) {
-  for ( int i = 0 ;
-  i <= arrSize - 1 ;
-  i ++ ) {
-    Set < Integer > s = new HashSet < Integer > ( ) ;
-    int currSum = sum - A [ i ] ;
-    for ( int j = i + 1 ;
-    j < arrSize ;
-    j ++ ) {
-      if ( ( currSum - A [ j ] ) < s . size ( ) ) {
-        System . out . println ( "Triplet is" + A [ i ] + ", " + A [ j ] + ", " + currSum - A [ j ] ) ;
-        return true ;
-      }
-      s . add ( A [ j ] ) ;
+    for ( int i = 0 ;  i <= arrSize - 1 ;  i ++ ) {
+        Set < Integer > s = new HashSet < Integer > ( ) ;
+        int currSum = sum - A [ i ] ;
+        for ( int j = i + 1 ;  j < arrSize ;  j ++ ) {
+            if ( ( currSum - A [ j ] ) . contains ( s ) ){
+                System . out . println ( "Triplet is" + A [ i ] + ", " + A [ j ] + ", " + currSum - A [ j ] ) ;
+                return f_filled ( A , arrSize , sum , 0 ) ;
+            }
+            s . add ( A [ j ] ) ;
+        }
     }
-  }
-  return false ;
+    return false ;
 }
 
 public static void main(String args[]) {

@@ -39,28 +39,26 @@ static int f_gold ( int arr [ ] , int n , int x , int y ) {
 
 //
 public static int f_filled ( int [ ] arr , int n , int x , int y ) {
-  int min_dist = Integer . MAX_VALUE ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    if ( arr [ i ] == x || arr [ i ] == y ) {
-      prev = i ;
-      break ;
+    int f_filled = Integer . MAX_VALUE ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        if ( arr [ i ] == x || arr [ i ] == y ) {
+            prev = i ;
+            break ;
+        }
     }
-  }
-  while ( i < n ) {
-    if ( arr [ i ] == x || arr [ i ] == y ) {
-      if ( arr [ prev ] != arr [ i ] && ( i - prev ) < min_dist ) {
-        min_dist = i - prev ;
-        prev = i ;
-      }
-      else {
-        prev = i ;
-      }
+    while ( i < n ) {
+        if ( arr [ i ] == x || arr [ i ] == y ) {
+            if ( arr [ prev ] != arr [ i ] && ( i - prev ) < f_filled ){
+                min_dist = i - prev ;
+                prev = i ;
+            }
+            else {
+                prev = i ;
+            }
+        }
+        i ++ ;
     }
-    i ++ ;
-  }
-  return min_dist ;
+    return min_dist ;
 }
 
 public static void main(String args[]) {

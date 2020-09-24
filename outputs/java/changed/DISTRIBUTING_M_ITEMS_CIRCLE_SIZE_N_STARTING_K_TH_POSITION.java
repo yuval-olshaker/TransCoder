@@ -19,10 +19,16 @@ static int f_gold ( int n , int m , int k ) {
 
 //
 public static int f_filled ( int n , int m , int k ) {
-  if ( ( m <= n - k + 1 ) && ( m > n - k ) ) return m + k - 1 ;
-  m = m - ( n - k + 1 ) ;
-  if ( ( m % n == 0 ) && ( m > n - k ) ) return n ;
-  else return m % n ;
+    if ( ( m <= n - k + 1 ) && ( m > n - k ) ) {
+        return m + k - 1 ;
+    }
+    m = m - ( n - k + 1 ) ;
+    if ( ( m % n == 0 ) && ( k % n == 0 ) ) {
+        return n ;
+    }
+    else{
+        return m % n ;
+    }
 }
 
 public static void main(String args[]) {

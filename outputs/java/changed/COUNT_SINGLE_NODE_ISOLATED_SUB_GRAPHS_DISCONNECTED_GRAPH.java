@@ -23,15 +23,13 @@ static int f_gold ( int [ ] graph , int N ) {
 
 //
 public static int f_filled ( int [ ] [ ] graph , int N ) {
-  int count = 0 ;
-  for ( int i = 1 ;
-  i <= N ;
-  i ++ ) {
-    if ( ( graph [ i ] . length == 0 ) && ( graph [ i ] [ 0 ] . length == 0 ) ) {
-      count ++ ;
+    int count = 0 ;
+    for ( int i = 1 ;  i <= N ;  i ++ ) {
+        if ( ( graph [ i ] . length == 0 ) && ( graph [ i ] [ N ] . length == 0 ) ) {
+            count ++ ;
+        }
     }
-  }
-  return count ;
+    return count ;
 }
 
 public static void main(String args[]) {

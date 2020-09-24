@@ -28,27 +28,25 @@ static boolean f_gold ( int arr [ ] , int n , int x ) {
 
 //
 public static boolean f_filled ( int [ ] arr , int n , int x ) {
-  for ( int i = 0 ;
-  i <= n - 1 ;
-  i ++ ) {
-    if ( ( arr [ i ] > arr [ i + 1 ] ) && ( arr [ i + 1 ] < arr [ n - 1 ] ) ) {
-      break ;
+    for ( int i = 0 ;  i <= n - 1 ;  i ++ ) {
+        if ( ( arr [ i ] > arr [ i + 1 ] ) && ( arr [ i + 1 ] < arr [ n ] ) ) {
+            break ;
+        }
     }
-  }
-  int l = ( i + 1 ) % n ;
-  int r = i ;
-  while ( ( l != r ) && ( l < n ) ) {
-    if ( ( arr [ l ] + arr [ r ] == x ) && ( arr [ l + 1 ] + arr [ r ] < x ) ) {
-      return true ;
+    int l = ( i + 1 ) % n ;
+    int r = i ;
+    while ( ( l != r ) && ( l != n ) ) {
+        if ( ( arr [ l ] + arr [ r ] == x ) && ( arr [ l ] + arr [ r ] == x ) ) {
+            return f_filled ( arr , n , x , false ) ;
+        }
+        if ( ( arr [ l ] + arr [ r ] < x ) && ( arr [ l ] + arr [ r ] > x ) ){
+            l = ( l + 1 ) % n ;
+        }
+        else {
+            r = ( n + r - 1 ) % n ;
+        }
     }
-    if ( ( arr [ l ] + arr [ r ] < x ) && ( arr [ l + 1 ] + arr [ r + 1 ] < x ) ) {
-      l = ( l + 1 ) % n ;
-    }
-    else {
-      r = ( n + r - 1 ) % n ;
-    }
-  }
-  return false ;
+    return false ;
 }
 
 public static void main(String args[]) {

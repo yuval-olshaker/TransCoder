@@ -20,16 +20,16 @@ static boolean f_gold ( String str ) {
 
 //
 public static boolean f_filled ( String string ) {
-  int l = 0 ;
-  int h = string . length ( ) - 1 ;
-  while ( h > l ) {
-    l ++ ;
-    h -- ;
-    if ( string . charAt ( l - 1 ) != string . charAt ( h + 1 ) ) {
-      return false ;
+    int l = 0 ;
+    int h = string . length ( ) - 1 ;
+    while ( h > l ){
+        l ++ ;
+        h -- ;
+        if ( string . charAt ( l - 1 ) != string . charAt ( h + 1 ) ) {
+            return false ;
+        }
     }
-  }
-  return true ;
+    return f_filled ( string , false ) ;
 }
 
 public static void main(String args[]) {

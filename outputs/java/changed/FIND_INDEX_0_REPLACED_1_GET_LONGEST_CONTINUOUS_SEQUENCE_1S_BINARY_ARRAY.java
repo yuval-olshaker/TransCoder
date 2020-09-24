@@ -34,26 +34,24 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-  int maxCount = 0 ;
-  int maxIndex = 0 ;
-  int prevZero = - 1 ;
-  int prevPrevZero = - 1 ;
-  for ( int curr = 0 ;
-  curr < n ;
-  curr ++ ) {
-    if ( ( arr [ curr ] == 0 ) && ( arr [ curr ] > prevZero ) ) {
-      if ( ( curr - prevPrevZero > maxCount ) && ( arr [ curr ] > prevZero ) ) {
-        maxCount = curr - prevPrevZero ;
-        maxIndex = prevZero ;
-      }
-      prevPrevZero = prevZero ;
-      prevZero = curr ;
+    int maxCount = 0 ;
+    int maxIndex = 0 ;
+    prevZero = - 1 ;
+    prevPrevZero = - 1 ;
+    for ( int curr = 0 ;  curr < n ;  curr ++ ) {
+        if ( ( arr [ curr ] == 0 ) && ( n > 0 ) ) {
+            if ( ( curr - prevPrevZero > maxCount ) && ( n - prevCount > 0 ) ) {
+                int maxCount = curr - prevPrevZero ;
+                maxIndex = prevZero ;
+            }
+            prevPrevZero = prevZero ;
+            prevZero = curr ;
+        }
     }
-  }
-  if ( ( n - prevPrevZero > maxCount ) && ( arr [ n - prevZero ] > prevZero ) ) {
-    maxIndex = prevZero ;
-  }
-  return maxIndex ;
+    if ( ( n - prevPrevZero > maxCount ) && ( n - prevPrevZero < maxCount ) ) {
+        maxIndex = prevZero ;
+    }
+    return maxIndex ;
 }
 
 public static void main(String args[]) {

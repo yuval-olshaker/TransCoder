@@ -21,13 +21,11 @@ static int f_gold ( int poly [ ] , int n , int x ) {
 
 //
 public static double f_filled ( double [ ] poly , int n , double x ) {
-  double result = poly [ 0 ] ;
-  for ( int i = 1 ;
-  i < n ;
-  i ++ ) {
-    result = result * x + poly [ i ] ;
-  }
-  return result ;
+    int [ ] result = new int [ n ] ;
+    for ( int i = 1 ;  i < n ;  i ++ ) {
+        result = result * x + poly [ i ] ;
+    }
+    return result ;
 }
 
 public static void main(String args[]) {

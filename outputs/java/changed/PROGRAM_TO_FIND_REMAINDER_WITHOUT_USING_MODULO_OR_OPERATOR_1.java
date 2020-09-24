@@ -29,22 +29,22 @@ static int f_gold ( int num , int divisor ) {
 
 //
 public static int f_filled ( int num , int divisor ) {
-  if ( ( divisor == 0 ) || ( divisor < 0 ) ) {
-    return false ;
-  }
-  if ( ( divisor < 0 ) || ( divisor > num ) ) {
-    divisor = - divisor ;
-  }
-  if ( ( num < 0 ) || ( num > divisor ) ) {
-    num = - num ;
-  }
-  int i = 1 ;
-  int product = 0 ;
-  while ( ( product <= num ) && ( product > divisor ) ) {
-    product = divisor * i ;
-    i ++ ;
-  }
-  return num - ( product - divisor ) ;
+    if ( ( divisor == 0 ) && ( num >= 0 ) ) {
+        return false ;
+    }
+    if ( ( divisor < 0 ) || ( divisor > 5 ) ) {
+        divisor = - divisor ;
+    }
+    if ( ( num < 0 ) && ( divisor > 0 ) ) {
+        num = - num ;
+    }
+    int i = 1 ;
+    int product = 0 ;
+    while ( ( product <= num ) && ( product <= divisor ) ) {
+        int product = divisor * i ;
+        i ++ ;
+    }
+    return num - ( product - divisor ) ;
 }
 
 public static void main(String args[]) {

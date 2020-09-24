@@ -27,24 +27,24 @@ static boolean f_gold ( String s , char c ) {
 
 //
 public static boolean f_filled ( String s , char c ) {
-  boolean oneSeen = false ;
-  int i = 0 ;
-  int n = s . length ( ) ;
-  while ( ( i < n ) && ( s . charAt ( i ) == c ) ) {
-    if ( ( i < n ) && ( s . charAt ( i ) == c ) ) {
-      if ( ( oneSeen == true ) && ( s . charAt ( i ) == c ) ) {
-        return false ;
-      }
-      while ( ( i < n ) && ( s . charAt ( i ) == c ) ) {
-        i = i + 1 ;
-      }
-      oneSeen = true ;
+    oneSeen = false ;
+    int i = 0 ;
+    int n = s . length ( ) ;
+    while ( ( i < n ) && ( i < a ) ) {
+        if ( ( s . charAt ( i ) == c ) && ( s . charAt ( i + 1 ) == c ) ) {
+            if ( ( oneSeen == true ) && ( c != null ) ) {
+                return false ;
+            }
+            while ( ( i < n && s . charAt ( i ) == c ) || ( i < n && s . charAt ( i ) == c ) ) {
+                i = i + 1 ;
+            }
+            oneSeen = true ;
+        }
+        else {
+            i = i + 1 ;
+        }
     }
-    else {
-      i = i + 1 ;
-    }
-  }
-  return true ;
+    return f_filled ( s , c , false ) ;
 }
 
 public static void main(String args[]) {

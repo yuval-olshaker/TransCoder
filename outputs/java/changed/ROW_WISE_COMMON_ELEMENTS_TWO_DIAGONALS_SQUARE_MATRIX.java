@@ -21,15 +21,13 @@ static int f_gold ( int mat [ ] [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] [ ] mat , int n ) {
-  int res = 0 ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    if ( mat [ i ] [ i ] == mat [ i ] [ n - i - 1 ] ) {
-      res = res + 1 ;
+    int res = 0 ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        if ( mat [ i ] [ i ] == mat [ i ] [ n - i - 1 ] ){
+            res = res + 1 ;
+        }
     }
-  }
-  return res ;
+    return res ;
 }
 
 public static void main(String args[]) {

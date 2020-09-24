@@ -18,8 +18,8 @@ public static boolean f_gold ( int r , int R , int r1 , int x1 , int y1 ) {
 
 //
 public static boolean f_filled ( int r , int R , int r1 , int x1 , int y1 ) {
-  int dis = ( int ) Math . sqrt ( x1 * x1 + y1 * y1 ) ;
-  return ( dis - r1 >= R && dis + r1 <= r ) ;
+    int dis = ( int ) Math . sqrt ( x1 * x1 + y1 * y1 ) ;
+    return ( dis - r1 >= R && dis + r1 <= r ) ;
 }
 
 public static void main(String args[]) {

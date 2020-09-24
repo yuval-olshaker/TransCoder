@@ -24,14 +24,14 @@ static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-  n -- ;
-  n |= n >> 1 ;
-  n |= n >> 2 ;
-  n |= n >> 4 ;
-  n |= n >> 8 ;
-  n |= n >> 16 ;
-  n ++ ;
-  return n ;
+    n -- ;
+    n |= n >> 1 ;
+    n |= n >>> 2 ;
+    n |= n >>> 4 ;
+    n |= n >> 8 ;
+    n |= n >>> 16 ;
+    n ++ ;
+    return n ;
 }
 
 public static void main(String args[]) {

@@ -19,7 +19,7 @@ static long f_gold ( long y , long x ) {
 
 //
 public static double f_filled ( double y , double x ) {
-  return ( y % Math . pow ( 2 , x ) ) ;
+    return ( y % Math . pow ( 2 , x ) ) ;
 }
 
 public static void main(String args[]) {

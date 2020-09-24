@@ -38,30 +38,24 @@ static void f_gold ( int [ ] a , int n ) {
 
 //
 public static void f_filled ( int [ ] a , int n ) {
-  Map < Integer , Integer > count = Maps . newHashMap ( ) ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    if ( count . containsKey ( a [ i ] ) ) {
-      count . put ( a [ i ] , ++ count . get ( a [ i ] ) ) ;
+    Map < Integer , Integer > count = Collections . synchronizedMap ( new HashMap < Integer , Integer > ( ) ) ;
+    for ( int i = 0 ;  i < n ;{
+        if ( count . contains ( a [ i ] ) ) a [ i ] = 5 ;
+            count [ a [ i ] ] ++ ;
+        if ( n > 0 ) {
+            count [ a [ i ] ] = 1 ;
+        }
     }
-    else {
-      count . put ( a [ i ] , 1 ) ;
+    nextMissing = 1 ;
+    for ( int i = 0 ;  i < n ;{
+        if ( count [ a [ i ] ] != 1 || a [ i ] > n || a [ i ] < 1 ) a [ i ] = 5 ;
+            count [ a [ i ] ] -- ;
+            while ( count . get ( nextMissing ) ){
+                nextMissing ++ ;
+            }
+            a [ i ++ ] = nextMissing ;
+            count [ nextMissing ++ ] = 1 ;
     }
-  }
-  int nextMissing = 1 ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    if ( count . get ( a [ i ] ) != 1 || a [ i ] > n || a [ i ] < 1 ) {
-      count . put ( a [ i ] , -- count . get ( a [ i ] ) ) ;
-      while ( count . containsKey ( nextMissing ) ) {
-        nextMissing ++ ;
-      }
-      a [ i ] = nextMissing ;
-      count . put ( nextMissing , 1 ) ;
-    }
-  }
 }
 
 public static void main(String args[]) {

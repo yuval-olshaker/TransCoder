@@ -32,22 +32,28 @@ static int f_gold ( int arr [ ] , int n , int k ) {
 
 //
 public static int f_filled ( int arr [ ] , int size , int KthIndex ) {
-  HashMap < Integer , Integer > dict = new HashMap < Integer , Integer > ( ) ;
-  ArrayList < Integer > vect = new ArrayList < Integer > ( ) ;
-  for ( int i = 0 ;
-  i < size ;
-  i ++ ) {
-    if ( ( arr [ i ] < dict . size ( ) ) && ( arr [ i ] > 0 ) ) dict . put ( arr [ i ] , dict . get ( arr [ i ] ) + 1 ) ;
-    else dict . put ( arr [ i ] , 1 ) ;
-  }
-  for ( int i = 0 ;
-  i < size ;
-  i ++ ) {
-    if ( ( dict . get ( arr [ i ] ) > 1 ) && ( arr [ i ] > 0 ) ) continue ;
-    else KthIndex = KthIndex - 1 ;
-    if ( ( KthIndex == 0 ) || ( KthIndex == 1 ) ) return arr [ i ] ;
-  }
-  return - 1 ;
+    HashMap < Integer , Integer > map = new HashMap < Integer , Integer > ( ) ;
+    int [ ] vect = new int [ size ] ;
+    for ( int i = 0 ;  i < size ;  i ++ ) {
+        if ( ( arr [ i ] instanceof Map ) && ( size > KthIndex ) ) {
+            dict [ arr [ i ] ] = dict [ arr [ i ] ] + 1 ;
+        }
+        else {
+            dict [ arr [ i ] ] = 1 ;
+        }
+    }
+    for ( int i = 0 ;  i < size ;  i ++ ) {
+        if ( ( map [ arr [ i ] ] > 1 ) && ( map [ arr [ i ] ] > 2 ) ) {
+            continue ;
+        }
+        else {
+            KthIndex = KthIndex - 1 ;
+        }
+        if ( ( KthIndex == 0 ) && ( arr != null ) ) {
+            return f_filled ( arr , i -> size - i , KthIndex ) ;
+        }
+    }
+    return - 1 ;
 }
 
 public static void main(String args[]) {

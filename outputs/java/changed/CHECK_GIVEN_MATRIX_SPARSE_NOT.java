@@ -23,19 +23,15 @@ static boolean f_gold ( int array [ ] [ ] , int m , int n ) {
 
 //
 public static boolean f_filled ( int [ ] [ ] array , int m , int n ) {
-  int counter = 0 ;
-  for ( int i = 0 ;
-  i <= m ;
-  i ++ ) {
-    for ( int j = 0 ;
-    j <= n ;
-    j ++ ) {
-      if ( ( array [ i ] [ j ] == 0 ) && ( array [ i ] [ j ] != 0 ) ) {
-        counter = counter + 1 ;
-      }
+    int counter = 0 ;
+    for ( int i = 0 ;  i <= m ;  i ++ ) {
+        for ( int j = 0 ;  j <= n ;  j ++ ) {
+            if ( ( array [ i ] [ j ] == 0 ) && ( array [ j ] [ i ] == 0 ) ) {
+                counter = counter + 1 ;
+            }
+        }
     }
-  }
-  return ( counter > ( ( m * n ) / 2 ) ) ;
+    return ( counter > ( ( m * n ) / 2 ) ) ;
 }
 
 public static void main(String args[]) {

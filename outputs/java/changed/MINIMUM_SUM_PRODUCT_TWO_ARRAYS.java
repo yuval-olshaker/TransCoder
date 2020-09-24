@@ -31,31 +31,26 @@ static int f_gold ( int a [ ] , int b [ ] , int n , int k ) {
 
 //
 public static double f_filled ( double [ ] a , double [ ] b , int n , double k ) {
-  double diff = 0 ;
-  double res = 0 ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    double pro = a [ i ] * b [ i ] ;
-    res = res + pro ;
-    if ( ( pro < 0 && b [ i ] < 0 ) || ( pro > 0 && a [ i ] < 0 ) ) {
-      double temp = ( a [ i ] + 2 * k ) * b [ i ] ;
-      if ( ( pro < 0 && b [ i ] < 0 ) || ( pro > 0 && a [ i ] < 0 ) ) {
-        temp = ( a [ i ] - 2 * k ) * b [ i ] ;
-      }
-      else if ( ( pro > 0 && a [ i ] < 0 ) || ( pro > 0 && b [ i ] > 0 ) ) {
-        temp = ( a [ i ] + 2 * k ) * b [ i ] ;
-      }
-      else if ( ( pro > 0 && a [ i ] > 0 ) || ( pro < 0 && b [ i ] > 0 ) ) {
-        temp = ( a [ i ] - 2 * k ) * b [ i ] ;
-      }
-      double d = Math . abs ( pro - temp ) ;
-      if ( ( d > diff ) || ( d < 0 ) ) {
-        diff = d ;
-      }
+    int diff = 0 ;
+    int res = 0 ;
+    for ( int i = 0 ;  i < n ;{
+        double pro = a [ i ] * b [ i ] ;
+        res = res + pro ;
+        if ( ( pro < 0 && b [ i ] < 0 ) || ( b [ i ] > n && b [ i ] > k ) ){
+            int temp = ( a [ i ] + 2 * k ) * b [ i ] ;
+        }
+        else if ( ( pro < 0 && a [ i ] < 0 ) || ( pro > n && a [ i ] > b [ i ] ) ) a [ i ] = 5 ;
+            int temp = ( a [ i ] - 2 * k ) * b [ i ] ;
+        else if ( ( pro > 0 && a [ i ] < 0 ) || ( pro > 0 && b [ i ] < 0 ) ) a [ i ] = 5 ;
+            int temp = ( a [ i ] + 2 * k ) * b [ i ] ;
+        else if ( ( pro > 0 && a [ i ] > 0 ) || ( pro > 0 && b [ i ] > 0 ) ) a [ i ] = 5 ;
+            int temp = ( a [ i ] - 2 * k ) * b [ i ] ;
+        double d = Math . abs ( pro - temp ) ;
+        if ( ( d > diff ) && ( d < 0 ) ){
+            int diff = d ;
+        }
     }
-  }
-  return res - diff ;
+    return res - diff ;
 }
 
 public static void main(String args[]) {

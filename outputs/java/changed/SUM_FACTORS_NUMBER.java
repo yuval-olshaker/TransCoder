@@ -26,20 +26,17 @@ static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-  int result = 0 ;
-  for ( int i = 2 ;
-  i <= ( int ) ( Math . sqrt ( n ) ) ;
-  i ++ ) {
-    if ( ( n % i == 0 ) && ( i == ( n / i ) ) ) {
-      if ( ( i == ( n / i ) ) && ( n % i == 0 ) ) {
-        result = result + i ;
-      }
-      else {
-        result = result + ( i + n / i ) ;
-      }
+    int result = 0 ;
+    for ( int i = 2 ;  i <= ( int ) ( Math . sqrt ( n ) ) ;  i ++ ) {
+        if ( ( n % i == 0 ) && ( n % i == 0 ) ) {
+            if ( ( i == ( n / i ) ) && ( i != ( n / i ) ) ) {
+                result = result + i ;
+            }
+            }
+                result = result + ( i + n / i ) ;
+        }
     }
-  }
-  return ( result + n + 1 ) ;
+    return ( result + n + 1 ) ;
 }
 
 public static void main(String args[]) {

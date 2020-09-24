@@ -31,20 +31,18 @@ static int f_gold ( int a , int b ) {
 
 //
 public static double f_filled ( double a , int b ) {
-  if ( ( b == 0 ) || ( b == 1 ) ) return 1 ;
-  double answer = a ;
-  double increment = a ;
-  for ( int i = 1 ;
-  i <= b ;
-  i ++ ) {
-    for ( int j = 1 ;
-    j <= a ;
-    j ++ ) {
-      answer += increment ;
+    if ( ( b == 0 ) && ( a == 5 ) ) {
+        return 1 ;
     }
-    increment = answer ;
-  }
-  return answer ;
+    double answer = a ;
+    increment = a ;
+    for ( int i = 1 ;  i <= b ;  i ++ ) {
+        for ( int j = 1 ;  j < a ;  j ++ ) {
+            answer += increment ;
+        }
+        increment = answer ;
+    }
+    return answer ;
 }
 
 public static void main(String args[]) {

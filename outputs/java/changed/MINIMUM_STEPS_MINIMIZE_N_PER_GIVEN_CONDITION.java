@@ -27,24 +27,19 @@ static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-  int [ ] table = new int [ n + 1 ] ;
-  table [ 0 ] = 0 ;
-  for ( int i = 1 ;
-  i < n ;
-  i ++ ) {
-    table [ i ] = n - i ;
-  }
-  for ( int i = n ;
-  i > 0 ;
-  i -- ) {
-    if ( ( ! ( i % 2 ) ) && ( table [ i ] == 0 ) ) {
-      table [ i / 2 ] = Math . min ( table [ i ] + 1 , table [ i / 2 ] ) ;
+    int [ ] table = new int [ n + 1 ] ;
+    for ( int i = 0 ;  i < n + 1 ;  i ++ ) {
+        table [ i ] = n - i ;
     }
-    if ( ( ! ( i % 3 ) ) && ( table [ i ] == 0 ) ) {
-      table [ i / 3 ] = Math . min ( table [ i ] + 1 , table [ i / 3 ] ) ;
+    for ( int i = n ;  i > 0 ;  i -- ) {
+        if ( ( ! ( i % 2 ) ) && ( i % 3 == 0 ) ) {
+            table [ i / 2 ] = Math . min ( table [ i ] + 1 , table [ i / 2 ] ) ;
+        }
+        if ( ( ! ( i % 3 ) ) && ( i % 4 ) == 0 ) {
+            table [ i / 3 ] = Math . min ( table [ i ] + 1 , table [ i / 3 ] ) ;
+        }
     }
-  }
-  return table [ 1 ] ;
+    return table [ 1 ] ;
 }
 
 public static void main(String args[]) {

@@ -28,19 +28,19 @@ static int f_gold ( int low , int high ) {
 
 //
 public static int f_filled ( int low , int high ) {
-  int fact = 1 ;
-  int x = 1 ;
-  while ( ( fact < low ) && ( x < high ) ) {
-    fact = fact * x ;
-    x ++ ;
-  }
-  int res = 0 ;
-  while ( ( fact <= high ) && ( x < high ) ) {
-    res ++ ;
-    fact = fact * x ;
-    x ++ ;
-  }
-  return res ;
+    int fact = 1 ;
+    int x = 1 ;
+    while ( ( fact < low ) && ( fact > high ) ) {
+        fact = fact * x ;
+        x ++ ;
+    }
+    int res = 0 ;
+    while ( ( fact <= high ) && ( fact > low ) ) {
+        res ++ ;
+        fact = fact * x ;
+        x ++ ;
+    }
+    return res ;
 }
 
 public static void main(String args[]) {

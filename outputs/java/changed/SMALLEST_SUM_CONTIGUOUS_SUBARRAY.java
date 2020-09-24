@@ -26,20 +26,18 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-  int minEndingHere = Integer . MAX_VALUE ;
-  int minSoFar = Integer . MAX_VALUE ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    if ( ( minEndingHere > 0 ) && ( arr [ i ] > 0 ) ) {
-      minEndingHere = arr [ i ] ;
+    int minEndingHere = Integer . MAX_VALUE ;
+    int minSoFar = Integer . MAX_VALUE ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        if ( ( minEndingHere > 0 ) && ( n > 0 ) ) {
+            int minEndingHere = arr [ i ] ;
+        }
+        if ( n > 0 ) {
+            minEndingHere += arr [ i ] ;
+        }
+        minSoFar = Math . min ( minSoFar , minEndingHere ) ;
     }
-    else {
-      minEndingHere += arr [ i ] ;
-    }
-    minSoFar = Math . min ( minSoFar , minEndingHere ) ;
-  }
-  return minSoFar ;
+    return minSoFar ;
 }
 
 public static void main(String args[]) {

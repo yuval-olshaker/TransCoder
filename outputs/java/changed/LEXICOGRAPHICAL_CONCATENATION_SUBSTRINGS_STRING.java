@@ -33,28 +33,22 @@ static String f_gold ( String s ) {
 
 //
 public static String f_filled ( String s ) {
-  int n = s . length ( ) ;
-  int subCount = ( n * ( n + 1 ) ) / 2 ;
-  int [ ] arr = new int [ subCount ] ;
-  int index = 0 ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    for ( int j = 1 ;
-    j < n - i + 1 ;
-    j ++ ) {
-      arr [ index ] = s . charAt ( i ) ;
-      index ++ ;
+    int n = cs . length ( ) ;
+    int subCount = ( n * ( n + 1 ) ) / 2 ;
+    int [ ] arr = new int [ subCount ] ;
+    int index = 0 ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        for ( int j = 1 ;  j <= n - i ;  j ++ ) {
+            arr [ index ++ ] = s . substring ( i , i + j ) ;
+            index ++ ;
+        }
     }
-  }
-  Arrays . sort ( arr ) ;
-  String res = "" ;
-  for ( int i = 0 ;
-  i < subCount ;
-  i ++ ) {
-    res += arr [ i ] ;
-  }
-  return res ;
+    arr . sort ( ) ;
+    String res = "" ;
+    for ( int i = 0 ;  i < subCount ;  i ++ ) {
+        res += arr [ i ++ ] ;
+    }
+    return res ;
 }
 
 public static void main(String args[]) {

@@ -21,11 +21,11 @@ static int f_gold ( int x ) {
 
 //
 public static int f_filled ( int x ) {
-  int evenBits = x & 0xAAAAAAAA ;
-  int oddBits = x & 0x55555555 ;
-  evenBits >>>= 1 ;
-  oddBits <<= 1 ;
-  return ( evenBits | oddBits ) ;
+    evenBits = x & 0xAAAAAAAA ;
+    odd_bits = x & 0x55555555 ;
+    evenBits >>= 1 ;
+    odd_bits <<= 1 ;
+    return ( evenBits | oddBits ) ;
 }
 
 public static void main(String args[]) {

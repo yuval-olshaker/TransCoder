@@ -46,31 +46,35 @@ static boolean f_gold ( int ip [ ] , int op [ ] , int n ) {
 
 //
 public static boolean f_filled ( int [ ] ip , int [ ] op , int n ) {
-  Queue < Integer > Input = new Queue < Integer > ( ) ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) Input . offer ( ip [ i ] ) ;
-  Queue < Integer > Output = new Queue < Integer > ( ) ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) Output . offer ( op [ i ] ) ;
-  Stack < Integer > tempStack = new Stack < Integer > ( ) ;
-  while ( ( ! Input . isEmpty ( ) ) && ( ! Output . isEmpty ( ) ) ) {
-    Integer ele = Input . peek ( ) ;
-    Input . pop ( ) ;
-    if ( ( ele == Output . peek ( ) ) && ( tempStack . size ( ) != 0 ) ) {
-      Output . pop ( ) ;
-      while ( ( tempStack . size ( ) != 0 ) && ( tempStack . size ( ) == 0 ) ) {
-        if ( ( tempStack . peek ( ) == Output . peek ( ) ) && ( tempStack . size ( ) == 1 ) ) {
-          tempStack . pop ( ) ;
-          Output . pop ( ) ;
-        }
-        else break ;
-      }
+    Queue < Integer > Input = new LinkedList < Integer > ( ) ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        Input . put ( ip [ i ] ) ;
     }
-    else tempStack . push ( ele ) ;
-  }
-  return ( Input . isEmpty ( ) && tempStack . size ( ) == 0 ) ;
+    Queue < Integer > output = new LinkedList < Integer > ( ) ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        output . put ( op [ i ] ) ;
+    }
+    int [ ] tempStack = new int [ n ] ;
+    while ( ( ! Input . isEmpty ( ) ) && ( ip [ 0 ] == op ) && ( ip [ 1 ] == op ) && ( ip [ 2 ] == op ) && ( ip [ 3 ] == op ) ) {
+        int ele = Input . queue . get ( 0 ) ;
+        Input . get ( ) ;
+        if ( ( ele == output . queue . get ( 0 ) ) && ( op == output . queue . get ( 1 ) ) && ( n == output . queue . get ( 2 ) ) ) {
+            output . get ( ) ;
+            while ( ( tempStack . size ( ) != 0 ) && ( ip < tempStack . size ( ) ) ) {
+                if ( ( tempStack . get ( tempStack . size ( ) - 1 ) == output . queue . get ( 0 ) ) && ( ip == ip + n ) ){
+                    tempStack . pop ( ) ;
+                    output . get ( ) ;
+                }
+                if ( ip . length > n ) {
+                    break ;
+                }
+            }
+        }
+        if ( ip . length > n ) {
+            tempStack . add ( ele ) ;
+        }
+    }
+    return ( Input . isEmpty ( ) && tempStack . length == 0 ) ;
 }
 
 public static void main(String args[]) {

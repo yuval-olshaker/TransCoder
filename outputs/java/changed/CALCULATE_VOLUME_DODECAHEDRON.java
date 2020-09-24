@@ -17,7 +17,7 @@ static double f_gold ( int side ) {
 
 //
 public static double f_filled ( int side ) {
-  return ( ( ( 15 + ( 7 * ( Math . sqrt ( 5 ) ) ) ) / 4 ) * ( Math . pow ( side , 3 ) ) ) ;
+    return ( ( ( 15 + ( 7 * ( Math . sqrt ( 5 ) ) ) ) / 4 ) * ( Math . pow ( side , 3 ) ) ) ;
 }
 
 public static void main(String args[]) {

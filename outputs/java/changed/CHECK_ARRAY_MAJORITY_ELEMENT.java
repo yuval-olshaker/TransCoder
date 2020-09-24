@@ -23,23 +23,21 @@ static boolean f_gold ( int a [ ] , int n ) {
 
 //
 public static boolean f_filled ( int [ ] a ) {
-  int [ ] mp = new int [ a . length ] ;
-  for ( int i = 0 ;
-  i < a . length ;
-  i ++ ) {
-    if ( a [ i ] < mp [ i ] ) {
-      mp [ i ] ++ ;
+    Map < Integer , Integer > mp = new HashMap < Integer , Integer > ( ) ;
+    for ( int i = 0 ;  i < a ;  i ++ ) {
+        if ( i == mp ){
+            mp [ i ] ++ ;
+        }
+        else {
+            mp [ i ++ ] = 1 ;
+        }
     }
-    else {
-      mp [ i ] = 1 ;
+    for ( int x : mp ){
+        if ( mp [ x ] >= a . length / 2 ){
+            return true ;
+        }
     }
-  }
-  for ( int x : mp ) {
-    if ( mp [ x ] >= a . length / 2 ) {
-      return true ;
-    }
-  }
-  return false ;
+    return false ;
 }
 
 public static void main(String args[]) {

@@ -35,14 +35,12 @@ static int f_gold ( int n , int k , int a [ ] ) {
 
 //
 public static int f_filled ( int n , int k , int [ ] a ) {
-  Arrays . sort ( a , 0 , n ) ;
-  int f_filled = 0 ;
-  for ( int i = 0 ;
-  i < n ;
-  i += k ) {
-    f_filled += ( 2 * a [ i ] ) ;
-  }
-  return f_filled ;
+    Arrays . sort ( a , 0 , n ) ;
+    f_filled = 0 ;
+    for ( int i = 0 ;  i < n ;{
+        f_filled += ( 2 * a [ i ] ) ;
+    }
+    return f_filled ;
 }
 
 public static void main(String args[]) {

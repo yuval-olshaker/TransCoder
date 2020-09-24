@@ -18,8 +18,8 @@ static float f_gold ( int a ) {
 
 //
 public static double f_filled ( double a ) {
-  double area = ( Math . PI * a * a ) / 4 ;
-  return area ;
+    int area = ( Math . PI * a * a ) / 4 ;
+    return area ;
 }
 
 public static void main(String args[]) {

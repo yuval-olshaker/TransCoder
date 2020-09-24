@@ -34,27 +34,21 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-  int [ ] dp = new int [ n ] ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    for ( int j = 0 ;
-    j < i ;
-    j ++ ) {
-      if ( ( ( arr [ i ] == arr [ j ] + 1 ) || ( arr [ i ] == arr [ j ] - 1 ) ) && ( ( arr [ j ] == arr [ i ] ) || ( arr [ j ] == arr [ i ] - 1 ) ) ) {
-        dp [ i ] = Math . max ( dp [ i ] , dp [ j ] + 1 ) ;
-      }
+    int [ ] dp = new int [ n ] ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        for ( int j = 0 ;  j < i ;  j ++ ) {
+            if ( ( ( arr [ i ] == arr [ j ] + 1 ) || ( arr [ i ] == arr [ j ] - 1 ) ) && ( ( arr [ i ] == arr [ j ] ) || ( arr [ i ] == arr [ j ] ) ) ) {
+                dp [ i ] = Math . max ( dp [ i ] , dp [ j ] + 1 ) ;
+            }
+        }
     }
-  }
-  int result = 1 ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    if ( ( result < dp [ i ] ) && ( ( arr [ i ] == arr [ j ] ) || ( arr [ i ] == arr [ j ] - 1 ) ) ) {
-      result = dp [ i ] ;
+    int result = 1 ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        if ( ( result < dp [ i ] ) && ( n > 0 ) ) {
+            int result = dp [ i ] ;
+        }
     }
-  }
-  return result ;
+    return result ;
 }
 
 public static void main(String args[]) {

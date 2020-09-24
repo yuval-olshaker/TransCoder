@@ -23,13 +23,13 @@ static int f_gold ( int n , int p ) {
 
 //
 public static int f_filled ( int n , int p ) {
-  double ans = 0 ;
-  double temp = p ;
-  while ( ( temp <= n ) && ( temp > 0 ) ) {
-    ans += n / temp ;
-    temp = temp * p ;
-  }
-  return ( int ) ans ;
+    int ans = 0 ;
+    int temp = p ;
+    while ( ( temp <= n ) && ( temp <= p ) ) {
+        ans += n / temp ;
+        temp = temp * p ;
+    }
+    return ( int ) ans ;
 }
 
 public static void main(String args[]) {

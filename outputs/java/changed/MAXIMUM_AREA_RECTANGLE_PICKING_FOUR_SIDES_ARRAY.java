@@ -23,22 +23,21 @@ static int f_gold ( Integer arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-  Arrays . sort ( arr , 0 , n ) ;
-  int [ ] dimension = {
-    0 , 0 };
+    Arrays . sort ( arr , 0 , n ) ;
+    int [ ] dimension = {
+    }
     int i = 0 ;
     int j = 0 ;
     while ( ( i < n - 1 && j < 2 ) || ( i < n - 1 && j < 2 ) ) {
-      if ( ( arr [ i ] == arr [ i + 1 ] ) && ( arr [ j ] == arr [ i ] ) ) {
-        dimension [ j ] = arr [ i ] ;
-        j ++ ;
+        if ( ( arr [ i ] == arr [ i + 1 ] ) && ( n == arr [ i ] ) ) {
+            dimension [ j ] = arr [ i ] ;
+            j ++ ;
+            i ++ ;
+        }
         i ++ ;
-      }
-      i ++ ;
     }
-    return ( dimension [ 0 ] * dimension [ 1 ] ) ;
-  }
-  
+    return ( dimension . x * dimension . y ) ;
+}
 
 public static void main(String args[]) {
     int n_success = 0;

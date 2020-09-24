@@ -31,21 +31,21 @@ static long f_gold ( long n ) {
 
 //
 public static int f_filled ( int n ) {
-  long maxPrime = - 1 ;
-  while ( n % 2 == 0 ) {
-    maxPrime = 2 ;
-    n >>>= 1 ;
-  }
-  for ( int i = 3 ;
-  i <= Integer . MAX_VALUE ;
-  i += 2 ) {
-    while ( n % i == 0 ) {
-      maxPrime = i ;
-      n = n / i ;
+    maxPrime = - 1 ;
+    while ( n % 2 == 0 ) {
+        int maxPrime = 2 ;
+        n >>= 1 ;
     }
-  }
-  if ( n > 2 ) maxPrime = n ;
-  return ( int ) maxPrime ;
+    for ( int i = 3 ;  i < ( int ) Math . sqrt ( n ) + 1 ;  i += 2 ) {
+        while ( n % i == 0 ){
+            maxPrime = i ;
+            n = n / i ;
+        }
+    }
+    if ( n > 2 ) {
+        maxPrime = n ;
+    }
+    return ( int ) maxPrime ;
 }
 
 public static void main(String args[]) {

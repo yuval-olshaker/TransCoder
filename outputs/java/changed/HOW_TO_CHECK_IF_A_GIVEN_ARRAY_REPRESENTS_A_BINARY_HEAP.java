@@ -23,9 +23,13 @@ static boolean f_gold ( int arr [ ] , int i , int n ) {
 
 //
 public static boolean f_filled ( int [ ] arr , int i , int n ) {
-  if ( i > ( int ) ( ( n - 2 ) / 2 ) ) return true ;
-  if ( ( arr [ i ] >= arr [ 2 * i + 1 ] && arr [ i ] >= arr [ 2 * i + 2 ] && f_filled ( arr , 2 * i + 1 , n ) && f_filled ( arr , 2 * i + 2 , n ) ) ) return true ;
-  return false ;
+    if ( i > ( int ) ( ( n - 2 ) / 2 ) ) {
+        return f_filled ( arr , i , n , 0 ) ;
+    }
+    if ( ( arr [ i ] >= arr [ 2 * i + 1 ] && arr [ i ] >= arr [ 2 * i + 2 ] && f_gold ( arr , 2 * i + 1 , n ) && f_gold ( arr , 2 * i + 2 , n ) ) ) {
+        return f_filled ( arr , i , n , 0 ) ;
+    }
+    return false ;
 }
 
 public static void main(String args[]) {

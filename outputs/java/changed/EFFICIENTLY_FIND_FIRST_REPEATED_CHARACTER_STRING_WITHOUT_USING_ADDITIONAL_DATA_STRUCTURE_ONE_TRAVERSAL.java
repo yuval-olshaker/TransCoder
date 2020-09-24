@@ -25,19 +25,17 @@ static int f_gold ( String str ) {
 
 //
 public static int f_filled ( String string ) {
-  int checker = 0 ;
-  int pos = 0 ;
-  for ( int i = 0 ;
-  i < string . length ( ) ;
-  i ++ ) {
-    int val = ( int ) string . charAt ( i ) - 'a' ;
-    if ( ( ( checker & ( 1 << val ) ) > 0 ) && ( ( checker & ( 1 << val ) ) > 0 ) ) {
-      return pos ;
+    checker = 0 ;
+    pos = 0 ;
+    for ( int i = 0 ;  i < string . length ( ) ;  i ++ ) {
+        int val = ( int ) ( i - 'a' ) ;
+        if ( ( ( checker & ( 1 << val ) ) > 0 ) && ( ( checker & ( 1 << val ) ) > 0 ) ) {
+            return pos ;
+        }
+        checker |= ( 1 << val ) ;
+        pos ++ ;
     }
-    checker |= ( 1 << val ) ;
-    pos ++ ;
-  }
-  return - 1 ;
+    return - 1 ;
 }
 
 public static void main(String args[]) {

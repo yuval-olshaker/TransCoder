@@ -29,18 +29,16 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr ) {
-  int totalSum = Integer . MAX_VALUE ;
-  int leftSum = 0 ;
-  for ( int i = 0 , num = arr . length ;
-  i < num ;
-  i ++ ) {
-    totalSum -= arr [ i ] ;
-    if ( leftSum == totalSum ) {
-      return i ;
+    int totalSum = sum ( arr ) ;
+    int leftsum = 0 ;
+    for ( int i = 0 , num = arr . length ;  i < num ;  i ++ ) {
+        totalSum -= num ;
+        if ( leftsum == totalSum ) {
+            return i ;
+        }
+        leftsum += num ;
     }
-    leftSum += arr [ i ] ;
-  }
-  return - 1 ;
+    return - 1 ;
 }
 
 public static void main(String args[]) {

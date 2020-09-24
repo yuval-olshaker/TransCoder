@@ -17,7 +17,7 @@ static double f_gold ( int n ) {
 
 //
 public static double f_filled ( double n ) {
-  return ( 3.0 * n ) / ( 4.0 * ( n * n ) - 1 ) ;
+    return ( 3.0 * n ) / ( 4.0 * ( n * n ) - 1 ) ;
 }
 
 public static void main(String args[]) {

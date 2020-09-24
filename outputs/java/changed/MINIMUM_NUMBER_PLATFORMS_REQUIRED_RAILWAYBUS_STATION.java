@@ -32,26 +32,26 @@ static int f_gold ( int arr [ ] , int dep [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int [ ] dep , int n ) {
-  Arrays . sort ( arr ) ;
-  Arrays . sort ( dep ) ;
-  int platNeeded = 1 ;
-  int result = 1 ;
-  int i = 1 ;
-  int j = 0 ;
-  while ( ( i < n ) && ( j < n ) ) {
-    if ( ( arr [ i ] < dep [ j ] ) && ( arr [ i ] > dep [ j ] ) ) {
-      platNeeded ++ ;
-      i ++ ;
-      if ( ( platNeeded > result ) && ( arr [ i ] > dep [ j ] ) ) {
-        result = platNeeded ;
-      }
+    Arrays . sort ( arr , dep , n ) ;
+    Arrays . sort ( dep ) ;
+    plat_needed = 1 ;
+    int result = 1 ;
+    int i = 1 ;
+    int j = 0 ;
+    while ( ( i < n && j < n ) || ( i < n && j < n ) ) {
+        if ( ( arr [ i ] < dep [ j ] ) && ( arr [ i ] > dep [ j ] ) ) {
+            plat_needed ++ ;
+            i ++ ;
+            if ( ( plat_needed > result ) && ( dep > n ) ) {
+                int result = plat_needed ;
+            }
+        }
+        else {
+            plat_needed -- ;
+            j ++ ;
+        }
     }
-    else {
-      platNeeded -- ;
-      j ++ ;
-    }
-  }
-  return result ;
+    return result ;
 }
 
 public static void main(String args[]) {

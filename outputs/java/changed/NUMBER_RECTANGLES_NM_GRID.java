@@ -17,7 +17,7 @@ public static long f_gold ( int n , int m ) {
 
 //
 static int f_filled ( int n , int m ) {
-  return ( m * n * ( n + 1 ) * ( m + 1 ) ) / 4 ;
+    return ( m * n * ( n + 1 ) * ( m + 1 ) ) / 4 ;
 }
 
 public static void main(String args[]) {

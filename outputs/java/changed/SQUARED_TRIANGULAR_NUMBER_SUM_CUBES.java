@@ -24,15 +24,17 @@ static int f_gold ( int s ) {
 
 //
 public static int f_filled ( int s ) {
-  int _sum = 0 ;
-  int n = 1 ;
-  while ( ( _sum < s ) && ( _sum < s ) ) {
-    _sum += n * n * n ;
-    n ++ ;
-  }
-  n -- ;
-  if ( _sum == s ) return n ;
-  return - 1 ;
+    _sum = 0 ;
+    int n = 1 ;
+    while ( ( _sum < s ) && ( _sum < s ) ) {
+        _sum += n * n * n ;
+        n ++ ;
+    }
+    n -- ;
+    if ( _sum == s ) {
+        return n ;
+    }
+    return - 1 ;
 }
 
 public static void main(String args[]) {

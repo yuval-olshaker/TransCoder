@@ -36,30 +36,30 @@ static int f_gold ( int mat [ ] [ ] , int r , int c ) {
 
 //
 public static int f_filled ( int [ ] [ ] mat , int r , int c ) {
-  int result = 0 ;
-  for ( int i = 0 ;
-  i < r ;
-  i ++ ) {
-    int j ;
-    for ( j = 0 ;
-    j < c - 1 ;
-    j ++ ) {
-      if ( mat [ i ] [ j + 1 ] <= mat [ i ] [ j ] ) break ;
+    int result = 0 ;
+    for ( int i = 0 ;  i < r ;  i ++ ) {
+        int j = 0 ;
+        for ( int j = 0 ;  j < c - 1 ;  j ++ ) {
+            if ( mat [ i ] [ j + 1 ] <= mat [ i ] [ j ] ){
+                break ;
+            }
+        }
+        if ( j == c - 2 ){
+            result ++ ;
+        }
     }
-    if ( j == c - 2 ) result ++ ;
-  }
-  for ( int i = 0 ;
-  i <= r ;
-  i ++ ) {
-    int j ;
-    for ( j = c - 1 ;
-    j > 0 ;
-    j -- ) {
-      if ( mat [ i ] [ j - 1 ] <= mat [ i ] [ j ] ) break ;
+    for ( int i = 0 ;  i <= r ;  i ++ ) {
+        int j = 0 ;
+        for ( int j = c - 1 ;  j > 0 ;  j -- ) {
+            if ( mat [ i ] [ j - 1 ] <= mat [ i ] [ j ] ){
+                break ;
+            }
+        }
+        if ( c > 1 && j == 1 ){
+            result ++ ;
+        }
     }
-    if ( c > 1 && j == 1 ) result ++ ;
-  }
-  return result ;
+    return result ;
 }
 
 public static void main(String args[]) {

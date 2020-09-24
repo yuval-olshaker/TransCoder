@@ -24,17 +24,14 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-  int [ ] x = new int [ n ] ;
-  Arrays . fill ( x , 0 ) ;
-  int count = 1 ;
-  for ( int i = 0 ;
-  i <= n - 1 ;
-  i ++ ) {
-    if ( ( x [ i ] + 1 != x [ i + 1 ] ) && ( x [ i ] + 1 != x [ i + 2 ] ) ) {
-      count = count + 1 ;
+    int [ ] x = new int [ n ] ;
+    int count = 1 ;
+    for ( int i = 0 ;  i <= n - 1 ;  i ++ ) {
+        if ( ( x [ i ] + 1 != x [ i + 1 ] ) && ( x [ i + 1 ] + 2 != x [ i + 2 ] ) ){
+            count = count + 1 ;
+        }
     }
-  }
-  return count ;
+    return count ;
 }
 
 public static void main(String args[]) {

@@ -23,17 +23,17 @@ static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-  int res = 0 ;
-  int x = 0 ;
-  while ( ( x * x < n ) && ( x * x + y * y < n ) ) {
-    int y = 0 ;
-    while ( ( x * x + y * y < n ) && ( x * x + y * y < n ) ) {
-      res = res + 1 ;
-      y = y + 1 ;
+    int res = 0 ;
+    int x = 0 ;
+    while ( ( x * x < n ) && ( x * x < n ) ) {
+        int y = 0 ;
+        while ( ( x * x + y * y < n ) && ( x * x + y * y < n ) ) {
+            res = res + 1 ;
+            y = y + 1 ;
+        }
+        x = x + 1 ;
     }
-    x = x + 1 ;
-  }
-  return res ;
+    return res ;
 }
 
 public static void main(String args[]) {

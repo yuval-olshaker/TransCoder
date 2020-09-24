@@ -26,28 +26,23 @@ public static int f_gold ( int a , int b , int c ) {
 
 //
 public static int f_filled ( int a , int b , int c ) {
-  if ( a > b ) {
-    if ( ( b > c ) && ( a > c ) ) {
-      return b ;
+    if ( a > b ) {
+        if ( ( b > c ) && ( b < a ) ) {
+            return b ;
+        }
+        }
+            return c ;
+        }
+            return a ;
     }
-    else if ( ( a > c ) && ( b > c ) ) {
-      return c ;
     }
-    else {
-      return a ;
-    }
-  }
-  else {
-    if ( ( a > c ) && ( b > c ) ) {
-      return a ;
-    }
-    else if ( ( b > c ) && ( a > c ) ) {
-      return c ;
-    }
-    else {
-      return b ;
-    }
-  }
+        if ( ( a > c ) && ( b > c ) ) {
+            return a ;
+        }
+        }
+            return c ;
+        }
+            return b ;
 }
 
 public static void main(String args[]) {

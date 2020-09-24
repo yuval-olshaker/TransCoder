@@ -29,23 +29,21 @@ public static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-  Map < Integer , Integer > mp = Maps . newHashMap ( ) ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    if ( arr [ i ] < mp . keySet ( ) . size ( ) ) {
-      mp . put ( arr [ i ] , ++ i ) ;
+    Map < Integer , Integer > mp = Collections . emptyMap ( ) ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        if ( arr [ i ] == mp . keySet ( ) . stream ( ) . filter ( p -> p . length > n ) . count ( ) ) {
+            mp [ arr [ i ] ] ++ ;
+        }
+        if ( n > 0 ) {
+            mp [ arr [ i ] ] = 1 ;
+        }
     }
-    else {
-      mp . put ( arr [ i ] , 1 ) ;
+    int ans = 0 ;
+    for ( Iterator it = mp . iterator ( ) ;  it . hasNext ( ) ;  ) {
+        int count = mp [ it ] ;
+        ans += ( count * ( count - 1 ) ) / 2 ;
     }
-  }
-  int ans = 0 ;
-  for ( Integer it : mp . keySet ( ) ) {
-    int count = mp . get ( it ) ;
-    ans += ( count * ( count - 1 ) ) / 2 ;
-  }
-  return ans ;
+    return ans ;
 }
 
 public static void main(String args[]) {

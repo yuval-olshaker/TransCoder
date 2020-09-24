@@ -24,14 +24,12 @@ public static int f_gold ( int n ) {
 
 //
 public static double f_filled ( int n ) {
-  double res = 1 ;
-  for ( int i = 0 ;
-  i <= n ;
-  i ++ ) {
-    res *= ( 2 * n - i ) ;
-    res /= ( i + 1 ) ;
-  }
-  return res / ( n + 1 ) ;
+    int res = 1 ;
+    for ( int i = 0 ;  i <= n ;  i ++ ) {
+        res *= ( 2 * n - i ) ;
+        res /= ( i + 1 ) ;
+    }
+    return res / ( n + 1 ) ;
 }
 
 public static void main(String args[]) {

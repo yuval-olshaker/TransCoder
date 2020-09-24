@@ -28,18 +28,16 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-  int count = 0 ;
-  int cummulativeSum = 0 ;
-  Arrays . sort ( arr ) ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    if ( arr [ i ] >= cummulativeSum ) {
-      count ++ ;
-      cummulativeSum += arr [ i ] ;
+    int count = 0 ;
+    cummulativeSum = 0 ;
+    Arrays . sort ( arr , 0 , n ) ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        if ( arr [ i ] >= cummulativeSum ) {
+            count ++ ;
+            cummulativeSum += arr [ i ] ;
+        }
     }
-  }
-  return count ;
+    return count ;
 }
 
 public static void main(String args[]) {

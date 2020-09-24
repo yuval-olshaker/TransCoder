@@ -21,13 +21,11 @@ public static boolean f_gold ( int arr [ ] , int n ) {
 
 //
 public static boolean f_filled ( int [ ] arr , int n ) {
-  int remainder = 0 ;
-  for ( int i = 0 ;
-  i <= n ;
-  i ++ ) {
-    remainder = ( remainder + arr [ i ] ) % 3 ;
-  }
-  return ( remainder == 0 ) ;
+    int remainder = 0 ;
+    for ( int i = 0 ;  i <= n ;  i ++ ) {
+        remainder = ( remainder + arr [ i ] ) % 3 ;
+    }
+    return ( remainder == 0 ) ? true : false ;
 }
 
 public static void main(String args[]) {

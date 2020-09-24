@@ -1,4 +1,4 @@
-Current Time = 19:54:50
+Current Time = 23:54:05
 infinite loop:
 python3 /mnt/c/TransCoder/outputs/python/changed/MOVE_ZEROES_END_ARRAY.py > /mnt/c/TransCoder/outputs/python/changed/temp.txt
 infinite loop:
@@ -18,6 +18,10 @@ java COUNTING_PAIRS_PERSON_CAN_FORM_PAIR_ONE_1 > temp.txt
 infinite loop:
 java N_TH_NUMBER_WHOSE_SUM_OF_DIGITS_IS_TEN > temp.txt
 infinite loop:
+java COUNTS_PATHS_POINT_REACH_ORIGIN_1 > temp.txt
+infinite loop:
+java NUMBER_DIGITS_PRODUCT_TWO_NUMBERS > temp.txt
+infinite loop:
 java MINIMUM_LENGTH_SUBARRAY_SUM_GREATER_GIVEN_VALUE > temp.txt
 infinite loop:
 java N_TH_NUMBER_WHOSE_SUM_OF_DIGITS_IS_TEN_1 > temp.txt
@@ -27,4 +31,6 @@ infinite loop:
 java FIND_SUM_ODD_FACTORS_NUMBER > temp.txt
 infinite loop:
 java NUMBER_UNIQUE_RECTANGLES_FORMED_USING_N_UNIT_SQUARES > temp.txt
-Current Time = 20:09:44
+infinite loop:
+java STEINS_ALGORITHM_FOR_FINDING_GCD > temp.txt
+Current Time = 00:10:07

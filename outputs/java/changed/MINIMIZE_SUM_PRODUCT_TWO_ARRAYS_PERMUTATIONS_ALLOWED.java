@@ -23,15 +23,13 @@ static int f_gold ( int A [ ] , int B [ ] , int n ) {
 
 //
 public static double f_filled ( double [ ] A , double [ ] B , int n ) {
-  Arrays . sort ( A ) ;
-  Arrays . sort ( B ) ;
-  double result = 0 ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    result += ( A [ i ] * B [ n - i - 1 ] ) ;
-  }
-  return result ;
+    Arrays . sort ( A ) ;
+    Arrays . sort ( B ) ;
+    int result = 0 ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        result += ( A [ i ] * B [ n - i - 1 ] ) ;
+    }
+    return result ;
 }
 
 public static void main(String args[]) {

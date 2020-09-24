@@ -21,11 +21,11 @@ static int f_gold ( int s ) {
 
 //
 public static int f_filled ( int s ) {
-  int length = ( int ) ( s / 3 ) ;
-  s -= length ;
-  int breadth = s / 2 ;
-  int height = s - breadth ;
-  return ( int ) ( length * breadth * height ) ;
+    int length = ( int ) ( s / 3 ) ;
+    s -= length ;
+    breadth = s / 2 ;
+    height = s - breadth ;
+    return ( int ) ( length * breadth * height ) ;
 }
 
 public static void main(String args[]) {

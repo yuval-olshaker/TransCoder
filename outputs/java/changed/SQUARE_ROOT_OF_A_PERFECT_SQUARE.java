@@ -24,14 +24,14 @@ static float f_gold ( float n ) {
 
 //
 public static double f_filled ( double n ) {
-  double x = n ;
-  double y = 1 ;
-  double e = 0.000001 ;
-  while ( ( x - y > e ) && ( x - y > e ) ) {
-    x = ( x + y ) / 2 ;
-    y = n / x ;
-  }
-  return x ;
+    int x = n ;
+    int y = 1 ;
+    double e = 0.000001 ;
+    while ( ( x - y > e ) && ( x - y > e ) ) {
+        x = ( x + y ) / 2 ;
+        int y = n / x ;
+    }
+    return x ;
 }
 
 public static void main(String args[]) {

@@ -18,10 +18,10 @@ static int f_gold ( int num , int divisor ) {
 
 //
 public static int f_filled ( int num , int divisor ) {
-  while ( ( num >= divisor ) && ( num < 0 ) ) {
-    num -= divisor ;
-  }
-  return num ;
+    while ( ( num >= divisor ) && ( num < divisor ) ) {
+        num -= divisor ;
+    }
+    return num ;
 }
 
 public static void main(String args[]) {

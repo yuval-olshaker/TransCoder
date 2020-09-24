@@ -31,27 +31,23 @@ static int f_gold ( int [ ] arr , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-  int res = - Integer . MAX_VALUE - 1 ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    int prefixSum = arr [ i ] ;
-    for ( int j = 0 ;
-    j < i ;
-    j ++ ) {
-      prefixSum += arr [ j ] ;
+    int res = - Integer . MAX_VALUE - 1 ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        int prefixSum = arr [ i ] ;
+        for ( int j = 0 ;  j < i ;  j ++ ) {
+            prefixSum += arr [ j ] ;
+        }
+        int suffixSum = arr [ i ] ;
+        int j = n - 1 ;
+        while ( ( j > i ) && ( j < n ) ) {
+            suffixSum += arr [ j ] ;
+            j -- ;
+        }
+        if ( ( prefixSum == suffixSum ) && ( n > 0 ) ) {
+            res = Math . max ( res , prefixSum ) ;
+        }
     }
-    int suffixSum = arr [ i ] ;
-    int j = n - 1 ;
-    while ( ( j > i ) && ( j < n ) ) {
-      suffixSum += arr [ j ] ;
-      j -- ;
-    }
-    if ( ( prefixSum == suffixSum ) || ( suffixSum == 0 ) ) {
-      res = Math . max ( res , prefixSum ) ;
-    }
-  }
-  return res ;
+    return res ;
 }
 
 public static void main(String args[]) {

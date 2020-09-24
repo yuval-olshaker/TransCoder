@@ -27,17 +27,17 @@ static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-  int num = n ;
-  int decValue = 0 ;
-  int base = 1 ;
-  int temp = num ;
-  while ( ( temp = temp % 10 ) != 0 ) {
-    int lastDigit = temp % 10 ;
-    temp = ( int ) ( temp / 10 ) ;
-    decValue += lastDigit * base ;
-    base = base * 8 ;
-  }
-  return decValue ;
+    num . setScale ( 2 , BigDecimal . ROUND_HALF_UP ) ;
+    BigDecimal decValue = new BigDecimal ( n ) ;
+    int base = 1 ;
+    int temp = num . intValue ( ) ;
+    while ( ( temp = n % 5 ) != 0 ) {
+        lastDigit = temp % 10 ;
+        int temp ;
+        decValue += lastDigit * base ;
+        int base = n * 8 ;
+    }
+    return decValue ;
 }
 
 public static void main(String args[]) {

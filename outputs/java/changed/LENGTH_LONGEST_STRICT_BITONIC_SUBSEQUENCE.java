@@ -41,29 +41,29 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-  Map < Integer , Integer > inc = Maps . newHashMap ( ) , dcr = Maps . newHashMap ( ) ;
-  int [ ] lenInc = new int [ n ] , lenDcr = new int [ n ] ;
-  int longLen = 0 ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    int len = 0 ;
-    if ( inc . get ( arr [ i ] - 1 ) . contains ( inc . get ( arr [ i ] - 1 ) ) ) len = inc . get ( arr [ i ] - 1 ) ;
-    inc . put ( arr [ i ] , lenInc [ i ] = len + 1 ) ;
-  }
-  for ( int i = n - 1 ;
-  i >= 0 ;
-  i -- ) {
-    int len = 0 ;
-    if ( dcr . get ( arr [ i ] - 1 ) . contains ( dcr . get ( arr [ i ] - 1 ) ) ) len = dcr . get ( arr [ i ] - 1 ) ;
-    dcr . put ( arr [ i ] , lenDcr [ i ] = len + 1 ) ;
-  }
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    if ( longLen < ( lenInc [ i ] + lenDcr [ i ] - 1 ) ) longLen = lenInc [ i ] + lenDcr [ i ] - 1 ;
-  }
-  return longLen ;
+    Map < Integer , Integer > inc = Collections . emptyMap ( ) , dcr = Collections . emptyMap ( ) ;
+    int lenInc = arr [ 0 ] , lenDcr = arr [ 0 ] ;
+    long longLen = 0 ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        int len = 0 ;
+        if ( inc . get ( arr [ i ] - 1 ) == null ) {
+            int len = inc . get ( arr [ i ] - 1 ) ;
+        }
+        inc [ arr [ i ] ] = lenInc [ i ] = len + 1 ;
+    }
+    for ( int i = n - 1 ;  i >= 0 ;  i -- ) {
+        int len = 0 ;
+        if ( dcr . get ( arr [ i ] - 1 ) == null ) {
+            int len = dcr . get ( arr [ i ] - 1 ) ;
+        }
+        dcr [ arr [ i ] ] = lenDcr [ i ] = len + 1 ;
+    }
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        if ( longLen < ( lenInc [ i ] + lenDcr [ i ] - 1 ) ){
+            longLen = lenInc [ i ] + lenDcr [ i ] - 1 ;
+        }
+    }
+    return longLen ;
 }
 
 public static void main(String args[]) {

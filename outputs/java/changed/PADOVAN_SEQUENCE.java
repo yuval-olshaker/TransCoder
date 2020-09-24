@@ -26,16 +26,14 @@ static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-  int pPrevPrev = 1 , pPrev = 1 , pCurr = 1 , pNext = 1 ;
-  for ( int i = 3 ;
-  i <= n ;
-  i ++ ) {
-    pNext = pPrevPrev + pPrev ;
-    pPrevPrev = pPrev ;
-    pPrev = pCurr ;
-    pCurr = pNext ;
-  }
-  return pNext ;
+    int pPrevPrev = 1 , pPrev = 0 , pCurr = 1 , pNext = 0 ;
+    for ( int i = 3 ;  i <= n ;  i ++ ) {
+        pNext = pPrevPrev + pPrev ;
+        pPrevPrev = pPrev ;
+        pPrev = pCurr ;
+        pCurr = pNext ;
+    }
+    return pNext ;
 }
 
 public static void main(String args[]) {

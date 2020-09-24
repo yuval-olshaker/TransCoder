@@ -26,17 +26,15 @@ static String f_gold ( String str ) {
 
 //
 public static int [ ] f_filled ( String str_ ) {
-  int n = str_ . length ( ) ;
-  int [ ] arr = new int [ n ] ;
-  Arrays . fill ( arr , 0 ) ;
-  String concat = str_ + str_ ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    arr [ i ] = concat . substring ( i , n + i ) ;
-  }
-  Arrays . sort ( arr ) ;
-  return arr ;
+    int n = str_ . length ( ) ;
+    int [ ] arr = {
+    }
+    String concat = str_ + str_ ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        arr [ i ] = concat ( i , n + i ) ;
+    }
+    arr . sort ( ) ;
+    return arr [ 0 ] ;
 }
 
 public static void main(String args[]) {

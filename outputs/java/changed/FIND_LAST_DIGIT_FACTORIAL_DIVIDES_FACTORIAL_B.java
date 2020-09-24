@@ -25,21 +25,18 @@ static int f_gold ( long A , long B ) {
 
 //
 public static int f_filled ( int A , int B ) {
-  int variable = 1 ;
-  if ( ( A == B ) && ( ( B - A ) >= 5 ) ) {
-    return 1 ;
-  }
-  else if ( ( ( B - A ) >= 5 ) && ( ( A - B ) >= 5 ) ) {
-    return 0 ;
-  }
-  else {
-    for ( int i = A + 1 ;
-    i <= B ;
-    i ++ ) {
-      variable = ( variable * ( i % 10 ) ) % 10 ;
+    int variable = 1 ;
+    if ( ( A == B ) && ( A != 0 ) ) {
+        return 1 ;
     }
-    return variable % 10 ;
-  }
+    else if ( ( ( B - A ) >= 5 ) && ( ( B - A ) <= 5 ) ) {
+        return 0 ;
+    }
+    }
+        for ( int i = A + 1 ;  i <= B ;  i ++ ) {
+            variable = ( variable * ( i % 10 ) ) % 10 ;
+        }
+        return variable % 10 ;
 }
 
 public static void main(String args[]) {

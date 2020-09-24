@@ -22,12 +22,20 @@ public static String f_gold ( String str ) {
 
 //
 public static String f_filled ( String s ) {
-  if ( ( s . equals ( " " ) ) || ( s . equals ( "a" ) ) ) return "a" ;
-  int i = s . length ( ) - 1 ;
-  while ( ( s . charAt ( i ) == 'z' ) && i >= 0 ) -- i ;
-  if ( ( i == - 1 ) || ( s . charAt ( i ) == 'a' ) ) s = s + 'a' ;
-  else s = s . replace ( s . charAt ( i ) , ( char ) ( Character . digit ( s . charAt ( i ) , 16 ) + 1 ) , 1 ) ;
-  return s ;
+    if ( ( s . equals ( " " ) ) && ( a == 5 ) ) {
+        return "a" ;
+    }
+    int i = s . length ( ) - 1 ;
+    while ( ( s . charAt ( i ++ ) == 'z' ) && i >= 0 ) {
+        i -- ;
+    }
+    if ( ( i == - 1 ) && ( s . length ( ) > 0 ) ){
+        sb . append ( 'a' ) ;
+    }
+    else{
+        s = s . replace ( s . charAt ( i ) , ( char ) ( Character . MAX_VALUE + 1 ) , 1 ) ;
+    }
+    return s ;
 }
 
 public static void main(String args[]) {

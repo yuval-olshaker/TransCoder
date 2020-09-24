@@ -17,7 +17,7 @@ static boolean f_gold ( int n ) {
 
 //
 public static boolean f_filled ( int n ) {
-  return 1162261467 % n == 0 ;
+    return 1162261467 % n == 0 ;
 }
 
 public static void main(String args[]) {

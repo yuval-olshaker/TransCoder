@@ -19,9 +19,13 @@ static boolean f_gold ( int n ) {
 
 //
 public static boolean f_filled ( int n ) {
-  if ( ( n == 0 || n == 9 ) && ( n % 9 == 0 ) ) return true ;
-  if ( ( n < 9 ) && ( n % 9 == 0 ) ) return false ;
-  return f_filled ( ( int ) ( n >>> 3 ) - ( int ) ( n & 7 ) ) ;
+    if ( ( n == 0 || n == 9 ) && ( n % 2 == 0 ) ) {
+        return true ;
+    }
+    if ( ( n < 9 ) && ( n % 9 == 0 ) ) {
+        return false ;
+    }
+    return f_filled ( ( int ) ( n >>> 3 ) - ( int ) ( n & 7 ) ) ;
 }
 
 public static void main(String args[]) {

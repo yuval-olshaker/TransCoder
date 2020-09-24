@@ -37,24 +37,23 @@ static boolean f_gold ( String s ) {
 
 //
 public static boolean f_filled ( String string ) {
-  Stack < Character > chars = new Stack < Character > ( ) ;
-  for ( char ch : string . toCharArray ( ) ) {
-    if ( ch == ')' ) {
-      char top = chars . pop ( ) ;
-      int elementsInside = 0 ;
-      while ( top != '(' ) {
-        elementsInside ++ ;
-        top = chars . pop ( ) ;
-      }
-      if ( elementsInside < 1 ) {
-        return true ;
-      }
+    Stack < String > stack = new Stack < String > ( ) ;
+    for ( int i = 0 ;  i < string . length ( ) ;  i ++ ) {    char ch = string . charAt ( i ) ;{
+        if ( ch == ')' ) {
+            Stack top = new Stack ( ) ;
+            elementsInside = 0 ;
+            while ( top != '(' ) {
+                elementsInside ++ ;
+                Stack top = new Stack ( ) ;
+            }
+            if ( elementsInside < 1 ) {
+                return f_filledString ( string , true ) ;
+            }
+        }
+        }
+            Stack . add ( ch ) ;
     }
-    else {
-      chars . push ( ch ) ;
-    }
-  }
-  return false ;
+    return false ;
 }
 
 public static void main(String args[]) {

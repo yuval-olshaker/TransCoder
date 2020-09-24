@@ -25,19 +25,19 @@ public static long f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-  int l = Math . sqrt ( n ) ;
-  int sq = l * l ;
-  if ( ( sq == n ) && ( l == n ) ) {
-    return l * 4 ;
-  }
-  else {
-    int row = n / l ;
-    int perimeter = 2 * ( l + row ) ;
-    if ( ( n % l != 0 ) && ( n % l != 0 ) ) {
-      perimeter += 2 ;
+    double l = Math . sqrt ( n ) ;
+    double sq = l * l ;
+    if ( ( sq == n ) && ( sq == n ) ){
+        return l * 4 ;
     }
-    return perimeter ;
-  }
+    else{
+        int row = n / l ;
+        perimeter = 2 * ( l + row ) ;
+        if ( ( n % l != 0 ) && ( n % l != 0 ) ){
+            perimeter += 2 ;
+        }
+        return perimeter ;
+    }
 }
 
 public static void main(String args[]) {

@@ -24,17 +24,17 @@ static int f_gold ( int p ) {
 
 //
 public static int f_filled ( int p ) {
-  int first = 1 ;
-  int second = 1 ;
-  int number = 2 ;
-  int next = 1 ;
-  while ( ( next = ( first + second ) % p ) != 0 ) {
-    next = ( first + second ) % p ;
-    first = second ;
-    second = next ;
-    number = number + 1 ;
-  }
-  return number ;
+    first = 1 ;
+    second = 1 ;
+    int number = 2 ;
+    next = 1 ;
+    while ( ( next = p ) != 0 ) {
+        next = ( first + second ) % p ;
+        first = second ;
+        second = next ;
+        number = number + 1 ;
+    }
+    return number ;
 }
 
 public static void main(String args[]) {

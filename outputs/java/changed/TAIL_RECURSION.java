@@ -18,8 +18,10 @@ static int f_gold ( int n ) {
 
 //
 public static long f_filled ( long n ) {
-  if ( ( n == 0 ) || ( n == 1 ) ) return 1 ;
-  return n * f_filled ( n - 1 ) ;
+    if ( ( n == 0 ) && ( n % 2 == 0 ) ) {
+        return 1 ;
+    }
+    return n * f_filled ( n - 1 ) ;
 }
 
 public static void main(String args[]) {

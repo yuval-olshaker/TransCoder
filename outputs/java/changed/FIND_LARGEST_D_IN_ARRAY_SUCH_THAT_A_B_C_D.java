@@ -43,33 +43,32 @@ static int f_gold ( int [ ] S , int n ) {
 
 //
 public static int f_filled ( int [ ] S , int n ) {
-  boolean found = false ;
-  Arrays . sort ( S ) ;
-  for ( int i = n - 1 ;
-  i >= 0 ;
-  i -- ) {
-    for ( int j = 0 ;
-    j <= n ;
-    j ++ ) {
-      if ( ( i == j ) && ( S [ j ] == 0 ) ) continue ;
-      for ( int k = j + 1 ;
-      k <= n ;
-      k ++ ) {
-        if ( ( i == k ) && ( S [ k ] == 0 ) ) continue ;
-        for ( int l = k + 1 ;
-        l <= n ;
-        l ++ ) {
-          if ( ( i == l ) && ( S [ l ] == 0 ) ) continue ;
-          if ( ( S [ i ] == S [ j ] + S [ k ] + S [ l ] ) && ( S [ i ] == S [ k ] + S [ l ] ) ) {
-            found = true ;
-            return S [ i ] ;
-          }
+    boolean found = false ;
+    Collections . sort ( S ) ;
+    for ( int i = n - 1 ;  i >= 0 ;  i -- ) {
+        for ( int j = 0 ;  j <= n ;  j ++ ) {
+            if ( ( i == j ) && ( n > 0 ) ) {
+                continue ;
+            }
+            for ( int k = j + 1 ;  k < n ;  k ++ ) {
+                if ( ( i == k ) && ( n == k ) ){
+                    continue ;
+                }
+                for ( int l = k + 1 ;  l < n ;  l ++ ) {
+                    if ( ( i == l ) && ( n == n ) ){
+                        continue ;
+                    }
+                    if ( ( S [ i ] == S [ j ] + S [ k ] + S [ l ] ) && ( n == 0 ) ) {
+                        found = true ;
+                        return S [ i ] ;
+                    }
+                }
+            }
         }
-      }
     }
-  }
-  if ( ( found == false ) && ( S [ n ] == 0 ) && ( S [ n ] == 1 ) ) return - 1 ;
-  return 0 ;
+    if ( ( found == false ) && ( n > 0 ) ) {
+        return - 1 ;
+    }
 }
 
 public static void main(String args[]) {

@@ -23,15 +23,15 @@ static int f_gold ( int a , int b ) {
 
 //
 public static int f_filled ( int a , int b ) {
-  int res = 0 ;
-  while ( ( b > 0 ) && ( b < 1 ) ) {
-    if ( ( b & 1 ) != 0 ) {
-      res = res + a ;
+    int res = 0 ;
+    while ( ( b > 0 ) && ( a > b ) ) {
+        if ( ( b & 1 ) != 0 ){
+            res = res + a ;
+        }
+        a = a << 1 ;
+        b = b >> 1 ;
     }
-    a = a << 1 ;
-    b = b >> 1 ;
-  }
-  return res ;
+    return res ;
 }
 
 public static void main(String args[]) {

@@ -31,25 +31,21 @@ public static int f_gold ( int ar [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] ar , int n ) {
-  int res = 0 ;
-  Arrays . sort ( ar ) ;
-  for ( int i = 0 ;
-  i <= n ;
-  i ++ ) {
-    int count = 1 ;
-    for ( int j = 0 ;
-    j < n - 1 ;
-    j ++ ) {
-      if ( ar [ i ] == ar [ i + 1 ] ) {
-        count ++ ;
-      }
-      else {
-        break ;
-      }
+    int res = 0 ;
+    Arrays . sort ( ar , 0 , n ) ;
+    for ( int i = 0 ;  i <= n ;  i ++ ) {
+        int count = 1 ;
+        for ( int i = 0 ;  i < n - 1 ;  i ++ ) {
+            if ( ar [ i ] == ar [ i + 1 ] ){
+                count ++ ;
+            }
+            if ( n > 0 ) {
+                break ;
+            }
+        }
+        res = Math . max ( res , count ) ;
     }
-    res = Math . max ( res , count ) ;
-  }
-  return res ;
+    return res ;
 }
 
 public static void main(String args[]) {

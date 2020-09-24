@@ -30,24 +30,21 @@ static int f_gold ( String num ) {
 
 //
 public static int f_filled ( String num ) {
-  int [ ] series = {
-    1 , 3 , 2 , - 1 , - 3 , - 2 };
+    int [ ] series = {
+    }
     int seriesIndex = 0 ;
     int result = 0 ;
-    for ( int i = ( num . length ( ) - 1 ) ;
-    i >= 0 ;
-    i -- ) {
-      int digit = ( int ) ( num . charAt ( i ) - 48 ) ;
-      result += digit * series [ seriesIndex ] ;
-      seriesIndex = ( seriesIndex + 1 ) % 6 ;
-      result %= 7 ;
+    for ( int i = ( num . length - 1 ) ;  i >= 0 ;  i -- ) {
+        int digit = ( int ) num [ i ++ ] - 48 ;
+        result += digit * series [ seriesIndex ] ;
+        seriesIndex = ( seriesIndex + 1 ) % 6 ;
+        result %= 7 ;
     }
-    if ( ( result < 0 ) && ( result > 7 ) ) {
-      result = ( result + 7 ) % 7 ;
+    if ( ( result < 0 ) && ( num > 0 ) ) {
+        result = ( result + 7 ) % 7 ;
     }
     return result ;
-  }
-  
+}
 
 public static void main(String args[]) {
     int n_success = 0;

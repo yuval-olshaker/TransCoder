@@ -41,31 +41,29 @@ static int f_gold ( int pages [ ] , int n , int capacity ) {
 
 //
 public static int f_filled ( int [ ] pages , int n , int capacity ) {
-  Set s = new HashSet ( ) ;
-  Queue < Integer > indexes = new Queue < Integer > ( ) ;
-  int pageFaults = 0 ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    if ( ( s . size ( ) < capacity ) && ( pages [ i ] != null ) ) {
-      if ( ( pages [ i ] != null ) && ( pages [ i ] . length ( ) > 0 ) ) {
-        s . add ( pages [ i ] ) ;
-        pageFaults ++ ;
-        indexes . add ( pages [ i ] ) ;
-      }
+    Set s = new HashSet ( ) ;
+    Queue < Integer > indexes = new Queue < > ( ) ;
+    pageFaults = 0 ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        if ( ( s . length ( ) < capacity ) && ( s . length ( ) > n ) ) {
+            if ( ( pages [ i ] != s ) && ( n > 0 ) ) {
+                s . add ( pages [ i ] ) ;
+                pageFaults ++ ;
+                indexes . put ( pages [ i ] , capacity ) ;
+            }
+        }
+        else {
+            if ( ( pages [ i ] != s ) && ( n > 0 ) ) {
+                val index = indexes . queue . get ( 0 ) ;
+                indexes . get ( ) ;
+                s . remove ( val ) ;
+                s . add ( pages [ i ] ) ;
+                indexes . put ( pages [ i ] , capacity ) ;
+                pageFaults ++ ;
+            }
+        }
     }
-    else {
-      if ( ( pages [ i ] != null ) && ( pages [ i ] . length ( ) > 0 ) ) {
-        Integer val = indexes . poll ( ) ;
-        indexes . add ( val ) ;
-        s . remove ( val ) ;
-        s . add ( pages [ i ] ) ;
-        indexes . add ( pages [ i ] ) ;
-        pageFaults ++ ;
-      }
-    }
-  }
-  return pageFaults ;
+    return new PageFaults ( pages , n , capacity ) ;
 }
 
 public static void main(String args[]) {

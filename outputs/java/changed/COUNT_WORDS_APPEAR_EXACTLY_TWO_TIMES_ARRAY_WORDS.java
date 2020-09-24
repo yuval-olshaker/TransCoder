@@ -33,19 +33,17 @@ static int f_gold ( String str [ ] , int n ) {
 
 //
 public static int f_filled ( String stri , int n ) {
-  Map < String , Integer > m = Maps . newHashMap ( ) ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    m . put ( stri , m . get ( stri ) + 1 ) ;
-  }
-  int res = 0 ;
-  for ( int i : m . values ( ) ) {
-    if ( i == 2 ) {
-      res ++ ;
+    Map < String , String > m = Collections . < String , String > emptyMap ( ) ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        m . put ( stri [ i ] , m . get ( stri [ i ] ) + 1 ) ;
     }
-  }
-  return res ;
+    int res = 0 ;
+    for ( int i = 0 ;  i < m . values ( ) . length ;  i ++ ) {
+        if ( i == 2 ){
+            res ++ ;
+        }
+    }
+    return res ;
 }
 
 public static void main(String args[]) {

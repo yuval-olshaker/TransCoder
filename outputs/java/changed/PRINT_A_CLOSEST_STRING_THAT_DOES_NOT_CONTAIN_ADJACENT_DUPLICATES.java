@@ -28,19 +28,17 @@ public static String f_gold ( String s1 ) {
 
 //
 public static String f_filled ( String s ) {
-  int n = s . length ( ) ;
-  for ( int i = 1 ;
-  i < n ;
-  i ++ ) {
-    if ( ( s . charAt ( i ) == s . charAt ( i - 1 ) ) && ( s . charAt ( i ) == s . charAt ( i - 1 ) ) ) {
-      s . charAt ( i ) = "a" ;
-      while ( ( s . charAt ( i ) == s . charAt ( i - 1 ) ) || ( i + 1 < n && s . charAt ( i ) == s . charAt ( i + 1 ) ) ) {
-        s . charAt ( i ) ++ ;
-      }
-      i ++ ;
+    int n = s . length ( ) ;
+    for ( int i = 1 ;  i <= n ;  i ++ ) {
+        if ( ( s . charAt ( i ) == s . charAt ( i - 1 ) ) && ( s . charAt ( i - 2 ) == s . charAt ( i - 1 ) ) ) {
+            s . charAt ( i ++ ) = "a" ;
+            while ( ( s [ i ] == s [ i - 1 ] || ( i + 1 < n && s [ i ] == s [ i + 1 ] ) ) && ( s [ i ] != s [ i ] ) ) {
+                s [ i ] ++ ;
+            }
+            i ++ ;
+        }
     }
-  }
-  return s ;
+    return s ;
 }
 
 public static void main(String args[]) {

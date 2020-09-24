@@ -17,7 +17,7 @@ static int f_gold ( int num , int divisor ) {
 
 //
 static long f_filled ( long num , long divisor ) {
-  return ( num - divisor * ( num / divisor ) ) ;
+    return ( num - divisor * ( num / divisor ) ) ;
 }
 
 public static void main(String args[]) {

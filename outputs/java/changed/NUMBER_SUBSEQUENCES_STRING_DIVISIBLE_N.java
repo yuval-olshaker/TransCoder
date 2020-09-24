@@ -31,25 +31,17 @@ static int f_gold ( String str , int n ) {
 
 //
 public static int f_filled ( String str , int n ) {
-  int l = str . length ( ) ;
-  int [ ] [ ] dp = new int [ l ] [ n ] ;
-  for ( int y = 0 ;
-  y < n ;
-  y ++ ) {
-    dp [ 0 ] [ ( Character . digit ( str . charAt ( 0 ) , 16 ) - '0' ) % n ] ++ ;
-  }
-  for ( int i = 1 ;
-  i < l ;
-  i ++ ) {
-    dp [ i ] [ ( Character . digit ( str . charAt ( i ) , 16 ) - '0' ) % n ] ++ ;
-    for ( int j = 0 ;
-    j < n ;
-    j ++ ) {
-      dp [ i ] [ j ] += dp [ i - 1 ] [ j ] ;
-      dp [ i ] [ ( j * 10 + ( Character . digit ( str . charAt ( i ) , 16 ) - '0' ) ) % n ] += dp [ i - 1 ] [ j ] ;
+    int l = str . length ( ) ;
+    int [ ] dp = new int [ l ] ;
+    dp [ 0 ] [ ( ( char ) str . charAt ( 0 ) - '0' ) % n ] ++ ;
+    for ( int i = 1 ;  i <= l ;  i ++ ) {
+        dp [ i ] [ ( ( char ) str . charAt ( i ) - '0' ) % n ] ++ ;
+        for ( int j = 0 ;  j < n ;  j ++ ) {
+            dp [ i ] [ j ] += dp [ i - 1 ] [ j ] ;
+            dp [ i ] [ ( j * 10 + ( Character . digit ( str . charAt ( i ) , 16 ) - '0' ) ) % n ] += dp [ i - 1 ] [ j ] ;
+        }
     }
-  }
-  return dp [ l - 1 ] [ 0 ] ;
+    return dp [ l - 1 ] [ 0 ] ;
 }
 
 public static void main(String args[]) {

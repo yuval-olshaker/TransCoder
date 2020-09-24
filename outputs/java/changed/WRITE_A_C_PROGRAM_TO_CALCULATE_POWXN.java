@@ -19,9 +19,13 @@ static int f_gold ( int x , int y ) {
 
 //
 public static double f_filled ( double x , double y ) {
-  if ( ( y == 0 ) && ( x == 0 ) ) return 1 ;
-  else if ( ( int ) ( y % 2 ) == 0 ) return ( f_filled ( x , ( int ) ( y / 2 ) ) * f_filled ( x , ( int ) ( y / 2 ) ) ) ;
-  else return ( x * f_filled ( x , ( int ) ( y / 2 ) ) * f_filled ( x , ( int ) ( y / 2 ) ) ) ;
+    if ( ( y == 0 ) && ( x == 0 ) ) {
+        return 1 ;
+    }
+    }
+        return ( f_filledenSquared ( x , ( int ) ( y / 2 ) ) * f_filledenSquared ( x , ( int ) ( y / 2 ) ) ) ;
+    }
+        return ( x * f_filledenSquared ( x , ( int ) ( y / 2 ) ) * f_filledenSquared ( x , ( int ) ( y / 2 ) ) ) ;
 }
 
 public static void main(String args[]) {
