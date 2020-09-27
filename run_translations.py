@@ -3,11 +3,12 @@
 import argparse
 import translate
 import html_templates
-from datetime import datetime
 from tqdm import tqdm
 
 from create_readable_corpus import get_origin_codes_from_test_files, get_origin_codes_from_tok_files
-from slice_python_code import slice_corpus, integrate_corpus
+from slicing_integration.java_integrator import JavaIntegrator
+from slicing_integration.python_slicer import PythonSlicer
+from utils import print_time
 
 LONG_CODES = ['FINDING_THE_MAXIMUM_SQUARE_SUB_MATRIX_WITH_ALL_EQUAL_ELEMENTS', 'WILDCARD_CHARACTER_MATCHING']
 LINE_SEPARATOR = '\n\n'
@@ -83,10 +84,6 @@ def print_for_evaluation(path, ind):
             func = func if func[-1] == '\n' else func + '\n'
             out_file.write(func + END_OF_FUNCTION + LINE_SEPARATOR)
 
-def print_time(to_print):
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print(to_print + " Time =", current_time)
 
 # returns the tests names from corpus
 def get_tests(file_readable):
@@ -131,19 +128,25 @@ if __name__ == '__main__':
 
     # delete ';' from python files - it confuses the translator and not interesting at all (we can learn it)
     python_file_readable = list(map(lambda line: (line[0], line[1].replace(';\n', '\n')), python_file_readable))
-    python_file_sliced = slice_corpus(python_file_readable)
-
-    use_slices = True
 
     # translate all
     print_time('start translations')
     java_file_translated = translate_lines(True, java_file_readable)
     print_time('after java')
+
+    use_slices = True
     if use_slices:
+        # create slicer and integrator
+        python_slicer = PythonSlicer()
+        java_integrator = JavaIntegrator()
+
+        # use them
+        python_file_sliced = python_slicer.slice_corpus_trivial(python_file_readable)
         python_sliced_translated = translate_lines(False, python_file_sliced, True)
-        python_file_translated = integrate_corpus(python_sliced_translated)
+        python_file_translated = java_integrator.integrate_corpus_trivial(python_sliced_translated)
     else:
         python_file_translated = translate_lines(False, python_file_readable)
+
     print_time('finish translations')
     # combine translation and original
     combined = [get_code_from_corpus(java_file_translated, 0), get_code_from_corpus(java_file_translated, 1),
