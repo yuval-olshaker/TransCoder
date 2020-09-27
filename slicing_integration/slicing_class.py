@@ -7,14 +7,15 @@ class SlicingClass:
 
     # returns the indentation of line - how many times has 4 spaces in the start (the 4 can differ)
     # splitted is the line after splitting with ' '
-    def get_indentation(self, splitted):
+    def get_indentation(self, splitted, is_java = False):
+        indentation = utils.JAVA_INDENTATION if is_java else utils.PYTHON_INDENTATION
         i = 0
         while splitted[i] == utils.EMPTY_STR:
             i += 1
-        if (i % utils.INDENTATION) != 0:
+        if (i % indentation) != 0:
             print('weird!!')
             print(splitted)
-        return int(i / utils.INDENTATION)
+        return int(i / indentation)
 
     # each line will save the indentation, kind of it (for, while, if, else)
     def create_comfortable_code(self, code):

@@ -5,28 +5,30 @@ class PythonSlicer(SlicingClass):
     def __init__(self):
         SlicingClass.__init__(self)
 
+
     def create_comfortable_code(self, code):
         code_splitted = code.split(utils.END_OF_LINE)[:-1]
         comfortable_code = []
         for line in code_splitted:
             splitted = line.split(utils.SPACE)
             indentation = self.get_indentation(splitted)
-            first_word = splitted[indentation * utils.INDENTATION]
+            first_word = splitted[indentation * utils.PYTHON_INDENTATION]
             is_branch = first_word in utils.BRANCH_STATEMENTS
-            if is_branch and splitted[-1] != utils.END_OF_BRANCH_LINE:
-                branch_start = splitted.index(utils.END_OF_BRANCH_LINE)
-                comfortable_code.append(
+            if is_branch and splitted[-1] != utils.END_OF_BRANCH_LINE: # the branch starts in the middle of the line
+                branch_start = splitted.index(utils.END_OF_BRANCH_LINE) # finds where the branch starts
+                comfortable_code.append( # append the declaration
                     [first_word, indentation,
-                     utils.SPACE.join(splitted[indentation * utils.INDENTATION:branch_start + 1])])
-                comfortable_code.append(
+                     utils.SPACE.join(splitted[indentation * utils.PYTHON_INDENTATION:branch_start + 1])])
+                comfortable_code.append( # append the code inside the branch
                     [utils.REGULAR, indentation + 1, utils.SPACE.join(splitted[branch_start + 1:])])
-            else:
+            else: # regular line, adds normally
                 if not is_branch:
                     first_word = utils.REGULAR
                 comfortable_code.append(
-                    [first_word, indentation, utils.SPACE.join(splitted[indentation * utils.INDENTATION:])])
+                    [first_word, indentation, utils.SPACE.join(splitted[indentation * utils.PYTHON_INDENTATION:])])
 
         return comfortable_code
+
 
     def runable_slices(self, slices, whole_function):
         function_declaration = slices[0][1]
@@ -41,7 +43,7 @@ class PythonSlicer(SlicingClass):
         i = 0
         while i < len(code):
             line = code[i]
-            if line[0] == utils.REGULAR:  # if the line is regular - we appent it
+            if line[0] == utils.REGULAR:  # if the line is regular - we append it
                 slices.append([line[1], line[2]])
                 i += 1
             else:  # else, branch is started. we find the lines inside the branch and slice them separately
