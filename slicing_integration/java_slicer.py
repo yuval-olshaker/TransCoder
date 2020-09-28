@@ -127,7 +127,7 @@ class JavaSlicer(SlicingClass):
 
 
     def runnable_slices(self, slices, whole_function):
-        function_declaration = slices[0][1]
+        function_declaration = slices[0][1].split(utils.OPEN_SPECIAL_BRACKET)[0]
         slices[0] = [0, whole_function]  # for function declaration - we need all the function (for this time) - in java?
         for i in range(1, len(slices)): # we add the function declaration and brackets of it
             slices[i][1] = (function_declaration + utils.END_OF_LINE +
