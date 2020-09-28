@@ -9,10 +9,10 @@ class PythonSlicer(SlicingClass):
     def create_comfortable_code(self, code):
         code_splitted = code.split(utils.END_OF_LINE)[:-1]
         comfortable_code = []
-        for line in code_splitted:
+        for line in code_splitted: # run over all the lines of the code
             splitted = line.split(utils.SPACE)
             indentation = self.get_indentation(splitted)
-            first_word = splitted[indentation * utils.PYTHON_INDENTATION]
+            first_word = splitted[indentation * utils.PYTHON_INDENTATION] # extract first word (has more meaning)
             is_branch = first_word in utils.BRANCH_STATEMENTS
             if is_branch and splitted[-1] != utils.END_OF_BRANCH_LINE: # the branch starts in the middle of the line
                 branch_start = splitted.index(utils.END_OF_BRANCH_LINE) # finds where the branch starts
