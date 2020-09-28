@@ -14,8 +14,8 @@ class PythonSlicer(SlicingClass):
             indentation = self.get_indentation(splitted)
             first_word = splitted[indentation * utils.PYTHON_INDENTATION] # extract first word (has more meaning)
             is_branch = first_word in utils.BRANCH_STATEMENTS
-            if is_branch and splitted[-1] != utils.END_OF_BRANCH_LINE: # the branch starts in the middle of the line
-                branch_start = splitted.index(utils.END_OF_BRANCH_LINE) # finds where the branch starts
+            if is_branch and splitted[-1] != utils.PYTHON_END_OF_BRANCH_LINE: # the branch starts in the middle of the line
+                branch_start = splitted.index(utils.PYTHON_END_OF_BRANCH_LINE) # finds where the branch starts
                 comfortable_code.append( # append the declaration
                     [first_word, indentation,
                      utils.SPACE.join(splitted[indentation * utils.PYTHON_INDENTATION:branch_start + 1])])
@@ -30,12 +30,12 @@ class PythonSlicer(SlicingClass):
         return comfortable_code
 
 
-    def runable_slices(self, slices, whole_function):
+    def runnable_slices(self, slices, whole_function):
         function_declaration = slices[0][1]
         slices[0] = [0, whole_function]  # for function declaration - we need all the function (for this time)
         for i in range(1, len(slices)):
-            slices[i][1] = (function_declaration + '    ' + slices[i][1]).replace(utils.END_OF_BRANCH_LINE,
-                                                                                  utils.END_OF_BRANCH_LINE + utils.END_OF_LINE)
+            slices[i][1] = (function_declaration + '    ' + slices[i][1]).replace(utils.PYTHON_END_OF_BRANCH_LINE,
+                                                                                  utils.PYTHON_END_OF_BRANCH_LINE + utils.END_OF_LINE)
         return slices
 
     def slice_code_trivial_method(self, code):
@@ -47,7 +47,7 @@ class PythonSlicer(SlicingClass):
                 slices.append([line[1], line[2]])
                 i += 1
             else:  # else, branch is started. we find the lines inside the branch and slice them separately
-                slices.append([line[1], line[2] + utils.EASY_CODE])
+                slices.append([line[1], line[2] + utils.PYTHON_BRANCH_FILL])
                 i += 1
                 indent_line = code[i]
                 indent_code = []

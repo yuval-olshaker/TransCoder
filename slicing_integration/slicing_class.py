@@ -22,7 +22,7 @@ class SlicingClass:
         pass
 
     # add to slices things they need to run (function declaration, return and so)
-    def runable_slices(self, slices, whole_function):
+    def runnable_slices(self, slices, whole_function):
         pass
 
     # slice the comfortable python code to snippets that are "stand alone/".
@@ -38,6 +38,6 @@ class SlicingClass:
         new_corpus = []
         for line in corpus:
             sliced = self.slice_code_trivial_method(self.create_comfortable_code(line[1]))
-            sliced = self.runable_slices(sliced, line[1])
+            sliced = self.runnable_slices(sliced, line[1])
             new_corpus.append([line[0], line[1], sliced])
         return new_corpus

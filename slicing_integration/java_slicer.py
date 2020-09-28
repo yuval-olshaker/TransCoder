@@ -87,6 +87,20 @@ def handle_annoying_branch(comfortable_code, first_word, splitted, code_splitted
             comfortable_code.append([utils.REGULAR, utils.CLOSE_SPECIAL_BRACKET])
     return comfortable_code, i
 
+
+# returns the line number of the ending of the branch
+def find_branch_end(code, i):
+    counter = 0
+    while i < len(code):
+        if code[i][1][-1] == utils.OPEN_SPECIAL_BRACKET:
+            counter += 1
+        elif code[i][1][-1] == utils.CLOSE_SPECIAL_BRACKET:
+            counter -= 1
+            if counter == 0:
+                return i
+        i += 1
+
+
 class JavaSlicer(SlicingClass):
     def __init__(self):
         SlicingClass.__init__(self)
@@ -97,14 +111,14 @@ class JavaSlicer(SlicingClass):
     def slice_corpus_trivial(self, corpus):
         new_corpus = []
         for line in corpus:
-            new_corpus.append(self.create_comfortable_code(line[1]))
+            new_corpus.append(self.slice_code_trivial_method(self.create_comfortable_code(line[1])))
         return new_corpus
 
 
     def create_comfortable_code(self, code):
         code_splitted = code.split(utils.END_OF_LINE)[:-1]
-        comfortable_code = []
-        i = 0
+        comfortable_code = [['start', code_splitted[0].strip()]]
+        i = 1
         while i < len(code_splitted): # run over all the lines of the code
             line = code_splitted[i].strip()
             splitted = line.split(utils.SPACE)
@@ -120,34 +134,28 @@ class JavaSlicer(SlicingClass):
 
         return comfortable_code
 
-    def runable_slices(self, slices, whole_function):
+
+    def runnable_slices(self, slices, whole_function):
         function_declaration = slices[0][1]
-        slices[0] = [0, whole_function]  # for function declaration - we need all the function (for this time)
-        for i in range(1, len(slices)):
-            slices[i][1] = (function_declaration + '    ' + slices[i][1]).replace(utils.END_OF_BRANCH_LINE,
-                                                                                  utils.END_OF_BRANCH_LINE + utils.END_OF_LINE)
+        slices[0] = [0, whole_function]  # for function declaration - we need all the function (for this time) - in java?
+        for i in range(1, len(slices)): # we add the function declaration and brackets of it
+            slices[i][1] = (function_declaration + utils.END_OF_LINE +
+                            slices[i][1] + utils.END_OF_LINE + utils.CLOSE_SPECIAL_BRACKET)
         return slices
 
-    def slice_code_trivial_method(self, code):
+
+    def slice_code_trivial_method(self, code, indentation = 0):
         slices = []
         i = 0
         while i < len(code):
             line = code[i]
             if line[0] == utils.REGULAR:  # if the line is regular - we append it
-                slices.append([line[1], line[2]])
+                slices.append([indentation, line[1]])
                 i += 1
             else:  # else, branch is started. we find the lines inside the branch and slice them separately
-                slices.append([line[1], line[2] + utils.EASY_CODE])
-                i += 1
-                indent_line = code[i]
-                indent_code = []
-                while indent_line[1] > line[1]:  # line with indentation are inside branch (python)
-                    indent_code.append(indent_line)
-                    i += 1
-                    if i < len(code):
-                        indent_line = code[i]
-                    else:
-                        break
-                slices.extend(self.slice_code_trivial_method(indent_code))
-
+                branch_end = find_branch_end(code, i)
+                slices.append([indentation, line[1] + utils.JAVA_BRANCH_FILL]) # add the branch with dummy code
+                # add the inside of the slice. we add the indentation to integrate easily
+                slices.extend(self.slice_code_trivial_method(code[i+1:branch_end], indentation=indentation+1))
+                i = branch_end + 1
         return slices
