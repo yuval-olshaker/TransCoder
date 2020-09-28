@@ -106,15 +106,6 @@ class JavaSlicer(SlicingClass):
         SlicingClass.__init__(self)
 
 
-    # slice an entire corpus of code - trivial way
-    # TODO - delete
-    def slice_corpus_trivial(self, corpus):
-        new_corpus = []
-        for line in corpus:
-            new_corpus.append(self.slice_code_trivial_method(self.create_comfortable_code(line[1])))
-        return new_corpus
-
-
     def create_comfortable_code(self, code):
         code_splitted = code.split(utils.END_OF_LINE)[:-1]
         comfortable_code = [['start', code_splitted[0].strip()]]
