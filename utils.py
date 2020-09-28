@@ -2,7 +2,11 @@ from datetime import datetime
 
 PYTHON_INDENTATION = 4
 JAVA_INDENTATION = 2
-BRANCH_STATEMENTS = ['if', 'else', 'elif', 'for', 'while']
+ELSE_STATEMENT = 'else'
+IF_STATEMENT = 'if'
+FOR_STATEMENT = 'for'
+WHILE_STATEMENT = 'while'
+BRANCH_STATEMENTS = [IF_STATEMENT, ELSE_STATEMENT, 'elif', FOR_STATEMENT, WHILE_STATEMENT]
 REGULAR = 'regular'
 EASY_CODE = '        a = 5\n'  # an easy code inside branch. with indentation (twice. 1 for function and 1 for branch)
 EASY_CODE_JAVA = 'a = 5 ;'
