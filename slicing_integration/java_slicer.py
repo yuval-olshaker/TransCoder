@@ -39,7 +39,6 @@ def find_end_statement_index(combined):
         i += 1
 
 
-
 # handles the annoying branches. the ones that has no { at the end of declaration line.
 # written badly. ordering java is a bit annoying. may need to work on making this better
 def handle_annoying_branch(comfortable_code, first_word, splitted, code_splitted, i):
@@ -101,6 +100,17 @@ def find_branch_end(code, i):
         i += 1
 
 
+# figures out the non branch parts that looks like branch
+def handle_annoying_non_branch(comfortable_code, first_word, splitted, code_splitted, i):
+    start_i = i
+    while i < len(code_splitted):
+        if utils.CLOSE_SPECIAL_BRACKET in code_splitted[i]:
+            break
+        i += 1
+    comfortable_code.append([first_word, utils.SPACE.join(code_splitted[start_i:i+1])])
+    return comfortable_code, i
+
+
 class JavaSlicer(SlicingClass):
     def __init__(self):
         SlicingClass.__init__(self)
@@ -117,6 +127,9 @@ class JavaSlicer(SlicingClass):
             is_branch = first_word in utils.BRANCH_STATEMENTS
             if is_branch and splitted[-1] != utils.OPEN_SPECIAL_BRACKET: # annoying situation with branches
                 comfortable_code, i = handle_annoying_branch(comfortable_code, first_word,splitted, code_splitted, i)
+            elif not is_branch and splitted[-1] == utils.OPEN_SPECIAL_BRACKET: # not branch that looks like one
+                first_word = utils.REGULAR # not branch
+                comfortable_code, i = handle_annoying_non_branch(comfortable_code, first_word, splitted, code_splitted, i)
             else:
                 if not is_branch:
                     first_word = utils.REGULAR
