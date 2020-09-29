@@ -1,6 +1,7 @@
 import utils
 from slicing_integration.integration_class import IntegrationClass
 
+
 # close the branches that we need at this line - add '}'
 def close_branches(opened_indentations, ind, finish_lines):
     need_to_close = []
@@ -16,7 +17,8 @@ def close_branches(opened_indentations, ind, finish_lines):
             opened_indentations.remove(num)  # we close it
     return finish_lines, opened_indentations
 
- # finds the index for the end of the line that we are interested in
+
+# finds the index for the end of the line that we are interested in
 # it is at the end of the condition. because we not have the inside of the branch
 # we have the a = 5 to help us
 def find_end_of_declaration(interesting_code):

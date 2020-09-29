@@ -7,12 +7,16 @@ from tqdm import tqdm
 
 from create_readable_corpus import get_origin_codes_from_test_files, get_origin_codes_from_tok_files
 from slicing_integration.java_integrator import JavaIntegrator
+from slicing_integration.java_slicer import JavaSlicer
+from slicing_integration.python_integrator import PythonIntegrator
 from slicing_integration.python_slicer import PythonSlicer
 from utils import print_time
 
 LONG_CODES = ['FINDING_THE_MAXIMUM_SQUARE_SUB_MATRIX_WITH_ALL_EQUAL_ELEMENTS', 'WILDCARD_CHARACTER_MATCHING']
 LINE_SEPARATOR = '\n\n'
 END_OF_FUNCTION = '|||'
+# one that prints '{' and '}'. one that added ';' after '}' line and one that did not close the function
+REMOVE_FROM_JAVA_CORPUS = ['RETURN_A_PAIR_WITH_MAXIMUM_PRODUCT_IN_ARRAY_OF_INTEGERS_1', 'DELETE_ARRAY_ELEMENTS_WHICH_ARE_SMALLER_THAN_NEXT_OR_BECOME_SMALLER', 'MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION']
 
 def get_parser():
     """
@@ -24,7 +28,7 @@ def get_parser():
     # pahts
     parser.add_argument("--java_path", type=str, default="", help="Java path")
     parser.add_argument("--python_path", type=str, default="", help="Python path")
-
+    parser.add_argument("--use_slices", type=bool, default=True, help="should slice code")
     return parser
 
 
@@ -108,6 +112,18 @@ def combine_origin_from_both_sources(file_readable, file_readable_test):
             file_readable.append(file_readable_test[i])
     return file_readable
 
+
+def translate_lines_slicing(is_from_java, file_readable):
+    # create slicer and integrator
+    slicer = JavaSlicer() if is_from_java else PythonSlicer()
+    integrator = JavaIntegrator() if is_from_java else PythonIntegrator()
+
+    # use them
+    file_sliced = slicer.slice_corpus_trivial(file_readable)
+    sliced_translated = translate_lines(is_from_java, file_sliced, True)
+    return integrator.integrate_corpus_trivial(sliced_translated)
+
+
 if __name__ == '__main__':
     print_time('start')
 
@@ -121,30 +137,30 @@ if __name__ == '__main__':
     java_file_readable_test = get_origin_codes_from_test_files('java', '//', 5)
     python_file_readable_test = get_origin_codes_from_test_files('python', '#', 3)
 
-    # add the data from the tests they generated
+    # add the data from the tests they (facebook) generated - for more data
     java_file_readable = combine_origin_from_both_sources(java_file_readable, java_file_readable_test)
+    if params.use_slices:  # codes that do not slice well
+        java_file_readable = list(filter(lambda line: line[0] not in REMOVE_FROM_JAVA_CORPUS, java_file_readable))
     python_file_readable = combine_origin_from_both_sources(python_file_readable, python_file_readable_test)
     java_file_readable, python_file_readable = combine_tests_of_both_languages(java_file_readable, python_file_readable)
 
     # delete ';' from python files - it confuses the translator and not interesting at all (we can learn it)
     python_file_readable = list(map(lambda line: (line[0], line[1].replace(';\n', '\n')), python_file_readable))
 
-    # translate all
-    print_time('start translations')
+
+
     java_file_translated = translate_lines(True, java_file_readable)
-    print_time('after java')
 
-    use_slices = True
-    if use_slices:
-        # create slicer and integrator
-        python_slicer = PythonSlicer()
-        java_integrator = JavaIntegrator()
 
-        # use them
-        python_file_sliced = python_slicer.slice_corpus_trivial(python_file_readable)
-        python_sliced_translated = translate_lines(False, python_file_sliced, True)
-        python_file_translated = java_integrator.integrate_corpus_trivial(python_sliced_translated)
-    else:
+    print_time('start translations')
+    # translate all
+    if params.use_slices: # use slicing
+        java_file_translated = translate_lines_slicing(True, java_file_readable)
+        print_time('after java')
+        python_file_translated = translate_lines_slicing(False, python_file_readable)
+    else: # origin way
+        java_file_translated = translate_lines(True, java_file_readable)
+        print_time('after java')
         python_file_translated = translate_lines(False, python_file_readable)
 
     print_time('finish translations')

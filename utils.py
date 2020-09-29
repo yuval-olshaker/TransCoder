@@ -21,6 +21,7 @@ JAVA_BRANCH_FILL = END_OF_LINE + EASY_CODE_JAVA + END_OF_LINE + CLOSE_SPECIAL_BR
 PYTHON_BRANCH_FILL = '        a = 5\n'  # an easy code inside branch. with indentation (twice. 1 for function and 1 for branch)
 VOID = 'void'
 RETURN = 'return'
+GLOBAL = 'global'
 
 def print_time(to_print):
     now = datetime.now()
