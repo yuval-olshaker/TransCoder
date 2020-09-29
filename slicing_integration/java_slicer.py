@@ -139,12 +139,21 @@ class JavaSlicer(SlicingClass):
         return comfortable_code
 
 
+    # this is tricky. we need function declaration and sometimes change it to void (lines we do not return)
     def runnable_slices(self, slices, whole_function):
         function_declaration = slices[0][1].split(utils.OPEN_SPECIAL_BRACKET)[0]
+        # in java the return type (or void) is 2 words before start the variables. the name is after it
+        function_type = function_declaration.split()[function_declaration.split().index(utils.OPEN_BRACKET) - 2]
+        void_function = utils.VOID == function_type
         slices[0] = [0, whole_function]  # for function declaration - we need all the function (for this time) - in java?
         for i in range(1, len(slices)): # we add the function declaration and brackets of it
-            slices[i][1] = (function_declaration + utils.END_OF_LINE +
+            if void_function or slices[i][1].split()[0] == utils.RETURN:
+                new_function_declaration = function_declaration
+            else:
+                new_function_declaration = function_declaration.replace(function_type, utils.VOID)
+            slices[i][1] = (new_function_declaration + utils.END_OF_LINE +
                             slices[i][1] + utils.END_OF_LINE + utils.CLOSE_SPECIAL_BRACKET)
+
         return slices
 
 

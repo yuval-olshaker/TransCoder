@@ -19,6 +19,8 @@ END_OF_LINE = '\n'
 EMPTY_STR = ''
 JAVA_BRANCH_FILL = END_OF_LINE + EASY_CODE_JAVA + END_OF_LINE + CLOSE_SPECIAL_BRACKET  # fill java branch with easy code
 PYTHON_BRANCH_FILL = '        a = 5\n'  # an easy code inside branch. with indentation (twice. 1 for function and 1 for branch)
+VOID = 'void'
+RETURN = 'return'
 
 def print_time(to_print):
     now = datetime.now()
