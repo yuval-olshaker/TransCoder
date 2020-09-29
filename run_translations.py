@@ -148,10 +148,6 @@ if __name__ == '__main__':
     python_file_readable = list(map(lambda line: (line[0], line[1].replace(';\n', '\n')), python_file_readable))
 
 
-
-    java_file_translated = translate_lines(True, java_file_readable)
-
-
     print_time('start translations')
     # translate all
     if params.use_slices: # use slicing
