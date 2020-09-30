@@ -3368,41 +3368,6 @@ static long countWays ( int n ) {
 }
 |||
 
-RETURN_A_PAIR_WITH_MAXIMUM_PRODUCT_IN_ARRAY_OF_INTEGERS_1
-
-static void maxProduct ( int arr [ ] , int n ) {
-  if ( n < 2 ) {
-    System . out . println ( "No pairs exists" ) ;
-    return ;
-  }
-  if ( n == 2 ) {
-    System . out . println ( arr [ 0 ] + " " + arr [ 1 ] ) ;
-    return ;
-  }
-  int posa = Integer . MIN_VALUE , posb = Integer . MIN_VALUE ;
-  int nega = Integer . MIN_VALUE , negb = Integer . MIN_VALUE ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    if ( arr [ i ] > posa ) {
-      posb = posa ;
-      posa = arr [ i ] ;
-    }
-    else if ( arr [ i ] > posb ) posb = arr [ i ] ;
-    if ( arr [ i ] < 0 && Math . abs ( arr [ i ] ) > Math . abs ( nega ) ) {
-      negb = nega ;
-      nega = arr [ i ] ;
-    }
-    else if ( arr [ i ] < 0 && Math . abs ( arr [ i ] ) > Math . abs ( negb ) ) negb = arr [ i ] ;
-  }
-  if ( nega * negb > posa * posb ) System . out . println ( "Max product pair is {
-" + nega + ", " + negb + "}" ) ;
-    else System . out . println ( "Max product pair is {
-" + posa + ", " + posb + "}" ) ;
-    }
-    
-|||
-
 POSITION_OF_RIGHTMOST_SET_BIT
 
 public static int getFirstSetBitPos ( int n ) {
@@ -9360,34 +9325,6 @@ static boolean isSubSeqDivisible ( String str ) {
 }
 |||
 
-DELETE_ARRAY_ELEMENTS_WHICH_ARE_SMALLER_THAN_NEXT_OR_BECOME_SMALLER
-
-static void deleteElements ( int arr [ ] , int n , int k ) {
-  Stack < Integer > s = new Stack < > ( ) ;
-  s . push ( arr [ 0 ] ) ;
-  int count = 0 ;
-  for ( int i = 1 ;
-  i < n ;
-  i ++ ) {
-    while ( ! s . empty ( ) && s . peek ( ) < arr [ i ] && count < k ) {
-      s . pop ( ) ;
-      count ++ ;
-    }
-    s . push ( arr [ i ] ) ;
-  }
-  int m = s . size ( ) ;
-  Integer [ ] v = new Integer [ m ] ;
-  while ( ! s . empty ( ) ) {
-    v [ -- m ] = s . peek ( ) ;
-    s . pop ( ) ;
-  }
-  for ( Integer x : v ) {
-    System . out . print ( x + "" ) ;
-  };
-  System . out . println ( "" ) ;
-}
-|||
-
 MINIMUM_LENGTH_SUBARRAY_SUM_GREATER_GIVEN_VALUE
 
 static int smallestSubWithSum ( int arr [ ] , int n , int x ) {
@@ -14934,23 +14871,6 @@ void printRepeating ( int arr [ ] , int size ) {
     else count [ arr [ i ] ] ++ ;
   }
 }
-|||
-
-MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION
-
-static int getMinSteps ( int n ) {
-  int table [ ] = new int [ n + 1 ] ;
-  for ( int i = 0 ;
-  i <= n ;
-  i ++ ) table [ i ] = n - i ;
-  for ( int i = n ;
-  i >= 1 ;
-  i -- ) {
-    if ( ! ( i % 2 > 0 ) ) table [ i / 2 ] = Math . min ( table [ i ] + 1 , table [ i / 2 ] ) ;
-    if ( ! ( i % 3 > 0 ) ) table [ i / 3 ] = Math . min ( table [ i ] + 1 , table [ i / 3 ] ) ;
-  }
-  return table [ 1 ] ;
-  
 |||
 
 COUNT_POSSIBLE_DECODINGS_GIVEN_DIGIT_SEQUENCE_1

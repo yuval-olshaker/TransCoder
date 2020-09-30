@@ -2736,36 +2736,6 @@ def countWays ( n ) :
     return dp [ 0 ] [ n ] + dp [ 1 ] [ n ]
 |||
 
-RETURN_A_PAIR_WITH_MAXIMUM_PRODUCT_IN_ARRAY_OF_INTEGERS_1
-
-def maxProduct ( arr , n ) :
-    if ( n < 2 ) :
-        print ( "No pairs exists" )
-        return
-    if ( n == 2 ) :
-        print ( arr [ 0 ] , " " , arr [ 1 ] )
-        return
-    posa = 0
-    posb = 0
-    nega = 0
-    negb = 0
-    for i in range ( n ) :
-        if ( arr [ i ] > posa ) :
-            posb = posa
-            posa = arr [ i ]
-        elif ( arr [ i ] > posb ) :
-            posb = arr [ i ]
-        if ( arr [ i ] < 0 and abs ( arr [ i ] ) > abs ( nega ) ) :
-            negb = nega
-            nega = arr [ i ]
-        elif ( arr [ i ] < 0 and abs ( arr [ i ] ) > abs ( negb ) ) :
-            negb = arr [ i ]
-    if ( nega * negb > posa * posb ) :
-        print ( "Max product pair is {" , nega , ", " , negb , "}" )
-    else :
-        print ( "Max product pair is {" , posa , ", " , posb , "}" )
-|||
-
 POSITION_OF_RIGHTMOST_SET_BIT
 
 def getFirstSetBitPos ( n ) :
@@ -7505,24 +7475,6 @@ def isSubSeqDivisible ( str ) :
     return False
 |||
 
-DELETE_ARRAY_ELEMENTS_WHICH_ARE_SMALLER_THAN_NEXT_OR_BECOME_SMALLER
-
-def deleteElements ( arr , n , k ) :
-    st = [ ]
-    st.append ( arr [ 0 ] )
-    top = 0
-    count = 0
-    for i in range ( 1 , n ) :
-        while ( len ( st ) != 0 and count < k and st [ top ] < arr [ i ] ) :
-            st.pop ( )
-            count += 1
-            top -= 1
-        st.append ( arr [ i ] )
-        top += 1
-    for i in range ( 0 , len ( st ) ) :
-        print ( st [ i ] , "" , end = "" )
-|||
-
 MINIMUM_LENGTH_SUBARRAY_SUM_GREATER_GIVEN_VALUE
 
 def smallestSubWithSum ( arr , n , x ) :
@@ -12049,21 +12001,6 @@ def printRepeating ( arr , size ) :
             print ( arr [ i ] , end = " " )
         else :
             count [ arr [ i ] ] = count [ arr [ i ] ] + 1
-|||
-
-MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION
-
-def getMinSteps ( n ) :
-    table = [ 0 ] * ( n + 1 )
-    for i in range ( n + 1 ) :
-        table [ i ] = n - i
-    for i in range ( n , 0 , - 1 ) :
-        if ( not ( i % 2 ) ) :
-            table [ i // 2 ] = min ( table [ i ] + 1 , table [ i // 2 ] )
-        if ( not ( i % 3 ) ) :
-            table [ i // 3 ] = min ( table [ i ] + 1 , table [ i // 3 ] )
-    return table [ 1 ]
-    
 |||
 
 COUNT_POSSIBLE_DECODINGS_GIVEN_DIGIT_SEQUENCE_1
