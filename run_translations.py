@@ -116,7 +116,8 @@ def combine_origin_from_both_sources(file_readable, file_readable_test):
 def translate_lines_slicing(is_from_java, file_readable):
     # create slicer and integrator
     slicer = JavaSlicer() if is_from_java else PythonSlicer()
-    integrator = JavaIntegrator() if is_from_java else PythonIntegrator()
+    # the integrator is from the other language (because we translated)
+    integrator = PythonIntegrator() if is_from_java else JavaIntegrator()
 
     # use them
     file_sliced = slicer.slice_corpus_trivial(file_readable)

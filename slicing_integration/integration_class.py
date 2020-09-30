@@ -25,6 +25,7 @@ class IntegrationClass:
             stripped_lines.append([translated[i][0], self.strip_line(translated[i][1])])
         return self.integrate_trivial(stripped_lines)
 
+
     # integrate an entire corpus of translated code
     def integrate_corpus_trivial(self, sliced_corpus):
         return list(map(lambda line: (line[0], line[1], self.integrate_code_trivial(line[2])), sliced_corpus))
