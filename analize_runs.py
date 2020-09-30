@@ -47,8 +47,10 @@ def column_from_2dim_list(two_dim_list, column):
     return list(map(lambda line: line[column], two_dim_list))
 
 if __name__ == '__main__':
-    no_slice_path = '/mnt/c/TransCoder/outputs/no_slices_run/tests_run_check_java.txt'
-    slice_path = '/mnt/c/TransCoder/outputs/slices_run/tests_run_check_java.txt'
+    lang = 'java'
+    # lang = 'python'
+    no_slice_path = '/mnt/c/TransCoder/outputs/no_slices_run/tests_run_check_' + lang + '.txt'
+    slice_path = '/mnt/c/TransCoder/outputs/slices_run/tests_run_check_' + lang + '.txt'
 
     # get data from files
     with open(no_slice_path) as no_slices_file:
@@ -94,7 +96,7 @@ if __name__ == '__main__':
     slices_added_no_run = in_first_list_and_not_second(slices_not_run_names, no_slices_not_run_names)
     slices_destroyed_no_run = in_first_list_and_not_second(no_slices_not_run_names, slices_not_run_names)
 
-    with open('/mnt/c/TransCoder/outputs/comparison.txt', 'w') as comparison:
+    with open('/mnt/c/TransCoder/outputs/comparison_' + lang + '.txt', 'w') as comparison:
         comparison.write('added perfect: \n\n')
         comparison.write('\n'.join(slices_added_perfect))
         comparison.write('\n\nadded no run: \n\n')
