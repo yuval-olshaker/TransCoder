@@ -125,6 +125,19 @@ def translate_lines_slicing(is_from_java, file_readable):
     return integrator.integrate_corpus_trivial(sliced_translated)
 
 
+# function to compare the slices between languages. has no "everyday" usage
+def compare_slices(java_sliced, python_sliced):
+    same_length = []
+    different_length = []
+    for i in range(len(java_sliced)):
+        java_slice = java_sliced[i][2]
+        python_slice = python_sliced[i][2]
+        if len(java_slice) == len(python_slice):
+            same_length.append(java_sliced[i][0])
+        else:
+            different_length.append(java_sliced[i][0])
+
+
 if __name__ == '__main__':
     print_time('start')
 
