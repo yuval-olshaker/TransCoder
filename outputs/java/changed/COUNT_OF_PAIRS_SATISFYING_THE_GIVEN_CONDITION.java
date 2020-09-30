@@ -27,16 +27,20 @@ static int f_gold ( int a , int b ) {
 
 //
 public static int f_filled ( int a , int b ) {
-  String s = Integer . toString ( b ) ;
-  int i = 0 ;
-  while ( i < ( s . length ( ) ) ) {
-    if ( ( s . charAt ( i ) != '9' ) && ( s . charAt ( i ) != '.' ) ) break ;
-    i ++ ;
-  }
-  int result ;
-  if ( ( i == s . length ( ) ) && ( a == 0 ) ) result = a * s . length ( ) ;
-  else result = a * ( s . length ( ) - 1 ) ;
-  return result ;
+    String s = Integer . toString ( b ) ;
+    int i = 0 ;
+    while ( i < ( s . length ) ) {
+        if ( ( s [ i ] != '9' ) && ( s [ i ] != 'a' ) && ( s [ i ] != 'f' ) && ( s [ i ] != 'g' ) && ( s [ i ] != 'h' ) && ( s [ i ] != 'i' ) && ( s [ i ] != 'j' ) && ( s [ i ] != 'k' ) && (
+            break ;
+        i ++ ;
+    }
+    int result = 0 ;
+    if ( ( i == s . length ) && ( b == s . length ) ){
+        int result = a * s . length ;
+    }
+    }
+        int result = a * ( s . length - 1 ) ;
+    return result ;
 }
 
 public static void main(String args[]) {

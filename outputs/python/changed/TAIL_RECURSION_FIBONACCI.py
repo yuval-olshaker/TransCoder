@@ -14,7 +14,7 @@ def f_gold ( n , a = 0 , b = 1 ) :
 
 #
 def f_filled ( n , a , b ) :
-    if n == 0 :
+    if n == 0 : a = 5
         return a
     if n == 1 :
         return b

@@ -28,9 +28,9 @@ def f_gold ( s ) :
 def f_filled ( s ) :
     l = len ( s )
     s1 = ""
-    is_even = ( l % 2 == 0 )
+    isEven = ( l % 2 == 0 )
     for i in range ( 0 , l , 2 ) :
-        if is_even :
+        if isEven :
             s1 = s [ i ] + s1
             s1 += s [ i + 1 ]
         else :

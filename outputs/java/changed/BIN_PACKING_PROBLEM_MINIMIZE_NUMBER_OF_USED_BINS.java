@@ -27,20 +27,18 @@ static int f_gold ( int weight [ ] , int n , int c ) {
 
 //
 public static int f_filled ( int [ ] weight , int c ) {
-  int res = 0 ;
-  int rem = c ;
-  for ( ;
-  ;
-  ) {
-    if ( rem >= weight [ weight . length - 1 ] ) {
-      rem = rem - weight [ weight . length - 1 ] ;
+    int res = 0 ;
+    double rem = c ;
+    for ( ;  weight . length > c ;  ) {
+        if ( rem >= weight [ _ ] ){
+            rem = rem - weight [ _ ] ;
+        }
+        else{
+            res ++ ;
+            double rem = c - weight [ _ ] ;
+        }
     }
-    else {
-      res ++ ;
-      rem = c - weight [ weight . length - 1 ] ;
-    }
-  }
-  return res ;
+    return res ;
 }
 
 public static void main(String args[]) {

@@ -22,17 +22,19 @@ def f_gold ( price , n ) :
 
 #
 def f_filled ( price , n ) :
-    profit = [ 0 ] * n
+    profit = np.zeros ( ( n , ) )
+    for i in range ( n ) :
+        profit [ i ] = 0
     max_price = price [ n - 1 ]
-    for i in range ( n - 1 ) :
+    for i in range ( n - 2 , - 1 , - 1 ) :
         if price [ i ] > max_price :
             max_price = price [ i ]
-        profit [ i ] = max ( profit [ i + 1 ] , max_price - price [ i ] )
+        profit [ i ] = max ( profit [ i + 1 ] for i in range ( n ) )
     min_price = price [ 0 ]
     for i in range ( 1 , n ) :
         if price [ i ] < min_price :
             min_price = price [ i ]
-        profit [ i ] = max ( profit [ i - 1 ] , profit [ i ] + ( price [ i ] - min_price ) )
+        profit [ i ] = max ( profit [ i - 1 ] for i in range ( n ) )
     result = profit [ n - 1 ]
     return result
 

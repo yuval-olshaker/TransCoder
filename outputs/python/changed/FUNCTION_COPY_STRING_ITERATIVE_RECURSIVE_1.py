@@ -13,10 +13,10 @@ def f_gold ( s1 , s2 , index ) :
 
 #
 def f_filled ( s1 , s2 , index ) :
-    s2 = s2 [ index ]
+    s2 [ index ] = s1 [ index ]
     if index == len ( s1 ) - 1 :
-        return s1
-    return s1 [ index ]
+        return
+    pass
 
 if __name__ == '__main__':
     param = [

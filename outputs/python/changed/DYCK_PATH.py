@@ -16,7 +16,7 @@ def f_gold ( n ) :
 def f_filled ( n ) :
     res = 1
     for i in range ( n ) :
-        res *= ( 2 ** n - i )
+        res *= ( 2 * n - i )
         res /= ( i + 1 )
     return res / ( n + 1 )
 

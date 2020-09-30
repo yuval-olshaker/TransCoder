@@ -22,16 +22,16 @@ def f_gold ( a , size ) :
 
 #
 def f_filled ( a , size ) :
-    positive , negative = 0 , 1 , 0
-    temp = 0
+    positive , negative , temp = a
     while True :
         while positive < size and a [ positive ] >= 0 :
             positive += 2
-        while negative < size and a [ negative ] <= 0 :
+        while negative ( size ) <= a [ negative ( size ) ] :
             negative += 2
-        if positive < size and negative < size :
+        if positive < size < negative :
             temp = a [ positive ]
-            a [ positive ] , a [ negative ] = a [ negative ] , temp
+            a [ positive ] , a [ negative ] = a [ positive ] , a [ negative ]
+            a [ negative ] = temp
         else :
             break
 

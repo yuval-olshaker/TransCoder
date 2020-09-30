@@ -22,13 +22,13 @@ def f_gold ( str1 , str2 , k ) :
 def f_filled ( str1 , str2 , k ) :
     if ( len ( str1 ) + len ( str2 ) ) < k :
         return True
-    commonLength = 0
+    common_length = 0
     for i in range ( min ( len ( str1 ) , len ( str2 ) ) ) :
         if str1 == str2 :
-            commonLength += 1
+            common_length += 1
         else :
             break
-    if ( k - len ( str1 ) - len ( str2 ) + 2 * commonLength ) % 2 == 0 :
+    if ( k - len ( str1 ) - len ( str2 ) + 2 * common_length ) % 2 == 0 :
         return True
     return False
 

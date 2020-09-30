@@ -32,7 +32,7 @@ def f_filled ( n , index , modulo , M , arr , dp ) :
     place_minus = f_filled ( n , index + 1 , modulo - arr [ index ] , M , arr , dp )
     res = place_add
     dp [ index ] [ modulo ] = res
-    return res
+    res = 0
 
 if __name__ == '__main__':
     param = [

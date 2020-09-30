@@ -17,7 +17,7 @@ static int f_gold ( int a [ ] , int n ) {
 
 //
 public static int f_filled ( int a , int n ) {
-  return ( - 1 + ( int ) Math . sqrt ( 1 + ( 8 * n ) ) ) / 2 ;
+    return ( - 1 + ( int ) Math . sqrt ( 1 + ( 8 * n ) ) ) / 2 ;
 }
 
 public static void main(String args[]) {

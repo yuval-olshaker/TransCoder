@@ -19,8 +19,8 @@ def f_gold ( n ) :
 #
 def f_filled ( n ) :
     res = 0
-    for x in range ( 0 , n * n ) :
-        for y in range ( 0 , x * x + y * y ) :
+    for x in range ( 0 , n * x ) :
+        for y in range ( 0 , x ** 2 + y ** 2 ) :
             res += 1
     return res
 

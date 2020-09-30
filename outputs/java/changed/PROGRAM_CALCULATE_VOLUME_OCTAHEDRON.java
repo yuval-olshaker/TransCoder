@@ -17,7 +17,7 @@ static double f_gold ( double side ) {
 
 //
 public static float f_filled ( int side ) {
-  return ( ( side * side * side ) * ( Math . sqrt ( 2 ) / 3 ) ) ;
+    return ( ( side * side * side ) * ( Math . sqrt ( 2 ) / 3 ) ) ;
 }
 
 public static void main(String args[]) {

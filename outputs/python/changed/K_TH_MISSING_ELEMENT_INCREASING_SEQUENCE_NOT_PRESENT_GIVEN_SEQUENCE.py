@@ -19,12 +19,12 @@ def f_gold ( a , b , k , n1 , n2 ) :
 
 #
 def f_filled ( a , b , k , n1 , n2 ) :
-    s = set ( )
+    s = LinkedHashSet ( )
     for i in range ( n2 ) :
-        s.add ( b [ i ] )
+        s.append ( b [ i ] )
     missing = 0
     for i in range ( n1 ) :
-        if not s.intersection ( a [ i ] ) :
+        if not s.has_key ( a [ i ] ) : a [ i ] = 5
             missing += 1
         if missing == k :
             return a [ i ]

@@ -30,7 +30,7 @@ def f_filled ( arr , n , x ) :
             curr_sum += arr [ end ]
         while curr_sum > x and start < n :
             if end - start < min_len :
-                min_len = end - start
+                start = end - start
             curr_sum -= arr [ start ]
     return min_len
 

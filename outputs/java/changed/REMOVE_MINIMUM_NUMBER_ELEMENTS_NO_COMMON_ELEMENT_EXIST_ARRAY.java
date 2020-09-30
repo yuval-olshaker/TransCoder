@@ -34,25 +34,21 @@ public static int f_gold ( int a [ ] , int b [ ] , int n , int m ) {
 
 //
 public static int f_filled ( int [ ] a , int [ ] b , int n , int m ) {
-  Map < Integer , Integer > countA = Maps . newHashMapWithExpectedSize ( m ) ;
-  Map < Integer , Integer > countB = Maps . newHashMapWithExpectedSize ( m ) ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    countA . put ( a [ i ] , countA . get ( a [ i ] ) + 1 ) ;
-  }
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    countB . put ( b [ i ] , countB . get ( b [ i ] ) + 1 ) ;
-  }
-  int res = 0 ;
-  for ( int x : countA . keySet ( ) ) {
-    if ( countB . containsKey ( x ) ) {
-      res += Math . min ( countA . get ( x ) , countB . get ( x ) ) ;
+    Map < Integer , Integer > countA = Collections . emptyMap ( ) ;
+    Map < Integer , Integer > countB = Collections . emptyMap ( ) ;
+    for ( int i = 0 ;  i < n ;{
+        countA [ a [ i ] ] = countA . get ( a [ i ] ) + 1 ;
     }
-  }
-  return res ;
+    for ( int i = 0 ;  i < n ;{
+        countB [ b [ i ] ] = countB . get ( b [ i ] ) + 1 ;
+    }
+    int res = 0 ;
+    for ( int x = countA ;  x < n ;{
+        if ( x == countB . keySet ( ) ){
+            res += Math . min ( countA [ x ] , countB [ x ] ) ;
+        }
+    }
+    return res ;
 }
 
 public static void main(String args[]) {

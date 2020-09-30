@@ -17,12 +17,12 @@ def f_gold ( str_ ) :
 #
 def f_filled ( str ) :
     n = len ( str )
-    arr = [ ]
-    concat = str + str
+    arr = [ str [ n ] for n in range ( len ( str ) ) ]
+    concat = args + args
     for i in range ( n ) :
-        arr.append ( concat [ i : i + n ] )
-    arr.sort ( )
-    return ''.join ( arr )
+        arr [ i ] = concat.split ( str ) [ i : i + n ]
+    arr = sorted ( str.split ( ) )
+    return arr [ 0 ]
 
 if __name__ == '__main__':
     param = [

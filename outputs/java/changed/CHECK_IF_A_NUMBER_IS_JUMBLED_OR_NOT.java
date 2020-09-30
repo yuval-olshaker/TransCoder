@@ -25,15 +25,21 @@ static boolean f_gold ( int num ) {
 
 //
 public static boolean f_filled ( int num ) {
-  if ( ( num / 10 == 0 ) && ( num % 10 == 0 ) ) return true ;
-  while ( ( num != 0 ) && ( num % 10 == 0 ) ) {
-    if ( ( num / 10 == 0 ) && ( num % 10 == 0 ) ) return true ;
-    int digit1 = num % 10 ;
-    int digit2 = ( num / 10 ) % 10 ;
-    if ( ( Math . abs ( digit2 - digit1 ) > 1 ) && ( digit2 != 0 ) ) return false ;
-    num = num / 10 ;
-  }
-  return true ;
+    if ( ( num / 10 == 0 ) && ( num % 10 == 0 ) ) {
+        return f_filled ( num , true ) ;
+    }
+    while ( ( num != 0 ) && ( num != 1 ) ) {
+        if ( ( num / 10 == 0 ) && ( num % 10 == 0 ) ) {
+            return f_filled ( num , true ) ;
+        }
+        int digit1 = num % 10 ;
+        int digit2 = ( num / 10 ) % 10 ;
+        if ( ( Math . abs ( digit2 - digit1 ) > 1 ) && ( num > 0 ) ) {
+            return false ;
+        }
+        num = num / 10 ;
+    }
+    return f_filled ( num , true ) ;
 }
 
 public static void main(String args[]) {

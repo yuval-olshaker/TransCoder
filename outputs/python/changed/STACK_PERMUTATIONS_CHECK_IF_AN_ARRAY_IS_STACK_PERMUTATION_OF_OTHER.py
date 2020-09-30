@@ -34,24 +34,24 @@ def f_gold ( ip , op , n ) :
 def f_filled ( ip , op , n ) :
     input = Queue ( )
     for i in range ( n ) :
-        input.put ( ip [ i ] )
+        input.append ( ip [ i ] for i in range ( n ) )
     output = Queue ( )
     for i in range ( n ) :
-        output.put ( op [ i ] )
+        output.append ( op [ i ] for i in range ( n ) )
     temp_stack = Stack ( )
-    while not input.empty ( ) :
-        ele = input.get ( )
-        if ele == output.get ( ) :
-            output.put ( ele )
-            while not temp_stack.empty ( ) :
-                if temp_stack.get ( ) == output.get ( ) :
+    while not input ( ip ).strip ( ) :
+        ele = input.poll ( )
+        if ele in output.pop ( ) :
+            output.poll ( )
+            while not temp_stack :
+                if temp_stack.pop ( ) == output.pop ( ) :
                     temp_stack.pop ( )
-                    output.put ( ele )
+                    output.poll ( )
                 else :
                     break
         else :
             temp_stack.push ( ele )
-    return ( input.empty ( ) and temp_stack.empty ( ) )
+    return ( input ( ip ) == op ( ip ) and temp_stack ( ip ) == op ( ip ) )
 
 if __name__ == '__main__':
     param = [

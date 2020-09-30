@@ -31,9 +31,9 @@ def f_gold ( arr , n ) :
 def f_filled ( arr , n ) :
     if n == 1 :
         return arr [ 0 ]
-    dec = [ ]
-    inc = [ ]
-    dec = inc + [ arr [ 0 ] ]
+    dec = np.arange ( n )
+    inc = [ 0 ] * n
+    dec [ 0 ] = inc [ 0 ] = arr [ 0 ]
     flag = 0
     for i in range ( 1 , n ) :
         for j in range ( i ) :
@@ -42,7 +42,7 @@ def f_filled ( arr , n ) :
                 flag = 1
             elif arr [ j ] < arr [ i ] and flag == 1 :
                 inc [ i ] = max ( inc [ i ] , dec [ j ] + arr [ i ] )
-    result = int ( '-' )
+    result = int ( arr [ n ] )
     for i in range ( n ) :
         if result < inc [ i ] :
             result = inc [ i ]

@@ -22,7 +22,7 @@ def f_gold ( n ) :
 
 #
 def f_filled ( n ) :
-    dp = [ [ 0 ] * 27 for i in range ( n + 1 ) ]
+    dp = np.zeros ( ( n + 1 , 27 ) )
     for i in range ( n + 1 ) :
         for j in range ( 27 ) :
             dp [ i ] [ j ] = 0
@@ -36,8 +36,8 @@ def f_filled ( n ) :
                 dp [ i ] [ j ] = ( dp [ i - 1 ] [ j - 1 ] + dp [ i - 1 ] [ j + 1 ] )
     sum = 0
     for i in range ( 0 , 25 ) :
-        sum = ( sum + dp [ n ] [ i ] )
-    return sum
+        sum = ( sum + dp [ n ] [ i ] for i in range ( len ( dp [ n ] ) ) )
+    return sum ( [ s for s in range ( n ) ] )
 
 if __name__ == '__main__':
     param = [

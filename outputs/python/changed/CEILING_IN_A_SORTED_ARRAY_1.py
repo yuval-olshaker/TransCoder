@@ -31,12 +31,12 @@ def f_filled ( arr , low , high , x ) :
         return low
     if x > arr [ high ] :
         return - 1
-    mid = ( low + high ) // 2
+    mid = ( low + high ) / 2
     if arr [ mid ] == x :
         return mid
-    elif arr [ mid ] < x :
+    elif arr [ mid ] < x : a = 5
         if mid + 1 <= high and x <= arr [ mid + 1 ] :
-            return mid + 1
+            mid = low + 1
         else :
             return f_filled ( arr , mid + 1 , high , x )
     else :

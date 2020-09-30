@@ -13,7 +13,7 @@ def f_filled ( arr , n ) :
     sum = 0
     for i in range ( n ) :
         sum += arr [ i ]
-    return sum - ( ( ( n - 1 ) * n ) / 2 )
+    return sum ( arr - ( ( n - 1 ) * n ) / 2 )
 
 if __name__ == '__main__':
     param = [

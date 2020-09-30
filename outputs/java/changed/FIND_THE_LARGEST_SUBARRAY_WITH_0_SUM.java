@@ -29,21 +29,17 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr ) {
-  int f_filled = 0 ;
-  for ( int i = 0 ;
-  i < arr . length ;
-  i ++ ) {
-    int currSum = 0 ;
-    for ( int j = i ;
-    j < arr . length ;
-    j ++ ) {
-      currSum += arr [ j ] ;
-      if ( currSum == 0 ) {
-        f_filled = Math . max ( f_filled , j - i + 1 ) ;
-      }
+    f_filled = 0 ;
+    for ( int i = 0 ;  i < arr . length ;  i ++ ) {
+        int currSum = 0 ;
+        for ( int j = i ;  j < arr . length ;  j ++ ) {
+            currSum += arr [ j ] ;
+            if ( currSum == 0 ) {
+                f_filled = Math . max ( f_filled , j - i + 1 ) ;
+            }
+        }
     }
-  }
-  return f_filled ;
+    return f_filled ;
 }
 
 public static void main(String args[]) {

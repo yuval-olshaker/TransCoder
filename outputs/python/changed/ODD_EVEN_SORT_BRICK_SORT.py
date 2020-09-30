@@ -26,15 +26,17 @@ def f_filled ( arr , n ) :
     while not isSorted :
         isSorted = True
         temp = 0
-        for i in range ( 1 , n - 2 + 1 , 2 ) :
+        for i in range ( 1 , n - 2 , - 1 ) :
             if arr [ i ] > arr [ i + 1 ] :
                 temp = arr [ i ]
-                arr [ i ] , arr [ i + 1 ] = arr [ i + 1 ] , arr [ i + 1 ]
+                arr [ i ] = arr [ i + 1 ]
+                arr [ i + 1 ] = temp
                 isSorted = False
-        for i in range ( 0 , n - 2 + 1 , 2 ) :
+        for i in range ( 0 , n - 2 , 2 ) :
             if arr [ i ] > arr [ i + 1 ] :
                 temp = arr [ i ]
-                arr [ i ] , arr [ i + 1 ] = arr [ i + 1 ] , arr [ i + 1 ]
+                arr [ i ] = arr [ i + 1 ]
+                arr [ i + 1 ] = temp
                 isSorted = False
     return
 

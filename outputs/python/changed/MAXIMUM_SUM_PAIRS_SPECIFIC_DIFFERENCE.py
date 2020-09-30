@@ -20,15 +20,16 @@ def f_gold ( arr , N , K ) :
 
 #
 def f_filled ( arr , N , K ) :
-    arr.sort ( )
-    dp = [ 0 ] * N
+    np.sort ( arr )
+    dp = np.zeros ( ( N , K ) )
+    dp = np.zeros ( ( N , K ) )
     for i in range ( 1 , N ) :
         dp [ i ] = dp [ i - 1 ]
         if arr [ i ] - arr [ i - 1 ] < K :
             if i >= 2 :
-                dp [ i ] = max ( dp [ i ] , dp [ i - 2 ] + arr [ i ] + arr [ i - 1 ] )
+                dp [ i ] = max ( dp [ i ] for i in range ( N ) )
             else :
-                dp [ i ] = max ( dp [ i ] , arr [ i ] + arr [ i - 1 ] )
+                dp [ i ] = max ( dp [ i ] for i in range ( N ) )
     return dp [ N - 1 ]
 
 if __name__ == '__main__':

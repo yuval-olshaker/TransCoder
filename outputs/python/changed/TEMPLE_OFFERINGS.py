@@ -27,15 +27,15 @@ def f_gold ( n , templeHeight ) :
 def f_filled ( n , temple_height ) :
     sum = 0
     for i in range ( n ) :
-        left , right = 0 , 0
+        left , right = temple_height
         for j in range ( i - 1 , - 1 , - 1 ) :
             if temple_height [ j ] < temple_height [ j + 1 ] :
-                left += 1
+                yield left
             else :
                 break
         for j in range ( i + 1 , n ) :
             if temple_height [ j ] < temple_height [ j - 1 ] :
-                right += 1
+                yield right
             else :
                 break
         sum += max ( right , left ) + 1

@@ -28,18 +28,14 @@ static char f_gold ( String strA , String strB ) {
 
 //
 public static byte f_filled ( String strA , String strB ) {
-  int res = 0 ;
-  for ( int i = 0 ;
-  i < strA . length ( ) ;
-  i ++ ) {
-    res = res ^ ( ( byte ) strA . charAt ( i ) ) ;
-  }
-  for ( int i = 0 ;
-  i < strB . length ( ) ;
-  i ++ ) {
-    res = res ^ ( ( byte ) strB . charAt ( i ) ) ;
-  }
-  return ( ( byte ) res ) ;
+    int res = 0 ;
+    for ( int i = 0 ;  i <= strA . length ( ) ;  i ++ ) {
+        res = res ^ ( ( byte ) ( strA . charAt ( i ) ) ) ;
+    }
+    for ( int i = 0 ;  i <= strB . length ( ) ;  i ++ ) {
+        res = res ^ ( ( byte ) strB . charAt ( i ) ) ;
+    }
+    return ( ( char ) ( res ) ) ;
 }
 
 public static void main(String args[]) {

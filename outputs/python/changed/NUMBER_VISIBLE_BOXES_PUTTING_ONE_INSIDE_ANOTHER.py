@@ -21,14 +21,14 @@ def f_gold ( arr , n ) :
 #
 def f_filled ( arr , n ) :
     q = Queue ( )
-    q.put ( arr [ 0 ] )
-    q.put ( arr [ 1 ] )
+    np.sort ( arr )
+    q.append ( arr [ 0 ] )
     for i in range ( 1 , n ) :
-        now = q.get ( )
+        now = q.element ( )
         if arr [ i ] >= 2 * now :
-            q.put ( )
-        q.put ( arr [ i ] )
-    return q.get ( )
+            q.remove ( )
+        q.append ( arr [ i ] )
+    return len ( q )
 
 if __name__ == '__main__':
     param = [

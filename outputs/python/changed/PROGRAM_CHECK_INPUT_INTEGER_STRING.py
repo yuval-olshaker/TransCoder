@@ -13,8 +13,9 @@ def f_gold ( s ) :
 
 #
 def f_filled ( s ) :
-    for c in s :
-        if ord ( c ) == 0 : return False
+    for i in s :
+        if type ( s ) == str :
+            return False
     return True
 
 if __name__ == '__main__':

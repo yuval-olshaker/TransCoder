@@ -21,9 +21,9 @@ def f_filled ( str1 , str2 ) :
         return False
     clock_rot = ""
     anticlock_rot = ""
-    _ , _ , _ , _ , _ , _ , _ , _ , _ , _ , _ = str2
-    anticlock_rot = anticlock_rot + str2 [ - 2 : ] + str2 [ : - 2 ]
-    clock_rot = clock_rot + str2 [ 2 : ] + str2 [ : 2 ]
+    len ( str2 )
+    anticlock_rot = anticlock_rot + str2 [ len ( str2 ) - 2 : ] + str2 [ : len ( str2 ) - 2 ]
+    clock_rot = clock_rot + str2 [ 2 ] + str2 [ 0 ]
     return ( str1 == clock_rot or str1 == anticlock_rot )
 
 if __name__ == '__main__':

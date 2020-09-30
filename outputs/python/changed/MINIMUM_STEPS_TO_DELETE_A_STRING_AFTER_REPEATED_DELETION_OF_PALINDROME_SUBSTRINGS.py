@@ -28,7 +28,22 @@ def f_gold ( str ) :
 #
 def f_filled ( str ) :
     N = len ( str )
-    dp = [ [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0 ] * N + [ 0
+    dp = np.array ( [ [ 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 ,
+    for i in range ( 0 , N ) :
+        for j in range ( 0 , N ) :
+            dp [ i ] [ j ] = 0
+    for len in range ( 1 , N + 1 ) :
+        for i , j in enumerate ( str ) :
+            if len ( str ) == 1 :
+                dp [ i ] [ j ] = 1
+            else :
+                dp [ i ] [ j ] = 1 + dp [ i + 1 ] [ j ]
+                if str [ i ] == str [ i + 1 ] :
+                    dp [ i ] [ j ] = min ( 1 + dp [ i + 2 ] [ j ] for j in range ( i , i + 2 ) )
+                for K in range ( i + 2 , j + 1 ) :
+                    if str [ i ] == str [ K ] :
+                        dp [ i ] [ j ] = min ( dp [ i + 1 ] [ K - 1 ] + dp [ K + 1 ] [ j ] , dp [ i ] [ j ] )
+    return dp [ 0 ] [ N - 1 ]
 
 if __name__ == '__main__':
     param = [

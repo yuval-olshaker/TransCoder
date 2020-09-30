@@ -17,7 +17,7 @@ def f_gold ( n ) :
 def f_filled ( n ) :
     count = 0
     for i in range ( 5 , n // i >= 1 , 1 , 5 ) :
-        count += n // i
+        count += n / i
     return count
 
 if __name__ == '__main__':

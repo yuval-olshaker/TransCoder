@@ -15,10 +15,10 @@ def f_gold ( p ) :
 
 #
 def f_filled ( p ) :
-    check_number = math.pow ( 2 , p ) - 1
-    nextval = 4 % check_number
+    check_number = np.power ( 2 , p ) - 1
+    nextval = 4 % checkNumber
     for i in range ( 1 , p - 1 ) :
-        nextval = ( nextval * nextval - 2 ) % check_number
+        nextval = ( nextval * nextval - 2 ) % checkNumber
     return ( nextval == 0 )
 
 if __name__ == '__main__':

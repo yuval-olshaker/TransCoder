@@ -22,7 +22,8 @@ def f_filled ( n ) :
         return n
     for i in range ( 3 , n + 1 ) :
         c = b + ( i - 1 ) * a
-        a , b , c = b , c , c
+        a = b
+        b = c
     return c
 
 if __name__ == '__main__':

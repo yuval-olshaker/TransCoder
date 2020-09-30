@@ -37,31 +37,31 @@ def f_gold ( str ) :
 
 #
 def f_filled ( str ) :
-    len ( str )
-    open = [ ]
-    close = [ ]
+    """Find the index of the first occurrence of a string in the string str."""
+    open = [ len ( str ) + 1 for i in range ( len ( str ) + 1 ) ]
+    close = [ len ( str ) + 1 for i in range ( len ( str ) ) ]
     index = - 1
-    open.append ( 0 )
-    close.append ( 0 )
+    open [ 0 ] = 0
+    close [ len ( str ) ] = 0
     if str [ 0 ] == '(' :
-        open.append ( 1 )
-    if str [ len - 1 ] == ')' :
-        close.append ( 1 )
+        open [ 1 ] = 1
+    if str [ len ( str ) - 1 ] == ')' :
+        close [ len ( str ) - 1 ] = 1
     for i in range ( 1 , len ( str ) ) :
         if str [ i ] == '(' :
-            open.append ( open [ i ] + 1 )
+            open [ i + 1 ] = open [ i ] + 1
         else :
-            open.append ( open [ i ] )
-    for i in range ( len - 2 , - 1 , - 1 ) :
+            open [ i + 1 ] = open [ i ]
+    for i in range ( len ( str ) - 2 , - 1 , - 1 ) :
         if str [ i ] == ')' :
-            close.append ( close [ i + 1 ] + 1 )
+            close [ i ] = close [ i + 1 ] + 1
         else :
-            close.append ( close [ i + 1 ] )
-    if open [ len ] == 0 :
+            close [ i ] = close [ i + 1 ]
+    if open [ len ( str ) ] == 0 :
         return len
     if close [ 0 ] == 0 :
         return 0
-    for i in range ( 0 , len ( open ) ) :
+    for i in range ( 0 , len ( str ) ) :
         if open [ i ] == close [ i ] :
             index = i
     return index

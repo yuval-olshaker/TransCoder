@@ -19,7 +19,7 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    res = int ( 0 )
+    res = np.zeros ( arr.shape )
     for i in range ( n ) :
         curr_sum = 0
         for j in range ( n ) :

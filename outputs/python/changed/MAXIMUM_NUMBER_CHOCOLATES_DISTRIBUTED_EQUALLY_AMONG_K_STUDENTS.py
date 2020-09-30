@@ -24,22 +24,22 @@ def f_gold ( arr , n , k ) :
 #
 def f_filled ( arr , n , k ) :
     um = { }
-    sum = [ ]
+    sum = np.zeros ( n )
     curr_rem = 0
     max_sum = 0
-    sum.append ( arr [ 0 ] )
+    sum [ 0 ] = arr [ 0 ]
     for i in range ( 1 , n ) :
         sum [ i ] = sum [ i - 1 ] + arr [ i ]
     for i in range ( n ) :
         curr_rem = sum [ i ] % k
         if curr_rem == 0 :
             if max_sum < sum [ i ] :
-                max_sum = sum [ i ]
+                max_sum = sum [ i for i in range ( n ) if i != k ]
         elif not um.has_key ( curr_rem ) :
             um [ curr_rem ] = i
         elif max_sum < ( sum [ i ] - sum [ um [ curr_rem ] ] ) :
-            max_sum = sum [ i ] - sum [ um [ curr_rem ] ]
-    return ( max_sum / k )
+            max_sum = sum [ i for i , um in enumerate ( arr ) if um [ curr_rem ] == k ]
+    return ( maxSum / k )
 
 if __name__ == '__main__':
     param = [

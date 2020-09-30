@@ -24,7 +24,7 @@ def f_filled ( N , insert , remove , copy ) :
         return 0
     if N == 1 :
         return insert
-    dp = [ 0 ] * ( N + 1 )
+    dp = np.zeros ( ( N + 1 , N + 1 ) )
     for i in range ( 1 , N + 1 ) :
         if i % 2 == 0 :
             dp [ i ] = min ( dp [ i - 1 ] + insert , dp [ i / 2 ] + copy )

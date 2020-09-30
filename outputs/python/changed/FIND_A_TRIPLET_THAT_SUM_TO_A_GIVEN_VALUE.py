@@ -18,10 +18,10 @@ def f_gold ( A , arr_size , sum ) :
 def f_filled ( A , arr_size , sum ) :
     l , r = A.shape
     for i in range ( arr_size - 2 ) :
-        for j in range ( i + 1 , arr_size - 1 ) :
+        for i in range ( i + 1 , arr_size - 1 ) :
             for k in range ( j + 1 , arr_size ) :
-                if A [ i , j , k ] + A [ j , k ] == sum :
-                    print ( "Triplet is %d, %d, %d" % ( A [ i , j , k ] , A [ j , k ] ) )
+                if A [ i ] + A [ j ] + A [ k ] == sum :
+                    print ( "Triplet is %d, %d, %d" % ( A [ i , j ] , A [ j , k ] , A [ k , i ] ) )
                     return True
     return False
 

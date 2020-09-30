@@ -23,12 +23,12 @@ def f_gold ( mat , m , n ) :
 
 #
 def f_filled ( mat , m , n ) :
-    row_sum = [ ]
+    row_sum = np.sum ( mat , axis = 0 )
     for i in range ( m ) :
         sum = 0
         for j in range ( n ) :
             sum += mat [ i , j ]
-        row_sum.append ( sum )
+        row_sum [ i ] = sum
     max_diff = row_sum [ 1 ] - row_sum [ 0 ]
     min_element = row_sum [ 0 ]
     for i in range ( 1 , m ) :

@@ -27,8 +27,8 @@ def f_gold ( str , n ) :
 
 #
 def f_filled ( str , n ) :
-    dp = [ [ ] for i in range ( n ) ]
-    P = [ [ ] for i in range ( n ) ]
+    dp = [ ]
+    P = [ ]
     for i in range ( n ) :
         P [ i ] [ i ] = True
     for i in range ( n - 1 ) :

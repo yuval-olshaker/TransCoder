@@ -26,18 +26,16 @@ static boolean f_gold ( double m [ ] [ ] ) {
 
 //
 public static boolean f_filled ( int [ ] [ ] m ) {
-  for ( int i = 0 ;
-  i != m . length ;
-  i ++ ) {
-    int sm = 0 ;
-    for ( int j = 0 ;
-    j != m [ i ] . length ;
-    j ++ ) {
-      sm = sm + m [ i ] [ j ] ;
+    for ( int i = 0 ;  i != m . length ;  i ++ ) {
+        int sm = 0 ;
+        for ( int j = 0 ;  j <= m [ i ] . length ;  j ++ ) {
+            sm = sm + m [ i ] [ j ] ;
+        }
+        if ( ( sm != 1 ) && ( sm != 0 ) ){
+            return false ;
+        }
     }
-    if ( ( sm != 1 ) && ( sm != 0 ) ) return false ;
-  }
-  return true ;
+    return true ;
 }
 
 public static void main(String args[]) {

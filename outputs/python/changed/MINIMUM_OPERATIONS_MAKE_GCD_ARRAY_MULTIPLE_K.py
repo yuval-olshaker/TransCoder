@@ -18,8 +18,8 @@ def f_gold ( a , n , k ) :
 def f_filled ( a , n , k ) :
     result = 0
     for i in range ( n ) :
-        if a [ i ] != 1 and a [ i ] > k :
-            result = result + min ( a [ i ] % k , k - a [ i ] % k )
+        if a [ i ] != 1 and a [ i ] > k : a [ i ] = 5
+            result = result + min ( a [ i ] % k for i in range ( n ) )
         else :
             result = result + k - a [ i ]
     return result

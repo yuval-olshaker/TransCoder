@@ -16,7 +16,7 @@ def f_gold ( arr , n ) :
 #
 def f_filled ( arr , n ) :
     count = 0
-    arr.sort ( )
+    np.count_nonzero ( arr )
     for i in range ( n - 1 ) :
         if arr [ i ] != arr [ i + 1 ] and arr [ i ] != arr [ i + 1 ] - 1 :
             count += arr [ i + 1 ] - arr [ i ] - 1

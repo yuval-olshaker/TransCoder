@@ -16,12 +16,12 @@ def f_gold ( n ) :
 
 #
 def f_filled ( n ) :
-    dp = [ ]
-    for i in range ( 0 , n + 1 ) :
+    dp = [ 0 ] * ( n + 1 )
+    for i in range ( 0 , n ) :
         if i <= 2 :
-            dp.append ( i )
+            dp [ i ] = i
         else :
-            dp.append ( dp [ i - 1 ] + ( i - 1 ) * dp [ i - 2 ] )
+            dp [ i ] = dp [ i - 1 ] + ( i - 1 ) * dp [ i - 2 ]
     return dp [ n ]
 
 if __name__ == '__main__':

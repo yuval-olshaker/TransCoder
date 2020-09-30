@@ -15,11 +15,11 @@ def f_gold ( A , B , n ) :
 
 #
 def f_filled ( A , B , n ) :
-    A.sort ( )
-    B.sort ( )
+    np.sort ( A )
+    np.sort ( B )
     result = 0
     for i in range ( n ) :
-        result += ( A [ i ] * B [ n - i - 1 ] )
+        result += ( A [ i ] * B [ n - i - 1 ] for i in range ( n ) )
     return result
 
 if __name__ == '__main__':

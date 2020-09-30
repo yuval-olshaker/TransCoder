@@ -25,15 +25,15 @@ def f_filled ( seq ) :
     n = len ( seq )
     if n >= 9 :
         return "-1"
-    result = [ ]
+    result = [ n for n in seq if n > 0 ]
     count = 1
     for i in range ( 0 , n ) :
         if i == n or seq [ i ] == 'I' :
             for j in range ( i - 1 , - 1 , - 1 ) :
-                result.append ( chr ( int ( '0' + count , 16 ) ) )
+                result [ j + 1 ] = chr ( ord ( '0' ) + count )
                 if j >= 0 and seq [ j ] == 'I' :
                     break
-    return ''.join ( result )
+    return [ result for result in seq if result ]
 
 if __name__ == '__main__':
     param = [

@@ -20,9 +20,9 @@ def f_filled ( arr , n ) :
     sum = 0
     s = set ( )
     for i in range ( n ) :
-        if not s.issubset ( arr [ i ] ) :
+        if not s.has_key ( arr [ i ] ) :
             sum += arr [ i ]
-            s.add ( arr [ i ] )
+            s.append ( arr [ i ] )
     return sum
 
 if __name__ == '__main__':

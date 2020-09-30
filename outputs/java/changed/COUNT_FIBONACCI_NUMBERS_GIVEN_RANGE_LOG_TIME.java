@@ -25,17 +25,17 @@ static int f_gold ( int low , int high ) {
 
 //
 public static int f_filled ( int low , int high ) {
-  int f1 = 0 , f2 = 1 , f3 = 1 ;
-  int result = 0 ;
-  while ( ( f1 <= high ) && ( f1 >= low ) ) {
-    if ( ( f1 >= low ) && ( f1 <= high ) ) {
-      result ++ ;
+    int f1 = 0 , f2 = 1 , f3 = 1 ;
+    int result = 0 ;
+    while ( ( f1 <= high ) && ( f1 <= low ) ) {
+        if ( ( f1 >= low ) && ( f1 <= high ) ) {
+            result ++ ;
+        }
+        f1 = f2 ;
+        f2 = f3 ;
+        int f3 = f1 + f2 ;
     }
-    f1 = f2 ;
-    f2 = f3 ;
-    f3 = f1 + f2 ;
-  }
-  return result ;
+    return result ;
 }
 
 public static void main(String args[]) {

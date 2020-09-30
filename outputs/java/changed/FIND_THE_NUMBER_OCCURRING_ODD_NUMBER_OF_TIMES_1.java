@@ -30,20 +30,16 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int arr [ ] , int size ) {
-  Map < Integer , Integer > Hash = Maps . newHashMap ( ) ;
-  for ( int i = 0 ;
-  i < size ;
-  i ++ ) {
-    Hash . put ( arr [ i ] , Hash . get ( arr [ i ] ) + 1 ) ;
-  }
-  for ( int i = 0 ;
-  i < Hash . size ( ) ;
-  i ++ ) {
-    if ( ( Hash . get ( i ) % 2 != 0 ) && ( Hash . get ( i ) % 2 != 1 ) ) {
-      return i ;
+    HashMap < Integer , Integer > Hash = Collections . synchronizedMap ( new HashMap < Integer , Integer > ( ) ) ;
+    for ( int i = 0 ;  i < size ;  i ++ ) {
+        Hash . put ( arr [ i ] , Hash . get ( arr [ i ] , 0 ) + 1 ) ;
     }
-  }
-  return - 1 ;
+    for ( int i = 0 ;  i < Hash . length ;  i ++ ) {
+        if ( ( Hash [ i ] % 2 != 0 ) && ( Hash [ i ] % 2 != 1 ) ){
+            return i ;
+        }
+    }
+    return - 1 ;
 }
 
 public static void main(String args[]) {

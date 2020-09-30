@@ -22,14 +22,12 @@ static boolean f_gold ( String str ) {
 
 //
 public static boolean f_filled ( String st ) {
-  int n = st . length ( ) ;
-  int digitSum = 0 ;
-  for ( int i = 0 ;
-  i <= n ;
-  i ++ ) {
-    digitSum = digitSum + ( int ) ( st . charAt ( i ) ) ;
-  }
-  return ( digitSum % 9 == 0 ) ;
+    int n = st . length ( ) ;
+    int digitSum = 0 ;
+    for ( int i = 0 ;  i <= n ;  i ++ ) {
+        digitSum = digitSum + ( int ) ( st [ i ] ) ;
+    }
+    return ( digitSum % 9 == 0 ) ;
 }
 
 public static void main(String args[]) {

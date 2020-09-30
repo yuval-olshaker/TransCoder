@@ -17,7 +17,7 @@ def f_gold ( f , d , s ) :
 
 #
 def f_filled ( f , d , s ) :
-    mem = [ 1 ] * ( d + 1 )
+    mem = np.zeros ( ( d + 1 , s + 1 ) )
     mem [ 0 ] [ 0 ] = 1
     for i in range ( 1 , d + 1 ) :
         for j in range ( i , s + 1 ) :

@@ -25,6 +25,7 @@ def f_filled ( a , b , k ) :
         if count == k :
             return rem
         p = p / 10
+    return 0
 
 if __name__ == '__main__':
     param = [

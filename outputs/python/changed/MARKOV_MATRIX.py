@@ -18,9 +18,9 @@ def f_gold ( m ) :
 def f_filled ( m ) :
     for i in range ( len ( m ) ) :
         sum = 0
-        for j in range ( len ( m [ i ] ) ) :
+        for i in range ( m [ i ].shape [ 0 ] ) :
             sum = sum + m [ i ] [ j ]
-        if sum != 1 :
+        if sum ( m ) != 1 :
             return False
     return True
 

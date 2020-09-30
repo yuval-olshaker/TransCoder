@@ -33,7 +33,7 @@ def f_filled ( arr , n , x ) :
             else :
                 continue
         if x % arr [ i ] == 0 :
-            if hset.intersection ( x / arr [ i ] ) :
+            if hset.intersection ( x / arr [ i ] for i in range ( n ) ) :
                 return True
             hset.add ( arr [ i ] )
     return False

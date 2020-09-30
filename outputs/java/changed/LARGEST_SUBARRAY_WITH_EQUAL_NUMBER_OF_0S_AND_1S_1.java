@@ -50,49 +50,43 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-  HashMap < Integer , Integer > hashMap = new HashMap < Integer , Integer > ( ) ;
-  int currSum = 0 ;
-  int f_filled = 0 ;
-  int endingIndex = - 1 ;
-  for ( int i = 0 ;
-  i <= n ;
-  i ++ ) {
-    if ( ( arr [ i ] == 0 ) && ( arr [ i ] != - 1 ) ) {
-      arr [ i ] = - 1 ;
+    HashMap < Integer , Integer > hashMap = new HashMap < Integer , Integer > ( ) ;
+    int currSum = 0 ;
+    int f_filled = 0 ;
+    int endingIndex = - 1 ;
+    for ( int i = 0 ;  i <= n ;  i ++ ) {
+        if ( ( arr [ i ] == 0 ) && ( n > 0 ) ) {
+            arr [ i ++ ] = - 1 ;
+        }
+        else {
+            arr [ i ++ ] = 1 ;
+        }
     }
-    else {
-      arr [ i ] = 1 ;
+    for ( int i = 0 ;  i <= n ;  i ++ ) {
+        currSum = currSum + arr [ i ] ;
+        if ( ( currSum == 0 ) && ( n > 0 ) ) {
+            int f_filled = i + 1 ;
+            endingIndex = i ;
+        }
+        if ( ( currSum + n ) < hashMap . length ) {
+            f_filled = Math . max ( f_filled , i - hashMap [ currSum + n ] ) ;
+        }
+        else {
+            hashMap [ currSum ++ ] = i -> hashMap [ currSum ] = i ;
+        }
     }
-  }
-  for ( int i = 0 ;
-  i <= n ;
-  i ++ ) {
-    currSum = currSum + arr [ i ] ;
-    if ( ( currSum == 0 ) && ( hashMap . containsKey ( currSum + n ) ) ) {
-      f_filled = i + 1 ;
-      endingIndex = i ;
+    for ( int i = 0 ;  i <= n ;  i ++ ) {
+        if ( ( arr [ i ] == - 1 ) && ( n > 0 ) ) {
+            arr [ i ++ ] = 0 ;
+        }
+        else {
+            arr [ i ++ ] = 1 ;
+        }
     }
-    if ( ( currSum + n ) < hashMap . size ( ) ) {
-      f_filled = Math . max ( f_filled , i - hashMap . get ( currSum + n ) ) ;
-    }
-    else {
-      hashMap . put ( currSum , i ) ;
-    }
-  }
-  for ( int i = 0 ;
-  i <= n ;
-  i ++ ) {
-    if ( ( arr [ i ] == - 1 ) && ( arr [ i ] != 0 ) ) {
-      arr [ i ] = 0 ;
-    }
-    else {
-      arr [ i ] = 1 ;
-    }
-  }
-  System . out . print ( endingIndex - f_filled + " " ) ;
-  System . out . print ( "to" ) ;
-  System . out . println ( endingIndex ) ;
-  return f_filled ;
+    System . out . print ( endingIndex - f_filled + 1 + " " ) ;
+    System . out . print ( "to" ) ;
+    System . out . println ( endingIndex ) ;
+    return f_filled ;
 }
 
 public static void main(String args[]) {

@@ -16,9 +16,9 @@ def f_gold ( n ) :
 #
 def f_filled ( n ) :
     nth_element = 19 + ( n - 1 ) * 9
-    outliers_count = int ( math.log10 ( nth_element ) - 1 )
+    outliers_count = int ( math.log10 ( nth_element ) ) - 1
     nth_element += 9 * outliers_count
-    return nth_element
+    return nthElement
 
 if __name__ == '__main__':
     param = [

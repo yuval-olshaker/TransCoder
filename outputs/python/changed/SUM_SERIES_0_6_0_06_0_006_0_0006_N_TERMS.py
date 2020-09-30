@@ -10,7 +10,7 @@ def f_gold ( n ) :
 
 #
 def f_filled ( n ) :
-    return ( 0.666 ) ** ( 1 - 1 / pow ( 10 , n ) )
+    return ( 0.666 ) * ( 1 - 1 / math.pow ( 10 , n ) )
 
 if __name__ == '__main__':
     param = [

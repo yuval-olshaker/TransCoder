@@ -30,7 +30,8 @@ def f_filled ( limit ) :
         ef3 = 4 * ef2 + ef1
         if ef3 > limit :
             break
-        ef1 , ef2 = ef2 , ef3
+        ef1 = ef2
+        ef2 = ef3
         sum += ef2
     return int ( sum )
 

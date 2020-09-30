@@ -18,11 +18,11 @@ def f_gold ( arr1 , arr2 , m , n , x ) :
 #
 def f_filled ( arr1 , arr2 , m , n , x ) :
     count = 0
-    us = set ( )
+    us = set ( [ ] )
     for i in range ( m ) :
-        us.add ( arr1 [ i ] )
+        us.append ( arr1 [ i ] )
     for j in range ( n ) :
-        if us.intersection ( arr2 [ j ] ) :
+        if us.count ( x - arr2 [ j ] ) :
             count += 1
     return count
 

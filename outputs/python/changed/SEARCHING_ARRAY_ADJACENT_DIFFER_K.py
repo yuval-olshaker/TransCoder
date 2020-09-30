@@ -21,7 +21,7 @@ def f_filled ( arr , n , x , k ) :
         if arr [ i ] == x :
             return i
         i = i + max ( 1 , abs ( arr [ i ] - x ) / k )
-    print ( "number is " + "not present!" )
+    print ( 'number is ' + 'not present!' )
     return - 1
 
 if __name__ == '__main__':

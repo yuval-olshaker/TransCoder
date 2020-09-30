@@ -17,12 +17,14 @@ def f_gold ( N ) :
 
 #
 def f_filled ( N ) :
-    dp = [ 1 , 2 ]
+    dp = np.zeros ( ( N , N ) )
+    dp [ 0 ] = 1
+    dp [ 1 ] = 2
     i = 2
-    do = dp [ i - 1 ] + dp [ i - 2 ]
-    while dp [ i ] <= N :
-        dp [ i ] = dp [ i - 1 ] + dp [ i - 2 ]
-    return ( i - 2 )
+while dp [ i ] <= N :
+    pass
+return ( i - 2 )
+pass
 
 if __name__ == '__main__':
     param = [

@@ -22,7 +22,8 @@ def f_gold ( x , y , n ) :
 
 #
 def f_filled ( x , y , n ) :
-    dp = [ False ] * ( n + 1 )
+    dp = np.zeros ( ( n + 1 , ) )
+    del dp [ x ]
     dp [ 0 ] = False
     dp [ 1 ] = True
     for i in range ( 2 , n + 1 ) :

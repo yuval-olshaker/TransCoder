@@ -14,12 +14,12 @@ def f_gold ( A , B , m , n ) :
 
 #
 def f_filled ( A , B , m , n ) :
-    dp = [ 0 ] * ( n + 1 )
+    dp = np.zeros ( ( n + 1 , m + 1 ) )
     for row in dp :
-        np.random.shuffle ( row )
-    for i in range ( 1 , n + 1 ) :
+        np.fill_diagonal ( row , 0 )
+    for i in range ( 1 , n ) :
         for j in range ( i , m + 1 ) :
-            dp [ i ] [ j ] = max ( ( dp [ i - 1 ] [ j - 1 ] + ( A [ j - 1 ] * B [ i - 1 ] ) ) , dp [ i ] [ j - 1 ] )
+            dp = np.max ( ( dp [ i ] [ j - 1 ] + ( A [ j - 1 ] * B [ i - 1 ] ) for i in range ( m , n ) ) for j in range ( n ) )
     return dp [ n ] [ m ]
 
 if __name__ == '__main__':

@@ -20,23 +20,23 @@ def f_gold ( a , b , n , m ) :
 
 #
 def f_filled ( a , b , n , m ) :
-    count_a = { }
+    countA = { }
     count_b = { }
     for i in range ( n ) :
         if count_a.has_key ( a [ i ] ) :
             count_a [ a [ i ] ] = count_a [ a [ i ] ] + 1
         else :
-            count_a [ a [ i ] ] = 1
+            count_a [ a [ i ] ] += 1
     for i in range ( m ) :
         if count_b.has_key ( b [ i ] ) :
             count_b [ b [ i ] ] = count_b [ b [ i ] ] + 1
         else :
-            count_b [ b [ i ] ] = 1
+            count_b [ b [ i ] ] += 1
     res = 0
     s = count_a.keys ( )
     for x in s :
         if count_b.has_key ( x ) :
-            res += min ( count_b [ x ] , count_a [ x ] )
+            res += min ( count_b [ x ] for x in a )
     return res
 
 if __name__ == '__main__':

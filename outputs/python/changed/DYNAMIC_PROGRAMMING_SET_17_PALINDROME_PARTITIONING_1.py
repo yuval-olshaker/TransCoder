@@ -33,12 +33,12 @@ def f_gold ( str1 ) :
 #
 def f_filled ( str ) :
     n = len ( str )
-    C = [ [ ] for i in range ( n ) ]
-    P = [ [ ] for i in range ( n ) ]
-    i , j , k , L = 0 , 0 , 0 , 0
+    C = [ 0 ] * n
+    P = [ True for n in range ( n ) ]
+    i , j , k , L = str.split ( ' ' )
     for i in range ( n ) :
         P [ i ] [ i ] = True
-    for L in range ( 2 , n + 1 ) :
+    for L in range ( 2 , n ) :
         for i in range ( n - L + 1 ) :
             j = i + L - 1
             if L == 2 :
@@ -49,7 +49,7 @@ def f_filled ( str ) :
         if P [ 0 ] [ i ] == True :
             C [ i ] = 0
         else :
-            C [ i ] = int ( P [ i ] [ j ] )
+            C [ i ] = int ( str )
             for j in range ( i ) :
                 if P [ j + 1 ] [ i ] == True and 1 + C [ j ] < C [ i ] :
                     C [ i ] = 1 + C [ j ]

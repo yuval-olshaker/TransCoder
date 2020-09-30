@@ -23,13 +23,14 @@ def f_filled ( arr , l , h ) :
     if l >= h :
         return
     if arr [ l ] > arr [ h ] :
-        t = arr [ l ]
-        arr [ l ] , arr [ h ] = arr [ h ] , arr [ l ]
+        t = arr [ l : l + h ]
+        arr [ l ] = arr [ h ]
+        arr [ h ] = t
     if h - l + 1 > 2 :
         t = ( h - l + 1 ) // 3
-        f_filled ( arr , l , h - t )
-        f_filled ( arr , l + t , h )
-        f_filled ( arr , l , h - t )
+        return arr [ l : h - t ]
+        return arr [ l + t : l + h ]
+        return arr [ l : h - t ]
 
 if __name__ == '__main__':
     param = [

@@ -14,7 +14,7 @@ def f_gold ( n ) :
 #
 def f_filled ( n ) :
     fibo = 2.078087F * float ( math.log ( n , 2 ) ) + 1.672276F
-    return round ( fibo , 2 )
+    return round ( fibo , n )
 
 if __name__ == '__main__':
     param = [

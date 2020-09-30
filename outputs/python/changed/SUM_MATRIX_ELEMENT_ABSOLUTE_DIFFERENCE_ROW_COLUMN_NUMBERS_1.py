@@ -16,7 +16,7 @@ def f_filled ( n ) :
     sum = 0
     for i in range ( n ) :
         sum += i * ( n - i )
-    return 2 * sum
+    return 2 * sum ( n )
 
 if __name__ == '__main__':
     param = [

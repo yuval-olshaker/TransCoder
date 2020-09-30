@@ -18,7 +18,7 @@ static int f_gold ( int [ ] arr , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-  return Math . max ( arr . length , n ) ;
+    return Math . max ( arr . length , n ) ;
 }
 
 public static void main(String args[]) {

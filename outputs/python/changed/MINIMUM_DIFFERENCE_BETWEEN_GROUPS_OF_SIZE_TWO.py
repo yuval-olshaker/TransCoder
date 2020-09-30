@@ -20,13 +20,13 @@ def f_gold ( a , n ) :
 
 #
 def f_filled ( a , n ) :
-    a.sort ( )
-    i , j = 0 , n
-    s = [ ]
+    np.sort ( a )
+    i , j = a
+    s = Vector ( )
     for i , j in enumerate ( a ) :
-        s.append ( ( i , j ) )
-    mini = min ( s )
-    maxi = max ( s )
+        s.append ( ( a [ i ] + a [ j ] ) for i , j in zip ( range ( n ) , range ( n ) ) )
+    mini = min ( s for s in a if s != '' )
+    maxi = max ( s for s in a if s != 0 )
     return abs ( maxi - mini )
 
 if __name__ == '__main__':

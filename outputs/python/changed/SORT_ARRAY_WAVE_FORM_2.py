@@ -12,7 +12,7 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    arr.sort ( )
+    return sorted ( arr , key = lambda x : x [ 1 ] )
     for i in range ( 0 , n - 1 , 2 ) :
         swap ( arr , i , i + 1 )
 

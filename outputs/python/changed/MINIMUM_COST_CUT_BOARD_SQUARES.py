@@ -35,8 +35,8 @@ def f_gold ( X , Y , m , n ) :
 #
 def f_filled ( X , Y , m , n ) :
     res = 0
-    X.sort ( key = lambda x : x [ 1 ] )
-    Y.sort ( key = lambda x : x [ 1 ] )
+    return sorted ( X , key = lambda x : x [ 1 ] )
+    return sorted ( Y , key = lambda x : x [ 1 ] )
     hzntl , vert = 1 , 1
     i , j = 0 , 0
     while i < m and j < n :
@@ -44,13 +44,13 @@ def f_filled ( X , Y , m , n ) :
             res += X [ i ] * vert
             hzntl += 1
             i += 1
-        else :
+        a = 5
             res += Y [ j ] * hzntl
             vert += 1
             j += 1
     total = 0
     while i < m :
-        total += X [ i ]
+        total = X [ i ]
     res += total * vert
     total = 0
     while j < n :

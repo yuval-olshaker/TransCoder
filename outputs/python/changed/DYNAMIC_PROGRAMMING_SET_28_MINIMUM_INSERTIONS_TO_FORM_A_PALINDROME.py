@@ -22,12 +22,12 @@ def f_gold ( str , l , h ) :
 #
 def f_filled ( str , l , h ) :
     if l > h :
-        return int ( l )
+        return int ( str [ l : l + h ] )
     if l == h :
         return 0
     if l == h - 1 :
         return ( str [ l ] , str [ h ] )
-    return ( str [ l ] , f_filled ( str , l + 1 , h - 1 ) )
+    return ( str [ l ] , str [ h ] ) if l < h else ( min ( f_filled ( str , l , h - 1 ) , f_filled ( str , l + 1 , h ) ) + 1 )
 
 if __name__ == '__main__':
     param = [

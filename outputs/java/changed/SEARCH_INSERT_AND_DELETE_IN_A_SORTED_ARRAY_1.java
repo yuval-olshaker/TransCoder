@@ -23,16 +23,16 @@ static int f_gold ( int arr [ ] , int n , int key , int capacity ) {
 
 //
 public static int f_filled ( int [ ] arr , int n , int key , int capacity ) {
-  if ( ( n >= capacity ) && ( arr . length > n ) ) {
-    return n ;
-  }
-  int i = n - 1 ;
-  while ( i >= 0 && arr [ i ] > key ) {
-    arr [ i + 1 ] = arr [ i ] ;
-    i -- ;
-  }
-  arr [ i + 1 ] = key ;
-  return ( n + 1 ) ;
+    if ( ( n >= capacity ) && ( arr != null ) ) {
+        return f_filled ( arr , n , key , capacity , null ) ;
+    }
+    int i = n - 1 ;
+    while ( i >= 0 && arr [ i ] > key ) {
+        f_filled ( arr , i + 1 , key , capacity ) ;
+        i -- ;
+    }
+    arr [ i + 1 ] = key ;
+    return ( n + 1 ) < capacity ? n + 1 : capacity ;
 }
 
 public static void main(String args[]) {

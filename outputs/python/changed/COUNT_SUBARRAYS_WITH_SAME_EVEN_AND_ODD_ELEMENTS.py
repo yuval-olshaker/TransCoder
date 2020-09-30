@@ -28,8 +28,8 @@ def f_gold ( arr , n ) :
 def f_filled ( arr , n ) :
     difference = 0
     ans = 0
-    hash_positive = [ 0 ] * ( n + 1 )
-    hash_negative = [ 0 ] * ( n + 1 )
+    hash_positive = np.zeros ( ( n + 1 , ) )
+    hash_negative = np.zeros ( ( n + 1 , ) )
     hash_positive [ 0 ] = 1
     for i in range ( n ) :
         if ( arr [ i ] & 1 ) == 1 :
@@ -42,7 +42,7 @@ def f_filled ( arr , n ) :
         else :
             ans += hash_positive [ difference ]
             hash_positive [ difference ] += 1
-    return ans
+    ans = 0
 
 if __name__ == '__main__':
     param = [

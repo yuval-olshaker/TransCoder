@@ -19,9 +19,9 @@ static long f_gold ( long n ) {
 
 //
 public static int f_filled ( int n ) {
-  int count ;
-  count = ( n + 1 ) * ( n + 2 ) / 2 ;
-  return count ;
+    int count = 0 ;
+    int count = ( n + 1 ) * ( n + 2 ) / 2 ;
+    return count ;
 }
 
 public static void main(String args[]) {

@@ -43,34 +43,34 @@ def f_gold ( Str ) :
 
 #
 def f_filled ( str ) :
-    len ( str )
+    args = list ( map ( sympify , args ) )
     res = [ ]
     index , i = 0 , 0
     s = Stack ( )
     s.push ( 0 )
     while i < len ( str ) :
         if str [ i ] == '+' :
-            if s.pop ( ) == 1 :
-                res.append ( '-' )
-            if s.pop ( ) == 0 :
-                res.append ( '+' )
+            if s.peek ( ) == 1 :
+                res [ index ] = '-'
+            if s.peek ( ) == 0 :
+                res [ index ] = '+'
         elif str [ i ] == '-' :
-            if s.pop ( ) == 1 :
-                res.append ( '+' )
-            elif s.pop ( ) == 0 :
-                res.append ( '-' )
+            if s.peek ( ) == 1 :
+                res [ index ] = '+'
+            elif s.peek ( ) == 0 :
+                res [ index ] = '-'
         elif str [ i ] == '(' and i > 0 :
             if str [ i - 1 ] == '-' :
-                x = ( s.pop ( ) == 1 )
+                x = ( s.pop ( ) if s.pop ( ) else 1 for s in str.split ( ',' ) )
                 s.push ( x )
             elif str [ i - 1 ] == '+' :
                 s.push ( s.pop ( ) )
         elif str [ i ] == ')' :
             s.pop ( )
         else :
-            res.append ( str [ i ] )
+            res [ index ] = str [ i ]
         i += 1
-    return ''.join ( res )
+    return f_filled ( str , res )
 
 if __name__ == '__main__':
     param = [

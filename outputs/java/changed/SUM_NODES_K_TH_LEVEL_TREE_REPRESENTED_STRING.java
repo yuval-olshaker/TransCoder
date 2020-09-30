@@ -29,19 +29,23 @@ static int f_gold ( String tree , int k ) {
 
 //
 public static int f_filled ( String tree , int k ) {
-  int level = - 1 ;
-  int sum = 0 ;
-  int n = tree . length ( ) ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    if ( ( tree . charAt ( i ) == '(' ) && ( tree . charAt ( i + 1 ) == ')' ) ) level ++ ;
-    else if ( ( tree . charAt ( i ) == ')' ) && ( tree . charAt ( i + 1 ) == '(' ) ) level -- ;
-    else {
-      if ( ( level == k ) && ( tree . charAt ( i + 1 ) == '(' ) ) sum += ( Character . digit ( tree . charAt ( i + 1 ) , 16 ) - '0' ) ;
+    int level = - 1 ;
+    int sum = 0 ;
+    int n = tree . size ( ) ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        if ( ( tree . charAt ( i ) == '(' ) ) {
+            level ++ ;
+        }
+        else if ( ( tree . charAt ( i ) == ')' ) ) {
+            level -- ;
+        }
+        else {
+            if ( ( level == k ) && ( level == 0 ) ) {
+                sum += ( ( char ) tree . charAt ( i ++ ) - '0' ) ;
+            }
+        }
     }
-  }
-  return sum ;
+    return sum ;
 }
 
 public static void main(String args[]) {

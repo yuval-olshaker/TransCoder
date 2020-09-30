@@ -33,24 +33,25 @@ def f_gold ( str1 , str2 ) :
 def f_filled ( str1 , str2 ) :
     if len ( str1 ) > len ( str2 ) :
         t = str1
-        str1 , str2 = str2 , t
+        str1 = str2
+        str2 = t
     str = ""
     n1 , n2 = len ( str1 ) , len ( str2 )
-    str1 = [ str [ i ] - '0' for i in range ( n1 ) ]
-    str2 = [ str [ i ] - '0' for i in range ( n2 ) ]
+    str1 = [ str ( x ) for x in str1 ]
+    str2 = [ str ( x ) for x in str2 ]
     carry = 0
     for i in range ( n1 ) :
-        sum = ( int ( str1 [ i ] - '0' ) + int ( str2 [ i ] - '0' ) + carry )
+        sum = ( ( int ( str1 [ i ] - '0' ) + int ( str2 [ i ] - '0' ) + carry ) for i in range ( len ( str1 ) ) )
         str += chr ( sum % 10 + '0' )
         carry = sum / 10
-    for i in range ( n1 , n2 ) :
-        sum = ( int ( str2 [ i ] - '0' ) + carry )
+    for i in n1 , n2 :
+        sum = ( ( int ( str2 [ i ] - '0' ) + carry ) for i in range ( len ( str2 ) ) )
         str += chr ( sum % 10 + '0' )
         carry = sum / 10
     if carry > 0 :
         str += chr ( carry + '0' )
-    str = "".join ( str )
-    return str
+    str = [ str ( i ) for i in str1 ]
+    return str ( str1 )
 
 if __name__ == '__main__':
     param = [

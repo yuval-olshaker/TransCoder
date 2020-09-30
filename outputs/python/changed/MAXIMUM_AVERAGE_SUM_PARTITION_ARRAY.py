@@ -24,19 +24,19 @@ def f_gold ( A , K ) :
 #
 def f_filled ( A , K ) :
     n = len ( A )
-    pre_sum = np.zeros ( ( n + 1 , ) )
+    pre_sum = np.zeros ( ( n + 1 , ) , dtype = np.float64 )
     pre_sum [ 0 ] = 0
     for i in range ( n ) :
         pre_sum [ i + 1 ] = pre_sum [ i ] + A [ i ]
-    dp = np.zeros ( ( n , ) )
+    dp = np.zeros ( ( n , K ) )
     sum = 0
     for i in range ( n ) :
         dp [ i ] = ( pre_sum [ n ] - pre_sum [ i ] ) / ( n - i )
     for k in range ( K - 1 ) :
         for i in range ( n ) :
             for j in range ( i + 1 , n ) :
-                dp [ i ] = max ( dp [ i ] , ( pre_sum [ j ] - pre_sum [ i ] ) / ( j - i ) + dp [ j ] )
-    return dp
+                dp [ i ] = max ( dp [ i ] , ( pre_sum [ j ] - pre_sum [ i ] ) / ( j - i ) + dp [ j ] for j in A )
+    return dp [ 0 ]
 
 if __name__ == '__main__':
     param = [

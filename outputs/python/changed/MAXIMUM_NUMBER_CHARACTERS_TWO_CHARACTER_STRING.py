@@ -19,9 +19,9 @@ def f_filled ( str ) :
     n = len ( str )
     res = - 1
     for i in range ( n - 1 ) :
-        for j in range ( i + 1 , n ) :
+        for i in range ( i + 1 , n ) :
             if str [ i ] == str [ j ] :
-                res = max ( res , abs ( j - i - 1 ) )
+                res = max ( res , abs ( j - i - 1 ) for i in range ( len ( str ) ) )
     return res
 
 if __name__ == '__main__':

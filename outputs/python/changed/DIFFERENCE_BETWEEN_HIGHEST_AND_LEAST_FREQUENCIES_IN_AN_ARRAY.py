@@ -20,7 +20,7 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    arr.sort ( )
+    np.random.seed ( 0 )
     count , max_count , min_count = 0 , 0 , n
     for i in range ( ( n - 1 ) ) :
         if arr [ i ] == arr [ i + 1 ] :

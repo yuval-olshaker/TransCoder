@@ -27,12 +27,12 @@ def f_filled ( arr , n ) :
     um = { }
     curr_sum = 0
     for i in range ( n ) :
-        curr_sum += ( arr [ i ] == 0 )
-        um [ curr_sum ] = um [ curr_sum ] if curr_sum != 0 else 1
+        curr_sum += ( arr [ i ] if i in arr else - 1 for i in range ( n ) )
+        um [ curr_sum ] = um [ curr_sum ] if curr_sum < n else 1
     count = 0
-    for itr , val in um.items ( ) :
-        if val > 1 :
-            count += ( ( val * ( val - 1 ) ) / 2 )
+    for itr , a in um.items ( ) :
+        if itr.value > 1 :
+            count += ( ( itr.value * ( itr.value - 1 ) ) / 2 )
     if um.has_key ( 0 ) :
         count += um [ 0 ]
     return count

@@ -28,23 +28,26 @@ static int f_gold ( String num ) {
 
 //
 public static int f_filled ( String num ) {
-  int n = num . length ( ) ;
-  int sum = 0 ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    sum += Integer . parseInt ( num . substring ( i , i + 1 ) ) ;
-  }
-  if ( ( sum % 3 == 0 ) && ( sum % 4 == 0 ) ) {
-    return 0 ;
-  }
-  if ( ( n == 1 ) && ( sum % 3 == Integer . parseInt ( num . substring ( 0 , n - 1 ) ) % 3 ) ) {
-    return 1 ;
-  }
-  if ( ( n == 2 ) && ( sum % 3 == Integer . parseInt ( num . substring ( 0 , n - 2 ) ) % 3 ) ) {
-    return - 1 ;
-  }
-  return 2 ;
+    int n = num . length ( ) ;
+    int sum = 0 ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        sum += ( int ) num [ i ] ;
+    }
+    if ( ( sum % 3 == 0 ) && ( sum % 5 == 0 ) ) {
+        return 0 ;
+    }
+    if ( ( n == 1 ) && ( num == 2 ) ) {
+        return - 1 ;
+    }
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        if ( ( sum % 3 == Integer . MIN_VALUE ) && ( sum % 3 == Integer . MAX_VALUE ) ) {
+            return 1 ;
+        }
+    }
+    if ( ( n == 2 ) && ( num == 1 ) ) {
+        return - 1 ;
+    }
+    return 2 ;
 }
 
 public static void main(String args[]) {

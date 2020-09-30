@@ -20,13 +20,13 @@ def f_gold ( n ) :
 
 #
 def f_filled ( n ) :
-    x , y_count , res = 0 , 0 , 0
-    for y_count in range ( 0 , y_count * y_count , n ) :
+    x , y_count , res = f_filled ( n )
+    for y_count in range ( 0 , y_count * y_count ) :
         pass
-    while y_count != 0 :
-        res += y_count
+    while yCount != 0 :
+        res += yCount
         x += 1
-        while y_count != 0 and ( x * x + ( y_count - 1 ) * ( y_count - 1 ) >= n ) :
+        while y_count != 0 and ( x ** 2 + ( y_count - 1 ) ** 2 >= n ) :
             y_count -= 1
     return res
 

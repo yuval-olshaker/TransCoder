@@ -18,9 +18,9 @@ def f_gold ( num ) :
 
 #
 def f_filled ( num ) :
-    len ( num )
+    _ , _ , _ , _ , _ , _ , _ , _ , _ , _ , _ , _ , _ , _ , _ , _ , _ , _ , _ , _ , _ , _ , _ , _ , _ , _ , _ , _ , _ , _ , _
     count_zero = 0
-    ch = None
+    ch = num [ 0 ]
     for i in range ( 1 , len ( num ) ) :
         ch = num [ i ]
         if ch == '0' :

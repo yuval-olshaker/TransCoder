@@ -33,21 +33,18 @@ def f_filled ( a , b ) :
         return b
     if b == 0 :
         return a
-    k = 0
-    for ( ( a | b ) & 1 ) == 0 :
+    pass
+    for k in range ( 0 , ( ( a | b ) & 1 ) ) :
         a >>= 1
         b >>= 1
     while ( a & 1 ) == 0 :
         a >>= 1
-    do :
-        while ( b & 1 ) == 0 :
-            b >>= 1
-        if a > b :
-            temp = a
-            a , b = b , temp
-        b = ( b - a )
-    while b != 0 :
-        return a << k
+b = ( b - a )
+pass
+while b != 0 :
+    pass
+return a << k
+pass
 
 if __name__ == '__main__':
     param = [

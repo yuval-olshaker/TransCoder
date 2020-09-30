@@ -23,12 +23,23 @@ static int f_gold ( int arr [ ] , int low , int high , int x ) {
 
 //
 public static int f_filled ( int [ ] arr , int low , int high , int x ) {
-  if ( ( low > high ) && ( x >= arr [ high ] ) ) return - 1 ;
-  if ( ( x >= arr [ high ] ) && ( x < arr [ low ] ) ) return high ;
-  int mid = ( int ) ( ( low + high ) / 2 ) ;
-  if ( ( arr [ mid ] == x ) && ( arr [ mid - 1 ] <= x && x < arr [ mid ] ) ) return mid - 1 ;
-  if ( ( x < arr [ mid ] ) && ( x > arr [ mid ] ) ) return f_filled ( arr , low , mid - 1 , x ) ;
-  return f_filled ( arr , mid + 1 , high , x ) ;
+    if ( ( low > high ) && ( x > 0 ) ) {
+        return - 1 ;
+    }
+    if ( ( x >= arr [ high ] ) && ( x <= arr [ low ] ) ) {
+        return high ;
+    }
+    int mid = ( int ) ( ( low + high ) / 2 ) ;
+    if ( ( arr [ mid ] == x ) && ( arr [ high ] == x ) ) {
+        return mid ;
+    }
+    if ( ( mid > 0 && arr [ mid - 1 ] <= x && x < arr [ mid ] ) || ( mid > 0 && arr [ mid - 1 ] > x && x < arr [ mid ] ) ) {
+        return mid - 1 ;
+    }
+    if ( ( x < arr [ mid ] ) && ( x > arr [ high ] ) ) {
+        return f_filled ( arr , low , mid - 1 , x ) ;
+    }
+    return f_filled ( arr , mid + 1 , high , x ) ;
 }
 
 public static void main(String args[]) {

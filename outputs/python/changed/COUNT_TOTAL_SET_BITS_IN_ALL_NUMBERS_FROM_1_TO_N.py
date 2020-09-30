@@ -25,11 +25,11 @@ def f_gold ( n ) :
 def f_filled ( n ) :
     i = 0
     ans = 0
-    while ( 1 << i ) <= n :
+    while ( 1 << i ) <= n : a = 5
         k = False
         change = 1 << i
         for j in range ( 0 , n ) :
-            if k == True :
+            if k == True : a = 5
                 ans += 1
             else :
                 ans += 0

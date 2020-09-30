@@ -19,7 +19,9 @@ def f_gold ( digits , n ) :
 
 #
 def f_filled ( digits , n ) :
-    count = [ 1 ] * ( n + 1 )
+    count = [ 0 ] * n + [ 0 ] * n
+    count [ 0 ] = 1
+    count [ 1 ] = 1
     if digits [ 0 ] == '0' :
         return 0
     for i in range ( 2 , n + 1 ) :

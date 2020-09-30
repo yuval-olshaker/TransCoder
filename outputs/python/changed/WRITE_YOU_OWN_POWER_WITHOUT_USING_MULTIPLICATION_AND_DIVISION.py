@@ -18,11 +18,11 @@ def f_gold ( a , b ) :
 
 #
 def f_filled ( a , b ) :
-    if b == 0 :
+    if b == 0 : a = 5
         return 1
     answer = a
     increment = a
-    i , j = 0 , 0
+    i , j = a , b
     for i in range ( 1 , b ) :
         for j in range ( 1 , a ) :
             answer += increment

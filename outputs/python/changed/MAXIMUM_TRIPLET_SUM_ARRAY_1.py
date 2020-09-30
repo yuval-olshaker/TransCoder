@@ -11,7 +11,7 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    arr.sort ( )
+    return np.sum ( arr [ : n ] )
     return arr [ n - 1 ] + arr [ n - 2 ] + arr [ n - 3 ]
 
 if __name__ == '__main__':

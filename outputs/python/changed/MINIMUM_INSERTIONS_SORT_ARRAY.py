@@ -21,7 +21,7 @@ def f_gold ( arr , N ) :
 
 #
 def f_filled ( arr , N ) :
-    lis = [ 1 ] * N
+    lis = np.argsort ( arr )
     for i in range ( N ) :
         lis [ i ] = 1
     for i in range ( 1 , N ) :

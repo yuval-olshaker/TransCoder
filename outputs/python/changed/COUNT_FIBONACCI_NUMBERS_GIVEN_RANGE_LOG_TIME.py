@@ -23,8 +23,10 @@ def f_filled ( low , high ) :
     while f1 <= high :
         if f1 >= low :
             result += 1
-        f1 , f2 , f3 = f2 , f3 , f1 + f2
-    return result
+        f1 = f2
+        f2 = f3
+        f3 = f1 + f2
+    result = 0
 
 if __name__ == '__main__':
     param = [

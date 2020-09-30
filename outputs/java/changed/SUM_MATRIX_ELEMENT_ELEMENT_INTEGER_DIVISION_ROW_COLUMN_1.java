@@ -30,27 +30,24 @@ static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-  int ans = 0 ;
-  int temp = 0 ;
-  for ( int i = 1 ;
-  i <= n ;
-  i ++ ) {
-    if ( temp < n ) {
-      temp = i - 1 ;
-      int num = 1 ;
-      while ( temp < n ) {
-        if ( temp + i <= n ) {
-          ans += i * num ;
+    int ans = 0 ;
+    for ( int i = 1 ;  i <= n ;  i ++ ) {
+        if ( temp < n ){
+            int temp = i - 1 ;
+            int num = 1 ;
+            while ( temp < n ) {
+                if ( temp + i <= n ){
+                    ans += i * num ;
+                }
+                if ( n > 0 ) {
+                    ans += ( n - temp ) * num ;
+                }
+                temp += i ;
+                num ++ ;
+            }
         }
-        else {
-          ans += ( n - temp ) * num ;
-        }
-        temp += i ;
-        num ++ ;
-      }
     }
-  }
-  return ans ;
+    return ans ;
 }
 
 public static void main(String args[]) {

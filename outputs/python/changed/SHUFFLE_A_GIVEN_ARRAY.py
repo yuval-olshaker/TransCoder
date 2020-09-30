@@ -17,7 +17,7 @@ def f_gold ( arr , n ) :
 def f_filled ( arr , n ) :
     r = random.Random ( )
     for i in range ( n - 1 , 0 , - 1 ) :
-        j = r.randint ( i + 1 , i + 1 )
+        j = r.randint ( i + 1 , n )
         temp = arr [ i ]
         arr [ i ] = arr [ j ]
         arr [ j ] = temp

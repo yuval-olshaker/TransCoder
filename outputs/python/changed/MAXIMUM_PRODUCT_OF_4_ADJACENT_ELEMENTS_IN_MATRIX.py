@@ -29,7 +29,7 @@ def f_filled ( arr , n ) :
     for i in range ( n ) :
         for j in range ( n ) :
             if ( j - 3 ) >= 0 :
-                result = arr [ i ] [ j ] * arr [ i ] [ j - 1 ] * arr [ i ] [ j - 2 ] * arr [ i ] [ j - 3 ]
+                result = arr [ i , j ] * arr [ i , j - 1 ] * arr [ i , j - 2 ] * arr [ i , j - 3 ]
                 if max < result :
                     max = result
             if ( i - 3 ) >= 0 :

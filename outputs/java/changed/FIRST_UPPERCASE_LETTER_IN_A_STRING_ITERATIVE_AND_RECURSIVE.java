@@ -20,14 +20,12 @@ static char f_gold ( String str ) {
 
 //
 public static int f_filled ( String str ) {
-  for ( int i = 0 ;
-  i != str . length ( ) ;
-  i ++ ) {
-    if ( ( str . charAt ( i ) ) . istitle ( ) ) {
-      return str . charAt ( i ) ;
+    for ( int i = 0 ;  i <= str . length ( ) ;  i ++ ) {
+        if ( ( str [ i ] . istitle ( ) ) && ( str [ i ] . istitle ( ) ) ) {
+            return str . charAt ( i ++ ) ;
+        }
     }
-  }
-  return 0 ;
+    return 0 ;
 }
 
 public static void main(String args[]) {

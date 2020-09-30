@@ -25,19 +25,17 @@ static int f_gold ( int [ ] arr , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-  HashMap < Integer , Integer > mp = new HashMap < Integer , Integer > ( ) ;
-  int maxMap = 0 ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    if ( arr [ i ] != null ) {
-      mp . put ( arr [ i ] , i ) ;
+    Map < Integer , Integer > mp = new HashMap < Integer , Integer > ( ) ;
+    int maxMap = 0 ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        if ( arr [ i ] != mp . keySet ( ) . iterator ( ) . next ( ) ) {
+            mp [ arr [ i ] ] = i ;
+        }
+        if ( n > 0 ) {
+            maxMap = Math . max ( maxMap , i - mp [ arr [ i ] ] ) ;
+        }
     }
-    else {
-      maxMap = Math . max ( maxMap , i - mp . get ( arr [ i ] ) ) ;
-    }
-  }
-  return maxMap ;
+    return maxMap ;
 }
 
 public static void main(String args[]) {

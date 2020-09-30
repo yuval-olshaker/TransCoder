@@ -26,7 +26,7 @@ def f_filled ( A , N , M ) :
                 sum = A [ i ] + A [ j ] + A [ k ]
                 if sum % M == 0 :
                     ans += 1
-    return ans
+    ans = 0
 
 if __name__ == '__main__':
     param = [

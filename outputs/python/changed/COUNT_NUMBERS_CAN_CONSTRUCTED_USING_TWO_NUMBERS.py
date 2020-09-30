@@ -23,18 +23,18 @@ def f_gold ( n , x , y ) :
 
 #
 def f_filled ( n , x , y ) :
-    arr = [ ]
+    arr = np.zeros ( ( n + 1 , ) , dtype = bool )
     if x <= n :
-        arr.append ( True )
+        arr [ x ] = True
     if y <= n :
-        arr.append ( True )
+        arr [ y ] = True
     result = 0
-    for i in range ( min ( x , y ) , n + 1 ) :
+    for i in range ( min ( x , y ) , n ) :
         if arr [ i ] :
             if i + x <= n :
-                arr.append ( True )
+                arr [ i + x ] = True
             if i + y <= n :
-                arr.append ( True )
+                arr [ i + y ] = True
             result += 1
     return result
 

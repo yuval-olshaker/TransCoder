@@ -34,11 +34,11 @@ def f_filled ( arr , arr_size ) :
     for i in range ( 1 , arr_size ) :
         if arr [ i ] > first :
             first = arr [ i ]
-    second = int ( first )
+    second = int ( arr [ 0 ] )
     for i in range ( arr_size ) :
         if arr [ i ] > second and arr [ i ] < first :
             second = arr [ i ]
-    third = int ( second )
+    third = int ( arr [ 0 ] )
     for i in range ( arr_size ) :
         if arr [ i ] > third and arr [ i ] < second :
             third = arr [ i ]

@@ -30,21 +30,21 @@ def f_gold ( pages , n , capacity ) :
 #
 def f_filled ( pages , n , capacity ) :
     s = set ( capacity )
-    indexes = queue.Queue ( )
+    indexes = Queue ( )
     page_faults = 0
     for i in range ( n ) :
         if len ( s ) < capacity :
-            if not s.issubset ( pages ) :
-                s.add ( pages [ i ] )
+            if not s.has_key ( pages [ i ] ) :
+                s.append ( pages [ i ] )
                 page_faults += 1
-                indexes.add ( pages [ i ] )
+                indexes.append ( pages [ i ] )
         else :
-            if not s.issubset ( pages ) :
+            if not s.has_key ( pages [ i ] ) :
                 val = indexes.pop ( )
-                indexes.clear ( )
-                s.remove ( val )
-                s.add ( pages [ i ] )
-                indexes.add ( pages [ i ] )
+                indexes.poll ( )
+                s.pop ( val )
+                s.append ( pages [ i ] )
+                indexes.append ( pages [ i ] )
                 page_faults += 1
     return page_faults
 

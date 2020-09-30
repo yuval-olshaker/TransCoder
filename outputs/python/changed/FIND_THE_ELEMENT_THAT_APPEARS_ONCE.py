@@ -26,7 +26,7 @@ def f_filled ( arr , n ) :
         common_bit_mask = ~ ( ones & twos )
         ones &= common_bit_mask
         twos &= common_bit_mask
-    return ones , twos
+    return ones
 
 if __name__ == '__main__':
     param = [

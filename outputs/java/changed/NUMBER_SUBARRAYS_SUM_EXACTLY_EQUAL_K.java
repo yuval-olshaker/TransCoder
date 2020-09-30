@@ -30,18 +30,20 @@ static int f_gold ( int arr [ ] , int n , int sum ) {
 
 //
 public static int f_filled ( int [ ] arr , int n , int Sum ) {
-  TreeMap < Integer , Integer > prevSum = new TreeMap < Integer , Integer > ( ) ;
-  int res = 0 ;
-  int currsum = 0 ;
-  for ( int i = 0 ;
-  i <= n ;
-  i ++ ) {
-    currsum += arr [ i ] ;
-    if ( currsum == Sum ) res ++ ;
-    if ( ( currsum - Sum ) < prevSum . size ( ) ) res += prevSum . get ( currsum - Sum ) ;
-    prevSum . put ( currsum , currsum ) ;
-  }
-  return res ;
+    int [ ] prevSum = new TreeMap < Integer , Integer > ( ) ;
+    int res = 0 ;
+    int currsum = 0 ;
+    for ( int i = 0 ;  i <= n ;  i ++ ) {
+        currsum += arr [ i ] ;
+        if ( currsum == Sum ) {
+            res ++ ;
+        }
+        if ( ( currsum - Sum ) == prevSum ) {
+            res += prevSum [ currsum - Sum ] ;
+        }
+        prevSum [ currsum ] ++ ;
+    }
+    return res ;
 }
 
 public static void main(String args[]) {

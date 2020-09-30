@@ -24,14 +24,14 @@ def f_gold ( string ) :
 def f_filled ( s ) :
     Stack = Stack ( )
     str = s.split ( )
-    for ch in str :
+    for ch in str ( s ) :
         if ch == ')' :
             top = Stack.top ( )
             Stack.pop ( )
             elementsInside = 0
             while top != '(' :
-                elementsInside += 1
-                top = Stack.top ( )
+                elements_in_side += 1
+                top = Stack ( )
                 Stack.pop ( )
             if elementsInside < 1 :
                 return True

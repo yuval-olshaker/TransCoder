@@ -31,11 +31,11 @@ def f_filled ( n , index , sum , M , arr , dp ) :
         if dp [ index ] [ sum ] == 0 :
             return False
         return True
-    placeAdd = f_filled ( n , index + 1 , sum + arr [ index ] , M , arr , dp )
-    placeMinus = f_filled ( n , index + 1 , sum - arr [ index ] , M , arr , dp )
-    res = ( placeAdd or placeMinus )
-    dp [ index ] [ sum ] = ( res )
-    return res
+    place_add = is_possible ( n , index + 1 , sum + arr [ index ] , M , arr , dp )
+    place_minus = is_possible ( n , index + 1 , sum - arr [ index ] , M , arr , dp )
+    res = ( place_add or place_minus )
+    dp [ index ] [ sum ] = ( res ) if res else 1
+    res = False
 
 if __name__ == '__main__':
     param = [

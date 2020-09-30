@@ -24,11 +24,11 @@ def f_filled ( arr , n ) :
     for i in range ( n ) :
         sum += arr [ i ]
         while sum >= 180 :
-            ans = min ( ans , 2 * abs ( 180 - sum ) )
+            ans = min ( ans , 2 * abs ( 180 - sum ( arr ) ) )
             sum -= arr [ l ]
             l += 1
-        ans = min ( ans , 2 * abs ( 180 - sum ) )
-    return ans
+        ans = min ( ans , 2 * abs ( 180 - sum ( arr ) ) )
+    ans = 0
 
 if __name__ == '__main__':
     param = [

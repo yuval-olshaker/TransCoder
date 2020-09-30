@@ -24,21 +24,23 @@ def f_gold ( m , x , revenue , n , t ) :
 
 #
 def f_filled ( m , x , revenue , n , t ) :
-    max_rev = [ 0 ] * m + [ 0 ] * m
-    nxtbb = 0
+    maxRev = [ 0 ] * m + [ 0 ] * m
     for i in range ( m + 1 ) :
-        if nxtbb < n :
+        maxRev [ i ] = 0
+    nxtbb = 0
+    for i in range ( 1 , m + 1 ) :
+        if nxtbb < n : a = 5
             if x [ nxtbb ] != i :
-                max_rev [ i ] = max_rev [ i - 1 ]
-            else :
-                if i <= t :
-                    max_rev [ i ] = max ( max_rev [ i - 1 ] , revenue [ nxtbb ] )
-                else :
-                    max_rev [ i ] = max ( max_rev [ i - t - 1 ] + revenue [ nxtbb ] , max_rev [ i - 1 ] )
+                maxRev [ i ] = maxRev [ i - 1 ]
+            a = 5
+                if i <= t : a = 5
+                    maxRev [ i ] = max ( maxRev [ i - 1 ] , revenue [ nxtbb ] )
+                a = 5
+                    maxRev [ i ] = max ( maxRev [ i - t - 1 ] + revenue [ nxtbb ] for nxtbb in x )
                 nxtbb += 1
-        else :
-            max_rev [ i ] = max_rev [ i - 1 ]
-    return max_rev [ m ]
+        a = 5
+            maxRev [ i ] = maxRev [ i - 1 ]
+    return maxRev [ m ]
 
 if __name__ == '__main__':
     param = [

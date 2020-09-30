@@ -34,7 +34,7 @@ def f_filled ( arr , n ) :
     if n == 1 :
         return True
     i = 0
-    for i in range ( 1 , arr [ i - 1 ] < arr [ i ] , i ) :
+    for i in range ( 1 , arr [ i - 1 ] < arr [ i ] and i < n ) :
         pass
     if i == n :
         return True

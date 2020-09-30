@@ -33,24 +33,42 @@ static boolean f_gold ( char [ ] str ) {
 
 //
 public static boolean f_filled ( String string ) {
-  int length = string . length ( ) ;
-  if ( string . charAt ( 0 ) < 'A' || string . charAt ( 0 ) > 'Z' ) return false ;
-  if ( string . charAt ( length - 1 ) != '.' ) return false ;
-  int prev_state = 0 ;
-  int curr_state = 0 ;
-  int index = 1 ;
-  while ( ( string . charAt ( index ) ) != ' ' ) {
-    if ( string . charAt ( index ) >= 'A' && string . charAt ( index ) <= 'Z' ) curr_state = 0 ;
-    else if ( string . charAt ( index ) == ' ' ) curr_state = 1 ;
-    else if ( string . charAt ( index ) >= 'a' && string . charAt ( index ) <= 'z' ) curr_state = 2 ;
-    else if ( string . charAt ( index ) == '.' ) curr_state = 3 ;
-    if ( prev_state == curr_state && curr_state != 2 ) return false ;
-    if ( prev_state == 2 && curr_state == 0 ) return false ;
-    if ( curr_state == 3 && prev_state != 1 ) return true ;
-    index ++ ;
-    prev_state = curr_state ;
-  }
-  return false ;
+    int length = string . length ( ) ;
+    if ( string . charAt ( 0 ) < 'A' || string . charAt ( 0 ) > 'Z' ) {
+        return false ;
+    }
+    if ( string . charAt ( length - 1 ) != '.' ){
+        return false ;
+    }
+    prev_state = 0 ;
+    currState = 0 ;
+    index = 1 ;
+    while ( ( string . charAt ( index ++ ) ) != ' ' ) {
+        if ( string . charAt ( index ) >= 'A' && string . charAt ( index ) <= 'Z' ) {
+            currState = 0 ;
+        }
+        else if ( string . charAt ( index ) == ' ' ) {
+            currState = 1 ;
+        }
+        if ( string . charAt ( index ) >= 'a' && string . charAt ( index ) <= 'z' ) {
+            currState = 2 ;
+        }
+        else if ( string . charAt ( index ) == '.' ) {
+            currState = 3 ;
+        }
+        if ( prev_state == currState && currState != 2 ) {
+            return false ;
+        }
+        if ( prev_state == 2 && curr_state == 0 ) {
+            return false ;
+        }
+        if ( currState == 3 && prev_state != 1 ) {
+            return f_filled ( string , false ) ;
+        }
+        index ++ ;
+        prev_state = currState ;
+    }
+    return false ;
 }
 
 public static void main(String args[]) {

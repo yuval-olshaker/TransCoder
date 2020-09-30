@@ -29,20 +29,25 @@ static int f_gold ( int a [ ] , int n , int k ) {
 
 //
 public static int f_filled ( int [ ] a , int n , int k ) {
-  if ( k >= n - 1 ) return n ;
-  int best = 0 ;
-  int times = 0 ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    if ( a [ i ] > best ) {
-      best = a [ i ] ;
-      if ( i == true ) times = 1 ;
+    if ( k >= n - 1 ){
+        return n ;
     }
-    else times ++ ;
-    if ( times >= k ) return best ;
-  }
-  return best ;
+    int best = 0 ;
+    int times = 0 ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        if ( a [ i ] > best ) a [ i ] = 5 ;
+            int best = a [ i ] ;
+            if ( i == true ){
+                times = 1 ;
+            }
+        else{
+            times ++ ;
+        }
+        if ( times >= k ){
+            return best ;
+        }
+    }
+    return best ;
 }
 
 public static void main(String args[]) {

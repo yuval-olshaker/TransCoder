@@ -19,7 +19,7 @@ def f_gold ( mat , N ) :
 
 #
 def f_filled ( mat , N ) :
-    r_xor , c_xor = 0 , 0
+    r_xor , c_xor = f_filled ( mat , N )
     max_xor = 0
     for i in range ( N ) :
         r_xor = 0

@@ -23,8 +23,8 @@ def f_filled ( str1 , str2 ) :
     n2 = len ( str2 )
     if n1 != n2 :
         return False
-    str1 = sorted ( str1 )
-    str2 = sorted ( str2 )
+    str1.sort ( )
+    str1.sort ( )
     for i in range ( n1 ) :
         if str1 [ i ] != str2 [ i ] :
             return False

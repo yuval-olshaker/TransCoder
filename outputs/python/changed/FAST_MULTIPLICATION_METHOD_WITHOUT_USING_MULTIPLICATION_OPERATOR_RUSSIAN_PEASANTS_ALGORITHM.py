@@ -17,7 +17,7 @@ def f_gold ( a , b ) :
 #
 def f_filled ( a , b ) :
     res = 0
-    while b :
+    while b > 0 :
         if ( b & 1 ) :
             res = res + a
         a = a << 1

@@ -13,7 +13,7 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    i = 0
+    pass
     for i in range ( n ) :
         if arr [ i ] == i :
             return i

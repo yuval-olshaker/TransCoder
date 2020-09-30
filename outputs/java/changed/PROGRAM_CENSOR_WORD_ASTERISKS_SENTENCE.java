@@ -29,21 +29,19 @@ static String f_gold ( String text , String word ) {
 
 //
 public static String f_filled ( String text , String word ) {
-  char [ ] wordArray = text . toCharArray ( ) ;
-  String result ;
-  char stars = '*' ;
-  int count = 0 ;
-  int index = 0 ;
-  for ( int i = 0 ;
-  i < wordArray . length ;
-  i ++ ) {
-    if ( wordArray [ i ] == word ) {
-      wordArray [ index ] = stars ;
+    String [ ] wordArray = text . split ( " " ) ;
+    String result = "" ;
+    String stars = "*" ;
+    int count = 0 ;
+    int index = 0 ;
+    for ( int i = 0 ;  i < wordList . length ;  i ++ ) {
+        if ( i == word ) {
+            wordList [ index ++ ] = stars ;
+        }
+        index ++ ;
     }
-    index ++ ;
-  }
-  result = new String ( wordArray ) ;
-  return result ;
+    String result = f_filled ( text , word ) ;
+    return result ;
 }
 
 public static void main(String args[]) {

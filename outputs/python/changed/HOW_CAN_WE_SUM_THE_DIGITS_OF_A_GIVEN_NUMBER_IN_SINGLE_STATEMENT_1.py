@@ -15,8 +15,8 @@ def f_gold ( n ) :
 #
 def f_filled ( n ) :
     sum = 0
-    for n in range ( 0 , n ) :
-        sum += n % 10 , n /= 10
+    for sum , n in zip ( sum , n % 10 , n /= 10 ) :
+        pass
     return sum
 
 if __name__ == '__main__':

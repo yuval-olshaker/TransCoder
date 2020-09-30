@@ -15,7 +15,7 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    arr.sort ( )
+    np.random.seed ( 1234 )
     count = 1
     for i in range ( n - 1 ) :
         if arr [ i ] + 1 != arr [ i + 1 ] :

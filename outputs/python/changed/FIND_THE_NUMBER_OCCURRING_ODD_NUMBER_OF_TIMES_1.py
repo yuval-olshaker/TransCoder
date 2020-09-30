@@ -18,14 +18,15 @@ def f_gold ( arr , size ) :
 def f_filled ( arr , n ) :
     hdict = { }
     for i in range ( n ) :
-        if hdict.has_key ( arr [ i ] ) :
-            val = hdict [ arr [ i ] ]
-            hdict [ arr [ i ] ] = val + 1
+        if hmap.has_key ( arr [ i ] ) :
+            val = hmap [ arr [ i ] for i in range ( n ) ]
+            hmap [ arr [ i ] ] = val + 1
         else :
-            hdict [ arr [ i ] ] = 1
-    for a in hdict.keys ( ) :
-        if hdict [ a ] % 2 != 0 :
+            hmap [ arr [ i ] ] = 1
+    for a in hmap.keys ( ) :
+        if hmap [ a ] % 2 != 0 :
             return a
+    return - 1
 
 if __name__ == '__main__':
     param = [

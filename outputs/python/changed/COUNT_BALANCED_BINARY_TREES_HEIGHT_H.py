@@ -16,7 +16,9 @@ def f_gold ( h ) :
 
 #
 def f_filled ( h ) :
-    dp = [ 1 ] * ( h + 1 )
+    dp = np.zeros ( ( h + 1 , ) )
+    dp [ 0 ] = 1
+    dp [ 1 ] = 1
     for i in range ( 2 , h + 1 ) :
         dp [ i ] = ( dp [ i - 1 ] * ( ( 2 * dp [ i - 2 ] ) % MOD + dp [ i - 1 ] ) % MOD ) % MOD
     return dp [ h ]

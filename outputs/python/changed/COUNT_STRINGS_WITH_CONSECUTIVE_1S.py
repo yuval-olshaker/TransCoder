@@ -16,12 +16,12 @@ def f_gold ( n ) :
 
 #
 def f_filled ( n ) :
-    a , b = [ 0 ] , [ 1 ]
+    a , b = [ ] , [ ]
+    a [ 0 ] = b [ 0 ] = 1
     for i in range ( 1 , n ) :
         a [ i ] = a [ i - 1 ] + b [ i - 1 ]
         b [ i ] = a [ i - 1 ]
-    from 2 ** n
-    return ( 1 << n ) - a [ n - 1 ] - b [ n - 1 ]
+    return 2 ** n
 
 if __name__ == '__main__':
     param = [

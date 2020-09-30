@@ -17,12 +17,12 @@ def f_gold ( a , n ) :
 
 #
 def f_filled ( a , n ) :
-    mn = sys.maxint
+    mn = int ( a [ 0 ] )
     sum = 0
     for i in range ( n ) :
-        mn = min ( a [ i ] , mn )
+        mn = min ( a [ i ] for i in range ( n ) )
         sum += a [ i ]
-    return mn * ( sum - mn )
+    return mn * ( sum ( a ) - mn )
 
 if __name__ == '__main__':
     param = [

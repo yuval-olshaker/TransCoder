@@ -19,7 +19,7 @@ def f_gold ( num ) :
 #
 def f_filled ( num ) :
     sum = 0
-    for i in range ( 2 , num * i <= num + 1 ) :
+    for i in range ( 2 , num * i <= num ) :
         while num % i == 0 :
             sum += i
             num /= i

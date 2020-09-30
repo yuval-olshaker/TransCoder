@@ -16,9 +16,9 @@ def f_gold ( x , y ) :
 #
 def f_filled ( x , y = None ) :
     x = x % 10
-    if y is not None :
+    if y != 0 :
         y = y % 4 + 4
-    return ( ( ( int ( math.pow ( x , y ) ) ) % 10 ) , ( ( int ( math.pow ( x , y ) ) ) % 10 ) , ( ( int ( math.pow ( x , y ) ) ) % 10 ) , ( ( int ( math.pow ( x , y ) ) ) % 10 ) , ( ( int ( math.pow ( x , y ) ) ) % 10 ) , ( ( int ( math.pow ( x , y ) ) ) % 10 ) , ( ( int ( math.pow ( x , y ) ) ) % 10 ) , ( ( int ( math.pow ( x , y )
+    return ( ( ( int ( math.pow ( x , y ) ) ) % 10 ) )
 
 if __name__ == '__main__':
     param = [

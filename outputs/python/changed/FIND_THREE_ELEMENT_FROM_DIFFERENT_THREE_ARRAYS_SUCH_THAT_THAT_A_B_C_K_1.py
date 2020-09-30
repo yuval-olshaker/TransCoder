@@ -19,10 +19,10 @@ def f_gold ( a1 , a2 , a3 , n1 , n2 , n3 , sum ) :
 def f_filled ( a1 , a2 , a3 , n1 , n2 , n3 , sum ) :
     s = set ( )
     for i in range ( n1 ) :
-        s.add ( a1 [ i ] )
-    al = [ s [ i ] for i in range ( n2 ) ]
-    for i in range ( n3 ) :
-        for j in range ( n1 ) :
+        s.append ( a1 [ i ] for i in range ( n1 , n2 , n3 ) )
+    al = [ s for s in a1 if s [ 0 ] == a2 [ 0 ] and s [ 1 ] == a3 [ 0 ] ]
+    for i in range ( n2 ) :
+        for j in range ( n3 ) :
             if al.count ( sum - a2 [ i ] - a3 [ j ] ) & al.count ( sum - a2 [ i ] - a3 [ j ] ) != al [ - 1 ] :
                 return True
     return False

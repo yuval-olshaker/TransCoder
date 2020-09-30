@@ -29,15 +29,16 @@ def f_gold ( gold , m , n ) :
 
 #
 def f_filled ( gold , m , n ) :
-    goldTable = [ [ 0 ] * m , [ 0 ] * n ]
+    goldTable = np.zeros ( ( m , n ) )
     for rows in goldTable :
-        del rows [ 0 ]
+        del gold [ m : n ]
     for col in range ( n - 1 , - 1 , - 1 ) :
         for row in range ( m ) :
             right = ( col == n - 1 )
-            right_up = ( row == 0 or col == n - 1 )
+            right_up = ( row if col == 0 else n - 1 for col in range ( m ) )
             right_down = ( row == m - 1 or col == n - 1 )
-            goldTable [ row ] [ col ] = gold [ row ] [ col ] + max ( right , max ( right_up , right_down ) ) ;
+            goldTable [ row ] [ col ] = gold [ row ] [ col ] + max ( right , max ( right_up , right_down ) )
+            pass
     res = goldTable [ 0 ] [ 0 ]
     for i in range ( 1 , m ) :
         res = max ( res , goldTable [ i ] [ 0 ] )

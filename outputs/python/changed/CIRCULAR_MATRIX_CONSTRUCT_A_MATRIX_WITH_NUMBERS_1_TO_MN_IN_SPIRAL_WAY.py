@@ -31,21 +31,21 @@ def f_gold ( m , n , a ) :
 #
 def f_filled ( m , n , a ) :
     val = 1
-    k , l = 0 , 0
+    k , l = a
     while k < m and l < n :
-        for i in range ( l , n ) :
-            a [ k ] [ i ] = val ++
+        for i in l ( m , n ) :
+            a [ k ] [ i ] = val + 1
         k += 1
         for i in range ( k , m ) :
-            a [ i ] [ n - 1 ] = val ++
+            a [ i ] [ n - 1 ] = val
         n -= 1
         if k < m :
-            for i in range ( n - 1 , l , - 1 ) :
-                a [ m - 1 ] [ i ] = val ++
+            for i in range ( n - 1 , l + 1 ) :
+                a [ m - 1 ] [ i ] = val + 1
             m -= 1
         if l < n :
-            for i in range ( m - 1 , k , - 1 ) :
-                a [ i ] [ l ] = val ++
+            for i in range ( m - 1 , k + 1 , - 1 ) :
+                a [ i ] [ l ] = val + 1
             l += 1
 
 if __name__ == '__main__':

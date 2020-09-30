@@ -25,16 +25,16 @@ def f_gold ( mat , n ) :
 
 #
 def f_filled ( mat , n ) :
-    diag1_left , diag1_right = 0 , 0
-    diag2_left , diag2_right = 0 , 0
-    for i , j in enumerate ( n - 1 ) :
-        if i < n / 2 :
-            diag1_left += mat [ i ] [ i ]
+    diag1_left , diag1_right = np.where ( mat == 1 )
+    diag2_left , diag2_right = np.where ( mat == 1 )
+    for i , j in enumerate ( range ( n - 1 , - 1 , - 1 ) ) :
+        if i < n // 2 :
+            diag1_left += mat [ i , i ]
             diag2_left += mat [ j ] [ i ]
         elif i > n / 2 :
-            diag1_right += mat [ i ] [ i ]
+            diag1_right += mat [ i , i ]
             diag2_right += mat [ j ] [ i ]
-    return ( diag1_left , diag2_right , diag2_left , diag1_right , diag2_left , diag2_right , mat [ n / 2 ] [ n / 2 ] )
+    return ( diag1_left , diag2_right , diag2_left , diag1_right , diag2_left , diag2_right , mat [ n // 2 ] [ n // 2 ] )
 
 if __name__ == '__main__':
     param = [

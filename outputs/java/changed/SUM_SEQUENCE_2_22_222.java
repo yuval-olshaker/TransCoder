@@ -17,7 +17,7 @@ static double f_gold ( int n ) {
 
 //
 public static double f_filled ( int n ) {
-  return 0.0246 * ( Math . pow ( 10 , n ) - 1 - ( 9 * n ) ) ;
+    return 0.0246 * ( Math . pow ( 10 , n ) - 1 - ( 9 * n ) ) ;
 }
 
 public static void main(String args[]) {

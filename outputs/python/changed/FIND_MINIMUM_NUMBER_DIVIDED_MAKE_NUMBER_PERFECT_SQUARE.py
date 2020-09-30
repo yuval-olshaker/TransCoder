@@ -34,7 +34,7 @@ def f_filled ( n ) :
         n /= 2
     if count % 2 == 1 :
         ans *= 2
-    for i in range ( 3 , math.sqrt ( n ) , 2 ) :
+    for i in range ( 3 , math.sqrt ( n ) , i += 2 ) :
         count = 0
         while n % i == 0 :
             count += 1

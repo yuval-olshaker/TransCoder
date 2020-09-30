@@ -42,24 +42,24 @@ def f_filled ( symb , oper , n ) :
     F = [ ]
     T = [ ]
     for i in range ( n ) :
-        F.append ( ( symb [ i ] , symb [ i + 1 ] ) )
-        T.append ( ( symb [ i ] , symb [ i + 1 ] ) )
+        F [ i ] [ i ] = ( symb [ i ] == 'F' )
+        T [ i ] [ i ] = ( symb [ i ] == 'T' )
     for gap in range ( 1 , n ) :
-        for i , j in zip ( gap , n ) :
-            T [ i ] = F [ i ] = 0
+        for i , j in gap :
+            T [ i ] [ j ] = F [ i ] [ j ] = 0
             for g in range ( gap ) :
                 k = i + g
-                tik = T [ i ] + F [ i ] [ k ]
-                tkj = T [ k + 1 ] + F [ k + 1 ] [ j ]
-                if oper [ k ] == '&' :
-                    T [ i ] += T [ i ] * T [ k + 1 ] [ j ]
-                    F [ i ] += ( tik * tkj - T [ i ] * T [ k + 1 ] [ j ] )
-                if oper [ k ] == '|' :
-                    F [ i ] += F [ i ] * F [ k + 1 ] [ j ]
-                    T [ i ] += ( tik * tkj - F [ i ] * F [ k + 1 ] [ j ] )
-                if oper [ k ] == '^' :
-                    T [ i ] += F [ i ] * T [ k + 1 ] [ j ] + T [ i ] * F [ k + 1 ] [ j ]
-                    F [ i ] += T [ i ] * T [ k + 1 ] [ j ] + F [ i ] * F [ k + 1 ] [ j ]
+                tik = T [ i ] [ k ] + F [ i ] [ k ]
+                tkj = T [ k + 1 ] [ j ] + F [ k + 1 ] [ j ]
+                if oper [ k ] == '&' : a = 5
+                    T [ i ] [ j ] += T [ i ] [ k ] * T [ k + 1 ] [ j ]
+                    F [ i ] [ j ] += ( tik * tkj - T [ i ] [ k ] * T [ k + 1 ] [ j ] )
+                if oper [ k ] == '|' : a = 5
+                    F [ i ] [ j ] += F [ i ] [ k ] * F [ k + 1 ] [ j ]
+                    T [ i ] [ j ] += ( tik * tkj - F [ i ] [ k ] * F [ k + 1 ] [ j ] )
+                if oper [ k ] == '^' : a = 5
+                    T [ i ] [ j ] += F [ i ] [ k ] * T [ k + 1 ] [ j ] + T [ i ] [ k ] * F [ k + 1 ] [ j ]
+                    F [ i ] [ j ] += T [ i ] [ k ] * T [ k + 1 ] [ j ] + F [ i ] [ k ] * F [ k + 1 ] [ j ]
     return T [ 0 ] [ n - 1 ]
 
 if __name__ == '__main__':

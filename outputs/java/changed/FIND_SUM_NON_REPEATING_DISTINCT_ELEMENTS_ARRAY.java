@@ -27,19 +27,17 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-  Set < Integer > s = new HashSet < Integer > ( ) ;
-  int sum = 0 ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    if ( arr [ i ] != 0 ) {
-      s . add ( arr [ i ] ) ;
+    Set < Integer > s = new HashSet < Integer > ( ) ;
+    int sum = 0 ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        if ( arr [ i ] != s ){
+            s . add ( arr [ i ] ) ;
+        }
     }
-  }
-  for ( int i : s ) {
-    sum = sum + i ;
-  }
-  return sum ;
+    for ( int i = 0 ;  i < s . length ;  i ++ ) {
+        sum = sum + i ;
+    }
+    return sum ;
 }
 
 public static void main(String args[]) {

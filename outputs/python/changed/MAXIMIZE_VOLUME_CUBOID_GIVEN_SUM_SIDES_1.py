@@ -14,8 +14,8 @@ def f_gold ( s ) :
 
 #
 def f_filled ( s ) :
-    length = s / 3
-    s -= length
+    length = s.length ( ) / 3
+    s.length -= length
     breadth = s / 2
     height = s - breadth
     return length * breadth * height

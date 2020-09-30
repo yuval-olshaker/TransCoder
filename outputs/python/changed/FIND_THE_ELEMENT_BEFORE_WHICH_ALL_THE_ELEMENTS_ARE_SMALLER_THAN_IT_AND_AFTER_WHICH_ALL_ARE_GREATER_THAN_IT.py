@@ -19,15 +19,15 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    left_max = [ int ( x ) for x in arr ]
-    right_min = int ( arr [ - 1 ] )
+    left_max = np.arange ( n )
+    left_max [ 0 ] = int ( arr [ 0 ] )
     for i in range ( 1 , n ) :
-        left_max [ i ] = max ( left_max [ i - 1 ] , arr [ i - 1 ] )
-    right_min = int ( arr [ - 1 ] )
+        left_max [ i ] = max ( left_max [ i - 1 ] for i in range ( n ) )
+    right_min = int ( arr [ n - 1 ] )
     for i in range ( n - 1 , - 1 , - 1 ) :
         if left_max [ i ] < arr [ i ] and right_min [ i ] > arr [ i ] :
             return i
-        right_min = min ( right_min , arr [ i ] )
+        right_min = min ( right_min , arr [ i ] for i in range ( n ) )
     return - 1
 
 if __name__ == '__main__':

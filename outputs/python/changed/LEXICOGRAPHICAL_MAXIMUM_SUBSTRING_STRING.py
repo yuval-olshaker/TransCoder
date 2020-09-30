@@ -13,9 +13,10 @@ def f_gold ( str ) :
 
 #
 def f_filled ( * args ) :
-    mx = ""
-    for arg in args :
-        if mx <= arg : mx = arg
+    mx = mx.sym.Maxvoid ( * args , ** kwargs )
+    for i in range ( len ( str ) ) :
+        if mx.nd.max ( str [ i : i + 5 ] ) <= mx.nd.max ( str [ i + 5 : i + 5 + 5 ] ) :
+            mx = str [ i : ]
     return mx
 
 if __name__ == '__main__':

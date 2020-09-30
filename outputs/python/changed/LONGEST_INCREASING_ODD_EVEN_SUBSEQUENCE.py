@@ -22,7 +22,7 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    lioes = [ 1 ] * n
+    lioes = np.arange ( n )
     max_len = 0
     for i in range ( n ) :
         lioes [ i ] = 1
@@ -32,8 +32,8 @@ def f_filled ( arr , n ) :
                 lioes [ i ] = lioes [ j ] + 1
     for i in range ( n ) :
         if max_len < lioes [ i ] :
-            max_len = lioes [ i ]
-    return max_len
+            maxLen = lioes [ i ]
+    return maxLen
 
 if __name__ == '__main__':
     param = [

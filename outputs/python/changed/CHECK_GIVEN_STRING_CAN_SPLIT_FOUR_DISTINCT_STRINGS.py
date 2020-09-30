@@ -26,17 +26,12 @@ def f_filled ( s ) :
     for i in range ( 1 , len ( s ) ) :
         for j in range ( i + 1 , len ( s ) ) :
             for k in range ( j + 1 , len ( s ) ) :
-                s1 , s2 , s3 , s4 = s [ : i ] , s [ i : j ] , s [ j : k ] , s [ k : ]
-                try :
-                    s1 = s [ i ]
-                    s2 = s [ i ]
-                    s3 = s [ j ]
-                    s4 = s [ k ]
-                except StringIndexError :
-                    pass
-                if strf_filled ( s1 , s2 ) and strf_filled ( s1 , s3 ) and strf_filled ( s1 , s4 ) and strf_filled ( s2 , s3 ) and strf_filled ( s2 , s4 ) and strf_filled ( s3 , s4 ) :
-                    return True
-    return False
+                s1 , s2 , s3 , s4 = s
+        if strf_filled ( s1 , s2 ) and strf_filled ( s1 , s3 ) and strf_filled ( s1 , s4 ) and strf_filled ( s2 , s3 ) and strf_filled ( s2 , s4 ) and strf_filled ( s3 , s4 ) :
+            return True
+pass
+return False
+pass
 
 if __name__ == '__main__':
     param = [

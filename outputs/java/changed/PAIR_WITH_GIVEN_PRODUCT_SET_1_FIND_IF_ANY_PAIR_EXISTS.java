@@ -22,18 +22,14 @@ static boolean f_gold ( int arr [ ] , int n , int x ) {
 
 //
 public static boolean f_filled ( int [ ] arr , int n , int x ) {
-  for ( int i = 0 ;
-  i < arr . length ;
-  i ++ ) {
-    for ( int j = 0 ;
-    j < arr . length ;
-    j ++ ) {
-      if ( arr [ i ] * arr [ j ] == x ) {
-        return true ;
-      }
+    for ( int i = 0 ;  i < arr . length ;  i ++ ) {
+        for ( int j = 0 ;  j < arr . length ;  j ++ ) {
+            if ( i * j == x ) {
+                return f_gold ( arr , n , x , null ) ;
+            }
+        }
     }
-  }
-  return false ;
+    return false ;
 }
 
 public static void main(String args[]) {

@@ -19,7 +19,7 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    dp = [ 1 ] * n
+    dp = np.zeros ( ( n , ) )
     for i in range ( n ) :
         dp [ i ] = 1
     for i in range ( 1 , n ) :

@@ -20,14 +20,12 @@ static boolean f_gold ( String s ) {
 
 //
 public static boolean f_filled ( String s ) {
-  for ( int i = 0 ;
-  i < s . length ( ) ;
-  i ++ ) {
-    if ( s . charAt ( i ) . matches ( "[0-9]+" ) != true ) {
-      return false ;
+    for ( int i = 0 ;  i < s . length ( ) ;  i ++ ) {
+        if ( s . charAt ( i ) . matches ( "[0-9]+" ) != true ) {
+            return false ;
+        }
     }
-  }
-  return true ;
+    return true ;
 }
 
 public static void main(String args[]) {

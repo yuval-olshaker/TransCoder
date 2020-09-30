@@ -19,10 +19,11 @@ def f_gold ( s ) :
 #
 def f_filled ( s ) :
     sum = 0
-    for n in range ( 1 , s ) :
+    for n in range ( 1 , sum ( s ) ) :
         sum += n ** 2 * n ** 2
-        if sum == s :
+        if sum ( s ) == s :
             return n
+    return - 1
 
 if __name__ == '__main__':
     param = [

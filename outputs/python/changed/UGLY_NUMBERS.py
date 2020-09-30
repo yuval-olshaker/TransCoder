@@ -28,15 +28,15 @@ def f_gold ( n ) :
 #
 def f_filled ( n ) :
     ugly = [ ]
-    i2 , i3 , i5 = 0 , 0 , 0
+    i2 , i3 , i5 = n
     next_multiple_of_2 = 2
     next_multiple_of_3 = 3
     next_multiple_of_5 = 5
     next_ugly_no = 1
-    ugly.append ( 1 )
+    ugly [ 0 ] = 1
     for i in range ( 1 , n ) :
         next_ugly_no = min ( next_multiple_of_2 , min ( next_multiple_of_3 , next_multiple_of_5 ) )
-        ugly.append ( next_ugly_no )
+        ugly [ i ] = next_ugly_no
         if next_ugly_no == next_multiple_of_2 :
             i2 = i2 + 1
             next_multiple_of_2 = ugly [ i2 ] * 2

@@ -21,12 +21,12 @@ def f_gold ( n , k ) :
 #
 def f_filled ( n , k ) :
     one_seen = False
-    while n :
+    while n > 0 :
         digit = n % k
         if digit > 1 :
             return False
         if digit == 1 :
-            if one_seen :
+            if oneSeen :
                 return False
             one_seen = True
         n /= k

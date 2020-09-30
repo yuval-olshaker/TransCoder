@@ -12,9 +12,9 @@ def f_gold ( process , need ) :
 
 #
 def f_filled ( process , need ) :
-    min_resources = 0
-    min_resources = process * ( need - 1 ) + 1
-    return min_resources
+    minf_filled = 0
+    minf_filled = process * ( need - 1 ) + 1
+    return minf_filled
 
 if __name__ == '__main__':
     param = [

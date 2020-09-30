@@ -20,16 +20,17 @@ def f_gold ( arr , n , k ) :
 #
 def f_filled ( arr , n , k ) :
     for i in range ( n - 1 and k > 0 ) :
-        pos = i
+        pos = i for i in arr if i != k ]
         for j in range ( i + 1 , n ) :
             if j - i > k :
                 break
             if arr [ j ] < arr [ pos ] :
                 pos = j
-        temp = None
-        for j in range ( pos , i > 0 ) :
+        temp = arr [ : n ]
+        for j in pos :
             temp = arr [ j ]
-            arr [ j ] , arr [ j - 1 ] = arr [ j - 1 ] , temp
+            arr [ j ] = arr [ j - 1 ]
+            arr [ j - 1 ] = temp
         k -= pos - i
 
 if __name__ == '__main__':

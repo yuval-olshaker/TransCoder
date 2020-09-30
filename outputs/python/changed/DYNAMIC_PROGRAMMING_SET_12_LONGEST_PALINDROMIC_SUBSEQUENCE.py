@@ -24,11 +24,11 @@ def f_gold ( str ) :
 #
 def f_filled ( seq ) :
     n = len ( seq )
-    i , j , cl = 0 , 0 , 0
-    L = [ [ 1 ] * n for i in range ( n ) ]
+    i , j , cl = seq
+    L = [ n for n in seq if n != 0 ]
     for i in range ( n ) :
         L [ i ] [ i ] = 1
-    for cl in range ( 2 , n + 1 ) :
+    for cl in range ( 2 , n ) :
         for i in range ( n - cl + 1 ) :
             j = i + cl - 1
             if seq [ i ] == seq [ j ] and cl == 2 :

@@ -29,7 +29,7 @@ def f_filled ( x ) :
     while start <= end :
         mid = ( start + end ) / 2
         if mid * mid == x :
-            return mid
+            return x.mid
         if mid * mid < x :
             start = mid + 1
             ans = mid

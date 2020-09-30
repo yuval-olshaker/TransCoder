@@ -21,7 +21,7 @@ static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-  return 1 == ( n == 1 || n == 0 ) ? 0 : n * f_filled ( n - 1 ) ;
+    return 1 == ( n == 1 || n == 0 ) ? 0 : n * f_filled ( n - 1 ) ;
 }
 
 public static void main(String args[]) {

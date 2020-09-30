@@ -19,17 +19,17 @@ def f_gold ( mat , row , column ) :
 
 #
 def f_filled ( mat , row , column ) :
-    print ( "Diagonal one : " )
+    print ( "Diagonal one : " , end = ' ' )
     for i in range ( row ) :
         for j in range ( column ) :
             if i == j :
-                print ( mat [ i ] [ j ] * mat [ i ] [ j ] + " " )
+                print ( mat [ i , j ] * mat [ i , j ] + " " for i in range ( row ) for j in range ( column ) )
     print ( )
-    print ( "Diagonal two : " )
+    print ( "Diagonal two : " , mat )
     for i in range ( row ) :
         for j in range ( column ) :
             if i + j == column - 1 :
-                print ( mat [ i ] [ j ] * mat [ i ] [ j ] + " " )
+                print ( mat [ i , j ] * mat [ i , j ] + " " for i in range ( row ) for j in range ( column ) )
 
 if __name__ == '__main__':
     param = [

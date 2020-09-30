@@ -18,13 +18,14 @@ def f_gold ( n ) :
 
 #
 def f_filled ( n ) :
-    table , i = [ 0 ] * ( n + 1 ) , 0
+    table , i = divmod ( n , len ( table ) + 1 )
+    del table [ : n ]
     table [ 0 ] = 1
-    for i in range ( 3 , n + 1 ) :
+    for i in range ( 3 , n ) :
         table [ i ] += table [ i - 3 ]
-    for i in range ( 5 , n + 1 ) :
+    for i in range ( 5 , n ) :
         table [ i ] += table [ i - 5 ]
-    for i in range ( 10 , n + 1 ) :
+    for i in range ( 10 , n ) :
         table [ i ] += table [ i - 10 ]
     return table [ n ]
 

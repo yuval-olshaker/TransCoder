@@ -19,7 +19,7 @@ def f_gold ( s ) :
 #
 def f_filled ( s ) :
     l = len ( s )
-    for i , j in enumerate ( l - 1 ) :
+    for i , j in enumerate ( l - 1 , 1 ) :
         if s [ i ] != s [ j ] :
             return False
     return True

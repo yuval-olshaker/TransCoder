@@ -12,7 +12,7 @@ def f_gold ( side ) :
 
 #
 def f_filled ( side ) :
-    return ( ( ( 15 + ( 7 * ( math.sqrt ( 5 ) ) ) ) / 4 ) ** ( math.pow ( side , 3 ) ) )
+    return ( ( ( 15 + ( 7 * ( math.sqrt ( 5 ) ) ) ) / 4 ) * ( math.pow ( side , 3 ) ) )
 
 if __name__ == '__main__':
     param = [

@@ -31,7 +31,7 @@ def f_filled ( arr , n ) :
         else :
             hash [ abs ( arr [ i ] ) ] = ( hash [ abs ( arr [ i ] ) ] if i in hash else 0 ) + 1
     for i in range ( n ) :
-        if hash [ i ] > 0 :
+        if hash ( arr [ i ] ) > 0 :
             return arr [ i ]
     return - 1
 

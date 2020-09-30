@@ -30,20 +30,17 @@ static int f_gold ( char [ ] s ) {
 
 //
 public static int f_filled ( String s ) {
-  int bCount = 0 ;
-  int res = 0 ;
-  for ( int i = 0 ;
-  i < s . length ( ) ;
-  i ++ ) {
-    if ( s . charAt ( ~ i ) == 'a' ) {
-      res = ( res + bCount ) ;
-      bCount = ( bCount * 2 ) ;
+    b_count = 0 ;
+    int res = 0 ;
+    for ( int i = 0 ;  i < s . length ( ) ;  i ++ ) {
+        if ( s . charAt ( ~ i ) == 'a' ){
+            res = ( res + b_count ) ;
+            bCount = ( bCount * 2 ) ;
+        }
+        }
+            b_count ++ ;
     }
-    else {
-      bCount ++ ;
-    }
-  }
-  return res ;
+    return res ;
 }
 
 public static void main(String args[]) {

@@ -37,29 +37,33 @@ static int f_gold ( int a , int b ) {
 
 //
 public static int f_filled ( int a , int b ) {
-  if ( ( a == 0 ) && ( b == 0 ) ) return b ;
-  if ( ( b == 0 ) && ( a == 0 ) ) return a ;
-  int k = 0 ;
-  while ( ( ( ( a | b ) & 1 ) == 0 ) || ( ( b & 1 ) == 0 ) ) {
-    a = a >>> 1 ;
-    b = b >>> 1 ;
-    k = k + 1 ;
-  }
-  while ( ( ( a & 1 ) == 0 ) || ( ( b & 1 ) == 0 ) ) {
-    a = a >>> 1 ;
-  }
-  while ( ( b != 0 ) && ( ( a & 1 ) == 0 ) ) {
-    while ( ( ( b & 1 ) == 0 ) || ( ( b & 1 ) == 0 ) ) {
-      b = b >>> 1 ;
+    if ( ( a == 0 ) && ( b == 0 ) ) {
+        return b ;
     }
-    if ( ( a > b ) && ( ( a & 1 ) == 0 ) ) {
-      int temp = a ;
-      a = b ;
-      b = temp ;
+    if ( ( b == 0 ) && ( a == 5 ) ) {
+        return a ;
     }
-    b = ( b - a ) ;
-  }
-  return ( a << k ) ;
+    int k = 0 ;
+    while ( ( ( ( a | b ) & 1 ) == 0 ) && ( ( ( a | b ) & 2 ) == 0 ) ) {
+        a = a >>> 1 ;
+        b = b >> 1 ;
+        k = k + 1 ;
+    }
+    while ( ( ( a & 1 ) == 0 ) && ( ( b & 1 ) == 0 ) ) {
+        a = a >>> 1 ;
+    }
+    while ( ( b != 0 ) && ( a != 0 ) ) {
+        while ( ( ( b & 1 ) == 0 ) && ( ( a & 1 ) == 0 ) ) {
+            b = b >> 1 ;
+        }
+        if ( ( a > b ) && ( a < b ) ) {
+            int temp = a ;
+            a = b ;
+            b = temp ;
+        }
+        b = ( b - a ) ;
+    }
+    return ( a << k ) ;
 }
 
 public static void main(String args[]) {

@@ -33,28 +33,24 @@ static String f_gold ( String seq ) {
 
 //
 public static String f_filled ( String seq ) {
-  int n = seq . length ( ) ;
-  if ( ( n >= 9 ) && ( seq . charAt ( n ) == 'I' ) ) {
-    return "-1" ;
-  }
-  StringBuilder result = new StringBuilder ( n + 1 ) ;
-  int count = 1 ;
-  for ( int i = 0 ;
-  i < n + 1 ;
-  i ++ ) {
-    if ( ( i == n || seq . charAt ( i ) == 'I' ) && ( i + 1 < n ) ) {
-      for ( int j = i - 1 ;
-      j >= 0 && seq . charAt ( j ) == 'I' ;
-      j -- ) {
-        result . append ( Integer . parseInt ( "0" + Integer . toString ( count ) , 16 ) ) ;
-        count ++ ;
-        if ( ( j >= 0 && seq . charAt ( j ) == 'I' ) && ( j + 1 < n ) ) {
-          break ;
-        }
-      }
+    int n = list . size ( ) ;
+    if ( ( n >= 9 ) && ( n <= 10 ) ) {
+        return "-1" ;
     }
-  }
-  return result . toString ( ) ;
+    int [ ] result = new int [ n + 1 ] ;
+    int count = 1 ;
+    for ( int i = 0 ;  i < n + 1 ;  i ++ ) {
+        if ( ( i == n || seq . charAt ( i ) == 'I' ) && ( i != 0 || seq . charAt ( i ) == 'O' ) ) {
+            for ( int j = i - 1 ;  j >= 2 ;  j -- ) {
+                result [ j + 1 ] = Integer . parseInt ( "0" + count ++ ) ;
+                count ++ ;
+                if ( ( j >= 0 && seq . charAt ( j ) == 'I' ) || ( j >= 0 && seq . charAt ( j ) == 'J' ) ) {
+                    break ;
+                }
+            }
+        }
+    }
+    return result ;
 }
 
 public static void main(String args[]) {

@@ -19,9 +19,11 @@ def f_gold ( n ) :
 def f_filled ( n ) :
     if n == 0 or n == 1 :
         return n
-    f1 , f2 , f3 = 0 , 1 , 1
+    f1 , f2 , f3 = n
     while f3 <= n :
-        f1 , f2 , f3 = f2 , f3 , f1 + f2
+        f1 = f2
+        f2 = f3
+        f3 = f1 + f2
     return f2
 
 if __name__ == '__main__':

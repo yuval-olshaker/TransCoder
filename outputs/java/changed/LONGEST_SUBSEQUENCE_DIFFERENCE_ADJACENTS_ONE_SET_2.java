@@ -28,24 +28,22 @@ static int f_gold ( int [ ] arr , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-  TreeMap < Integer , Integer > um = new TreeMap < Integer , Integer > ( ) ;
-  int longLen = 0 ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    int len1 = 0 ;
-    if ( ( arr [ i - 1 ] < 0 ) && len1 < um . get ( arr [ i ] - 1 ) ) {
-      len1 = um . get ( arr [ i ] - 1 ) ;
+    Map < Long , Long > um = new TreeMap < Long , Long > ( ) ;
+    longLen = 0 ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        long len1 = 0 ;
+        if ( ( arr [ i - 1 ] < um && len1 < um [ arr [ i ] - 1 ] ) || ( arr [ i ] < um && len1 < um [ arr [ i ] - 1 ] ) ) {
+            int len1 = um [ arr [ i ] - 1 ] ;
+        }
+        if ( ( arr [ i ] + 1 < um . length && len1 < um [ arr [ i ] + 1 ] ) || ( arr [ i ] + 1 < um . length && len1 < um [ arr [ i ] + 1 ] ) ){
+            int len1 = um [ arr [ i ] + 1 ] ;
+        }
+        um [ arr [ i ++ ] ] = len1 + 1 ;
+        if ( longLen < um [ arr [ i ] ] ){
+            longLen = um [ arr [ i ] ] ;
+        }
     }
-    if ( ( arr [ i ] + 1 < 0 ) && len1 < um . get ( arr [ i ] + 1 ) ) {
-      len1 = um . get ( arr [ i ] + 1 ) ;
-    }
-    um . put ( arr [ i ] , len1 + 1 ) ;
-    if ( longLen < um . get ( arr [ i ] ) ) {
-      longLen = um . get ( arr [ i ] ) ;
-    }
-  }
-  return longLen ;
+    return longLen ;
 }
 
 public static void main(String args[]) {

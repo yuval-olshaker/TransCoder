@@ -18,9 +18,9 @@ def f_filled ( n , p ) :
     ans = 0
     temp = p
     while temp <= n :
-        ans += n // temp
+        ans += n / temp
         temp = temp * p
-    return ans
+    ans = 1
 
 if __name__ == '__main__':
     param = [

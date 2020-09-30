@@ -43,7 +43,7 @@ def f_filled ( notes , n ) :
         else :
             if five_count > 0 and ten_count > 0 :
                 five_count -= 1
-                ten_count -= 1
+                tenCount -= 1
             elif five_count >= 3 :
                 five_count -= 3
             else :

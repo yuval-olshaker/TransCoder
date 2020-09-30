@@ -35,7 +35,7 @@ def f_filled ( a , n ) :
         if cnt.has_key ( a [ i ] ) :
             cnt [ a [ i ] ] = cnt [ a [ i ] ] + 1
         else :
-            cnt [ a [ i ] ] = 1
+            cnt [ a [ i ] for i in range ( n ) ] = 1
     return ans
 
 if __name__ == '__main__':

@@ -21,13 +21,11 @@ static String f_gold ( String s , int n ) {
 
 //
 public static String f_filled ( String s , int n ) {
-  String s1 = s ;
-  for ( int i = 1 ;
-  i < n ;
-  i ++ ) {
-    s += s1 ;
-  }
-  return s ;
+    String s1 = s ;
+    for ( int i = 1 ;  i < n ;  i ++ ) {
+        sb . append ( s1 ) ;
+    }
+    return f_filled ( s , n , "" ) ;
 }
 
 public static void main(String args[]) {

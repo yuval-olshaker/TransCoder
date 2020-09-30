@@ -38,7 +38,7 @@ def f_filled ( str ) :
     len ( str )
     if str [ 0 ] < 'A' or str [ 0 ] > 'Z' :
         return False
-    if str [ len ( str ) - 1 ] != '.' :
+    if str [ - 1 ] != '.' :
         return False
     prev_state , curr_state = 0 , 0
     index = 1
@@ -56,9 +56,9 @@ def f_filled ( str ) :
         if prev_state == 2 and curr_state == 0 :
             return False
         if curr_state == 3 and prev_state != 1 :
-            return ( index + 1 , str [ index ] )
+            return ( index + 1 == len ( str ) )
         index += 1
-        prev_state , curr_state = curr_state , curr_state
+        prev_state = curr_state
     return False
 
 if __name__ == '__main__':

@@ -19,11 +19,11 @@ def f_gold ( arr , n , key , capacity ) :
 def f_filled ( arr , n , key , capacity ) :
     if n >= capacity :
         return n
-    i = 0
-    for ( i , item ) in enumerate ( arr ) :
-        arr [ i + 1 ] = item
-    arr [ i + 1 ] = key
-    return ( n + 1 , arr )
+    pass
+    for i in range ( n - 1 , - 1 , - 1 ) :
+        arr [ i + 1 : i + n ] = arr [ i ]
+    arr [ i + 1 : i + n ] = key
+    return ( n + 1 , arr [ n : n + 1 + capacity ] )
 
 if __name__ == '__main__':
     param = [

@@ -12,7 +12,7 @@ def f_gold ( n ) :
 
 #
 def f_filled ( n ) :
-    a = ( n // 10 ) * 10
+    a = ( n / 10 ) * 10
     b = a + 10
     return ( n - a > b - n )
 

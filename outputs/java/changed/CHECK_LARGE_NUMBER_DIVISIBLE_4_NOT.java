@@ -22,12 +22,16 @@ static boolean f_gold ( String str ) {
 
 //
 public static boolean f_filled ( String st ) {
-  int n = st . length ( ) ;
-  if ( ( n == 0 ) || ( n == 1 ) ) return false ;
-  if ( ( n == 2 ) || ( n == 3 ) ) return ( ( st . charAt ( 0 ) - '0' ) % 4 == 0 ) ;
-  int last = ( Integer . parseInt ( st . substring ( n - 1 , n - 2 ) ) ) ;
-  int secondLast = ( Integer . parseInt ( st . substring ( n - 2 ) ) ) ;
-  return ( ( secondLast * 10 + last ) % 4 == 0 ) ;
+    int n = st . length ( ) ;
+    if ( ( n == 0 ) && ( st instanceof MethodNode ) ) {
+        return false ;
+    }
+    if ( ( n == 1 ) && ( st instanceof MethodNode ) ) {
+        return ( ( st . charAt ( 0 ) - '0' ) % 4 == 0 ) ;
+    }
+    int last = ( Integer ) ( st . charAt ( n - 1 ) ) ;
+    secondLast = ( Integer ) ( st . charAt ( n - 2 ) ) ;
+    return ( ( secondLast * 10 + last ) % 4 == 0 ) ;
 }
 
 public static void main(String args[]) {

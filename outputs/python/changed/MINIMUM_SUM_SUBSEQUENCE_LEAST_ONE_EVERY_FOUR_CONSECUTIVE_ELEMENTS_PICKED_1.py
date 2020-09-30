@@ -20,11 +20,15 @@ def f_gold ( ar , n ) :
 #
 def f_filled ( ar , n ) :
     if n <= 4 :
-        return sum ( ar ).min ( ).astype ( int )
-    sum = [ ar [ i ] for i in range ( n ) ]
+        return sum ( [ a.min ( ) for a in ar ] )
+    sum = np.zeros ( n )
+    sum += ar [ 0 ]
+    sum [ 1 : ] = ar [ 1 : ]
+    sum [ 2 : ] = ar [ 2 : ]
+    sum [ 3 ] = ar [ 3 ]
     for i in range ( 4 , n ) :
-        sum [ i ] = ar [ i ] + sum [ i - 4 : i ]
-    return sum [ n - 4 : n ]
+        sum [ i ] = ar [ i ] + sum [ i - 4 : i ].min ( ).astype ( int )
+    return sum ( map ( lambda x : sum ( x - 4 , ar ) , ar ) ).min ( ).astype ( int )
 
 if __name__ == '__main__':
     param = [

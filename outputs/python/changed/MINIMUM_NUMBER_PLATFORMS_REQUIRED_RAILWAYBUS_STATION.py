@@ -25,8 +25,8 @@ def f_gold ( arr , dep , n ) :
 
 #
 def f_filled ( arr , dep , n ) :
-    arr.sort ( )
-    dep.sort ( )
+    np.sort ( arr )
+    np.sort ( dep )
     plat_needed , result = 1 , 1
     i , j = 1 , 0
     while i < n and j < n :

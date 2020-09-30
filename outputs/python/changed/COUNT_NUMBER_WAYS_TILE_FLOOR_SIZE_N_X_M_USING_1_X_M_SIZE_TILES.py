@@ -22,6 +22,7 @@ def f_gold ( n , m ) :
 #
 def f_filled ( n , m ) :
     count = [ 0 ] * ( n + 1 )
+    count [ 0 ] = 0
     i = 0
     for i in range ( 1 , n + 1 ) :
         if i > m :

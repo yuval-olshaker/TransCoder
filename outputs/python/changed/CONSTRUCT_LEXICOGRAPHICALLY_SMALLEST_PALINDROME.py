@@ -35,18 +35,18 @@ def f_filled ( str , len ) :
         if str [ i ] == str [ j ] and str [ i ] != '*' :
             continue
         elif str [ i ] == str [ j ] and str [ i ] == '*' :
-            str [ i ] = 'a'
+            str [ i : i + len ] = 'a' * ( len - i )
             str [ j ] = 'a'
             continue
         elif str [ i ] == '*' :
-            str [ i ] = str [ j ]
+            str [ i : j ] = str [ j : i + len ]
             continue
         elif str [ j ] == '*' :
             str [ j ] = str [ i ]
             continue
         print ( "Not Possible" )
         return ""
-    return str
+    return str [ : len ]
 
 if __name__ == '__main__':
     param = [

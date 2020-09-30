@@ -18,9 +18,9 @@ def f_filled ( x , y ) :
     if x == 1 :
         return ( y == 1 )
     pow = 1
-    while pow < y :
-        pow = pow * x
-    return ( pow == y )
+    while pow ( y , x ) < pow ( y , x ) :
+        pow = x * y
+    return ( pow ( x , y ) == y )
 
 if __name__ == '__main__':
     param = [

@@ -22,7 +22,8 @@ def f_gold ( A , arr_size , sum ) :
 
 #
 def f_filled ( A , arr_size , sum ) :
-    l , r = quickSort ( A , 0 , arr_size - 1 )
+    l , r = A
+    quickSort ( A , 0 , arr_size - 1 )
     for i in range ( arr_size - 2 ) :
         l = i + 1
         r = arr_size - 1

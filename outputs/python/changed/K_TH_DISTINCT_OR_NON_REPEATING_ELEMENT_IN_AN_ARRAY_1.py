@@ -27,9 +27,9 @@ def f_filled ( arr , n , k ) :
     h = { }
     for i in range ( n ) :
         if h.has_key ( arr [ i ] ) :
-            h [ arr [ i ] ] = h [ arr [ i ] ] + 1
+            h [ arr ] = h [ arr ] + 1
         else :
-            h [ arr [ i ] ] = 1
+            h [ arr ] = 1
     if len ( h ) < k :
         return - 1
     dist_count = 0

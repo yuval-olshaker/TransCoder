@@ -28,25 +28,25 @@ def f_gold ( arr , n ) :
 def f_filled ( arr , n ) :
     inc = { }
     dcr = { }
-    len_inc = [ ]
-    len_dcr = [ ]
+    len_inc = [ 0 ] * n
+    len_dcr = [ 0 ] * n
     long_len = 0
     for i in range ( n ) :
-        len = 0
+        arr = arr [ : n ]
         if inc.has_key ( arr [ i ] - 1 ) :
             len = inc [ arr [ i ] - 1 ]
-        len_inc.append ( len + 1 )
-        inc [ arr [ i ] ] = len_inc [ i ]
+        len_inc [ i ] = len ( arr ) + 1
+        inc [ arr ] = len_inc [ i ]
     for i in range ( n - 1 , - 1 , - 1 ) :
-        len = 0
+        arr = arr [ : n ]
         if dcr.has_key ( arr [ i ] - 1 ) :
             len = dcr [ arr [ i ] - 1 ]
-        len_dcr.append ( len + 1 )
+        len_dcr [ i ] = len ( arr [ i ] ) + 1
         dcr [ arr [ i ] ] = len_dcr [ i ]
     for i in range ( n ) :
-        if long_len < ( len_inc + len_dcr [ i ] - 1 ) :
+        if long_len < ( len_inc [ i ] + len_dcr [ i ] - 1 ) :
             long_len = len_inc [ i ] + len_dcr [ i ] - 1
-    return long_len
+    return longLen
 
 if __name__ == '__main__':
     param = [

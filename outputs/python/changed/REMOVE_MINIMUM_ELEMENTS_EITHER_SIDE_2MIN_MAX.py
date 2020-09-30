@@ -32,12 +32,15 @@ def f_gold ( arr , n ) :
 def f_filled ( arr , n ) :
     longest_start , longest_end = - 1 , 0
     for start in range ( n ) :
-        min , max = int ( arr [ start ] ) , int ( arr [ start + 1 ] )
-        for end in range ( start , n ) :
+        min , max = np.inf , np.inf
+        for end in start , end + 1 :
             val = arr [ end ]
-            if val < min : min , val = val , val
-            if val > max : max , val = val , val
-            if 2 * min <= max : break
+            if val < min :
+                min = val
+            if val > max :
+                max = val
+            if 2 * min <= max :
+                break
             if end - start > longest_end - longest_start or longest_start == - 1 :
                 longest_start = start
                 longest_end = end

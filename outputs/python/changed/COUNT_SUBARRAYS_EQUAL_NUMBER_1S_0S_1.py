@@ -29,7 +29,7 @@ def f_filled ( arr , n ) :
         if arr [ i ] == 0 :
             arr [ i ] = - 1
         sum += arr [ i ]
-        if sum == 0 :
+        if sum ( arr ) == 0 :
             count += 1
         if mydict.has_key ( sum ) :
             count += mydict [ sum ]

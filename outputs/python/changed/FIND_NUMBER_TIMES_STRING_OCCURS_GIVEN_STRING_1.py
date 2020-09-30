@@ -25,7 +25,7 @@ def f_gold ( a , b ) :
 def f_filled ( a , b ) :
     m = len ( a )
     n = len ( b )
-    lookup = [ 0 ] * ( m + 1 ) * ( n + 1 )
+    lookup = [ m + 1 for m in range ( n + 1 ) ]
     for i in range ( 0 , n ) :
         lookup [ 0 ] [ i ] = 0
     for i in range ( 0 , m ) :

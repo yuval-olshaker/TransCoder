@@ -23,12 +23,12 @@ def f_gold ( n ) :
 #
 def f_filled ( n ) :
     ans , temp , num = 0 , 0 , 0
-    for i in range ( 1 , n + 1 , 2 ) :
+    for i in range ( 1 , n and temp < n ) :
         temp = i - 1
         num = 1
         while temp < n :
             if temp + i <= n :
-                ans += ( i * num )
+                ans += ( i * num for i , num in enumerate ( n ) )
             else :
                 ans += ( ( n - temp ) * num )
             temp += i

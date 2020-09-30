@@ -25,9 +25,9 @@ def f_filled ( m , n ) :
     for i in range ( m + 1 ) :
         for j in range ( n + 1 ) :
             if i == 0 or j == 0 :
-                T [ i ] [ j ] = 0
+                T [ i , j ] = 0
             elif i < j :
-                T [ i ] [ j ] = 0
+                T [ i , j ] = 0
             elif j == 1 :
                 T [ i ] [ j ] = i
             else :

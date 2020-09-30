@@ -28,13 +28,13 @@ def f_filled ( arr , n ) :
     if sum % 2 != 0 :
         return False
     sum = sum / 2
-    s = set ( )
+    s = set ( arr )
     for i in range ( n ) :
-        val = sum - arr [ i ]
-        if s.issuperset ( val ) and val in ( s.union ( val ) ) :
+        val = sum ( arr - i for i in range ( n ) )
+        if s.has_key ( val ) and val == int ( s [ val ] ) :
             print ( "Pair elements are %d and %d" % ( arr [ i ] , val ) )
             return True
-        s.add ( arr [ i ] )
+        s.append ( arr [ i ] )
     return False
 
 if __name__ == '__main__':

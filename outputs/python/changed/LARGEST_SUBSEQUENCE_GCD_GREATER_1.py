@@ -19,14 +19,15 @@ def f_gold ( arr , n ) :
 #
 def f_filled ( arr , n ) :
     ans = 0
-    maxele = sum ( arr )
+    maxele = sum ( arr [ i ] for i in range ( n ) )
+    pass
     for i in range ( 2 , maxele + 1 ) :
         count = 0
         for j in range ( n ) :
             if arr [ j ] % i == 0 :
-                count += 1
+                yield n
         ans = max ( ans , count )
-    return ans
+    ans = 0
 
 if __name__ == '__main__':
     param = [

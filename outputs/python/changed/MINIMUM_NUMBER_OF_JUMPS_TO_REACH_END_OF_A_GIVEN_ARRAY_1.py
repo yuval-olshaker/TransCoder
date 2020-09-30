@@ -20,15 +20,15 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    jumps = [ ]
-    i , j = 0 , 0
+    jumps = np.zeros ( ( n , n ) )
+    i , j = np.where ( arr < n )
     if n == 0 or arr [ 0 ] == 0 :
-        return int ( 'inf' )
-    jumps.append ( 0 )
+        return int ( n )
+    jumps [ 0 ] = 0
     for i in range ( 1 , n ) :
-        jumps.append ( int ( 'inf' ) )
+        jumps [ i ] = int ( arr [ i ] )
         for j in range ( i ) :
-            if i <= j + arr [ j ] and jumps [ j ] != int ( 'inf' ) :
+            if i <= j + arr [ j ] and jumps [ j ] != int ( n ) :
                 jumps [ i ] = min ( jumps [ i ] , jumps [ j ] + 1 )
                 break
     return jumps [ n - 1 ]

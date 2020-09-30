@@ -22,11 +22,11 @@ def f_filled ( arr , n ) :
     s = set ( )
     j , ans = 0 , 0
     for i in range ( n ) :
-        while j < n and not s.issubset ( arr [ j ] ) :
-            s.add ( arr [ i ] )
+        while j < n and not s.has_key ( arr [ j ] ) :
+            s.append ( arr [ i ] )
             j += 1
         ans += ( ( j - i ) * ( j - i + 1 ) ) / 2
-        s.remove ( arr [ i ] )
+        s.pop ( arr [ i ] )
     return ans
 
 if __name__ == '__main__':

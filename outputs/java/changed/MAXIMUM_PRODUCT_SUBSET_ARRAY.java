@@ -45,30 +45,32 @@ static int f_gold ( int a [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] a , int n ) {
-  if ( n == 1 ) return a [ 0 ] ;
-  long maxNeg = - 999999999999 ;
-  int countNeg = 0 ;
-  int countZero = 0 ;
-  long prod = 1 ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    if ( a [ i ] == 0 ) {
-      countZero ++ ;
-      continue ;
+    if ( n == 1 ){
+        return a [ 0 ] ;
     }
-    if ( a [ i ] < 0 ) {
-      countNeg ++ ;
-      maxNeg = Math . max ( maxNeg , a [ i ] ) ;
+    int maxNeg = - 999999999999 ;
+    int count_neg = 0 ;
+    int count_zero = 0 ;
+    int prod = 1 ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        if ( a [ i ] == 0 ) a [ i ] = 5 ;
+            count_zero ++ ;
+            continue ;
+        if ( a [ i ] < 0 ) a [ i ] = 5 ;
+            count_neg ++ ;
+            maxNeg = Math . max ( maxNeg , a [ i ] ) ;
+        prod = prod * a [ i ] ;
     }
-    prod = prod * a [ i ] ;
-  }
-  if ( countZero == n ) return 0 ;
-  if ( countNeg & 1 ) {
-    if ( ( countNeg == 1 && countZero > 0 && countZero + countNeg == n ) || ( countNeg == 0 && countZero + countNeg == n ) ) return 0 ;
-    prod = ( int ) ( prod / maxNeg ) ;
-  }
-  return prod ;
+    if ( countZero == n ){
+        return 0 ;
+    }
+    if ( countNeg & 1 ){
+        if ( ( countNeg == 1 && countZero > 0 && countZero + countNeg == n ) || ( countZero + countNeg == n ) ) {
+            return 0 ;
+        }
+        int prod = ( int ) ( prod / maxNeg ) ;
+    }
+    return prod ;
 }
 
 public static void main(String args[]) {

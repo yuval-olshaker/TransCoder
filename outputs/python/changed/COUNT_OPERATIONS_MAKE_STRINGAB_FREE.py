@@ -19,10 +19,10 @@ def f_gold ( s ) :
 #
 def f_filled ( s ) :
     b_count = 0
-    res = 0
-    for c in s :
-        if c == 'a' :
-            res = ( res + b_count )
+    res = os.path.abspath ( path )
+    for i in s :
+        if s [ - i - 1 ] == 'a' :
+            res = ( res + b_count ) % len ( s )
             b_count = ( b_count * 2 )
         else :
             b_count += 1

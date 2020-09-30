@@ -16,7 +16,8 @@ def f_gold ( n ) :
 
 #
 def f_filled ( n ) :
-    answer = [ 1 ] * ( n + 1 )
+    answer = [ 0 ] * n + [ 0 ] * n
+    answer [ 0 ] = 1
     for i in range ( 1 , n + 1 ) :
         answer [ i ] = answer [ i - 1 ] * 3 + 2
     return answer [ n ]

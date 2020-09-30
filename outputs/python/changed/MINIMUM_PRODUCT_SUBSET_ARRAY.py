@@ -35,7 +35,7 @@ def f_gold ( a , n ) :
 def f_filled ( a , n ) :
     if n == 1 :
         return a [ 0 ]
-    negmax = int ( a [ 0 ] )
+    negmax = int ( a [ - n ] )
     posmin = int ( a [ 0 ] )
     count_neg , count_zero = 0 , 0
     product = 1
@@ -45,7 +45,7 @@ def f_filled ( a , n ) :
             continue
         if a [ i ] < 0 :
             count_neg += 1
-            negmax = max ( negmax , a [ i ] )
+            negmax = max ( negmax , a [ i ] for i in range ( n ) )
         if a [ i ] > 0 and a [ i ] < posmin :
             posmin = a [ i ]
         product *= a [ i ]
@@ -55,7 +55,7 @@ def f_filled ( a , n ) :
         return posmin
     if count_neg % 2 == 0 and count_neg != 0 :
         product = product / negmax
-    return product
+    return product ( a , n )
 
 if __name__ == '__main__':
     param = [

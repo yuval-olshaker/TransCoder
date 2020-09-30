@@ -21,11 +21,11 @@ def f_filled ( A , arr_size , sum ) :
     for i in range ( arr_size - 2 ) :
         s = set ( )
         curr_sum = sum - A [ i ]
-        for j in range ( i + 1 , arr_size ) :
-            if s.issubset ( curr_sum - A [ j ] ) and curr_sum - A [ j ] not in ( s.pop ( ) , curr_sum - A [ j ] ) :
+        for i in range ( i + 1 , arr_size ) :
+            if s.count ( curr_sum - A [ j ] ) and curr_sum - A [ j ] != int ( s.pop ( ) ) :
                 print ( "Triplet is %d, %d, %d" % ( A [ i ] , A [ j ] , curr_sum - A [ j ] ) )
                 return True
-            s.add ( A [ j ] )
+            s.append ( A [ j ] )
     return False
 
 if __name__ == '__main__':

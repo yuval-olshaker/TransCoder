@@ -19,11 +19,11 @@ def f_gold ( x ) :
 
 #
 def f_filled ( x ) :
-    global count
+    count += 1
     if count == 1 :
         res = x
     else :
-        r = random.Random ( )
+        r = random.random ( )
         i = r.randint ( 0 , count )
         if i == count - 1 :
             res = x

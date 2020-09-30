@@ -12,9 +12,10 @@ def f_gold ( A , B , C , M ) :
 
 #
 def f_filled ( A , B , C , M ) :
-    res , ans = power ( B , C , M - 1 )
+    res , ans = 0 , 0
+    res = power ( B , C , M - 1 )
     ans = power ( A , res , M )
-    return ans
+    ans = 0
 
 if __name__ == '__main__':
     param = [

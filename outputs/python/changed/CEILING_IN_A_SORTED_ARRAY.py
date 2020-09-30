@@ -18,7 +18,7 @@ def f_gold ( arr , low , high , x ) :
 
 #
 def f_filled ( arr , low , high , x ) :
-    i = 0
+    pass
     if x <= arr [ low ] :
         return low
     for i in range ( low , high ) :

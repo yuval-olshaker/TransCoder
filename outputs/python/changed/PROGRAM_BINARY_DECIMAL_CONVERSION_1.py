@@ -22,7 +22,7 @@ def f_filled ( n ) :
     dec_value = 0
     base = 1
     len ( num )
-    for i in range ( len ( num ) - 1 , - 1 , - 1 ) :
+    for i in range ( len ( n ) - 1 , - 1 , - 1 ) :
         if num [ i ] == '1' :
             dec_value += base
         base = base * 2

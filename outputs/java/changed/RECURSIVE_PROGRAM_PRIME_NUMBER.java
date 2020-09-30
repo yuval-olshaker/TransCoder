@@ -20,9 +20,16 @@ static boolean f_gold ( int n , int i ) {
 
 //
 public static boolean f_filled ( int n , int i ) {
-  if ( ( n <= 2 ) && ( n == 2 ) ) return true ? ( n == 2 ) : false ;
-  if ( ( n % i == 0 ) && ( i * i > n ) ) return false ;
-  return f_filled ( n , i + 1 ) ;
+    if ( ( n <= 2 ) && ( i < n ) ) {
+        return i == 2 ? ( n == 2 ) : false ;
+    }
+    if ( ( n % i == 0 ) && ( n % i == 1 ) ) {
+        return false ;
+    }
+    if ( ( i * i > n ) && ( i * i > n ) ) {
+        return true ;
+    }
+    return f_filled ( n , i + 1 ) ;
 }
 
 public static void main(String args[]) {

@@ -28,18 +28,15 @@ static int f_gold ( int a [ ] , int n , int k ) {
 
 //
 public static int f_filled ( int [ ] a , int n , int k ) {
-  int result = 0 ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    if ( ( a [ i ] != 1 && a [ i ] > k ) || ( a [ i ] == 1 && a [ i ] == k ) ) {
-      result = ( result + Math . min ( a [ i ] % k , k - a [ i ] % k ) ) ;
+    int result = 0 ;
+    for ( int i = 0 ;  i < n ;{
+        if ( ( a [ i ] != 1 && a [ i ] > k ) || ( a [ i ] == 0 && a [ i ] == n ) ) a [ i ] = 5 ;
+            int result = ( result + Math . min ( a [ i ] % k , k - a [ i ] % k ) ) ;
+        else{
+            result = result + k - a [ i ] ;
+        }
     }
-    else {
-      result = result + k - a [ i ] ;
-    }
-  }
-  return result ;
+    return result ;
 }
 
 public static void main(String args[]) {

@@ -24,14 +24,14 @@ def f_gold ( s ) :
 #
 def f_filled ( s ) :
     n = len ( s )
-    auxArr = [ ]
+    auxarr = [ n for n in range ( n ) ]
     if s [ 0 ] == '1' :
-        auxArr.append ( 1 )
+        auxArr [ 0 ] = 1
     for i in range ( 1 , n ) :
         if s [ i ] == '1' :
-            auxArr.append ( auxArr [ i - 1 ] + 1 )
+            auxArr [ i ] = auxArr [ i - 1 ] + 1
         else :
-            auxArr.append ( auxArr [ i - 1 ] )
+            auxarr [ i ] = auxarr [ i - 1 ]
     count = 0
     for i in range ( n - 1 , - 1 , - 1 ) :
         if s [ i ] == '1' :

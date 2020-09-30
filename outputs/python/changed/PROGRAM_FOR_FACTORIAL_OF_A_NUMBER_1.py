@@ -11,7 +11,7 @@ def f_gold ( n ) :
 #
 def f_filled ( n ) :
     res , i = 1 , 0
-    for i in range ( 2 , n + 1 ) :
+    for i in range ( 2 , n ) :
         res *= i
     return res
 

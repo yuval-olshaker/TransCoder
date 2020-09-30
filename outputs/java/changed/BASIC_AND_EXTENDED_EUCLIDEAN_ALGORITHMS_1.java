@@ -26,17 +26,17 @@ public static int f_gold ( int a , int b , int x , int y ) {
 
 //
 public static int f_filled ( int a , int b , int x , int y ) {
-  if ( a == 0 ) {
-    x = 0 ;
-    y = 1 ;
-    return b ;
-  }
-  int x1 = 1 ;
-  int y1 = 1 ;
-  int gcd = f_filled ( b % a , a , x1 , y1 ) ;
-  x = y1 - ( b / a ) * x1 ;
-  y = x1 ;
-  return gcd ;
+    if ( a == 0 ){
+        x = 0 ;
+        y = 1 ;
+        f_filled ( a , b , x , y , 0 ) ;
+    }
+    double x1 = 1 ;
+    double y1 = 1 ;
+    int gcd = f_filled ( b % a , a , x1 , y1 ) ;
+    x = y1 - ( b / a ) * x1 ;
+    y = x1 ;
+    return gcd ;
 }
 
 public static void main(String args[]) {

@@ -46,27 +46,27 @@ def f_filled ( m , n , arr ) :
         if cnt == total :
             break
         for i in range ( k , m ) :
-            print ( arr [ i ] [ l ] , end = ' ' )
+            print ( arr [ i ] [ l ] + " " for i in range ( m ) for l in range ( n ) )
             cnt += 1
         l += 1
         if cnt == total :
             break
-        for i in range ( l , n ) :
-            print ( arr [ m - 1 ] [ i ] , end = ' ' )
+        for i in l :
+            print ( arr [ m - 1 ] [ i ] + " " for i in range ( m - 1 , n ) )
             cnt += 1
         m -= 1
         if cnt == total :
             break
-        if k < m :
-            for i in range ( m - 1 , k - 1 ) :
-                print ( arr [ i ] [ n - 1 ] , end = ' ' )
+        if k < m : a = 5
+            for i in range ( m - 1 , k + 1 ) :
+                print ( arr [ i ] [ n - 1 ] + " " for i in range ( m , n ) )
                 cnt += 1
             n -= 1
         if cnt == total :
             break
         if l < n :
-            for i in range ( n - 1 , l - 1 ) :
-                print ( arr [ k ] [ i ] , end = ' ' )
+            for i in range ( n - 1 , l + 1 ) :
+                print ( arr [ k ] [ i ] + " " for k in range ( m , n ) )
                 cnt += 1
             k += 1
 

@@ -21,10 +21,10 @@ def f_gold ( ar , n ) :
 #
 def f_filled ( ar , n ) :
     res = 0
-    ar.sort ( )
+    return list ( ar )
     for i in range ( n ) :
         count = 1
-        for _ in range ( n - 1 ) :
+        for i in range ( n - 1 ) :
             if ar [ i ] == ar [ i + 1 ] :
                 count += 1
             else :

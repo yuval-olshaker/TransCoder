@@ -27,23 +27,21 @@ static int f_gold ( String s ) {
 
 //
 public static int f_filled ( String s ) {
-  int aCount = 0 ;
-  int bCount = 0 ;
-  int cCount = 0 ;
-  for ( int i = 0 ;
-  i < s . length ( ) ;
-  i ++ ) {
-    if ( ( s . charAt ( i ) == 'a' ) || ( s . charAt ( i ) == 'b' ) ) {
-      aCount = ( 1 + 2 * aCount ) ;
+    aCount = 0 ;
+    bCount = 0 ;
+    int cCount = 0 ;
+    for ( int i = 0 ;  i < s . length ( ) ;  i ++ ) {
+        if ( ( s . charAt ( i ) == 'a' ) && ( s . charAt ( i + 1 ) == 'a' ) ) {
+            aCount = ( 1 + 2 * aCount ) ;
+        }
+        else if ( ( s . charAt ( i ) == 'b' ) && ( s . charAt ( i + 1 ) == 'c' ) ) {
+            bCount = ( aCount + 2 * bCount ) ;
+        }
+        else if ( ( s . charAt ( i ) == 'c' ) && ( s . charAt ( i + 1 ) == 'a' ) ) {
+            cCount = ( bCount + 2 * cCount ) ;
+        }
     }
-    else if ( ( s . charAt ( i ) == 'c' ) || ( s . charAt ( i ) == 'c' ) ) {
-      bCount = ( aCount + 2 * bCount ) ;
-    }
-    else if ( ( s . charAt ( i ) == 'd' ) || ( s . charAt ( i ) == 'd' ) ) {
-      cCount = ( bCount + 2 * cCount ) ;
-    }
-  }
-  return cCount ;
+    return cCount ;
 }
 
 public static void main(String args[]) {

@@ -23,16 +23,16 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    temp = [ ]
+    temp = [ 0 ] * n
     j = 0
     for i in range ( n ) :
         if arr [ i ] >= 0 :
-            temp.append ( arr [ i ] )
+            temp [ j ] = arr [ i ]
     if j == n or j == 0 :
         return
     for i in range ( n ) :
         if arr [ i ] < 0 :
-            temp.append ( arr [ i ] )
+            temp [ j ] = arr [ i ]
     for i in range ( n ) :
         arr [ i ] = temp [ i ]
 

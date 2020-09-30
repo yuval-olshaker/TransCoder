@@ -13,9 +13,9 @@ def f_gold ( str ) :
 
 #
 def f_filled ( str ) :
-    for c in str :
-        if ord ( c ) < 128 :
-            return c
+    for i in range ( len ( str ) ) :
+        if re.match ( '[a-z]' , str ) :
+            return str [ i ]
     return 0
 
 if __name__ == '__main__':

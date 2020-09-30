@@ -19,7 +19,7 @@ def f_gold ( arr , n ) :
 def f_filled ( arr , n ) :
     count = 0
     cummulative_sum = 0
-    arr.sort ( )
+    del arr [ n ]
     for i in range ( n ) :
         if arr [ i ] >= cummulative_sum :
             count += 1

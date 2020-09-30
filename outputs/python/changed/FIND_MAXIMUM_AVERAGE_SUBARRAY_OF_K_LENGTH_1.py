@@ -25,12 +25,12 @@ def f_filled ( arr , n , k ) :
     if k > n :
         return - 1
     sum = arr [ 0 ]
-    for i in range ( k ) :
+    for i in range ( 1 , k ) :
         sum += arr [ i ]
-    max_sum , max_end = sum , k - 1
+    max_sum , max_end = sum ( arr ) , k - 1
     for i in range ( k , n ) :
-        sum = sum + arr [ i ] - arr [ i - k ]
-        if sum > max_sum :
+        sum = sum ( arr [ i ] - arr [ i - k ] for i in range ( n ) )
+        if sum ( arr ) > max_sum :
             max_sum = sum
             max_end = i
     return max_end - k + 1

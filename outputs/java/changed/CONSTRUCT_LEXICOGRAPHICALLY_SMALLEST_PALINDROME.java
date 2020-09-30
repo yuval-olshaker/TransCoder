@@ -38,32 +38,32 @@ static String f_gold ( char [ ] str , int len ) {
 
 //
 public static String f_filled ( String string , int l ) {
-  string = Arrays . asList ( string ) ;
-  int i = - 1 ;
-  int j = l ;
-  while ( i < j ) {
-    i ++ ;
-    j -- ;
-    if ( ( string . charAt ( i ) == string . charAt ( j ) && string . charAt ( i ) != '*' ) || ( string . charAt ( i ) == string . charAt ( j ) && string . charAt ( i ) == '*' ) ) {
-      continue ;
+    string = Arrays . asList ( string ) ;
+    int i = - 1 ;
+    int j = l ;
+    while ( i < j ){
+        i ++ ;
+        j -- ;
+        if ( ( string . charAt ( i ) == string . charAt ( j ) && string . charAt ( i ) != '*' ) || ( string . charAt ( i ) == '+' && string . charAt ( j ) != '*' ) ) {
+            continue ;
+        }
+        else if ( ( string . charAt ( i ) == string . charAt ( j ) && string . charAt ( i ) == '*' ) || ( string . charAt ( i ) == '*' && string . charAt ( j ) == '*' ) ) {
+            string . charAt ( i ++ ) = 'a' ;
+            string . charAt ( j ++ ) = 'a' ;
+            continue ;
+        }
+        else if ( string . charAt ( i ++ ) == '*' ) {
+            string [ i ++ ] = string [ j ++ ] ;
+            continue ;
+        }
+        else if ( string . charAt ( j ) == '*' ) {
+            string [ j ] = string [ i ] ;
+            continue ;
+        }
+        System . out . println ( "Not Possible" ) ;
+        return f_filled ( string , l , null ) ;
     }
-    else if ( ( string . charAt ( i ) == string . charAt ( j ) && string . charAt ( i ) == '*' ) || ( string . charAt ( i ) == '*' ) ) {
-      string . charAt ( i ) = 'a' ;
-      string . charAt ( j ) = 'a' ;
-      continue ;
-    }
-    else if ( string . charAt ( i ) == '*' ) {
-      string . charAt ( i ) = string . charAt ( j ) ;
-      continue ;
-    }
-    else if ( string . charAt ( j ) == '*' ) {
-      string . charAt ( j ) = string . charAt ( i ) ;
-      continue ;
-    }
-    System . out . println ( "Not Possible" ) ;
-    return "" ;
-  }
-  return string ;
+    return f_filled ( string , l , null ) ;
 }
 
 public static void main(String args[]) {

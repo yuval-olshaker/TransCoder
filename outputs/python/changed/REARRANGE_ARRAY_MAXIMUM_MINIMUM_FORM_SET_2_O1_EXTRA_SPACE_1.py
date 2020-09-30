@@ -27,7 +27,6 @@ def f_filled ( arr , n ) :
         else :
             arr [ i ] = min_ele
             min_ele += 1
-    return arr
 
 if __name__ == '__main__':
     param = [

@@ -22,17 +22,16 @@ def f_gold ( mat , n , m ) :
 
 #
 def f_filled ( mat , n , m ) :
-    rowsum = [ ]
-    colsum = [ ]
+    rowsum = np.zeros ( ( n , m ) )
+    colsum = np.zeros ( m )
     for i in range ( n ) :
-        for j in range ( m ) :
-            if mat [ i ] [ j ] != 0 :
-                rowsum.append ( i )
-                colsum.append ( j )
+        for i in range ( m ) :
+        rowsum [ i ] += 1
+        colsum [ j ] += 1
     uniquecount = 0
     for i in range ( n ) :
         for j in range ( m ) :
-            if mat [ i ] [ j ] != 0 and rowsum [ i ] == 1 and colsum [ j ] == 1 :
+            if mat [ i , j ] != 0 and rowsum [ i ] == 1 and colsum [ j ] == 1 :
                 uniquecount += 1
     return uniquecount
 

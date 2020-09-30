@@ -17,9 +17,9 @@ def f_gold ( n ) :
 def f_filled ( n ) :
     nCr , res = 1 , 1
     for r in range ( 1 , n + 1 ) :
-        nCr = ( nCr * ( n + 1 - r ) ) // r
-        res += nCr ** 2
-    return res
+        nCr = ( nCr * ( n + 1 - r ) ) / r
+        res += n_cr * n_cr
+    return n
 
 if __name__ == '__main__':
     param = [

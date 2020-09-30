@@ -23,7 +23,7 @@ static int f_gold ( int [ ] a , int n ) {
 
 //
 static double f_filled ( double [ ] a , int n ) {
-  return ( ( n - 1 ) * Math . min ( a , a . length ) ) ;
+    return ( ( n - 1 ) * Math . min ( a , a . length ) ) ;
 }
 
 public static void main(String args[]) {

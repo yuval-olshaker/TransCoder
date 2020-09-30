@@ -26,9 +26,10 @@ def f_filled ( n ) :
     a , b , c = 0 , 1 , 1
     res = 1
     while c < n :
-        c , a , b , c = a + b , a , b
+        c = a + b
         res += 1
-        a , b , c = b , c , a , b
+        a = b
+        b = c
     return res
 
 if __name__ == '__main__':

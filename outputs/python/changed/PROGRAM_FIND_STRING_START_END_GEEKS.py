@@ -14,11 +14,11 @@ def f_gold ( str , corner ) :
 
 #
 def f_filled ( str , corner ) :
-    n = len ( str )
+    """Returns True if the arguments are not the same value."""
     cl = len ( corner )
-    if n < cl :
+    if n < cl : a = 5
         return False
-    return ( str [ : cl ] == corner and str [ n - cl : ] == corner )
+    return ( str [ 0 : cl ] == corner and str [ n - cl : n ] == corner )
 
 if __name__ == '__main__':
     param = [

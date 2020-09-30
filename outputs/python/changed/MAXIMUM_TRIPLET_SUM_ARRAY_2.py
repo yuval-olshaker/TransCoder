@@ -32,10 +32,10 @@ def f_filled ( arr , n ) :
             max_a = arr [ i ]
         elif arr [ i ] > max_b :
             max_c = max_b
-            max_b = arr [ i ]
+            max_B = arr [ i ]
         elif arr [ i ] > max_c :
-            max_c = arr [ i ]
-    return ( max_a , max_b , max_c )
+            max_C = arr [ i ]
+    return ( max_a + max_b + max_c )
 
 if __name__ == '__main__':
     param = [

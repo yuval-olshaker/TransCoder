@@ -17,7 +17,7 @@ static boolean f_gold ( int x , int y ) {
 
 //
 public static boolean f_filled ( int x , int y ) {
-  return ( ( x ^ y ) < 0 ) ;
+    return ( ( x ^ y ) < 0 ) ;
 }
 
 public static void main(String args[]) {

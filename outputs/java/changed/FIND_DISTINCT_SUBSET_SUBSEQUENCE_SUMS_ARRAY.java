@@ -40,33 +40,25 @@ static void f_gold ( int arr [ ] , int n ) {
 
 //
 public static void f_filled ( int [ ] arr , int n ) {
-  int Sum = Arrays . stream ( arr ) . mapToInt ( Integer :: intValue ) . sum ( ) ;
-  boolean [ ] [ ] dp = new boolean [ Sum + 1 ] [ n + 1 ] ;
-  for ( int i = 0 ;
-  i < n + 1 ;
-  i ++ ) {
-    dp [ i ] [ 0 ] = true ;
-  }
-  for ( int i = 1 ;
-  i <= n ;
-  i ++ ) {
-    dp [ i ] [ arr [ i - 1 ] ] = true ;
-    for ( int j = 1 ;
-    j <= Sum ;
-    j ++ ) {
-      if ( ( dp [ i - 1 ] [ j ] == true ) && ( dp [ i ] [ j + arr [ i - 1 ] ] == true ) ) {
-        dp [ i ] [ j ] = true ;
-        dp [ i ] [ j + arr [ i - 1 ] ] = true ;
-      }
+    int Sum = sum ( arr ) ;
+    int [ ] [ ] dp = new int [ Sum + 1 ] [ n + 1 ] ;
+    for ( int i = 0 ;  i < n + 1 ;  i ++ ) {
+        dp [ i ] [ 0 ] = true ;
     }
-  }
-  for ( int j = 0 ;
-  j < Sum + 1 ;
-  j ++ ) {
-    if ( ( dp [ n ] [ j ] == true ) && ( dp [ n ] [ j + arr [ i - 1 ] ] == true ) ) {
-      System . out . print ( j + " " ) ;
+    for ( int i = 1 ;  i <= n ;  i ++ ) {
+        dp [ i ] [ arr [ i - 1 ] ] = true ;
+        for ( int j = 1 ;  j <= Sum + 1 ;  j ++ ) {
+            if ( ( dp [ i - 1 ] [ j ] == true ) && ( dp [ i - 1 ] [ j ] == false ) ) {
+                dp [ i ] [ j ] = true ;
+                dp [ i ] [ j + arr [ i - 1 ] ] = true ;
+            }
+        }
     }
-  }
+    for ( int j = 0 ;  j < Sum + 1 ;  j ++ ) {
+        if ( ( dp [ n ] [ j ] == true ) && ( arr [ n ] [ j ] != 0 ) ) {
+            System . out . print ( j + " " ) ;
+        }
+    }
 }
 
 public static void main(String args[]) {

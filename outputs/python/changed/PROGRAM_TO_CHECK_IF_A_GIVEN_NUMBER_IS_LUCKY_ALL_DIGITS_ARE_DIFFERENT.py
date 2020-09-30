@@ -19,14 +19,14 @@ def f_gold ( n ) :
 
 #
 def f_filled ( n ) :
-    arr = [ ]
+    arr = np.zeros ( 10 )
     for i in range ( 10 ) :
-        arr.append ( False )
+        arr [ i ] = False
     while n > 0 :
         digit = n % 10
         if arr [ digit ] :
             return False
-        arr.append ( True )
+        arr [ digit ] = True
         n = n / 10
     return True
 

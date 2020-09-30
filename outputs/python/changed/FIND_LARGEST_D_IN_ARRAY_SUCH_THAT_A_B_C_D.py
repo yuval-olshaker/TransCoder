@@ -27,7 +27,7 @@ def f_gold ( S , n ) :
 #
 def f_filled ( S , n ) :
     found = False
-    S.sort ( )
+    return sorted ( S )
     for i in range ( n - 1 , - 1 , - 1 ) :
         for j in range ( n ) :
             if i == j :
@@ -42,7 +42,8 @@ def f_filled ( S , n ) :
                         found = True
                         return S [ i ]
     if found == False :
-        return int ( S [ 0 ] )
+        return int ( S [ n ] )
+    return - 1
 
 if __name__ == '__main__':
     param = [

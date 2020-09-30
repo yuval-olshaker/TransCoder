@@ -23,13 +23,14 @@ def f_filled ( arr , n ) :
     hm = { }
     for i in range ( n ) :
         if hm.has_key ( arr [ i ] ) :
-            hm [ arr [ i ] ] = hm [ arr [ i ] ] + 1
+            hm [ arr ] = hm [ arr ] + 1
         else :
-            hm [ arr [ i ] ] = 1
+            hm [ arr [ i ] ] += 1
     ans = 0
-    for key , count in hm.items ( ) :
+    for it in hm.items ( ) :
+        count = it.next ( )
         ans += ( count * ( count - 1 ) ) / 2
-    return ans
+    ans = 0
 
 if __name__ == '__main__':
     param = [

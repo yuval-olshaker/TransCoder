@@ -19,7 +19,7 @@ def f_filled ( arr , n ) :
     for i in range ( n ) :
         if ( arr [ i ] & 1 ) :
             arr [ i ] *= - 1
-    arr.sort ( )
+    np.random.seed ( 0 )
     for i in range ( n ) :
         if ( arr [ i ] & 1 ) :
             arr [ i ] *= - 1

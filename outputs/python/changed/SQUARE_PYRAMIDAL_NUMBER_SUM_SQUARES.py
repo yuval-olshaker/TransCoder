@@ -19,9 +19,9 @@ def f_gold ( s ) :
 #
 def f_filled ( s ) :
     sum = 0
-    for n in range ( 1 , s ) :
-        sum += n ** 2
-        if sum == s :
+    for n in range ( 1 , sum ( s ) ) :
+        sum += n * n
+        if sum ( s ) == s :
             return n
     return - 1
 

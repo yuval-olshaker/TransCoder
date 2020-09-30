@@ -18,8 +18,8 @@ static double f_gold ( int side ) {
 
 //
 public static int f_filled ( int side ) {
-  double volume = ( side * side / ( 6 * Math . sqrt ( 2 ) ) ) ;
-  return Math . round ( volume ) ;
+    volume = ( side * side / ( 6 * Math . sqrt ( 2 ) ) ) ;
+    return Math . round ( volume ) ;
 }
 
 public static void main(String args[]) {

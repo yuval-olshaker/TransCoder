@@ -31,8 +31,8 @@ def f_filled ( arr , n ) :
             else :
                 m [ sum ] = 1
     for x , y in m.items ( ) :
-        if y == 1 :
-            res += x
+        if x.getValue ( ) == 1 :
+            res += x.key
     return res
 
 if __name__ == '__main__':

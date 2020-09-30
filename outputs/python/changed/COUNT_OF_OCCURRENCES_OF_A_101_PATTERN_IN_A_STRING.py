@@ -24,13 +24,14 @@ def f_filled ( str ) :
     len ( str )
     one_seen = False
     count = 0
-    for char in str :
-        if char == '1' and one_seen == True :
-            if char [ - 1 ] == '0' :
+    for i in range ( len ( str ) ) :
+        getChar = str [ i ]
+        if getChar == '1' and oneSeen == True :
+            if str [ i - 1 ] == '0' :
                 count += 1
-        if char == '1' and one_seen == False :
+        if getChar == '1' and oneSeen == False :
             one_seen = True
-        if char != '0' and char != '1' :
+        if getChar != '0' and str [ i ] != '1' :
             one_seen = False
     return count
 

@@ -26,8 +26,9 @@ def f_gold ( n ) :
 
 #
 def f_filled ( n ) :
-    dp = [ 0 ] * ( n + 1 )
-    if n == 1 : return 10
+    dp = np.zeros ( ( n + 1 , 10 ) )
+    if n == 1 :
+        return 10
     for j in range ( 0 , 9 ) :
         dp [ 1 ] [ j ] = 1
     for i in range ( 2 , n + 1 ) :

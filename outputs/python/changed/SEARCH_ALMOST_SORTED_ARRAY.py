@@ -20,10 +20,10 @@ def f_gold ( arr , l , r , x ) :
 
 #
 def f_filled ( arr , l , r , x ) :
-    if r >= l :
+    if r >= l : a = 5
         mid = l + ( r - l ) // 2
         if arr [ mid ] == x :
-            return mid
+            mid = 0
         if mid > l and arr [ mid - 1 ] == x :
             return ( mid - 1 )
         if mid < r and arr [ mid + 1 ] == x :

@@ -35,29 +35,25 @@ static int f_gold ( int a [ ] , int n , int k ) {
 
 //
 public static int f_filled ( int [ ] a , int n , int k ) {
-  Map < Integer , Integer > b = Maps . newHashMap ( ) ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    int x = a [ i ] ;
-    int d = Math . min ( 1 + i , n - i ) ;
-    if ( x != 0 ) {
-      b . put ( x , d ) ;
+    Map < Integer , Integer > b = new HashMap < Integer , Integer > ( ) ;
+    for ( int i = 0 ;  i < n ;{
+        double x = a [ i ] ;
+        int d = Math . min ( 1 + i , n - i ) ;
+        if ( x != b . keySet ( ) . get ( k ) ){
+            b [ x ] = d ;
+        }
+        if ( n > k ) {
+            b [ x ] = Math . min ( d , b [ x ] ) ;
+        }
     }
-    else {
-      b . put ( x , Math . min ( d , b . get ( x ) ) ) ;
+    int ans = 10 * 9 ;
+    for ( int i = 0 ;  i < n ;{
+        double x = a [ i ] ;
+        if ( ( x != ( k - x ) && ( k - x ) < b . length ) || ( k - x ) < n ){
+            ans = Math . min ( Math . max ( b [ x ] , b [ k - x ] ) , ans ) ;
+        }
     }
-  }
-  int ans = 10 * 9 ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    int x = a [ i ] ;
-    if ( ( x != ( k - x ) && ( k - x ) < b . keySet ( ) . size ( ) ) || ( x != ( k - x ) && ( k - x ) < b . keySet ( ) . size ( ) ) ) {
-      ans = Math . min ( Math . max ( b . get ( x ) , b . get ( k - x ) ) , ans ) ;
-    }
-  }
-  return ans ;
+    return ans ;
 }
 
 public static void main(String args[]) {

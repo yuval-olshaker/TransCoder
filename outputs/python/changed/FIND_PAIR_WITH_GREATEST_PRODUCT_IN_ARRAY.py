@@ -21,7 +21,7 @@ def f_filled ( arr , n ) :
         for j in range ( n - 1 ) :
             for k in range ( j + 1 , n ) :
                 if arr [ j ] * arr [ k ] == arr [ i ] :
-                    result = max ( result , arr [ i ] )
+                    result = max ( result , key = lambda i : i [ 1 ] )
     return result
 
 if __name__ == '__main__':

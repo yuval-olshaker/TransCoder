@@ -16,11 +16,11 @@ def f_gold ( arr , n ) :
 #
 def f_filled ( arr , n ) :
     sum = 0
-    arr.sort ( )
+    np.random.seed ( 0 )
     for i in range ( n // 2 ) :
-        sum -= ( 2 * arr [ i ] )
-        sum += ( 2 * arr [ n - i - 1 ] )
-    return sum
+        sum -= ( 2 * arr [ i ] for i in range ( n ) )
+        sum += ( 2 * arr [ n - i - 1 ] for i in range ( n ) )
+    return sum ( arr )
 
 if __name__ == '__main__':
     param = [

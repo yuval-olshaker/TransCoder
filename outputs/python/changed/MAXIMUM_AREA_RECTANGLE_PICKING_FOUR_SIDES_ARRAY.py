@@ -24,7 +24,7 @@ def f_filled ( arr , n ) :
     dimension = [ 0 , 0 ]
     for i , j in enumerate ( arr ) :
         if arr [ i ] == arr [ i + 1 ] :
-            dimension [ j ] = arr [ i ++ ]
+            dimension [ j ] = arr [ i ]
     return ( dimension [ 0 ] * dimension [ 1 ] )
 
 if __name__ == '__main__':

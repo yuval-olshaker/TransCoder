@@ -29,10 +29,10 @@ def f_filled ( a , b , c ) :
         elif a > c :
             return c
         else :
-            return a
+            return a , b , c
     else :
         if a > c :
-            return a
+            return a , b , c
         elif b > c :
             return c
         else :

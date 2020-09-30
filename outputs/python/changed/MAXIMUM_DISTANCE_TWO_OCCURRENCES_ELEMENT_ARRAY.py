@@ -20,10 +20,10 @@ def f_filled ( arr , n ) :
     d = { }
     max_dist = 0
     for i in range ( n ) :
-        if not d.has_key ( arr [ i ] ) :
-            d [ arr [ i ] ] = i
+        if not map ( lambda i : arr [ i ] , range ( n ) ) :
+            map ( lambda i : i , arr )
         else :
-            max_dist = max ( max_dist , i - d [ arr [ i ] ] )
+            max_dist = max ( max_dist , i - map ( int , arr [ i ] ) )
     return max_dist
 
 if __name__ == '__main__':

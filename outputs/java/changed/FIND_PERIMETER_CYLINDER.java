@@ -17,7 +17,7 @@ static int f_gold ( int diameter , int height ) {
 
 //
 public static int f_filled ( int diameter , int height ) {
-  return 2 * ( diameter + height ) ;
+    return 2 * ( diameter + height ) ;
 }
 
 public static void main(String args[]) {

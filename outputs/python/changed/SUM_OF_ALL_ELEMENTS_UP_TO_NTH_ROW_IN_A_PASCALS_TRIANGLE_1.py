@@ -14,7 +14,7 @@ def f_gold ( n ) :
 def f_filled ( n ) :
     sum = 0
     sum = 1 << n
-    return ( sum - 1 )
+    return sum ( n - 1 )
 
 if __name__ == '__main__':
     param = [

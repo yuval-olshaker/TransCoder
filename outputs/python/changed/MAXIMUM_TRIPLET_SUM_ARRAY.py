@@ -18,7 +18,7 @@ def f_gold ( arr , n ) :
 def f_filled ( arr , n ) :
     sum = - 1000000
     for i in range ( n ) :
-        for j in range ( i + 1 , n ) :
+        for i in range ( i + 1 , n ) :
             for k in range ( j + 1 , n ) :
                 if sum < arr [ i ] + arr [ j ] + arr [ k ] :
                     sum = arr [ i ] + arr [ j ] + arr [ k ]

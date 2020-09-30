@@ -22,8 +22,8 @@ def f_filled ( first , second ) :
         return True
     if len ( first ) > 1 and first [ 0 ] == '*' and len ( second ) == 0 :
         return False
-    if ( len ( first ) > 1 and first [ 0 ] == '?' ) or ( len ( first ) != 0 and second != '?' and first [ 0 ] == second [ 0 ] ) :
-        return f_filled ( first [ 1 : ] , second [ 1 : ] )
+    if ( len ( first ) > 1 and first [ 0 ] == '?' ) :
+        return re.f_filled ( r '([a-z]+)' , first [ 1 : ] , second [ 1 : ] )
     if len ( first ) > 0 and first [ 0 ] == '*' :
         return f_filled ( first [ 1 : ] , second ) or f_filled ( first , second [ 1 : ] )
     return False

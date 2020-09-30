@@ -27,24 +27,22 @@ public static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-  int count = 0 ;
-  for ( int curr = 0 ;
-  curr < Integer . MAX_VALUE ;
-  curr ++ ) {
-    int sum = 0 ;
-    int x = curr ;
-    while ( ( x = curr ) != 0 ) {
-      sum = sum + x % 10 ;
-      x = x / 10 ;
+    int count = 0 ;
+    for ( int curr = 0 ;  curr < n ;  curr ++ ) {
+        int sum = 0 ;
+        int x = curr ;
+        while ( ( x = n ) != 0 ) {
+            sum = sum + x % 10 ;
+            x = x / 10 ;
+        }
+        if ( ( sum == 10 ) && ( n > 0 ) ) {
+            count = count + 1 ;
+        }
+        if ( ( count == n ) && ( count > 0 ) ) {
+            return curr ;
+        }
     }
-    if ( ( sum == 10 ) && ( count == 10 ) ) {
-      count = count + 1 ;
-    }
-    if ( ( count == n ) && ( curr == 0 ) ) {
-      return curr ;
-    }
-  }
-  return - 1 ;
+    return - 1 ;
 }
 
 public static void main(String args[]) {

@@ -15,10 +15,10 @@ def f_gold ( arr , n , k ) :
 #
 def f_filled ( arr , n , k ) :
     for i in range ( k ) :
-        x = arr [ 0 ]
+        x = arr [ 0 : n ]
         for j in range ( n - 1 ) :
-            arr [ j ] , arr [ j + 1 ] = arr [ j + 1 ] , arr [ j ]
-        arr [ n - 1 ] , arr [ n - 1 ] = x , arr [ n - 1 ]
+            arr [ j ] = arr [ j + 1 ]
+        arr [ n - 1 ] = x
 
 if __name__ == '__main__':
     param = [

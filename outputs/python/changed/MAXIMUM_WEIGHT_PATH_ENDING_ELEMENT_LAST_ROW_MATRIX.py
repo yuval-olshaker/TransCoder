@@ -22,12 +22,13 @@ def f_gold ( mat , N ) :
 
 #
 def f_filled ( mat , N ) :
-    dp = [ 0 ] * N
+    dp = np.zeros ( ( N , N ) )
+    dp [ 0 ] = mat [ 0 ]
     for i in range ( 1 , N ) :
         dp [ i ] = mat [ i ] + dp [ i - 1 ]
     for i in range ( 1 , N ) :
         for j in range ( 1 , i + 1 and j < N ) :
-            dp [ i ] = mat [ i ] + max ( dp [ i - 1 ] [ j - 1 ] , dp [ i - 1 ] [ j ] )
+            dp [ i ] [ j ] = mat [ i ] [ j ] + max ( dp [ i - 1 ] [ j - 1 ] for j in range ( N ) )
     result = 0
     for i in range ( N ) :
         if result < dp [ N - 1 ] [ i ] :

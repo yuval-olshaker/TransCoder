@@ -57,34 +57,43 @@ def f_filled ( keypad , n ) :
         return 0
     if n == 1 :
         return 10
-    odd = [ ]
-    even = [ ]
-    i = 0 , 0 , 0 , useOdd , totalCount = 0
+    odd = range ( 10 )
+    even = range ( 10 )
+    i , j , use_odd , totalCount = keypad
     for i in range ( 0 , 9 ) :
-        odd.append ( 1 )
+        odd [ i ] = 1
     for j in range ( 2 , n ) :
-        useOdd = 1 - useOdd
-        if useOdd == 1 :
-            even.append ( odd [ 0 ] + odd [ 8 ] )
-            even.append ( odd [ 1 ] + odd [ 2 ] + odd [ 4 ] )
-            even.append ( odd [ 2 ] + odd [ 1 ] + odd [ 3 ] + odd [ 5 ] )
-            even.append ( odd [ 3 ] + odd [ 2 ] + odd [ 6 ] )
-            even.append ( odd [ 4 ] + odd [ 1 ] + odd [ 5 ] + odd [ 7 ] )
-            even.append ( odd [ 5 ] + odd [ 2 ] + odd [ 4 ] + odd [ 8 ] + odd [ 6 ] )
-            even.append ( odd [ 6 ] + odd [ 3 ] + odd [ 5 ] + odd [ 9 ] )
-            even.append ( odd [ 7 ] + odd [ 4 ] + odd [ 8 ] )
-            even.append ( odd [ 8 ] + odd [ 0 ] + odd [ 5 ] + odd [ 7 ] + odd [ 9 ] )
-            even.append ( odd [ 9 ] + odd [ 6 ] + odd [ 8 ] )
+        use_odd = 1 - use_odd
+        if use_odd == 1 :
+            even [ 0 ] = odd [ 0 ] + odd [ 8 ]
+            even [ 1 ] = odd [ 1 ] + odd [ 2 ] + odd [ 4 ]
+            even [ 2 ] = odd [ 2 ] + odd [ 1 ] + odd [ 3 ] + odd [ 5 ]
+            even [ 3 ] = odd [ 3 ] + odd [ 2 ] + odd [ 6 ]
+            even = odd [ 4 ] + odd [ 1 ] + odd [ 5 ] + odd [ 7 ]
+            even = odd [ 5 ] + odd [ 2 ] + odd [ 4 ] + odd [ 8 ] + odd [ 6 ]
+            even = odd [ 6 ] + odd [ 3 ] + odd [ 5 ] + odd [ 9 ]
+            even [ 7 ] = odd [ 7 ] + odd [ 4 ] + odd [ 8 ]
+            even = odd [ 8 ] + odd [ 0 ] + odd [ 5 ] + odd [ 7 ] + odd [ 9 ]
+            even = odd [ 9 ] + odd [ 6 ] + odd [ 8 ]
         else :
-            odd.append ( even [ 0 ] + even [ 8 ] )
-            odd.append ( even [ 1 ] + even [ 2 ] + even [ 4 ] )
-            odd.append ( even [ 2 ] + even [ 1 ] + even [ 3 ] + even [ 5 ] )
-            odd.append ( even [ 3 ] + even [ 2 ] + even [ 6 ] )
-            odd.append ( even [ 4 ] + even [ 1 ] + even [ 5 ] + even [ 7 ] )
-            odd.append ( even [ 5 ] + odd [ 2 ] + odd [ 4 ] + odd [ 8 ] )
-            odd.append ( even [ 6 ] + odd [ 3 ] + odd [ 5 ] + odd [ 9 ] )
-    return sum ( odd )
-    
+            odd [ 0 ] = even [ 0 ] + even [ 8 ]
+            odd [ 1 ] = even [ 1 ] + even [ 2 ] + even [ 4 ]
+            odd = even [ 2 ] + even [ 1 ] + even [ 3 ] + even [ 5 ]
+            odd = even [ 3 ] + even [ 2 ] + even [ 6 ]
+            odd = even [ 4 ] + even [ 1 ] + even [ 5 ] + even [ 7 ]
+            odd = even [ 5 ] + even [ 2 ] + even [ 4 ] + even [ 8 ] + even [ 6 ]
+            odd = even [ 6 ] + even [ 3 ] + even [ 5 ] + even [ 9 ]
+            odd = even [ 7 ] + even [ 4 ] + even [ 8 ]
+            odd = even [ 8 ] + even [ 0 ] + even [ 5 ] + even [ 7 ] + even [ 9 ]
+            odd = even [ 9 ] + even [ 6 ] + even [ 8 ]
+    totalCount = 0
+    if use_odd == 1 :
+        for i in range ( 0 , 9 ) :
+            totalCount += even [ i ]
+    else :
+        for i in range ( 0 , 9 ) :
+            totalCount += odd [ i ]
+    return totalCount
 
 if __name__ == '__main__':
     param = [

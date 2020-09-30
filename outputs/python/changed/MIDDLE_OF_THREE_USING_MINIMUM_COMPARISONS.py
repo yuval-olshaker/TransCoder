@@ -15,10 +15,10 @@ def f_gold ( a , b , c ) :
 
 #
 def f_filled ( a , b , c ) :
-    if ( a < b and b < c ) or ( c < b and b < a ) :
+    if ( a < b < c ) or ( c < b < a ) :
         return b
-    elif ( b < a and a < c ) or ( c < a and a < b ) :
-        return a
+    elif ( b < a < c ) :
+        return a , b , c
     else :
         return c
 

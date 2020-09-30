@@ -31,23 +31,21 @@ static int f_gold ( int n ) {
 
 //
 public static long f_filled ( long n ) {
-  long res = 1 ;
-  for ( int i = 2 ;
-  i <= ( int ) ( m . sqrt ( n ) + 1 ) ;
-  i ++ ) {
-    long currSum = 1 ;
-    long currTerm = 1 ;
-    while ( n % i == 0 ) {
-      n = n / i ;
-      currTerm = currTerm * i ;
-      currSum += currTerm ;
+    int res = 1 ;
+    for ( int i = 2 ;  i <= ( int ) ( m . sqrt ( n ) + 1 ) ;  i ++ ) {
+        currSum = 1 ;
+        currTerm = 1 ;
+        while ( n % i == 0 ){
+            n = n / i ;
+            currTerm = currTerm * i ;
+            currSum += currTerm ;
+        }
+        res = res * currSum ;
     }
-    res = res * currSum ;
-  }
-  if ( n > 2 ) {
-    res = res * ( 1 + n ) ;
-  }
-  return res ;
+    if ( n > 2 ) {
+        res = res * ( 1 + n ) ;
+    }
+    return res ;
 }
 
 public static void main(String args[]) {

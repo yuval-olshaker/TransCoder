@@ -20,12 +20,13 @@ def f_gold ( arr , l , r , x ) :
 #
 def f_filled ( arr , l , r , x ) :
     if r >= l :
-        mid = l + ( r - l ) // 2
+        mid = l + ( r - l ) / 2
         if arr [ mid ] == x :
             return mid
         if arr [ mid ] > x :
             return f_filled ( arr , l , mid - 1 , x )
         return f_filled ( arr , mid + 1 , r , x )
+    return - 1
 
 if __name__ == '__main__':
     param = [

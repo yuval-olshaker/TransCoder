@@ -22,16 +22,16 @@ def f_gold ( arr , n ) :
 #
 def f_filled ( arr , n ) :
     max = int ( arr [ 0 ] )
-    min = int ( arr [ 1 ] )
+    min = int ( arr [ 0 ] )
     for i in range ( n ) :
-        max = max ( max , arr [ i ] )
-        min = min ( min , arr [ i ] )
+        max = max ( max , arr [ i ] for i in range ( n ) )
+        min = min ( arr )
     m = max - min + 1
     if m > n :
         return False
-    visited = [ ]
+    visited = np.zeros ( ( n , n ) )
     for i in range ( n ) :
-        visited.append ( arr [ i ] - min )
+        visited [ arr [ i ] - min ] = True
     for i in range ( m ) :
         if visited [ i ] == False :
             return False

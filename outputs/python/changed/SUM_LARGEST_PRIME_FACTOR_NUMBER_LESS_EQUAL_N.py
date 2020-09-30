@@ -22,12 +22,12 @@ def f_gold ( n ) :
 
 #
 def f_filled ( n ) :
-    prime , sum = [ 0 ] * ( n + 1 ) , 0
-    prime.sort ( )
-    max = n // 2
-    for p in range ( 2 , max + 1 ) :
+    prime , sum = divmod ( n , 2 )
+    sum ( prime )
+    max = n / 2
+    for p in range ( 2 , max ) :
         if prime [ p ] == 0 :
-            for i in range ( p * 2 , n + 1 , p ) :
+            for i in range ( p * 2 , n , p ) :
                 prime [ i ] = p
     for p in range ( 2 , n + 1 ) :
         if prime [ p ] != 0 :

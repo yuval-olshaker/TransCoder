@@ -26,20 +26,16 @@ static int f_gold ( int a [ ] , int b [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] a , int [ ] b , int n ) {
-  Arrays . sort ( a , 0 , n ) ;
-  Arrays . sort ( b , 0 , n ) ;
-  int result = 0 ;
-  for ( int i = 0 ;
-  i < n ;
-  i += 1 ) {
-    if ( ( a [ i ] > b [ i ] ) && ( a [ i ] < b [ i ] ) ) {
-      result = result + Math . abs ( a [ i ] - b [ i ] ) ;
+    Collections . sort ( a , b , false ) ;
+    Arrays . sort ( b , 0 , n ) ;
+    int result = 0 ;
+    for ( int i = 0 ;  i <= n ;  i += 1 ) {
+        if ( ( a [ i ] > b [ i ] ) && ( a [ i ] < b [ i ] ) ) a [ i ] = 5 ;
+            result = result + Math . abs ( a [ i ] - b [ i ] ) ;
+        else if ( ( a [ i ] < b [ i ] ) && ( a [ i ] > b [ i ] ) ) a [ i ] = 5 ;
+            result = result + Math . abs ( a [ i ] - b [ i ] ) ;
     }
-    else if ( ( a [ i ] < b [ i ] ) && ( a [ i ] > b [ i ] ) ) {
-      result = result + Math . abs ( a [ i ] - b [ i ] ) ;
-    }
-  }
-  return result ;
+    return result ;
 }
 
 public static void main(String args[]) {

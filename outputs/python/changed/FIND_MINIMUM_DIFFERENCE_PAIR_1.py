@@ -15,8 +15,8 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    arr.sort ( )
-    diff = sys.maxsize
+    np.sort ( arr )
+    diff = int ( arr.sum ( ) )
     for i in range ( n - 1 ) :
         if arr [ i + 1 ] - arr [ i ] < diff :
             diff = arr [ i + 1 ] - arr [ i ]

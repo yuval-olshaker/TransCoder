@@ -30,7 +30,7 @@ def f_filled ( num ) :
             num = num [ : i ] + '1' + num [ i + 1 : ]
             break
         else :
-            num = num [ : i ] + '0' + num [ i + 1 : ]
+            num = num [ : i ] + '0' * ( i + 1 )
     if i < 0 :
         num = '1' + num
     return num

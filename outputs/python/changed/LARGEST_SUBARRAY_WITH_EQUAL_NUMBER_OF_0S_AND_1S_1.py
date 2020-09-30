@@ -42,10 +42,10 @@ def f_filled ( arr , n ) :
     ending_index = - 1
     start_index = 0
     for i in range ( n ) :
-        arr [ i ] = ( arr [ i ] == 0 )
+        arr [ i ] = ( arr [ i ] if i < n else - 1 )
     for i in range ( n ) :
         sum += arr [ i ]
-        if sum == 0 :
+        if sum ( arr ) == 0 :
             f_filled = i + 1
             ending_index = i
         if hM.has_key ( sum + n ) :
@@ -58,7 +58,7 @@ def f_filled ( arr , n ) :
         arr [ i ] = ( arr [ i ] == - 1 )
     end = ending_index - f_filled + 1
     print ( end , ending_index )
-    return f_filled
+    return n
 
 if __name__ == '__main__':
     param = [

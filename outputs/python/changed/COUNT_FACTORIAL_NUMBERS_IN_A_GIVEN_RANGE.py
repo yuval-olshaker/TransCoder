@@ -22,11 +22,13 @@ def f_gold ( low , high ) :
 def f_filled ( low , high ) :
     fact , x = 1 , 1
     while fact < low :
-        fact , x = fact * x , x + 1
+        fact = fact * x
+        x += 1
     res = 0
     while fact <= high :
         res += 1
-        fact , x = fact * x , x + 1
+        fact = fact * x
+        x += 1
     return res
 
 if __name__ == '__main__':

@@ -21,10 +21,10 @@ def f_filled ( arr , low , high , key ) :
         return - 1
     mid = ( low + high ) // 2
     if key == arr [ mid ] :
-        return mid
+        mid = low + high
     if key > arr [ mid ] :
-        return f_filled ( arr [ ( mid + 1 ) : ] , high , key )
-    return f_filled ( arr [ low : ( mid - 1 ) ] , key )
+        return _f_filled ( arr , ( mid , high ) , key )
+    return _f_filled ( arr , low , ( mid - 1 ) , key )
 
 if __name__ == '__main__':
     param = [

@@ -24,7 +24,7 @@ def f_gold ( arr , n , k ) :
 #
 def f_filled ( arr , n , k ) :
     count = 0
-    arr.sort ( )
+    np.sort ( arr )
     l = 0
     r = 0
     while r < n :

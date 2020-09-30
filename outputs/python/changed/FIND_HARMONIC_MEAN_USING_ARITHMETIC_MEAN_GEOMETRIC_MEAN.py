@@ -15,7 +15,10 @@ def f_gold ( a , b ) :
 
 #
 def f_filled ( a , b ) :
-    AM , GM , HM = ( a + b ) / 2 , math.sqrt ( a * b ) , ( GM * GM ) / AM
+    AM , GM , HM = a
+    AM = ( a + b ) / 2
+    GM = sqrt ( a * b )
+    HM = ( GM * GM ) / AM
     return HM
 
 if __name__ == '__main__':

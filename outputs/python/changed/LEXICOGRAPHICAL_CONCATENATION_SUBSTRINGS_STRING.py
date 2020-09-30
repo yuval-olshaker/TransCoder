@@ -24,12 +24,12 @@ def f_gold ( s ) :
 def f_filled ( s ) :
     n = len ( s )
     sub_count = n * ( n + 1 ) // 2
-    arr = [ ]
-    index = 0
+    arr = [ s [ i : i + sub_count ] for i in range ( 0 , len ( s ) , sub_count ) ]
+    index = s.index ( ':' )
     for i in range ( n ) :
         for len in range ( 1 , n - i + 1 ) :
-            arr.append ( s [ i : i + len ] )
-    arr.sort ( )
+        arr [ index ] = s [ i : i + len ( s ) ]
+    return list ( map ( lambda x : x [ 0 ] , s ) )
     res = ""
     for i in range ( sub_count ) :
         res += arr [ i ]

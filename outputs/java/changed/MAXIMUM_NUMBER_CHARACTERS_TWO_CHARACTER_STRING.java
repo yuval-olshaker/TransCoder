@@ -24,20 +24,16 @@ static int f_gold ( String str ) {
 
 //
 public static int f_filled ( String str ) {
-  int n = str . length ( ) ;
-  int res = - 1 ;
-  for ( int i = 0 ;
-  i <= n - 1 ;
-  i ++ ) {
-    for ( int j = i + 1 ;
-    j <= n ;
-    j ++ ) {
-      if ( ( str . charAt ( i ) == str . charAt ( j ) ) && ( str . charAt ( j ) == str . charAt ( i ) ) ) {
-        res = Math . max ( res , Math . abs ( j - i - 1 ) ) ;
-      }
+    int n = str . length ( ) ;
+    int res = - 1 ;
+    for ( int i = 0 ;  i <= n - 1 ;  i ++ ) {
+        for ( int j = i + 1 ;  j < n ;  j ++ ) {
+            if ( ( str . charAt ( i ) == str . charAt ( j ) ) && ( str . charAt ( i ) == str . charAt ( j ) ) ) {
+                int res = Math . max ( res , Math . abs ( j - i - 1 ) ) ;
+            }
+        }
     }
-  }
-  return res ;
+    return res ;
 }
 
 public static void main(String args[]) {

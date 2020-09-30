@@ -17,7 +17,7 @@ static int f_gold ( int r ) {
 
 //
 public static int f_filled ( int r ) {
-  return ( 2 * r * r ) ;
+    return ( 2 * r * r ) ;
 }
 
 public static void main(String args[]) {

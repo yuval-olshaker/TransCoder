@@ -21,13 +21,13 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    mls , max = [ 1 ] , 0
+    mls , max = np.mgrid [ 0 : n , 0 : n ]
     for i in range ( n ) :
         mls [ i ] = 1
     for i in range ( 1 , n ) :
         for j in range ( i ) :
             if abs ( arr [ i ] - arr [ j ] ) <= 1 and mls [ i ] < mls [ j ] + 1 :
-                mls [ i ] , mls [ j ] = mls [ j ] + 1
+                mls [ i ] = mls [ j ] + 1
     for i in range ( n ) :
         if max < mls [ i ] :
             max = mls [ i ]

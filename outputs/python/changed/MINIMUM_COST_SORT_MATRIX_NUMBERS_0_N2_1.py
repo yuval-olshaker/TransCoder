@@ -17,7 +17,7 @@ def f_gold ( mat , n ) :
 
 #
 def f_filled ( mat , n ) :
-    i_des , j_des , q = mat
+    i_des , j_des , q = f_filled ( mat , n )
     tot_energy = 0
     for i in range ( n ) :
         for j in range ( n ) :

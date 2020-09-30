@@ -16,11 +16,11 @@ def f_gold ( n ) :
 #
 def f_filled ( n ) :
     BT = [ 0 ] * ( n + 1 )
-    for i in range ( 0 , n + 1 ) :
+    for i in range ( 0 , n ) :
         BT [ i ] = 0
     BT [ 0 ] = BT [ 1 ] = 1
     for i in range ( 2 , n + 1 ) :
-        for j in range ( 0 , i + 1 ) :
+        for j in range ( i ) :
             BT [ i ] += BT [ j ] * BT [ i - j - 1 ]
     return BT [ n ]
 

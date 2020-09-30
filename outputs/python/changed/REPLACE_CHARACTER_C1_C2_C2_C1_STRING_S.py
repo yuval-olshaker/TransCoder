@@ -17,7 +17,7 @@ def f_gold ( s , c1 , c2 ) :
 #
 def f_filled ( s , c1 , c2 ) :
     l = len ( s )
-    arr = s [ : l ]
+    arr = s.split ( c1 )
     for i in range ( l ) :
         if arr [ i ] == c1 :
             arr [ i ] = c2

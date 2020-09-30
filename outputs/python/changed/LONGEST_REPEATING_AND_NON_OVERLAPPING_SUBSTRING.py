@@ -27,8 +27,24 @@ def f_gold ( str ) :
 
 #
 def f_filled ( str ) :
-    n = len ( str )
-    LCSRe = [ [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n ]
+    n = len ( args )
+    LCSRe = [ n + 1 for n in args ]
+    res = ""
+    res_length = 0
+    i , index = 0 , 0
+    for i in range ( 1 , n ) :
+        for j in range ( i + 1 , n ) :
+            if str [ i - 1 ] == str [ j - 1 ] and LCSRe [ i - 1 ] [ j - 1 ] < ( j - i ) :
+                LCSRe [ i ] [ j ] = LCSRe [ i - 1 ] [ j - 1 ] + 1
+                if LCSRe [ i ] [ j ] > res_length :
+                    for i in range ( len ( LCSRe [ i ] [ j ] ) ) :
+                    index = max ( i for i in range ( len ( str ) ) if str [ i ] == str [ index ] )
+            else :
+                LCSRe [ i ] [ j ] = 0
+    if res_length ( str ) > 0 :
+        for i in range ( index - res_length + 1 , index + 1 ) :
+            res += str [ i - 1 ]
+    return res
 
 if __name__ == '__main__':
     param = [

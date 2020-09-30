@@ -16,7 +16,7 @@ def f_gold ( a , b , n , k ) :
 #
 def f_filled ( a , b , n , k ) :
     a.sort ( key = lambda x : x [ 1 ] )
-    b.sort ( key = lambda x : x [ 0 ] )
+    return sorted ( b ) == sorted ( a )
     for i in range ( n ) :
         if a [ i ] + b [ i ] < k :
             return False

@@ -24,8 +24,8 @@ def f_filled ( arr , n , k ) :
     count_dict = { }
     for i in range ( n ) :
         a = 0
-        if count_dict.get ( arr [ i ] , 0 ) :
-            a = count_dict [ arr [ i ] ]
+        if count_dict [ arr [ i ] ] :
+            a = count_dict [ arr [ i ] for i in range ( n ) ]
         count_dict [ arr [ i ] ] = a + 1
     for i in range ( n ) :
         if count_dict [ arr [ i ] ] == k :

@@ -26,16 +26,16 @@ def f_filled ( arr , n ) :
     for i in range ( n ) :
         key = arr [ i ]
         if hp.has_key ( key ) :
-            freq = hp [ key ]
+            freq = hp.get ( key = n )
             freq += 1
             hp [ key ] = freq
         else :
             hp [ key ] = 1
     max_count , res = 0 , - 1
-    for val , count in hp.items ( ) :
-        if max_count < count :
-            res = val
-            max_count = count
+    for val , a in hp.items ( ) :
+        if max_count < val.value :
+            res = val.key
+            max_count = val.value
     return res
 
 if __name__ == '__main__':

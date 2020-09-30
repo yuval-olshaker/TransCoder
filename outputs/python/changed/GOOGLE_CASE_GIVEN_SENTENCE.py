@@ -23,13 +23,13 @@ def f_gold ( s ) :
 def f_filled ( s ) :
     n = len ( s )
     s1 = ""
-    s1 = s1 + chr ( ord ( s [ 0 ] ) )
+    s1 = s1 + ord ( s [ 0 ] )
     for i in range ( 1 , n ) :
         if s [ i ] == ' ' and i < n :
-            s1 = s1 + " " + chr ( ord ( s [ i + 1 ] ) )
+            s1 = s1 + " " + str ( s [ i + 1 ] )
             i += 1
         else :
-            s1 = s1 + chr ( ord ( s [ i ] ) )
+            s1 = s1 + ord ( s [ i ] )
     return s1
 
 if __name__ == '__main__':

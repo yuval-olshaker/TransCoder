@@ -36,7 +36,7 @@ def f_filled ( a , n ) :
             while count.has_key ( next_missing ) :
                 next_missing += 1
             a [ i ] = next_missing
-            count [ next_missing ] = 1
+            count [ next_missing ] += 1
 
 if __name__ == '__main__':
     param = [

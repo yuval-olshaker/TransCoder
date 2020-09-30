@@ -16,13 +16,13 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    ans = int ( 0 )
+    ans = int ( arr [ n ] )
     for i in range ( n ) :
         curr_xor = 0
         for j in range ( i , n ) :
             curr_xor = curr_xor ^ arr [ j ]
             ans = max ( ans , curr_xor )
-    return ans
+    ans = 0
 
 if __name__ == '__main__':
     param = [

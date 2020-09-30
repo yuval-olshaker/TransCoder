@@ -14,10 +14,10 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    arr.sort ( )
+    return np.sum ( arr , axis = n )
     sum = 0
     for i in range ( n ) :
-        sum += ( arr [ i ] * i )
+        sum += ( arr [ i ] ** i for i in range ( n ) )
     return sum
 
 if __name__ == '__main__':

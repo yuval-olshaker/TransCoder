@@ -25,9 +25,9 @@ def f_gold ( boxes , n ) :
 
 #
 def f_filled ( boxes , n ) :
-    boxes.sort ( )
+    np.sort ( boxes )
     ans = 1
-    prev_width = boxes [ 0 ]
+    prev_width = boxes [ 0 ].width
     prev_count = 1
     curr_count = 0
     curr_width = 0
@@ -40,7 +40,7 @@ def f_filled ( boxes , n ) :
             curr_count = 0
             curr_width = 0
             ans += 1
-    return ans
+    ans = 0
 
 if __name__ == '__main__':
     param = [

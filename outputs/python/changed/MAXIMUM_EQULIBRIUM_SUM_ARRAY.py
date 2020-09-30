@@ -24,7 +24,7 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    res = int ( '' )
+    res = int ( arr [ n ] )
     for i in range ( n ) :
         prefix_sum = arr [ i ]
         for j in range ( i ) :

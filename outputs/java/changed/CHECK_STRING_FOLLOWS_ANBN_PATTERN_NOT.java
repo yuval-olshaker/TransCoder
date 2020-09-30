@@ -30,25 +30,21 @@ public static boolean f_gold ( String s ) {
 
 //
 public static boolean f_filled ( String str ) {
-  int n = str . length ( ) ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    if ( ( str . charAt ( i ) != 'a' ) && ( str . charAt ( i ) != 'b' ) ) {
-      break ;
+    int n = str . length ( ) ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        if ( ( str . charAt ( i ) != 'a' ) && ( str . charAt ( i ) != 'b' ) ) {
+            break ;
+        }
     }
-  }
-  if ( ( i * 2 != n ) && ( i * 2 != n ) ) {
-    return false ;
-  }
-  for ( int j = i ;
-  j < n ;
-  j ++ ) {
-    if ( ( str . charAt ( j ) != 'b' ) && ( str . charAt ( j ) != 'a' ) ) {
-      return false ;
+    if ( ( i * 2 != n ) && ( i * 2 != n ) ) {
+        return false ;
     }
-  }
-  return true ;
+    for ( int j = i ;  j < n ;  j ++ ) {
+        if ( ( str . charAt ( j ) != 'b' ) && ( str . charAt ( j ) != 'a' ) ) {
+            return false ;
+        }
+    }
+    return f_filled ( str , false ) ;
 }
 
 public static void main(String args[]) {

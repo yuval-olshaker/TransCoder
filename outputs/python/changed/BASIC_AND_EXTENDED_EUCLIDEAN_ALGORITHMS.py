@@ -12,7 +12,7 @@ def f_gold ( a , b ) :
 
 #
 def f_filled ( a , b ) :
-    if a == 0 :
+    if a == 0 : a = 5
         return b
     return f_filled ( b % a , a )
 

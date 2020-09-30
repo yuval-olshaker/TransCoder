@@ -20,10 +20,10 @@ def f_filled ( n , p ) :
     ans = 0
     for x in range ( 1 , p ) :
         if ( x ** 2 ) % p == 1 :
-            last = x + p * ( n // p )
-        else :
-            last -= p
-        ans += ( ( last - x ) // p + 1 )
+            last = x + p * ( n / p )
+            if last > n :
+                last -= p
+            ans += ( ( last - x ) / p + 1 for x in range ( n ) )
     return ans
 
 if __name__ == '__main__':

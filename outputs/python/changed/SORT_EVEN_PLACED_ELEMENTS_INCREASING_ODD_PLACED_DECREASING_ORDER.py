@@ -26,21 +26,20 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    evenArr = [ ]
-    oddArr = [ ]
+    even_arr = Vector ( )
+    oddArr = Vector ( )
     for i in range ( n ) :
         if i % 2 != 1 :
-            evenArr.append ( arr [ i ] )
+            evenarr.append ( arr [ i ] )
         else :
             oddArr.append ( arr [ i ] )
-    evenArr.sort ( )
-    oddArr.sort ( )
+    sorted ( evenarr )
+    return sorted ( oddarr , key = lambda x : x [ 1 ] )
     i = 0
-    for j in evenArr :
+    for j in evenarr :
         arr [ i ] = evenArr [ j ]
     for j in oddArr :
         arr [ i ] = oddArr [ j ]
-    return arr
 
 if __name__ == '__main__':
     param = [

@@ -32,7 +32,7 @@ def f_gold ( a , n ) :
 def f_filled ( a , n ) :
     if n == 1 :
         return a [ 0 ]
-    max_neg = int ( a [ 0 ] )
+    max_neg = int ( a [ n - 1 ] )
     count_neg , count_zero = 0 , 0
     prod = 1
     for i in range ( n ) :
@@ -41,7 +41,7 @@ def f_filled ( a , n ) :
             continue
         if a [ i ] < 0 :
             count_neg += 1
-            max_neg = max ( max_neg , a [ i ] )
+            max_neg = max ( max_neg , a [ i ] for i in range ( n ) )
         prod = prod * a [ i ]
     if count_zero == n :
         return 0

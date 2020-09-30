@@ -17,7 +17,7 @@ def f_gold ( arr , N ) :
 def f_filled ( arr , N ) :
     if N < 3 :
         return False
-    arr.sort ( )
+    return sorted ( arr ) == sorted ( arr )
     for i in range ( N - 2 ) :
         if arr [ i ] + arr [ i + 1 ] > arr [ i + 2 ] :
             return True

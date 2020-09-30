@@ -23,7 +23,7 @@ def f_gold ( arr , n , k ) :
 def f_filled ( arr , n , k ) :
     dist_count = 0
     for i in range ( n ) :
-        j = 0
+        j = k
         for j in range ( n ) :
             if i != j and arr [ j ] == arr [ i ] :
                 break

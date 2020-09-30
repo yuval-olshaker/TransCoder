@@ -20,11 +20,11 @@ def f_gold ( str ) :
 def f_filled ( str ) :
     result = ""
     v = True
-    for c in str :
-        if c == " " :
+    for i in range ( len ( str ) ) :
+        if str [ i ] == ' ' :
             v = True
-        elif c != " " and v == True :
-            result += ( c )
+        elif str [ i ] != ' ' and v == True :
+            result += ord ( str [ i ] )
             v = False
     return result
 

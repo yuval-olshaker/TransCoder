@@ -17,9 +17,9 @@ def f_gold ( n ) :
 
 #
 def f_filled ( n ) :
-    for sum , i in itertools.combinations ( range ( 1 , n + 1 ) , 2 ) :
+    for sum , i in itertools.combinations ( range ( 0 , n , 2 ) , 2 ) :
         sum += i
-        if sum == n :
+        if sum ( n ) == n :
             return True
     return False
 

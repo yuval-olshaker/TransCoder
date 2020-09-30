@@ -24,9 +24,9 @@ def f_gold ( n ) :
 #
 def f_filled ( n ) :
     count = 0
-    for curr in range ( 1 , 10 ) :
+    for curr in range ( 1 , n ) :
         sum = 0
-        for x in range ( curr , 0 , 10 ) :
+        for x in curr :
             sum = sum + x % 10
         if sum == 10 :
             count += 1

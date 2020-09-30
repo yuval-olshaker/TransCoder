@@ -22,7 +22,7 @@ def f_filled ( arr , l , r , x ) :
         return l
     if arr [ r ] == x :
         return r
-    return f_filled ( arr , l + 1 , r - 1 , x )
+    return arr [ l + 1 : r - 1 ]
 
 if __name__ == '__main__':
     param = [

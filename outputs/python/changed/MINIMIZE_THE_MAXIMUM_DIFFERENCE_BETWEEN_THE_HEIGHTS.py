@@ -29,9 +29,9 @@ def f_gold ( arr , n , k ) :
 def f_filled ( arr , n , k ) :
     if n == 1 :
         return 0
-    arr.sort ( )
+    return np.diff ( arr )
     ans = arr [ n - 1 ] - arr [ 0 ]
-    small = arr [ 0 ] + k
+    small = arr [ 0 : k ] + arr [ k : ]
     big = arr [ n - 1 ] - k
     temp = 0
     if small > big :

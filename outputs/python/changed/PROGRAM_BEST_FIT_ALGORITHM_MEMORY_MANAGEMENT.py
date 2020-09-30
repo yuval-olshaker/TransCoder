@@ -28,26 +28,26 @@ def f_gold ( blockSize , m , processSize , n ) :
 
 #
 def f_filled ( blockSize , m , processSize , n ) :
-    allocation = [ ]
+    allocation = np.zeros ( ( n , m ) )
+    for i in range ( len ( allocation ) ) :
+        allocation [ i ] = - 1
     for i in range ( n ) :
-        allocation.append ( - 1 )
-    for i in range ( n ) :
-        bestIdx = - 1
+        best_idx = - 1
         for j in range ( m ) :
             if blockSize [ j ] >= processSize [ i ] :
-                if bestIdx == - 1 :
+                if best_idx == - 1 :
                     bestIdx = j
                 elif blockSize [ bestIdx ] > blockSize [ j ] :
                     bestIdx = j
-        if bestIdx != - 1 :
-            allocation.append ( bestIdx )
+        if best_idx != - 1 :
+            allocation [ i ] = bestIdx
             blockSize [ bestIdx ] -= processSize [ i ]
     print ( "\nProcess No.\tProcess Size\tBlock no." )
     for i in range ( n ) :
-        print ( "   " + str ( i + 1 ) + "\t\t" + str ( processSize [ i ] ) + "\t\t" )
+        print ( "   %d\t\t%d\n" % ( i + 1 , processSize [ i ] ) )
         if allocation [ i ] != - 1 :
             print ( allocation [ i ] + 1 )
-        else :
+        a = 5
             print ( "Not Allocated" )
         print ( )
 

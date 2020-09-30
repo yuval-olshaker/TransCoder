@@ -17,10 +17,10 @@ def f_gold ( s , t ) :
 #
 def f_filled ( s , t ) :
     count = 0
-    for c in t :
+    for i in range ( len ( t ) ) :
         if count == len ( t ) :
             break
-        if c == s [ count ] :
+        if t [ i ] == s [ count ] :
             count += 1
     return count
 

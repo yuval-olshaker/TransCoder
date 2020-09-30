@@ -17,7 +17,7 @@ public static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-  return MathUtils . log2 ( n & - n ) + 1 ;
+    return MathUtils . log2 ( n & - n ) + 1 ;
 }
 
 public static void main(String args[]) {

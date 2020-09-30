@@ -25,15 +25,15 @@ def f_gold ( N ) :
 #
 def f_filled ( N ) :
     len ( N )
-    l = ( len ( N ) ) // 2
+    l = len ( N ) / 2
     count = 0
-    for i in range ( 1 , l + 1 ) :
+    for i in range ( 1 , l ) :
         s = N [ : i ]
         l1 = len ( s )
         t = N [ i : l1 + i ]
         if s [ 0 ] == '0' or t [ 0 ] == '0' :
             continue
-        if s == t :
+        if s.lower ( ) == t.lower ( ) :
             count += 1
     return count
 

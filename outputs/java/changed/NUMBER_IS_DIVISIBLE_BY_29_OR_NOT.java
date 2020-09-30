@@ -22,12 +22,12 @@ static boolean f_gold ( long n ) {
 
 //
 public static boolean f_filled ( int n ) {
-  while ( ( int ) ( n / 100 ) != 0 ) {
-    int lastDigit = ( int ) ( n % 10 ) ;
-    n = ( int ) ( n / 10 ) ;
-    n += lastDigit * 3 ;
-  }
-  return ( n % 29 == 0 ) ;
+    while ( ( int ) ( n / 100 ) ) {
+        lastDigit = ( int ) ( n % 10 ) ;
+        n = ( int ) ( n / 10 ) ;
+        n += last_digit * 3 ;
+    }
+    return ( n % 29 == 0 ) ;
 }
 
 public static void main(String args[]) {

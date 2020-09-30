@@ -13,7 +13,7 @@ def f_gold ( m , n ) :
 #
 def f_filled ( m , n ) :
     min = m if m < n else n
-    return factorial ( min )
+    return factorial ( min ( n ) )
 
 if __name__ == '__main__':
     param = [

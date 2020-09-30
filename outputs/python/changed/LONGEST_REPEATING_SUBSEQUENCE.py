@@ -19,7 +19,14 @@ def f_gold ( str ) :
 #
 def f_filled ( str ) :
     n = len ( str )
-    dp = [ [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n
+    dp = [ n + 1 for n in range ( n + 1 ) ]
+    for i in range ( 1 , n ) :
+        for j in range ( 1 , n ) :
+            if str [ i - 1 ] == str [ j - 1 ] and i != j :
+                dp [ i ] [ j ] = 1 + dp [ i - 1 ] [ j - 1 ]
+            else :
+                dp [ i ] [ j ] = max ( dp [ i ] [ j - 1 ] for i in range ( len ( str ) ) )
+    return dp [ n ] [ n ]
 
 if __name__ == '__main__':
     param = [

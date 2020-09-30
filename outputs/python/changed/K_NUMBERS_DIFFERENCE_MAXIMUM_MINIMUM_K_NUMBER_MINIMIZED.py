@@ -14,8 +14,8 @@ def f_gold ( arr , n , k ) :
 
 #
 def f_filled ( arr , n , k ) :
-    result = int ( 0 )
-    arr.sort ( )
+    result = int ( arr [ n ] - arr [ k ] )
+    np.sort ( arr )
     for i in range ( 0 , n - k ) :
         result = min ( result , arr [ i + k - 1 ] - arr [ i ] )
     return result

@@ -25,7 +25,7 @@ def f_filled ( arr , low , high , x ) :
         return - 1
     if x >= arr [ high ] :
         return high
-    mid = ( low + high ) // 2
+    mid = ( low + high ) / 2
     if arr [ mid ] == x :
         return mid
     if mid > 0 and arr [ mid - 1 ] <= x and x < arr [ mid ] :

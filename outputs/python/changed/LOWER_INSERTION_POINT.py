@@ -25,14 +25,14 @@ def f_filled ( arr , n , X ) :
         return 0
     elif X > arr [ n - 1 ] :
         return n
-    lower_pnt = 0
+    lowerPnt = 0
     i = 1
     while i < n and arr [ i ] < X :
-        lower_pnt = i
+        lowerPnt = i
         i = i * 2
-    while lower_pnt < n and arr [ lower_pnt ] < X :
-        lower_pnt += 1
-    return lower_pnt
+    while lowerPnt < n and arr [ lowerPnt ] < X :
+        lowerPnt += 1
+    return lowerPnt
 
 if __name__ == '__main__':
     param = [

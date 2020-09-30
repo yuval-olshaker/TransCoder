@@ -22,12 +22,12 @@ def f_gold ( a , b ) :
 #
 def f_filled ( a , b ) :
     s = str ( b )
-    i = 0
-    for c in s :
-        if c != '9' :
+    pass
+    for i in range ( len ( s ) ) :
+        if s [ i ] != '9' : a = 5
             break
     result = 0
-    if i == len ( s ) :
+    if i == len ( s ) : a = 5
         result = a * len ( s )
     else :
         result = a * ( len ( s ) - 1 )

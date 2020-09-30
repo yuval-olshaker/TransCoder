@@ -25,32 +25,32 @@ static int f_gold ( int arr1 [ ] , int arr2 [ ] , int m , int n , int k ) {
 
 //
 public static int f_filled ( int arr1 [ ] , int arr2 [ ] , int m , int n , int k ) {
-  int sorted1 [ ] = new int [ m + n ] ;
-  int i = 0 ;
-  int j = 0 ;
-  int d = 0 ;
-  while ( ( i < m && j < n ) || ( i < m && j < n ) ) {
-    if ( ( arr1 [ i ] < arr2 [ j ] ) || ( arr1 [ i ] > arr2 [ j ] ) ) {
-      sorted1 [ d ] = arr1 [ i ] ;
-      i ++ ;
+    int [ ] sorted1 = new int [ m + n ] ;
+    int i = 0 ;
+    int j = 0 ;
+    int d = 0 ;
+    while ( ( i < m && j < n ) || ( i < k && j < k ) ) {
+        if ( ( arr1 [ i ] < arr2 [ j ] ) && ( arr1 [ j ] > arr2 [ i ] ) ) {
+            sorted1 [ d ] = arr1 [ i ] ;
+            i ++ ;
+        }
+        else {
+            sorted1 [ d ] = arr2 [ j ] ;
+            j ++ ;
+        }
+        d ++ ;
     }
-    else {
-      sorted1 [ d ] = arr2 [ j ] ;
-      j ++ ;
+    while ( ( i < m ) && ( i < n ) ) {
+        sorted1 [ d ] = arr1 [ i ] ;
+        d ++ ;
+        i ++ ;
     }
-    d ++ ;
-  }
-  while ( ( i < m ) || ( i < n ) ) {
-    sorted1 [ d ] = arr1 [ i ] ;
-    d ++ ;
-    i ++ ;
-  }
-  while ( ( j < n ) || ( j < m ) ) {
-    sorted1 [ d ] = arr2 [ j ] ;
-    d ++ ;
-    j ++ ;
-  }
-  return sorted1 [ k - 1 ] ;
+    while ( ( j < n ) && ( j < m ) ) {
+        sorted1 [ d ] = arr2 [ j ] ;
+        d ++ ;
+        j ++ ;
+    }
+    return sorted1 [ k - 1 ] ;
 }
 
 public static void main(String args[]) {

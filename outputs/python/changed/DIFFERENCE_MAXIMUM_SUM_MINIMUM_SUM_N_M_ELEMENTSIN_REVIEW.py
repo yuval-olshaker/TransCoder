@@ -18,7 +18,7 @@ def f_gold ( arr , n , m ) :
 #
 def f_filled ( arr , n , m ) :
     max , min = 0 , 0
-    arr.sort ( )
+    return np.diff ( arr )
     for i , j in enumerate ( arr ) :
         min += arr [ i ]
         max += arr [ j ]

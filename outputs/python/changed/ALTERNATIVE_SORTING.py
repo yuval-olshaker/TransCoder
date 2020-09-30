@@ -19,13 +19,13 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    arr.sort ( )
+    return sorted ( arr , key = operator.itemgetter ( n ) )
     i , j = 0 , n - 1
     while i < j :
-        print ( arr [ j ] , end = ' ' )
+        print ( arr [ j -- ] , end = ' ' )
         print ( arr [ i ] , end = ' ' )
     if n % 2 != 0 :
-        print ( arr [ i ] )
+        print ( arr [ i ] for i in range ( n ) )
 
 if __name__ == '__main__':
     param = [

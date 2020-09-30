@@ -28,11 +28,11 @@ def f_filled ( arr , l , h , key ) :
         return mid
     if arr [ l ] <= arr [ mid ] :
         if key >= arr [ l ] and key <= arr [ mid ] :
-            return f_filled ( arr , l , mid - 1 , key )
+            return l , mid - 1 , key
         return f_filled ( arr , mid + 1 , h , key )
     if key >= arr [ mid ] and key <= arr [ h ] :
         return f_filled ( arr , mid + 1 , h , key )
-    return f_filled ( arr , l , mid - 1 , key )
+    return l , mid - 1 , key
 
 if __name__ == '__main__':
     param = [

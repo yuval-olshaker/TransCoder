@@ -18,11 +18,11 @@ def f_gold ( n ) :
 def f_filled ( n ) :
     a = [ ]
     b = [ ]
-    a.append ( b.append = 1 )
+    a [ 0 ] = b [ 0 ] = 1
     for i in range ( 1 , n ) :
-        a.append ( a [ i - 1 ] + b [ i - 1 ] )
-        b.append ( a [ i - 1 ] )
-    return a.append ( b )
+        a [ i ] = a [ i - 1 ] + b [ i - 1 ]
+        b [ i ] = a [ i - 1 ]
+    return a [ n - 1 ] + b [ n - 1 ]
 
 if __name__ == '__main__':
     param = [

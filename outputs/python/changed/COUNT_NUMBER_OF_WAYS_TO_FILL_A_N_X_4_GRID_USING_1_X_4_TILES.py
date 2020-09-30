@@ -18,9 +18,9 @@ def f_gold ( n ) :
 
 #
 def f_filled ( n ) :
-    dp = [ 0 ] * ( n + 1 )
+    dp = np.zeros ( ( n + 1 , ) )
     dp [ 0 ] = 0
-    for i in range ( 1 , n + 1 ) :
+    for i in range ( 1 , n ) :
         if i >= 1 and i <= 3 :
             dp [ i ] = 1
         elif i == 4 :

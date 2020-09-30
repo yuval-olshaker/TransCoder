@@ -22,11 +22,11 @@ def f_filled ( arr , n ) :
     result = 0
     Hash = set ( )
     for i in range ( n ) :
-        Hash.add ( arr [ i ] )
+        Hash.append ( arr [ i ] )
     for i in range ( n ) :
         for j in range ( i + 1 , n ) :
             product = arr [ i ] * arr [ j ]
-            if Hash.intersection ( product ) :
+            if Hash.has_key ( product ) :
                 result += 1
     return result
 

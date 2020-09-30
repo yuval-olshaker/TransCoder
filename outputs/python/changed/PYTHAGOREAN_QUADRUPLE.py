@@ -15,7 +15,7 @@ def f_gold ( a , b , c , d ) :
 #
 def f_filled ( a , b , c , d ) :
     sum = a ** 2 + b ** 2 + c ** 2
-    if d ** 2 == sum :
+    if d * d == sum :
         return True
     else :
         return False

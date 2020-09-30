@@ -18,8 +18,10 @@ public static int f_gold ( int a , int b ) {
 
 //
 public static int f_filled ( int a , int b ) {
-  if ( ( a == 0 || b == 0 ) && ( a > b ) ) return 1 ;
-  return Math . floor ( Math . log10 ( Math . abs ( a ) ) + Math . log10 ( Math . abs ( b ) ) ) + 1 ;
+    if ( ( a == 0 || b == 0 ) && ( a > b ) ) {
+        return 1 ;
+    }
+    return Math . floor ( Math . log10 ( Math . abs ( a ) ) + Math . log10 ( Math . abs ( b ) ) ) + 1 ;
 }
 
 public static void main(String args[]) {

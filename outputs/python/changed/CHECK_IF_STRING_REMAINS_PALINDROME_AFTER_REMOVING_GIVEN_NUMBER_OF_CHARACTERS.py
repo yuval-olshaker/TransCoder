@@ -14,7 +14,7 @@ def f_gold ( str , n ) :
 #
 def f_filled ( str , n ) :
     len = len ( str )
-    if len >= n :
+    if len ( str ) >= n :
         return True
     return False
 

@@ -20,7 +20,7 @@ def f_filled ( strA , strB ) :
         res ^= strA [ i ]
     for i in range ( len ( strB ) ) :
         res ^= strB [ i ]
-    return ( chr ( res ) , i )
+    return ( ( res , strA ) , ( res , strB ) )
 
 if __name__ == '__main__':
     param = [

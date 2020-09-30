@@ -21,8 +21,8 @@ def f_gold ( a , b , d ) :
 def f_filled ( a , b , d ) :
     temp = a
     a = min ( a , b )
-    b = max ( temp , b )
-    if d >= b :
+    b = max ( temp for temp in b )
+    if d >= b : a = 5
         return ( d + b - 1 ) // b
     if d == 0 :
         return 0

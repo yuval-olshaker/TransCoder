@@ -16,9 +16,9 @@ def f_gold ( mat , n ) :
 
 #
 def f_filled ( mat , n ) :
-    principal , secondary = 0 , 0
+    principal , secondary = np.sum ( mat , axis = 0 ) , np.sum ( mat , axis = 1 )
     for i in range ( n ) :
-        principal += mat [ i ] [ i ]
+        principal += mat [ i , i ]
         secondary += mat [ i ] [ n - i - 1 ]
     print ( "Principal Diagonal:" , principal )
     print ( "Secondary Diagonal:" , secondary )

@@ -25,15 +25,19 @@ static int f_gold ( int arr [ ] , int low , int high , int x ) {
 
 //
 public static int f_filled ( int [ ] arr , int low , int high , int x ) {
-  if ( x <= arr [ low ] ) return low ;
-  int i ;
-  for ( i = low ;
-  i < high ;
-  i ++ ) {
-    if ( arr [ i ] == x ) return i ;
-    if ( arr [ i ] < x && arr [ i + 1 ] >= x ) return i + 1 ;
-  }
-  return - 1 ;
+    if ( x <= arr [ low ] ) {
+        return low ;
+    }
+    int i = low ;
+    for ( int i = 0 ;  i < high ;  i ++ ) {
+        if ( arr [ i ] == x ) {
+            return i ;
+        }
+        if ( arr [ i ] < x && arr [ i + 1 ] >= x ) {
+            return i ++ ;
+        }
+    }
+    return - 1 ;
 }
 
 public static void main(String args[]) {

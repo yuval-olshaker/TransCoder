@@ -21,15 +21,15 @@ def f_gold ( s ) :
 #
 def f_filled ( s ) :
     aCount = 0
-    bCount = 0
-    cCount = 0
-    for c in s :
-        if c == 'a' :
+    bcount = 0
+    c_count = 0
+    for i in s :
+        if s [ i ] == 'a' :
             aCount = ( 1 + 2 * aCount )
-        elif c == 'b' :
-            bCount = ( aCount + 2 * bCount )
-        elif c == 'c' :
-            cCount = ( bCount + 2 * cCount )
+        elif s [ i ] == 'b' :
+            b_count = ( a_count + 2 * b_count )
+        elif s [ i ] == 'c' :
+            c_count = ( bcount + 2 * c_count )
     return cCount
 
 if __name__ == '__main__':

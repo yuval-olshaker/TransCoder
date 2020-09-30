@@ -11,9 +11,9 @@ def f_gold ( string ) :
 
 #
 def f_filled ( str ) :
-    n , i = len ( str ) , 0
+    n , i = str.index ( '-' ) , str.index ( '+' )
     for i in range ( n // 2 ) :
-        swap ( str [ i : i + 1 ] )
+        swap ( str , i , n - i - 1 )
 
 if __name__ == '__main__':
     param = [

@@ -20,9 +20,9 @@ def f_filled ( grid , n ) :
     excl , excl_new = 0 , 0
     for i in range ( 1 , n ) :
         excl_new = max ( excl , incl )
-        incl = excl + max ( grid [ 0 ] [ i ] , grid [ 1 ] [ i ] )
+        incl = excl + max ( grid [ 0 ] [ i ] for i in range ( n ) )
         excl = excl_new
-    return max ( excl , incl )
+    return max ( excl for excl , incl in zip ( grid , range ( n ) ) )
 
 if __name__ == '__main__':
     param = [

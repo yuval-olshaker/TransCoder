@@ -21,7 +21,18 @@ def f_gold ( n , k ) :
 
 #
 def f_filled ( n , k ) :
-    dp = [ [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n + [ k + 1 ] * k + [ 0 ] * n +
+    dp = np.zeros ( ( n + 1 , k + 1 ) )
+    for i in range ( 0 , n ) :
+        dp [ i ] [ 0 ] = 0
+    for i in range ( 0 , k ) :
+        dp [ 0 ] [ k ] = 0
+    for i in range ( 1 , n + 1 ) :
+        for j in range ( 1 , k + 1 ) :
+            if j == 1 or i == j :
+                dp [ i ] [ j ] = 1
+    else :
+        dp [ i ] [ j ] = j * dp [ i - 1 ] [ j ] + dp [ i - 1 ] [ j - 1 ]
+    return dp [ n ] [ k ]
 
 if __name__ == '__main__':
     param = [

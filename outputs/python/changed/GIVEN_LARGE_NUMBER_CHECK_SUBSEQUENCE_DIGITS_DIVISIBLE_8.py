@@ -21,11 +21,11 @@ def f_gold ( st ) :
 
 #
 def f_filled ( str ) :
-    i , j , k , l = len ( str ) , len ( str ) , len ( str ) , len ( str )
-    arr = [ 0 for i in range ( l ) ]
+    i , j , k , l = str.split ( ' ' )
+    arr = [ l for l in str.split ( '\n' ) if l ]
     for i in range ( l ) :
         for j in range ( i , l ) :
-            for k in range ( j , l ) :
+            for k in j , k < l :
                 if arr [ i ] % 8 == 0 :
                     return True
                 elif ( arr [ i ] * 10 + arr [ j ] ) % 8 == 0 and i != j :

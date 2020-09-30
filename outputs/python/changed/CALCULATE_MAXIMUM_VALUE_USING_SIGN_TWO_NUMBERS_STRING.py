@@ -17,11 +17,11 @@ def f_gold ( str ) :
 #
 def f_filled ( str ) :
     res = str [ 0 ] - '0'
-    for c in str [ 1 : ] :
-        if c == '0' or c == '1' or res < 2 :
-            res += ( c - '0' )
+    for i in range ( 1 , len ( str ) ) :
+        if str [ i ] == '0' or str [ i ] == '1' or res < 2 :
+            res += ( str [ i ] - '0' )
         else :
-            res *= ( c - '0' )
+            res *= ( str [ i ] - '0' )
     return res
 
 if __name__ == '__main__':

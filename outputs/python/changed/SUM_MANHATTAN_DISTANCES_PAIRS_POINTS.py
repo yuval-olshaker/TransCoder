@@ -18,7 +18,7 @@ def f_filled ( x , y , n ) :
     for i in range ( n ) :
         for j in range ( i + 1 , n ) :
             sum += ( abs ( x [ i ] - x [ j ] ) + abs ( y [ i ] - y [ j ] ) )
-    return sum
+    return sum ( x )
 
 if __name__ == '__main__':
     param = [

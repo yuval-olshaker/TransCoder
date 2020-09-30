@@ -19,7 +19,7 @@ def f_filled ( n ) :
     sum = multiterms
     for i in range ( 2 , n + 1 ) :
         multiterms = multiterms - ( i - 1 )
-        sum = sum + multiterms ** i
+        sum = sum + multiterms * i
     return sum
 
 if __name__ == '__main__':

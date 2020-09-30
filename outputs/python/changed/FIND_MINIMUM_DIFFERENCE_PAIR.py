@@ -15,11 +15,11 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    diff = sys.maxsize
+    diff = int ( arr [ n ] )
     for i in range ( n - 1 ) :
-        for j in range ( i + 1 , n ) :
+        for i in range ( i + 1 , n ) :
             if abs ( ( arr [ i ] - arr [ j ] ) ) < diff :
-                diff = abs ( ( arr [ i ] - arr [ j ] ) )
+                diff = abs ( ( arr [ i ] - arr [ j ] ).sum ( ) )
     return diff
 
 if __name__ == '__main__':

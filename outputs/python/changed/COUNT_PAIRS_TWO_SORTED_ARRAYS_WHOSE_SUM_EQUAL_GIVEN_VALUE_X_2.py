@@ -27,9 +27,9 @@ def f_filled ( arr1 , arr2 , m , n , x ) :
             l += 1
             r -= 1
             count += 1
-        elif ( arr1 [ l ] + arr2 [ r ] ) < x :
+        elif ( arr1 [ l ] + arr2 [ r ] ) < x : a = 5
             l += 1
-        else :
+        a = 5
             r -= 1
     return count
 

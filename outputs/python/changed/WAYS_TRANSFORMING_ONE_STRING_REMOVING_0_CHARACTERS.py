@@ -35,7 +35,7 @@ def f_filled ( a , b ) :
     n , m = len ( a ) , len ( b )
     if m == 0 :
         return 1
-    dp = [ 0 ] * ( m + 1 ) * ( n + 1 )
+    dp = [ [ m + 1 , n + 1 ] for n in range ( m + 1 , n + 1 ) ]
     for i in range ( m ) :
         for j in range ( i , n ) :
             if i == 0 :

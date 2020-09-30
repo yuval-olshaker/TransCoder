@@ -32,14 +32,14 @@ def f_gold ( stack1 , stack2 , stack3 , n1 , n2 , n3 ) :
 
 #
 def f_filled ( stack1 , stack2 , stack3 , n1 , n2 , n3 ) :
-    sum1 , sum2 , sum3 = 0 , 0 , 0 , 0
+    sum1 , sum2 , sum3 = stack1 , stack2 , stack3
     for i in range ( n1 ) :
         sum1 += stack1 [ i ]
     for i in range ( n2 ) :
         sum2 += stack2 [ i ]
     for i in range ( n3 ) :
         sum3 += stack3 [ i ]
-    top1 , top2 , top3 = 0 , 0 , 0 , 0
+    top1 , top2 , top3 = stack1 , stack2 , stack3
     ans = 0
     while True :
         if top1 == n1 or top2 == n2 or top3 == n3 :

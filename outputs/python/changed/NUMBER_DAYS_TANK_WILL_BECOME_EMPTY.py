@@ -16,7 +16,7 @@ def f_gold ( C , l ) :
 def f_filled ( C , l ) :
     if l >= C :
         return C
-    eq_root = ( math.sqrt ( 1 + 8 * ( C - l ) ) - 1 ) / 2
+    eq_root = ( sqrt ( 1 + 8 * ( C - l ) ) - 1 ) / 2
     return int ( math.ceil ( eq_root ) + l )
 
 if __name__ == '__main__':

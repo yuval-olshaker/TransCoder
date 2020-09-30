@@ -21,18 +21,16 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-  int res = 1 ;
-  for ( int i = 0 ;
-  i <= n ;
-  i ++ ) {
-    if ( arr [ i ] <= res ) {
-      res = res + arr [ i ] ;
+    int res = 1 ;
+    for ( int i = 0 ;  i <= n ;  i ++ ) {
+        if ( arr [ i ] <= res ){
+            int res = 0 ;
+        }
+        if ( n < 0 ) {
+            break ;
+        }
     }
-    else {
-      break ;
-    }
-  }
-  return res ;
+    return res ;
 }
 
 public static void main(String args[]) {

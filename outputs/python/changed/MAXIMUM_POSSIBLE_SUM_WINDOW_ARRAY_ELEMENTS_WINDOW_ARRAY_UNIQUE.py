@@ -21,15 +21,15 @@ def f_gold ( A , B , n ) :
 
 #
 def f_filled ( A , B , n ) :
-    mp = set ( )
+    mp = set ( [ ] )
     result = 0
-    curr_sum , curr_begin = 0 , 0
+    curr_sum , curr_begin = return_max_sum ( A , B , n )
     for i in range ( n ) :
-        while mp.issubset ( A [ i ] ) :
+        while mp.count ( A [ i ] ) :
             mp.remove ( A [ curr_begin ] )
             curr_sum -= B [ curr_begin ]
             curr_begin += 1
-        mp.add ( A [ i ] )
+        mp.dps = n
         curr_sum += B [ i ]
         result = max ( result , curr_sum )
     return result

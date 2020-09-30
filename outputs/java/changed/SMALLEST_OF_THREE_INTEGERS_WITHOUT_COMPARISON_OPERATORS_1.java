@@ -18,10 +18,10 @@ static int f_gold ( int x , int y , int z ) {
 
 //
 public static int f_filled ( int x , int y , int z ) {
-  if ( ( ! ( y / x ) ) && ( ! ( y / z ) ) ) {
-    return y == 0 ? z : y ;
-  }
-  return x == 0 ? z : x ;
+    if ( ( ! ( y / x ) ) && ( ! ( z / x ) ) ) {
+        return y < z ? ( ! ( y / z ) ) : z ;
+    }
+    return x < y ? ( ! ( x / z ) ) : z ;
 }
 
 public static void main(String args[]) {

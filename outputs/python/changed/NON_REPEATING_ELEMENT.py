@@ -25,6 +25,7 @@ def f_filled ( arr , n ) :
                 break
         if j == n :
             return arr [ i ]
+    return - 1
 
 if __name__ == '__main__':
     param = [

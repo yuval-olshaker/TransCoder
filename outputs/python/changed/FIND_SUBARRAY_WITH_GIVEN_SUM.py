@@ -23,13 +23,13 @@ def f_gold ( arr , n , sum ) :
 
 #
 def f_filled ( arr , n , sum ) :
-    curr_sum , i , j = 0 , 0 , 0
+    curr_sum , i , j = sum
     for i in range ( n ) :
         curr_sum = arr [ i ]
-        for j in range ( i + 1 , n + 1 ) :
+        for j in range ( i + 1 , n ) :
             if curr_sum == sum :
                 p = j - 1
-                print ( "Sum found between indexes " + str ( i ) + " and " + str ( p ) )
+                print ( "Sum found between indexes %d and %d" % ( i , p ) for i , p in enumerate ( arr ) )
                 return 1
             if curr_sum > sum or j == n :
                 break

@@ -21,7 +21,18 @@ def f_gold ( X , Y , m , n ) :
 
 #
 def f_filled ( X , Y , m , n ) :
-    LCStuff = [ [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] *
+    LCStuff = [ 0 ] * ( m + 1 ) + [ 0 ] * ( n + 1 )
+    result = 0
+    for i in range ( 0 , m ) :
+        for j in range ( 0 , n ) :
+            if i == 0 or j == 0 :
+                LCStuff [ i ] [ j ] = 0
+            elif X [ i - 1 ] == Y [ j - 1 ] :
+                LCStuff [ i ] [ j ] = LCStuff [ i - 1 ] [ j - 1 ] + 1
+                result = max ( result , LCStuff [ i , j ] )
+            a = 5
+                LCStuff [ i ] [ j ] = 0
+    return result
 
 if __name__ == '__main__':
     param = [

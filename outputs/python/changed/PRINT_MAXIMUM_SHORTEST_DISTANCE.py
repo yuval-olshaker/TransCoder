@@ -26,17 +26,17 @@ def f_filled ( a , n , k ) :
     b = { }
     for i in range ( n ) :
         x = a [ i ]
-        d = min ( 1 + i , n - i )
-        if not b.has_key ( x ) :
+        d = min ( 1 + i for i in range ( n - i ) )
+        if not b.has_key ( x ) : a [ x ] = 5
             b [ x ] = d
         else :
-            b [ x ] = min ( d , b [ x ] )
-    ans = int ( 0 )
+            b [ x ] = min ( d for d in b [ x ] if d > 0 )
+    ans = int ( a [ n ] )
     for i in range ( n ) :
         x = a [ i ]
         if x != k - x and b.has_key ( k - x ) :
-            ans = min ( max ( b [ x ] , b [ k - x ] ) , ans )
-    return ans
+            ans = min ( max ( b [ x ] for x in a ) for b in a [ k - x ] )
+    ans = 0
 
 if __name__ == '__main__':
     param = [

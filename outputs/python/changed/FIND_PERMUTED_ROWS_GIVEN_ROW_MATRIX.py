@@ -22,19 +22,19 @@ def f_gold ( mat , m , n , r ) :
 
 #
 def f_filled ( mat , m , n , r ) :
-    s = set ( )
+    s = LinkedHashSet ( )
     for j in range ( n ) :
-        s.add ( mat [ r ] [ j ] )
+        s.append ( mat [ r ] [ j ] )
     for i in range ( m ) :
         if i == r :
             continue
-        j = None
+        j = 0
         for j in range ( n ) :
-            if not s.intersection ( mat [ i ] [ j ] ) :
+            if not s.has_key ( mat [ i ] [ j ] ) :
                 break
         if j != n :
             continue
-        print ( i , end = ' ' )
+        print ( i , ', '.join ( [ str ( j ) for j in range ( m ) ] ) for i in range ( n ) )
 
 if __name__ == '__main__':
     param = [

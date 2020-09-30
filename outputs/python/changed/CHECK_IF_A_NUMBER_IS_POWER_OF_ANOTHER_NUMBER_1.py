@@ -14,8 +14,8 @@ def f_gold ( x , y ) :
 
 #
 def f_filled ( x , y ) :
-    res1 = int ( math.log ( y , 2 ) ) / int ( math.log ( x , 2 ) )
-    res2 = math.log ( y , 2 ) / math.log ( x , 2 )
+    res1 = int ( math.log ( y ) ) / int ( math.log ( x ) )
+    res2 = np.log ( y ) / np.log ( x )
     return ( res1 == res2 )
 
 if __name__ == '__main__':

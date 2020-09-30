@@ -22,12 +22,20 @@ static double f_gold ( double a , double b ) {
 
 //
 public static int f_filled ( int a , int b ) {
-  if ( ( a < 0 ) && ( b < 0 ) ) a = - a ;
-  if ( ( b < 0 ) && ( a > 0 ) ) b = - b ;
-  int mod = a ;
-  while ( ( mod >= b ) && ( mod < a ) ) mod = mod - b ;
-  if ( ( a < 0 ) && ( b < 0 ) ) return - mod ;
-  return mod ;
+    if ( ( a < 0 ) && ( b < 0 ) ) {
+        a = - a ;
+    }
+    if ( ( b < 0 ) && ( a % b == 0 ) ) {
+        b = - b ;
+    }
+    int mod = a ;
+    while ( ( mod >= b ) && ( mod < a ) ) {
+        mod = mod - b ;
+    }
+    if ( ( a < 0 ) && ( b < 0 ) ) {
+        return - mod ;
+    }
+    return mod ;
 }
 
 public static void main(String args[]) {

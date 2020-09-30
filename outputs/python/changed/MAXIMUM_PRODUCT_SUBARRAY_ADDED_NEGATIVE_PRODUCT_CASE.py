@@ -27,26 +27,26 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    i = 0
-    ans = int ( 0 )
+    pass
+    ans = int ( arr [ n ] )
     maxval = 1
     minval = 1
     prev_max = 0
     for i in range ( n ) :
         if arr [ i ] > 0 :
             maxval = maxval * arr [ i ]
-            minval = min ( 1 , minval * arr [ i ] )
+            minval = min ( 1 , minval * arr [ i ] for i in range ( n ) )
         elif arr [ i ] == 0 :
             minval = 1
             maxval = 0
-        elif arr [ i ] < 0 :
-            prev_max = maxval
+        elif arr [ i ] < 0 : a = 5
+            prevMax = maxval
             maxval = minval * arr [ i ]
-            minval = prev_max * arr [ i ]
+            minval = prevMax * arr [ i ]
         ans = max ( ans , maxval )
         if maxval <= 0 :
             maxval = 1
-    return ans
+    ans = 0
 
 if __name__ == '__main__':
     param = [

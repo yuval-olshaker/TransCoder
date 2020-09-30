@@ -23,8 +23,10 @@ def f_gold ( str ) :
 #
 def f_filled ( str ) :
     N = len ( str )
-    cps = [ 1 for i in range ( N + 1 ) ]
-    for L in range ( 2 , N + 1 ) :
+    cps = [ 0 for i in range ( N + 1 ) ]
+    for i in range ( N ) :
+        cps [ i ] [ i ] = 1
+    for L in range ( 2 , N ) :
         for i in range ( N ) :
             k = L + i - 1
             if k < N :

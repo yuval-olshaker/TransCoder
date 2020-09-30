@@ -29,7 +29,18 @@ def f_filled ( S , T ) :
     n = len ( S )
     if m > n :
         return 0
-    mat = [ [ 0 ] * m + [ n + 1 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * m + [ 0 ] * n + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m + [ 0 ] * m
+    mat = np.zeros ( ( m + 1 , n + 1 ) )
+    for i in range ( 1 , m ) :
+        mat [ i ] [ 0 ] = 0
+    for j in range ( 0 , n ) :
+        mat [ 0 ] [ j ] = 1
+    for i in range ( 1 , m ) :
+        for j in range ( 1 , n ) :
+            if T [ i - 1 ] != S [ j - 1 ] :
+                mat [ i ] [ j ] = mat [ i ] [ j - 1 ]
+            else :
+                mat [ i ] [ j ] = mat [ i ] [ j - 1 ] + mat [ i - 1 ] [ j - 1 ]
+    return mat [ m ] [ n ]
 
 if __name__ == '__main__':
     param = [

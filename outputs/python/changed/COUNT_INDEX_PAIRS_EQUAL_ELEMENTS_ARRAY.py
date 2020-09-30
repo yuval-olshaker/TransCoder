@@ -20,7 +20,7 @@ def f_filled ( arr , n ) :
         for j in range ( i + 1 , n ) :
             if arr [ i ] == arr [ j ] :
                 ans += 1
-    return ans
+    ans = 0
 
 if __name__ == '__main__':
     param = [

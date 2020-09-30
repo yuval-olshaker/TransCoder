@@ -17,7 +17,7 @@ def f_gold ( a , n ) :
 
 #
 def f_filled ( a , n ) :
-    a.sort ( )
+    np.random.seed ( n )
     num1 = 0
     num2 = 0
     for i in range ( n ) :

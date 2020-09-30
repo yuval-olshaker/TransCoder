@@ -25,12 +25,12 @@ def f_gold ( s ) :
 #
 def f_filled ( s ) :
     n = len ( s )
-    a = [ ]
+    a = [ 0 ] * n
     for i in range ( n - 1 , - 1 , - 1 ) :
         back_up = 0
         for j in range ( i , n ) :
             if j == i :
-                a.append ( 1 )
+                a [ j ] = 1
             elif s [ i ] == s [ j ] :
                 temp = a [ j ]
                 a [ j ] = back_up + 2

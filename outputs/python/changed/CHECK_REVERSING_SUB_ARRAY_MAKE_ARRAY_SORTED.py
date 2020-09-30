@@ -26,25 +26,25 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    temp = [ arr [ i ] for i in range ( n ) ]
-    temp.sort ( )
+    temp = np.zeros ( n )
+    for i in range ( n ) :
+        temp [ i ] = arr [ i ]
+    temp = np.argsort ( arr )
     front = 0
-    for front in temp :
+    for front in range ( n ) :
         if temp [ front ] != arr [ front ] :
             break
     back = 0
-    for back in temp :
+    for back in range ( n - 1 , - 1 , - 1 ) :
         if temp [ back ] != arr [ back ] :
             break
     if front >= back :
         return True
-    do :
-        front += 1
-        if arr [ front - 1 ] < arr [ front ] :
-            return False
-    while front != back :
-        return True
-    return False
+pass
+while front != back :
+    pass
+return True
+pass
 
 if __name__ == '__main__':
     param = [

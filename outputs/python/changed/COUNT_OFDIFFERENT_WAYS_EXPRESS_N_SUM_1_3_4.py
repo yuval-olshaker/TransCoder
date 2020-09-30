@@ -15,8 +15,10 @@ def f_gold ( n ) :
 
 #
 def f_filled ( n ) :
-    DP = [ 0 ] * ( n + 1 )
-    for i in range ( 4 , n + 1 ) :
+    DP = [ ]
+    DP [ 0 ] = DP [ 1 ] = DP [ 2 ] = 1
+    DP [ 3 ] = 2
+    for i in range ( 4 , n ) :
         DP [ i ] = DP [ i - 1 ] + DP [ i - 3 ] + DP [ i - 4 ]
     return DP [ n ]
 

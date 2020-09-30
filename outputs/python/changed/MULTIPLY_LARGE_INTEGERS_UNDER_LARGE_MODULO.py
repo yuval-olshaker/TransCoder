@@ -19,8 +19,8 @@ def f_gold ( a , b , mod ) :
 def f_filled ( a , b , mod ) :
     res = 0
     a %= mod
-    while b :
-        if ( b & 1 ) :
+    while b > 0 :
+        if ( b & 1 ) : a = 5
             res = ( res + a ) % mod
         a = ( 2 * a ) % mod
         b >>= 1

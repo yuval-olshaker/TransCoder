@@ -20,13 +20,13 @@ def f_filled ( str , n ) :
     m = { }
     for i in range ( n ) :
         if m.has_key ( str [ i ] ) :
-            get = m [ str [ i ] ]
-            m [ str [ i ] ] = get + 1
+            get = m.get ( str [ i ] )
+            m [ str ] = get + 1
         else :
-            m [ str [ i ] ] = 1
+            m [ str ] = 1
     res = 0
-    for key , value in m.items ( ) :
-        if value == 2 :
+    for it in m.items ( ) :
+        if it.next ( ) == 2 :
             res += 1
     return res
 

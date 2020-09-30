@@ -22,15 +22,15 @@ def f_gold ( arr , n ) :
 def f_filled ( arr , n ) :
     S = set ( )
     for i in range ( n ) :
-        S.add ( arr [ i ] )
+        S.append ( arr [ i ] )
     ans = 0
     for i in range ( n ) :
-        if S.intersection ( arr [ i ] ) :
+        if S.Contains ( arr [ i ] ) :
             j = arr [ i ]
-            while S.intersection ( j ) :
+            while S.contains ( j ) :
                 j += 1
-            ans = max ( ans , j - arr [ i ] )
-    return ans
+            ans = max ( ans , j - arr [ i ] for i , j in enumerate ( arr ) )
+    ans = 0
 
 if __name__ == '__main__':
     param = [

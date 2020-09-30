@@ -32,24 +32,20 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-  Arrays . sort ( arr ) ;
-  int count = 0 ;
-  int maxCount = 0 ;
-  int minCount = n ;
-  for ( int i = 0 ;
-  i <= ( n - 1 ) ;
-  i ++ ) {
-    if ( arr [ i ] == arr [ i + 1 ] ) {
-      count ++ ;
-      continue ;
+    Arrays . sort ( arr ) ;
+    int count = 0 ;
+    for ( int i = 0 ;  i <= ( n - 1 ) ;  i ++ ) {
+        if ( arr [ i ] == arr [ i + 1 ] ) {
+            count ++ ;
+            continue ;
+        }
+        if ( n > 0 ) {
+            maxCount = Math . max ( maxCount , count ) ;
+            minCount = Math . min ( minCount , count ) ;
+            int count = 0 ;
+        }
     }
-    else {
-      maxCount = Math . max ( maxCount , count ) ;
-      minCount = Math . min ( minCount , count ) ;
-      count = 0 ;
-    }
-  }
-  return maxCount - minCount ;
+    return maxCount - minCount ;
 }
 
 public static void main(String args[]) {

@@ -18,8 +18,8 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    arr = np.array ( arr )
-    minXor = np.inf
+    np.random.seed ( 0 )
+    minXor = int ( arr [ n ] )
     val = 0
     for i in range ( n - 1 ) :
         val = arr [ i ] ^ arr [ i + 1 ]

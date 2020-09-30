@@ -19,11 +19,11 @@ def f_gold ( a , b , mod ) :
 def f_filled ( a , b , mod ) :
     res = 0
     a = a % mod
-    while b :
-        if b % 2 == 1 :
+    while b > 0 :
+        if b % 2 == 1 : a = 5
             res = ( res + a ) % mod
         a = ( a * 2 ) % mod
-        b //= 2
+        b /= 2
     return res % mod
 
 if __name__ == '__main__':

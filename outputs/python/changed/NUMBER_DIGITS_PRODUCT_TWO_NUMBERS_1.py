@@ -16,7 +16,7 @@ def f_gold ( a , b ) :
 def f_filled ( a , b ) :
     if a == 0 or b == 0 :
         return 1
-    return int ( math.floor ( math.log10 ( abs ( a ) ) + math.log10 ( abs ( b ) ) ) ) + 1
+    return int ( math.floor ( math.log10 ( abs ( a ) ) + math.log10 ( abs ( b ) ) ) + 1 )
 
 if __name__ == '__main__':
     param = [

@@ -17,7 +17,7 @@ static void f_gold ( int [ ] A , int n ) {
 
 //
 public static void f_filled ( int [ ] A , int n ) {
-  Arrays . sort ( A ) ;
+    Arrays . sort ( A ) ;
 }
 
 public static void main(String args[]) {

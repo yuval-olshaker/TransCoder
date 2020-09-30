@@ -19,11 +19,11 @@ static boolean f_gold ( String str , int n ) {
 
 //
 public static boolean f_filled ( String str , int n ) {
-  int l = str . length ( ) ;
-  if ( ( l >= n ) && ( l < n ) ) {
-    return true ;
-  }
-  return false ;
+    int l = str . length ( ) ;
+    if ( ( l >= n ) && ( l <= n ) ) {
+        return f_filled ( str , n , false ) ;
+    }
+    return false ;
 }
 
 public static void main(String args[]) {

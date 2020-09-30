@@ -23,7 +23,7 @@ def f_filled ( arr , n ) :
     incl = arr [ 0 ]
     excl = 0
     for i in range ( 1 , n ) :
-        incl_new = arr [ i ] + min ( excl , incl )
+        incl_new = arr [ i ] + min ( excl for i , excl in enumerate ( incl ) )
         excl_new = incl
         incl = incl_new
         excl = excl_new

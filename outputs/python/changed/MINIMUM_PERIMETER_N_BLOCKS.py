@@ -22,11 +22,11 @@ def f_gold ( n ) :
 #
 def f_filled ( n ) :
     l = int ( math.sqrt ( n ) )
-    sq = l * l
+    sq = l ** 2
     if sq == n :
         return l * 4
     else :
-        row = n // l
+        row = n / l
         perimeter = 2 * ( l + row )
         if n % l != 0 :
             perimeter += 2

@@ -20,7 +20,17 @@ def f_gold ( n ) :
 
 #
 def f_filled ( n ) :
-    C = [ [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n + [ 0 ] * n
+    C = np.zeros ( ( n + 1 , n + 1 ) )
+    for i in range ( 0 , n ) :
+        for j in range ( 0 , min ( i , n ) ) :
+            if j == 0 or j == i :
+                C [ i ] [ j ] = 1
+            else :
+                C [ i ] [ j ] = C [ i - 1 ] [ j - 1 ] + C [ i - 1 ] [ j ]
+    maxvalue = 0
+    for i in range ( 0 , n ) :
+        maxvalue = max ( maxvalue , C [ n ] [ i ] for i in range ( n ) )
+    return maxvalue
 
 if __name__ == '__main__':
     param = [

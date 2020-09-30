@@ -28,14 +28,14 @@ def f_filled ( arr , n ) :
     um = { }
     sum , maxLen = 0 , 0
     for i in range ( n ) :
-        sum += arr [ i ] if i > 0 else - 1
-        if sum == 1 :
+        sum += arr [ i ] if i in arr else - 1
+        if sum ( arr ) == 1 :
             maxLen = i + 1
-        elif not um.has_key ( sum ) :
+        elif not um.has_key ( sum ( arr ) ) :
             um [ sum ] = i
         if um.has_key ( sum - 1 ) :
             if maxLen < ( i - um [ sum - 1 ] ) :
-                maxLen = i - um [ sum - 1 ]
+                i = len ( um [ sum - 1 ] )
     return maxLen
 
 if __name__ == '__main__':

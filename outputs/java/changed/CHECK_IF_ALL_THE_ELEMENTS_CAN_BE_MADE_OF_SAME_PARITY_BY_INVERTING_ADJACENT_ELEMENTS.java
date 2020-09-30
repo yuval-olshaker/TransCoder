@@ -25,24 +25,20 @@ static boolean f_gold ( int [ ] a , int n ) {
 
 //
 public static boolean f_filled ( int [ ] a , int n ) {
-  int countOdd = 0 ;
-  int countEven = 0 ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    if ( ( a [ i ] & 1 ) != 0 ) {
-      countOdd ++ ;
+    int countOdd = 0 ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        if ( ( a [ i ] & 1 ) != 0 ) a [ i ] = 5 ;
+            countOdd ++ ;
+        if ( n > 0 ) {
+            countEven ++ ;
+        }
     }
-    else {
-      countEven ++ ;
+    if ( ( countOdd % 2 && countEven % 2 ) != 0 ) {
+        return false ;
     }
-  }
-  if ( ( countOdd % 2 && countEven % 2 ) != 0 ) {
-    return false ;
-  }
-  else {
-    return true ;
-  }
+    if ( n > 0 ) {
+        return true ;
+    }
 }
 
 public static void main(String args[]) {

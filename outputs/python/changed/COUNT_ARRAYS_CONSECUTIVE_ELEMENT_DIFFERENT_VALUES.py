@@ -17,11 +17,12 @@ def f_gold ( n , k , x ) :
 
 #
 def f_filled ( n , k , x ) :
-    dp = [ 0 ] * 109
-    dp [ 0 ] = 1
+    dp = np.zeros ( ( 109 , ) , dtype = np.int32 )
+    dp [ 0 ] = 0
+    dp [ 1 ] = 1
     for i in range ( 2 , n ) :
         dp [ i ] = ( k - 2 ) * dp [ i - 1 ] + ( k - 1 ) * dp [ i - 2 ]
-    return ( x == 1 and ( k - 1 ) * dp [ n - 2 ] or dp [ n - 1 ] )
+    return ( x if ( k - 1 ) * dp [ n - 2 ] else dp [ n - 1 ] )
 
 if __name__ == '__main__':
     param = [

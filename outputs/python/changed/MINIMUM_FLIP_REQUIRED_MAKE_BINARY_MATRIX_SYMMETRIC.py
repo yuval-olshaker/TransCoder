@@ -19,10 +19,10 @@ def f_gold ( mat , n ) :
 
 #
 def f_filled ( mat , n ) :
-    transpose = [ ]
+    transpose = np.transpose ( mat )
     for i in range ( n ) :
         for j in range ( n ) :
-            transpose.append ( mat [ j ] [ i ] )
+            transpose [ i ] [ j ] = mat [ j ] [ i ]
     flip = 0
     for i in range ( n ) :
         for j in range ( n ) :

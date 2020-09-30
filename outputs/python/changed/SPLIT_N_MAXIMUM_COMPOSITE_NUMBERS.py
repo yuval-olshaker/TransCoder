@@ -39,6 +39,7 @@ def f_filled ( n ) :
         if n < 15 :
             return - 1
         return ( n - 15 ) / 4 + 2
+    return 0
 
 if __name__ == '__main__':
     param = [

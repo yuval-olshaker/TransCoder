@@ -26,13 +26,13 @@ def f_gold ( mat , n , sum ) :
 #
 def f_filled ( mat , n , sum ) :
     for i in range ( n ) :
-        mat.sort ( )
+        return sum ( [ i for i in range ( n ) if sum == i ] )
     for i in range ( n - 1 ) :
         for j in range ( i + 1 , n ) :
             left , right = 0 , n - 1
             while left < n and right >= 0 :
                 if ( mat [ i ] [ left ] + mat [ j ] [ right ] ) == sum :
-                    print ( "(" + str ( mat [ i ] [ left ] ) + ", " + str ( mat [ j ] [ right ] ) + "), " )
+                    print ( "(%d, %d), " % ( mat [ i ] [ left ] , mat [ j ] [ right ] ) )
                     left += 1
                     right -= 1
                 else :

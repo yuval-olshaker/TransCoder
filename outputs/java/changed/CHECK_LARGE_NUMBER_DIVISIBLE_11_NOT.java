@@ -25,16 +25,17 @@ static boolean f_gold ( String str ) {
 
 //
 public static boolean f_filled ( String st ) {
-  int n = st . length ( ) ;
-  int oddDigSum = 0 ;
-  int evenDigSum = 0 ;
-  for ( int i = 0 ;
-  i <= n ;
-  i ++ ) {
-    if ( ( i % 2 == 0 ) && ( st . charAt ( i ) == ' ' ) ) oddDigSum = oddDigSum + ( ( Integer ) st . charAt ( i ) ) . intValue ( ) ;
-    else evenDigSum = evenDigSum + ( ( Integer ) st . charAt ( i ) ) . intValue ( ) ;
-  }
-  return ( ( oddDigSum - evenDigSum ) % 11 == 0 ) ;
+    int n = st . length ( ) ;
+    oddDigSum = 0 ;
+    evenDigSum = 0 ;
+    for ( int i = 0 ;  i <= n ;  i ++ ) {
+        if ( ( i % 2 == 0 ) && ( i % 3 == 0 ) ) {
+            oddDigSum = oddDigSum + ( ( Integer ) ( st . charAt ( i ) ) ) ;
+        }
+        }
+            evenDigSum = evenDigSum + ( ( Integer ) ( st [ i ] ) ) ;
+    }
+    return ( ( oddDigSum - evenDigSum ) % 11 == 0 ) ;
 }
 
 public static void main(String args[]) {

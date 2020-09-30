@@ -29,7 +29,7 @@ def f_filled ( num ) :
         return False
     c = ( - 2 * num )
     b , a = 1 , 1
-    d = ( b ** 2 ) - ( 4 * a ** 2 )
+    d = ( b * b ) - ( 4 * a * c )
     if d < 0 :
         return False
     root1 = ( - b + float ( math.sqrt ( d ) ) ) / ( 2 * a )

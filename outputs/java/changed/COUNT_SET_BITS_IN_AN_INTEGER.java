@@ -22,12 +22,12 @@ static int f_gold ( int n ) {
 
 //
 static int f_filled ( long n ) {
-  int count = 0 ;
-  while ( ( n > 0 ) && ( n & 1 ) != 0 ) {
-    count += n & 1 ;
-    n >>>= 1 ;
-  }
-  return count ;
+    count = 0 ;
+    while ( ( n -- ) > 0 ) {
+        count += n & 1 ;
+        n >>= 1 ;
+    }
+    return count ;
 }
 
 public static void main(String args[]) {

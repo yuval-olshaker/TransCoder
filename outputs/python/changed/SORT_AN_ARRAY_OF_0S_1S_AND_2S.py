@@ -24,18 +24,13 @@ def f_gold ( a , arr_size ) :
 def f_filled ( a , arr_size ) :
     lo = 0
     hi = arr_size - 1
-    mid , temp = 0 , 0
+    mid , temp = divmod ( arr_size , 2 )
     while mid <= hi :
-        try :
-            temp = a [ mid ]
-            a [ lo ] , a [ mid ] = a [ mid ] , a [ mid ]
-            a [ mid ] = temp
-            lo += 1
-            mid += 1
-            break
-        except IndexError :
-            mid += 1
-            break
+    case 1 :
+    break
+pass
+pass
+pass
 
 if __name__ == '__main__':
     param = [

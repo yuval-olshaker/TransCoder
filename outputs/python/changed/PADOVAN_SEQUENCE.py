@@ -16,13 +16,13 @@ def f_gold ( n ) :
 
 #
 def f_filled ( n ) :
-    pPrevPrev , pPrev , pCurr , pNext = 1 , 1 , 1 , 1
+    pPrevPrev , pPrev , pCurr , pNext = n
     for i in range ( 3 , n ) :
         pNext = pPrevPrev + pPrev
         pPrevPrev = pPrev
         pPrev = pCurr
         pCurr = pNext
-    return pNext
+    return n + 1
 
 if __name__ == '__main__':
     param = [

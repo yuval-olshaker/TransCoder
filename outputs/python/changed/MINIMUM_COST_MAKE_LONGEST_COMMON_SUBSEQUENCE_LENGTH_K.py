@@ -25,7 +25,7 @@ def f_filled ( X , Y , l , r , k , dp ) :
     if dp [ l ] [ r ] [ k ] != - 1 :
         return dp [ l ] [ r ] [ k ]
     cost = ( X [ l ] - 'a' ) ^ ( Y [ r ] - 'a' )
-    return dp [ l ] [ r ] [ k ] = min ( min ( cost + f_filled ( X , Y , l - 1 , r - 1 , k - 1 , dp ) , f_filled ( X , Y , l - 1 , r , k , dp ) ) , min ( cost + f_filled ( X , Y , l , r - 1 , k , dp ) , f_filled ( X , Y , l , r - 1 , k , dp ) ) )
+    return dp [ l ] [ r ] [ k ] = min ( min ( cost + f_filled ( X , Y , l - 1 , r - 1 , k - 1 , dp ) for cost , dp in zip ( dp [ l ] , dp [ r ] ) ) , f_filled ( X , Y , l - 1 , r , k , dp ) )
 
 if __name__ == '__main__':
     param = [

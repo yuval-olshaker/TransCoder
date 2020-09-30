@@ -15,7 +15,7 @@ def f_gold ( N , K ) :
 def f_filled ( N , K ) :
     ans = 0
     for i in range ( 1 , N + 1 ) :
-        ans += ( i % K )
+        ans += ( i % K for i in N )
     return ans
 
 if __name__ == '__main__':

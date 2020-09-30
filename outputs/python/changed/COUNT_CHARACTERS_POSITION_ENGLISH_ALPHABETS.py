@@ -15,8 +15,8 @@ def f_gold ( str ) :
 #
 def f_filled ( str ) :
     result = 0
-    for c in str :
-        if c in ( ord ( 'a' ) , ord ( 'z' ) ) :
+    for i in range ( len ( str ) ) :
+        if i == ( str [ i ] - 'a' ) or i == ( str [ i ] - 'A' ) :
             result += 1
     return result
 

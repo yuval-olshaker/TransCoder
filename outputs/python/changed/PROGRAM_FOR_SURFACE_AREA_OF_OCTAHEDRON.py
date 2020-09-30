@@ -12,7 +12,7 @@ def f_gold ( side ) :
 
 #
 def f_filled ( side ) :
-    return ( 2 * ( np.sqrt ( 3 ) ) * ( side ** 2 ) )
+    return ( 2 * ( math.sqrt ( 3 ) ) * ( side ** 2 ) )
 
 if __name__ == '__main__':
     param = [

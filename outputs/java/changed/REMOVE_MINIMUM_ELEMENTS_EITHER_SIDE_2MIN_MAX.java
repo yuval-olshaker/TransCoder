@@ -44,28 +44,32 @@ static int f_gold ( int arr [ ] , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-  int longestStart = - 1 ;
-  int longestEnd = 0 ;
-  for ( int start = 0 ;
-  start < n ;
-  start ++ ) {
-    int min = Integer . MAX_VALUE ;
-    int max = - Integer . MAX_VALUE ;
-    for ( int end = start ;
-    end < n ;
-    end ++ ) {
-      int val = arr [ end ] ;
-      if ( ( val < min ) && ( val > max ) ) min = val ;
-      if ( ( val > max ) && ( val < min ) ) max = val ;
-      if ( ( 2 * min <= max ) && ( end - start > longestEnd - longestStart || longestStart == - 1 ) ) break ;
-      if ( ( end - start > longestEnd - longestStart || longestStart == - 1 ) && ( end - longestEnd - longestStart > 0 ) ) {
-        longestStart = start ;
-        longestEnd = end ;
-      }
+    long longestStart = - 1 ;
+    int longestEnd = 0 ;
+    for ( int start = 0 ;  start < n ;  start ++ ) {
+        int min = Integer . MAX_VALUE ;
+        int max = - Integer . MAX_VALUE ;
+        for ( int end = start ;  end < n ;  end ++ ) {
+            int val = arr [ end ] ;
+            if ( ( val < min ) && ( val > max ) ){
+                int min = val ;
+            }
+            if ( ( val > max ) && ( val < min ) ){
+                int max = val ;
+            }
+            if ( ( 2 * min <= max ) && ( n > 0 ) ) {
+                break ;
+            }
+            if ( ( end - start > longestEnd - longestStart || longestStart == - 1 ) && ( end - start > longestEnd - longestStart ) ) {
+                longestStart = start ;
+                longestEnd = end ;
+            }
+        }
     }
-  }
-  if ( ( longestStart == - 1 ) && ( longestEnd - longestStart > 0 ) ) return n ;
-  return ( n - ( longestEnd - longestStart + 1 ) ) ;
+    if ( ( longestStart == - 1 ) && ( n > 0 ) ) {
+        return n ;
+    }
+    return ( n - ( longestEnd - longestStart + 1 ) ) ;
 }
 
 public static void main(String args[]) {

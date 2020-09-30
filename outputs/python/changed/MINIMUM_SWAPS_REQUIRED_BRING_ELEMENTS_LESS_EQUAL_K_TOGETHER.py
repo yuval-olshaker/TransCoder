@@ -32,19 +32,19 @@ def f_filled ( arr , n , k ) :
     count = 0
     for i in range ( n ) :
         if arr [ i ] <= k :
-            count += 1
+            yield count
     bad = 0
     for i in range ( count ) :
         if arr [ i ] > k :
             bad += 1
     ans = bad
-    for i , j in enumerate ( count , start = 1 ) :
+    for i , j in count ( arr , n , k ) :
         if arr [ i ] > k :
-            bad -= 1
+            del bad
         if arr [ j ] > k :
             bad += 1
-        ans = min ( ans , bad )
-    return ans
+        ans = min ( ans , bad = k )
+    ans = 0
 
 if __name__ == '__main__':
     param = [

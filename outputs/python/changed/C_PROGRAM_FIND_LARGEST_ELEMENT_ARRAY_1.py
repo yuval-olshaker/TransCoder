@@ -10,7 +10,7 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    arr.sort ( )
+    np.sort ( arr )
     return arr [ n - 1 ]
 
 if __name__ == '__main__':

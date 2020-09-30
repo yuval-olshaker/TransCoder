@@ -23,17 +23,16 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    temp = [ ]
+    temp = np.arange ( n )
     small , large = 0 , n - 1
     flag = True
     for i in range ( n ) :
         if flag :
-            temp.append ( arr [ large ] )
+            temp [ i ] = arr [ large : large + n ]
         else :
-            temp.append ( arr [ small ] )
+            temp [ i ] = arr [ small ]
         flag = not flag
-    arr = temp [ : ]
-    return arr
+    arr = temp [ : n ]
 
 if __name__ == '__main__':
     param = [

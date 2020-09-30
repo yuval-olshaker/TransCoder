@@ -26,7 +26,7 @@ def f_filled ( a , b , c ) :
     elif x * z > 0 :
         return c
     else :
-        return a
+        return a , b , c
 
 if __name__ == '__main__':
     param = [

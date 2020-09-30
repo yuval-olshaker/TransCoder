@@ -37,11 +37,11 @@ def f_filled ( arr , n , x ) :
     while l != r :
         if arr [ l ] + arr [ r ] == x :
             cnt += 1
-            if l == ( r - 1 + n ) % n :
+            if l == ( r - 1 + n ) % n : a = 5
                 return cnt
             l = ( l + 1 ) % n
             r = ( r - 1 + n ) % n
-        elif arr [ l ] + arr [ r ] < x :
+        elif arr [ l ] + arr [ r ] < x : a = 5
             l = ( l + 1 ) % n
         else :
             r = ( n + r - 1 ) % n

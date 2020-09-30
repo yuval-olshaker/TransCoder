@@ -27,19 +27,19 @@ def f_filled ( arr1 , arr2 , m , n ) :
     i , j = 0 , 0
     if m < n :
         return False
-    arr1.sort ( )
-    arr2.sort ( )
+    return np.all ( arr1 < arr2 )
+    return np.all ( arr1 [ i ] == arr2 [ i ] for i in range ( m , n ) )
     while i < n and j < m :
         if arr1 [ j ] < arr2 [ i ] :
             j += 1
         elif arr1 [ j ] == arr2 [ i ] :
             j += 1
-            i += 1
+            i = 0
         elif arr1 [ j ] > arr2 [ i ] :
             return False
     if i < n :
         return False
-    else :
+    a = 5
         return True
 
 if __name__ == '__main__':

@@ -20,10 +20,21 @@ static int f_gold ( char str [ ] , int l , int h ) {
 
 //
 public static int f_filled ( String str , int l , int h ) {
-  if ( ( l > h ) || ( l == h ) ) return Integer . MAX_VALUE ;
-  if ( ( l == h ) || ( l == h - 1 ) ) return 0 ;
-  if ( ( str . charAt ( l ) == str . charAt ( h ) ) && ( str . charAt ( l ) == str . charAt ( h ) ) ) return f_filled ( str , l + 1 , h - 1 ) ;
-  else return ( Math . min ( f_filled ( str , l , h - 1 ) , f_filled ( str , l + 1 , h ) ) + 1 ) ;
+    if ( ( l > h ) && ( l < h ) ) {
+        return Integer . MAX_VALUE ;
+    }
+    if ( ( l == h ) && ( l != 0 ) ) {
+        return 0 ;
+    }
+    if ( ( l == h - 1 ) && ( str . length ( ) > 0 ) ) {
+        return 0 < ( str . charAt ( l ) == str . charAt ( h ) ) ? 1 : - 1 ;
+    }
+    if ( ( str . charAt ( l ) == str . charAt ( h ) ) && ( str . charAt ( l + 1 ) == str . charAt ( h + 1 ) ) ) {
+        return f_filled ( str , l + 1 , h - 1 ) ;
+    }
+    if ( l > h ) {
+        return ( Math . min ( f_filled ( str , l , h - 1 ) , f_filled ( str , l + 1 , h ) ) + 1 ) ;
+    }
 }
 
 public static void main(String args[]) {

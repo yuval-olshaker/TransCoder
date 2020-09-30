@@ -24,7 +24,7 @@ def f_filled ( n ) :
     if n <= 1 :
         return 1
     digits = 0
-    for i in range ( 2 , n + 1 ) :
+    for i in range ( 2 , n ) :
         digits += math.log10 ( i )
     return int ( math.floor ( digits ) ) + 1
 

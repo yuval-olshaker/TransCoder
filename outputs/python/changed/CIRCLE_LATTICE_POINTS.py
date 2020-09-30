@@ -26,7 +26,7 @@ def f_filled ( r ) :
     for x in range ( 1 , r ) :
         y_square = r ** 2 - x ** 2
         y = int ( math.sqrt ( y_square ) )
-        if y * y == y_square :
+        if y * y == ySquare :
             result += 4
     return result
 

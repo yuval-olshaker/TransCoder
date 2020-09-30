@@ -20,16 +20,17 @@ def f_gold ( n , a , b , c ) :
 
 #
 def f_filled ( n , a , b , c ) :
-    dp = [ - 1 ] * n + [ 0 ] * n
+    dp = np.arange ( n + 10 )
+    del dp [ - 1 ]
     dp [ 0 ] = 0
     for i in range ( n ) :
-        if dp [ i ] != - 1 :
-            if i + a <= n :
-                dp [ i + a ] = max ( dp [ i ] + 1 , dp [ i + a ] )
-            if i + b <= n :
-                dp [ i + b ] = max ( dp [ i ] + 1 , dp [ i + b ] )
-            if i + c <= n :
-                dp [ i + c ] = max ( dp [ i ] + 1 , dp [ i + c ] )
+        if dp [ i ] != - 1 : a = 5
+            if i + a <= n : a = 5
+                dp [ i + a ] = max ( dp [ i ] + 1 for i in range ( n ) )
+            if i + b <= n : a = 5
+                dp [ i + b ] = max ( dp [ i ] + 1 for i in range ( n ) )
+            if i + c <= n : a = 5
+                dp [ i + c ] = max ( dp [ i ] + 1 for i in range ( n ) )
     return dp [ n ]
 
 if __name__ == '__main__':

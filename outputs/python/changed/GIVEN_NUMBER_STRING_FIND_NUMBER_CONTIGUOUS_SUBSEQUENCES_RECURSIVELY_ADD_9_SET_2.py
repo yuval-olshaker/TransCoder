@@ -27,9 +27,10 @@ def f_gold ( number ) :
 #
 def f_filled ( number ) :
     n = len ( number )
-    d = [ 1 ] * 9
+    d = [ ]
+    d [ 0 ] = 1
     result = 0
-    mod_sum , continuous_zero = 0 , 0
+    mod_sum , continuous_zero = divmod ( number , 9 )
     for i in range ( n ) :
         if ( number [ i ] - '0' ) == 0 :
             continuous_zero += 1

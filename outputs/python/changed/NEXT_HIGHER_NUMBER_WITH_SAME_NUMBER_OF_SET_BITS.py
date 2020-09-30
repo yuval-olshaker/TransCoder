@@ -18,15 +18,15 @@ def f_gold ( x ) :
 
 #
 def f_filled ( x ) :
-    right_one , next_higher_one_bit , right_ones_pattern , next = x
-    if next_higher_one_bit :
-        right_one = x & - x
+    rightOne , nextHigherOneBit , rightOnesPattern , next = x
+    if x > 0 :
+        rightOne = x & - x
         next_higher_one_bit = x + right_one
-        right_ones_pattern = x ^ next_higher_one_bit
-        right_ones_pattern = ( right_ones_pattern ) // right_one
-        right_ones_pattern >>= 2
+        rightOnesPattern = x ^ nextHigherOneBit
+        rightOnesPattern = ( rightOnesPattern ) / rightOne
+        rightOnesPattern >>= 2
         next = next_higher_one_bit | right_ones_pattern
-    return next
+    return next ( x )
 
 if __name__ == '__main__':
     param = [

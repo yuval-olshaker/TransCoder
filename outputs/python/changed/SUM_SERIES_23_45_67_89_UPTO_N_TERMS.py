@@ -26,7 +26,7 @@ def f_filled ( n ) :
     i = 1
     res = 0.0
     sign = True
-    while n > 0 :
+    while n :
         n -= 1
         if sign :
             sign = not sign

@@ -19,11 +19,11 @@ def f_gold ( x , y , p ) :
 def f_filled ( x , y , p ) :
     res = 1
     x = x % p
-    while y :
+    while y > 0 :
         if ( y & 1 ) == 1 :
             res = ( res * x ) % p
         y = y >> 1
-        x = ( x * x ) % p
+        x = ( x ** y ) % p
     return res
 
 if __name__ == '__main__':

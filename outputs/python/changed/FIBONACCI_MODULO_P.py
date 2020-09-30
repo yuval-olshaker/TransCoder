@@ -19,10 +19,12 @@ def f_gold ( p ) :
 
 #
 def f_filled ( p ) :
-    first , second , number , next = 1 , 1 , 2 , 1
-    while next > 0 :
+    first , second , number , next = p
+    while next ( p ) :
         next = ( first + second ) % p
-        first , second , number += 1
+        first = second
+        second = next
+        number += 1
     return number
 
 if __name__ == '__main__':

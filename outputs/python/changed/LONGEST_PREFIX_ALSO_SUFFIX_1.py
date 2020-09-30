@@ -30,22 +30,23 @@ def f_gold ( s ) :
 #
 def f_filled ( s ) :
     n = len ( s )
-    lps = [ 0 ] * n
+    lps = [ n for n in range ( n ) ]
+    lps [ 0 ] = 0
     len = 0
     i = 1
     while i < n :
         if s [ i ] == s [ len ( s ) ] :
             len += 1
-            lps [ i ] = len
+            lps [ i ] = len ( s )
             i += 1
         else :
-            if len != 0 :
+            if len ( s ) != 0 :
                 len = lps [ len - 1 ]
             else :
                 lps [ i ] = 0
                 i += 1
     res = lps [ n - 1 ]
-    return ( res > n / 2 )
+    return ( res > n / 2 ) * n / 2 + res
 
 if __name__ == '__main__':
     param = [

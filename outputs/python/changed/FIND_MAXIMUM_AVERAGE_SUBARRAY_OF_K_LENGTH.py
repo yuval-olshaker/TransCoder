@@ -25,7 +25,8 @@ def f_gold ( arr , n , k ) :
 def f_filled ( arr , n , k ) :
     if k > n :
         return - 1
-    csum = [ arr [ 0 ] ]
+    csum = np.zeros ( n )
+    csum [ 0 ] = arr [ 0 ]
     for i in range ( 1 , n ) :
         csum [ i ] = csum [ i - 1 ] + arr [ i ]
     max_sum , max_end = csum [ k - 1 ] , k - 1

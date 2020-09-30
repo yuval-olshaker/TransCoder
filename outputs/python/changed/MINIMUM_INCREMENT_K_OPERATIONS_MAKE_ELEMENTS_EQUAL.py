@@ -17,7 +17,7 @@ def f_gold ( arr , n , k ) :
 
 #
 def f_filled ( arr , n , k ) :
-    arr.sort ( )
+    np.sort ( arr )
     max = arr [ - 1 ]
     res = 0
     for i in range ( n ) :

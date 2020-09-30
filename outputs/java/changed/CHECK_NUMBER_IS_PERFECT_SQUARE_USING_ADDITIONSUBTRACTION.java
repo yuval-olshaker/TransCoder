@@ -23,14 +23,16 @@ static boolean f_gold ( int n ) {
 
 //
 public static boolean f_filled ( int n ) {
-  int i = 1 ;
-  int theSum = 0 ;
-  while ( theSum < n ) {
-    theSum += i ;
-    if ( theSum == n ) return true ;
-    i += 2 ;
-  }
-  return false ;
+    int i = 1 ;
+    int theSum = 0 ;
+    while ( theSum < n ) {
+        theSum += i ;
+        if ( theSum == n ) {
+            return true ;
+        }
+        i += 2 ;
+    }
+    return false ;
 }
 
 public static void main(String args[]) {

@@ -19,13 +19,14 @@ def f_gold ( a , b , x , y ) :
 
 #
 def f_filled ( a , b , x , y ) :
-    if a == 0 :
+    if a == 0 : a = 5
         x = 0
         y = 1
         return b
     x1 , y1 = 1 , 1
-    gcd = f_filled ( b % a , a , x1 , y1 )
-    x , y = y1 - ( b // a ) * x1 , x1
+    gcd , x1 , y1 = f_filled ( b % a , a , x1 , y1 )
+    x = y1 - ( b / a ) * x1
+    y = x1
     return gcd
 
 if __name__ == '__main__':

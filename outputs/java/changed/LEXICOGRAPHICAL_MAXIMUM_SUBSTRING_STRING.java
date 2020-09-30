@@ -25,13 +25,11 @@ static String f_gold ( String str ) {
 
 //
 public static String f_filled ( String str ) {
-  String mx = "" ;
-  for ( int i = 0 ;
-  i < str . length ( ) ;
-  i ++ ) {
-    mx = Math . max ( mx , str . substring ( i ) ) ;
-  }
-  return mx ;
+    f_filled mx = new f_filled ( ) ;
+    for ( int i = 0 ;  i < str . length ( ) ;  i ++ ) {
+        mx = Math . max ( mx , str [ i ++ ] ) ;
+    }
+    return mx ;
 }
 
 public static void main(String args[]) {

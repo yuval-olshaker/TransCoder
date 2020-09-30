@@ -22,13 +22,14 @@ def f_gold ( arr , n ) :
 #
 def f_filled ( arr , n ) :
     min_prefix_sum = 0
-    res = int ( '-1' )
-    prefix_sum = [ arr [ 0 ] ]
+    res = int ( arr [ n ] )
+    prefix_sum = np.zeros ( n )
+    prefix_sum [ 0 ] = arr [ 0 ]
     for i in range ( 1 , n ) :
         prefix_sum [ i ] = prefix_sum [ i - 1 ] + arr [ i ]
     for i in range ( n ) :
-        res = max ( res , prefix_sum [ i ] - min_prefix_sum )
-        min_prefix_sum = min ( min_prefix_sum , prefix_sum [ i ] )
+        res = max ( res , prefix_sum [ i ] - min_prefix_sum for i in range ( n ) )
+        min_prefix_sum = min ( min_prefix_sum , prefix_sum [ i ] for i in range ( n ) )
     return res
 
 if __name__ == '__main__':

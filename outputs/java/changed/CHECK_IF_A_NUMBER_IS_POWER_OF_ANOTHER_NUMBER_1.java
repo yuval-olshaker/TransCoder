@@ -19,9 +19,9 @@ static boolean f_gold ( int x , int y ) {
 
 //
 public static int f_filled ( double x , double y ) {
-  double res1 = Math . log ( y ) / Math . log ( x ) ;
-  double res2 = Math . log ( y ) / Math . log ( x ) ;
-  return 1 == ( res1 == res2 ) ? 0 : 1 ;
+    double res1 = Math . log ( y ) / Math . log ( x ) ;
+    double res2 = Math . log ( y ) / Math . log ( x ) ;
+    return 1 == ( res1 == res2 ) ? 0 : 1 ;
 }
 
 public static void main(String args[]) {

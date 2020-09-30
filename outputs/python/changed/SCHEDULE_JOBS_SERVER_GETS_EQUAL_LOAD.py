@@ -46,7 +46,7 @@ def f_gold ( a , b , n ) :
 
 #
 def f_filled ( a , b , n ) :
-    i = 0
+    pass
     s = 0
     for i in range ( n ) :
         s += ( a [ i ] + b [ i ] )
@@ -70,11 +70,11 @@ def f_filled ( a , b , n ) :
             a [ i ] = y
             b [ i ] = 0
             continue
-        if a [ i ] + b [ i ] == x :
+        if a [ i ] + b [ i ] == x : a [ i ] = 5
             a [ i ] += b [ i ]
             b [ i ] = 0
             continue
-        if i + 1 < n and a [ i ] + b [ i + 1 ] == x :
+        if i + 1 < n and a [ i ] + b [ i + 1 ] == x : a = 5
             a [ i ] += b [ i + 1 ]
             b [ i + 1 ] = 0
             continue

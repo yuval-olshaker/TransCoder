@@ -25,22 +25,22 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    dp = [ ]
+    dp = np.zeros ( n )
     if n == 1 :
         return arr [ 0 ]
     if n == 2 :
-        return min ( arr [ 0 ] , arr [ 1 ] )
+        return min ( arr [ 0 : n ] , arr [ 1 : n ] )
     if n == 3 :
         return min ( arr [ 0 ] , min ( arr [ 1 ] , arr [ 2 ] ) )
     if n == 4 :
-        return min ( min ( arr [ 0 ] , arr [ 1 ] ) , min ( arr [ 2 ] , arr [ 3 ] ) )
-    dp.append ( arr [ 0 ] )
-    dp.append ( arr [ 1 ] )
-    dp.append ( arr [ 2 ] )
-    dp.append ( arr [ 3 ] )
+        return min ( [ min ( arr [ i ] for i in range ( n ) ) for arr in arr ] )
+    dp [ 0 ] = arr [ 0 ]
+    dp [ 1 ] = arr [ 1 ]
+    dp [ 2 ] = arr [ 2 ]
+    dp [ 3 ] = arr [ 3 ]
     for i in range ( 4 , n ) :
-        dp.append ( arr [ i ] + min ( min ( dp [ i - 1 ] , dp [ i - 2 ] ) , min ( dp [ i - 3 ] , dp [ i - 4 ] ) ) )
-    return min ( min ( dp [ - 1 ] , dp [ - 2 ] ) , min ( dp [ - 4 ] , dp [ - 3 ] ) )
+        dp [ i ] = arr [ i ] + min ( min ( dp [ i - 1 ] , dp [ i - 2 ] ) for i in range ( n ) )
+    return min ( [ min ( dp [ n - 1 ] , dp [ n - 2 ] ) for dp in arr ] )
 
 if __name__ == '__main__':
     param = [

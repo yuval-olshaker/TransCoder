@@ -33,25 +33,22 @@ static char f_gold ( String str ) {
 
 //
 public static String f_filled ( String str ) {
-  int n = str . length ( ) ;
-  int count = 0 ;
-  String res = str . substring ( 0 , 1 ) ;
-  int curCount = 1 ;
-  for ( int i = 0 ;
-  i < n ;
-  i ++ ) {
-    if ( ( i < n - 1 && str . charAt ( i ) == str . charAt ( i + 1 ) ) || ( i < n - 1 && str . charAt ( i + 1 ) == str . charAt ( i + 2 ) ) ) {
-      curCount ++ ;
+    int n = str . length ( ) ;
+    int count = 0 ;
+    String res = str . charAt ( 0 ) ;
+    curCount = 1 ;
+    for ( int i = 0 ;  i < n ;  i ++ ) {
+        if ( ( i < n - 1 && str . charAt ( i ) == str . charAt ( i + 1 ) ) || ( i < n - 1 && str . charAt ( i + 1 ) == str . charAt ( i + 2 ) ) ){
+            curCount ++ ;
+        }
+        }
+            if ( curCount > count ){
+                count = curCount ;
+                String res = str [ i ] ;
+            }
+            curCount = 1 ;
     }
-    else {
-      if ( curCount > count ) {
-        count = curCount ;
-        res = str . substring ( i , i + 1 ) ;
-      }
-      curCount = 1 ;
-    }
-  }
-  return res ;
+    return res ;
 }
 
 public static void main(String args[]) {

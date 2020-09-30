@@ -26,13 +26,13 @@ def f_gold ( arr , n ) :
 def f_filled ( arr , n ) :
     SubsetSum_1 , SubsetSum_2 = 0 , 0
     for i in range ( 0 , n - 1 ) :
-        is_single_occurrence = True
+        isSingleOccurance = True
         for j in range ( i + 1 , n - 1 ) :
             if arr [ i ] == arr [ j ] :
-                is_single_occurrence = False
-                arr [ i ] , arr [ j ] = arr [ i ] , arr [ j ]
+                isSingleOccurance = False
+                arr [ i , j ] = arr [ j , i ] = 0
                 break
-        if is_single_occurrence :
+        if isSingleOccurance :
             if arr [ i ] > 0 :
                 SubsetSum_1 += arr [ i ]
             else :

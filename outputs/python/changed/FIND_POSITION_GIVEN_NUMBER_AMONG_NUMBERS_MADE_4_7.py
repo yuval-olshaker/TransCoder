@@ -19,19 +19,12 @@ def f_gold ( n ) :
 
 #
 def f_filled ( n ) :
-    k , pos , i = 0 , 0 , 0
+    k , pos , i = f_filled ( n )
     while k != len ( n ) :
-        try :
-            pos = pos * 2 + 1
-        except TypeError :
-            pass
-        try :
-            pos = pos * 2 + 2
-        except TypeError :
-            pass
-        i += 1
-        k += 1
-    return pos
+    i += 1
+    k += 1
+return pos
+pass
 
 if __name__ == '__main__':
     param = [

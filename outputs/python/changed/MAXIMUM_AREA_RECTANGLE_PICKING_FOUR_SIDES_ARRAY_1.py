@@ -23,17 +23,17 @@ def f_gold ( arr , n ) :
 #
 def f_filled ( arr , n ) :
     s = set ( )
-    first , second = 0 , 0
+    first , second = arr
     for i in range ( n ) :
-        if not s.issubset ( arr [ i ] ) :
-            s.add ( arr [ i ] )
+        if not s.has_key ( arr [ i ] ) :
+            s.append ( arr [ i ] )
             continue
         if arr [ i ] > first :
             second = first
-            first , second = arr [ i ] , arr [ i ]
+            first = arr [ i ]
         elif arr [ i ] > second :
-            second , first = arr [ i ] , arr [ i ]
-    return ( first , second )
+            second = arr [ i ]
+    return ( first * second )
 
 if __name__ == '__main__':
     param = [

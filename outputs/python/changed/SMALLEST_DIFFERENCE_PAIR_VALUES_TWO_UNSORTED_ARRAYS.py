@@ -24,10 +24,10 @@ def f_gold ( A , B , m , n ) :
 
 #
 def f_filled ( A , B , m , n ) :
-    A.sort ( )
-    B.sort ( )
-    a , b = 0 , 0
-    result = sys.maxsize
+    np.sort ( A )
+    del B
+    a , b = A , B
+    result = int ( A [ m ] )
     while a < m and b < n :
         if abs ( A [ a ] - B [ b ] ) < result :
             result = abs ( A [ a ] - B [ b ] )

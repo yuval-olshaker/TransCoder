@@ -14,7 +14,7 @@ def f_filled ( a , n ) :
     for i in range ( 1 , len ( a ) ) :
         if a [ i ] < min :
             min = a [ i ]
-    return ( n - 1 ) * min
+    return ( n - 1 ) * min ( a )
 
 if __name__ == '__main__':
     param = [

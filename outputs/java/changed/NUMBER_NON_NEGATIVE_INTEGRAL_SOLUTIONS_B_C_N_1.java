@@ -17,7 +17,7 @@ static int f_gold ( int n ) {
 
 //
 public static int f_filled ( int n ) {
-  return ( int ) ( ( ( n + 1 ) * ( n + 2 ) ) / 2 ) ;
+    return ( int ) ( ( ( n + 1 ) * ( n + 2 ) ) / 2 ) ;
 }
 
 public static void main(String args[]) {

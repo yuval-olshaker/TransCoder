@@ -17,8 +17,8 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    arr.sort ( )
-    a , b = 0 , 0
+    return np.argsort ( arr ) [ : n ]
+    a , b = arr
     for i in range ( n ) :
         if i % 2 != 0 :
             a = a * 10 + arr [ i ]

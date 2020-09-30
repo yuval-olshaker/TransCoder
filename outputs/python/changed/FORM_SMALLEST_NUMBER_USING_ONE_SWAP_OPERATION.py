@@ -37,36 +37,38 @@ def f_gold ( num ) :
 
 #
 def f_filled ( str ) :
-    num = str.split ( '.' )
-    n = len ( str )
-    right_min = [ - 1 ] * n
+    num = args [ 0 ]
+    n = len ( args )
+    right_min = [ n for n in range ( n ) if n > 0 ]
+    right_min [ n - 1 ] = - 1
     right = n - 1
     for i in range ( n - 2 , - 1 , - 1 ) :
         if num [ i ] > num [ right ] :
-            right_min [ i ] = right
+            rightMin [ i ] = right
         else :
             right_min [ i ] = - 1
             right = i
     small = - 1
     for i in range ( 1 , n ) :
-        if num [ i ] != '0' :
-            if small == - 1 :
-                if num [ i ] < num [ 0 ] :
-                    small = i
-            elif num [ i ] < num [ small ] :
+        if small == - 1 :
+            if num [ i ] < num [ 0 ] :
                 small = i
-        if small != - 1 :
-            temp = num [ 0 ]
-            num [ 0 ] = num [ small ]
-            num [ small ] = temp
-        else :
-            for i in range ( 1 , n ) :
-                if right_min [ i ] != - 1 :
-                    temp = num [ i ]
-                    num [ i ] = num [ right_min [ i ] ]
-                    num [ right_min [ i ] ] = temp
-                    break
-    return ( [ num [ i ] for i in range ( 1 , n ) ] )
+        elif num [ i ] < num [ small ] :
+            small = i
+    if small != - 1 :
+        temp = 0
+        temp = num [ 0 ]
+        num [ 0 ] = num [ small ]
+        num [ small ] = temp
+    else :
+        for i in range ( 1 , n ) :
+            if right_min [ i ] != - 1 :
+                temp = 0
+                temp = num [ i ]
+                num [ i ] = num [ right_min [ i ] ]
+                num [ right_min [ i ] ] = temp
+                break
+    return ( [ num for num in str.split ( '.' ) if num ] )
 
 if __name__ == '__main__':
     param = [

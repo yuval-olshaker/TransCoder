@@ -27,11 +27,11 @@ def f_gold ( arr , n , x ) :
 #
 def f_filled ( arr , n , x ) :
     curr_sum , min_len = 0 , n + 1
-    start , end = 0 , 0
+    start , end = np.where ( arr == x )
     while end < n :
         while curr_sum <= x and end < n :
             if curr_sum <= 0 and x > 0 :
-                start = end
+                start = end = 0
                 curr_sum = 0
             curr_sum += arr [ end ]
         while curr_sum > x and start < n :

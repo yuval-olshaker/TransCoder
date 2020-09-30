@@ -23,16 +23,15 @@ def f_filled ( arr , n ) :
         for j in range ( i + 1 , n - 1 ) :
             for k in range ( j + 1 , n ) :
                 if arr [ i ] + arr [ j ] + arr [ k ] == 0 :
-                    print ( arr [ i ] , end = ' ' )
-                    print ( arr [ j ] , end = ' ' )
-                    print ( arr [ k ] , end = ' ' )
-                    print ( arr [ i ] , end = ' ' )
-                    print ( arr [ j ] , end = ' ' )
-                    print ( arr [ k ] , end = ' ' )
-                    print ( arr [ i ] , end = ' ' )
+                    print ( arr [ i ] for i in range ( n ) )
+                    print ( " ".join ( [ str ( i ) for i in arr ] ) )
+                    print ( arr [ j ] )
+                    print ( " ".join ( [ str ( i ) for i in arr ] ) )
+                    print ( arr [ k ] )
+                    print ( "\n".join ( [ str ( i ) for i in arr ] ) )
                     found = True
     if found == False :
-        print ( ' not exist ' )
+        print ( " not exist " )
 
 if __name__ == '__main__':
     param = [

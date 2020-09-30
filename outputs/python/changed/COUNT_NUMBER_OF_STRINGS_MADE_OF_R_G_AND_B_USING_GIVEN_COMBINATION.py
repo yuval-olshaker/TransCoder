@@ -20,16 +20,17 @@ def f_gold ( n , r , b , g ) :
 
 #
 def f_filled ( n , r , b , g ) :
-    fact = [ 1 ] * n + [ 1 ] * n
+    fact = [ 0 ] * n + [ 0 ] * n
+    fact [ 0 ] = 1
     for i in range ( 1 , n + 1 ) :
         fact [ i ] = fact [ i - 1 ] * i
     left = n - ( r + g + b )
     sum = 0
-    for i in range ( 0 , left + 1 ) :
-        for j in range ( 0 , left - i + 1 ) :
+    for i in range ( 0 , left ) :
+        for j in range ( 0 , left - i ) :
             k = left - ( i + j )
             sum = sum + fact [ n ] / ( fact [ i + r ] * fact [ j + b ] * fact [ k + g ] )
-    return sum
+    return sum ( [ s for s in f_filled ( n , r , b , g ) if s in string.printable ] )
 
 if __name__ == '__main__':
     param = [

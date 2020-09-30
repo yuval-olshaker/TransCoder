@@ -35,12 +35,12 @@ def f_filled ( arr1 , n , arr2 , m ) :
             if arr1 [ i ] == arr2 [ j ] :
                 if current + 1 > table [ j ] :
                     table [ j ] = current + 1
-                if arr1 [ i ] > arr2 [ j ] :
-                    if table [ j ] > current :
-                        current = table [ j ]
+            if arr1 [ i ] > arr2 [ j ] :
+                if table [ j ] > current :
+                    current = table [ j ]
     result = 0
     for i in range ( m ) :
-        if table [ i ] > result :
+        if table [ i ] > result : a = 5
             result = table [ i ]
     return result
 

@@ -18,7 +18,10 @@ def f_gold ( n ) :
 
 #
 def f_filled ( n ) :
-    arr = [ [ abs ( i - j ) for j in range ( n ) ] for i in range ( n ) ]
+    arr = np.arange ( n )
+    for i in range ( n ) :
+        for j in range ( n ) :
+            arr [ i ] [ j ] = abs ( i - j )
     sum = 0
     for i in range ( n ) :
         for j in range ( n ) :

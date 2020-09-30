@@ -18,7 +18,7 @@ def f_gold ( s ) :
 
 #
 def f_filled ( s ) :
-    p , i , j = - 1 , 0 , 0
+    p , i , j = f_filled ( s )
     for i in range ( len ( s ) ) :
         for j in range ( i + 1 , len ( s ) ) :
             if s [ i ] == s [ j ] :

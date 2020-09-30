@@ -20,9 +20,10 @@ def f_gold ( n , k ) :
 def f_filled ( n , k ) :
     total = k
     mod = 1000000007
-    same , diff = 0 , k
+    same , diff = k
     for i in range ( 2 , n + 1 ) :
-        same , diff = diff , int ( total * ( k - 1 ) )
+        same = diff
+        diff = int ( total ) * ( k - 1 )
         diff = diff % mod
         total = ( same + diff ) % mod
     return total

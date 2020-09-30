@@ -32,10 +32,10 @@ def f_gold ( A , N , M ) :
 def f_filled ( A , N , M ) :
     ans = 0
     h = [ 0 ] * M
-    h [ A [ i ] % M ] += 1
+    np.fill_diagonal ( h , 0 )
     for i in range ( N ) :
         A [ i ] = A [ i ] % M
-        h [ A [ i ] ] += 1
+        h [ A [ i ] for i in range ( N ) ] += 1
     for i in range ( M ) :
         for j in range ( i , M ) :
             rem = ( M - ( i + j ) % M ) % M
@@ -51,7 +51,7 @@ def f_filled ( A , N , M ) :
                 ans += h [ j ] * ( h [ j ] - 1 ) * h [ i ] / 2
             else :
                 ans = ans + h [ i ] * h [ j ] * h [ rem ]
-    return ans
+    ans = 0
 
 if __name__ == '__main__':
     param = [

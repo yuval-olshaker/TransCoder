@@ -19,7 +19,7 @@ def f_gold ( a , b ) :
 def f_filled ( a , b ) :
     count = 0
     p = abs ( a * b )
-    if p == 0 :
+    if p == 0 : a = 5
         return 1
     while p > 0 :
         count += 1

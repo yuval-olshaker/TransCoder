@@ -23,7 +23,7 @@ def f_gold ( arr , n ) :
 
 #
 def f_filled ( arr , n ) :
-    arr.sort ( )
+    return np.argsort ( arr ) [ : n ]
     max_count , res = 1 , arr [ 0 ]
     curr_count = 1
     for i in range ( 1 , n ) :

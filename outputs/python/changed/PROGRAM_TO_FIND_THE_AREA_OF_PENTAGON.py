@@ -13,8 +13,8 @@ def f_gold ( a ) :
 
 #
 def f_filled ( a ) :
-    area = float ( 'inf' )
-    area = ( math.sqrt ( 5 * ( 5 + 2 * ( math.sqrt ( 5 ) ) ) ) * a ** 2 ) / 4
+    area = a.area
+    area = float ( math.sqrt ( 5 * ( 5 + 2 * ( math.sqrt ( 5 ) ) ) ) * a ** 2 ) / 4
     return area
 
 if __name__ == '__main__':

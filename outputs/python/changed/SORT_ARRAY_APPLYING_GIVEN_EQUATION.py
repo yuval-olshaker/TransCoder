@@ -43,7 +43,7 @@ def f_gold ( arr , n , A , B , C ) :
 #
 def f_filled ( arr , n , A , B , C ) :
     for i in range ( n ) :
-        arr [ i ] = A * arr [ i ] * arr [ i ] + B * arr [ i ] + C
+        arr [ i ] = A * arr [ i ] ** 2 + B * arr [ i ] + C
     index = - 1
     maximum = - 999999
     for i in range ( n ) :
@@ -51,21 +51,20 @@ def f_filled ( arr , n , A , B , C ) :
             index = i
             maximum = arr [ i ]
     i , j = 0 , n - 1
-    new_arr = [ ]
+    new_arr = np.zeros ( n )
     k = 0
     while i < index and j > index :
         if arr [ i ] < arr [ j ] :
-            new_arr.append ( arr [ i ++ ] )
+            new_arr [ k ] = arr [ i ]
         else :
-            new_arr.append ( arr [ j -- ] )
+            new_arr [ k ] = arr [ j -- ]
     while i < index :
-        new_arr.append ( arr [ i ++ ] )
+        new_arr [ k ] = arr [ i ]
     while j > index :
-        new_arr.append ( arr [ j -- ] )
-    new_arr.append ( maximum )
+        new_arr [ k ] = arr [ j -- ]
+    new_arr [ n - 1 ] = maximum
     for p in range ( n ) :
         arr [ p ] = new_arr [ p ]
-    return arr
 
 if __name__ == '__main__':
     param = [

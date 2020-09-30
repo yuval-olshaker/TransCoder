@@ -22,16 +22,14 @@ static int f_gold ( int [ ] arr , int n ) {
 
 //
 public static int f_filled ( int [ ] arr , int n ) {
-  Arrays . sort ( arr ) ;
-  int diff = 10 * 20 ;
-  for ( int i = 0 ;
-  i < n - 1 ;
-  i ++ ) {
-    if ( arr [ i + 1 ] - arr [ i ] < diff ) {
-      diff = arr [ i + 1 ] - arr [ i ] ;
+    arr = Collections . sort ( arr ) ;
+    int diff = 10 * 20 ;
+    for ( int i = 0 ;  i < n - 1 ;  i ++ ) {
+        if ( arr [ i + 1 ] - arr [ i ] < diff ){
+            int diff = arr [ i + 1 ] - arr [ i ] ;
+        }
     }
-  }
-  return diff ;
+    return diff ;
 }
 
 public static void main(String args[]) {

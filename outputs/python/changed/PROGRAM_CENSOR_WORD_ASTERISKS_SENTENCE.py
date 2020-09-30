@@ -20,14 +20,14 @@ def f_gold ( text , word ) :
 
 #
 def f_filled ( text , word ) :
-    word_list = text.split ( )
+    word_list = text.split ( word )
     result = ""
     stars = ""
-    for i in word :
+    for i in range ( len ( word ) ) :
         stars += '*'
     index = 0
     for i in word_list :
-        if i == word :
+        if i.lower ( ) == word.lower ( ) :
             word_list [ index ] = stars
         index += 1
     for i in word_list :

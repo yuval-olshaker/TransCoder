@@ -16,7 +16,7 @@ def f_filled ( arr , n ) :
     remainder = 0
     for i in range ( n ) :
         remainder = ( remainder + arr [ i ] ) % 3
-    return ( remainder == 0 )
+    return ( remainder == 0 for remainder in arr )
 
 if __name__ == '__main__':
     param = [

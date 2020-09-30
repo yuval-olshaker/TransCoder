@@ -19,7 +19,8 @@ def f_gold ( str ) :
 #
 def f_filled ( str ) :
     zeros , ones = 0 , 0
-    for ch in str :
+    for i in range ( len ( str ) ) :
+        ch = str [ i ]
         if ch == '0' :
             zeros += 1
         else :

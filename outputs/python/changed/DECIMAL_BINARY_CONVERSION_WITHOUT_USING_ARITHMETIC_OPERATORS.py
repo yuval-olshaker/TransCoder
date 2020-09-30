@@ -20,10 +20,10 @@ def f_gold ( n ) :
 #
 def f_filled ( n ) :
     if n == 0 :
-        return '0'
-    bin = ''
-    while n :
-        bin = ( ( n & 1 ) == 0 and '0' or '1' ) + bin
+        return "0" * n
+    bin = ""
+    while n > 0 :
+        bin = ( ( n & 1 ) if n > 0 else '0' ) + bin
         n >>= 1
     return bin
 

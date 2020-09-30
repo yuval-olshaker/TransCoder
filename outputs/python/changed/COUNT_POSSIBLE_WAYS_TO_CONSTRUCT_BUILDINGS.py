@@ -22,11 +22,13 @@ def f_gold ( N ) :
 def f_filled ( N ) :
     if N == 1 :
         return 4
-    countB , countS , prevCountB , prevCountS = 1 , 1 , 1 , 1
+    count_b , count_s , prev_count_b , prev_count_s = N
     for i in range ( 2 , N + 1 ) :
-        prevCountB , prevCountS , prevCountB = countB , prevCountS , prevCountB + prevCountS , prevCountB
-        countB , prevCountS , prevCountB = countS , prevCountS , prevCountB + prevCountS , prevCountB + prevCountS
-    result = countS + countB
+        prev_countB = countB
+        prev_count_s = count_s
+        count_s = prev_count_b + prev_count_s
+        count_b = prev_count_s
+    result = count_s + count_b
     return ( result * result )
 
 if __name__ == '__main__':

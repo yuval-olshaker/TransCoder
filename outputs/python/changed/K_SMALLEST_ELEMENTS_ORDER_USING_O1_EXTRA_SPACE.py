@@ -34,9 +34,9 @@ def f_filled ( arr , n , k ) :
         if max_var > arr [ i ] :
             j = pos
             while j < k - 1 :
-                arr [ j ] , arr [ j + 1 ] = arr [ j + 1 ] , arr [ j ]
+                arr [ j ] = arr [ j + 1 ]
                 j += 1
-            arr [ k - 1 ] , arr [ i ] = arr [ i ] , arr [ i ]
+            arr [ k - 1 ] = arr [ i ]
     for i in range ( k ) :
         print ( arr [ i ] , end = ' ' )
 

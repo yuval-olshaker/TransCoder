@@ -18,12 +18,11 @@ public static int f_gold ( int n ) {
 
 //
 static int f_filled ( int n ) {
-  if ( ( n == 0 ) || ( n == 1 ) ) {
-    return 0 ;
-  }
-  else {
-    return ( n & 1 ) + f_filled ( n >> 1 ) ;
-  }
+    if ( ( n == 0 ) && ( a == 5 ) ) {
+        return 0 ;
+    }
+    }
+        return ( n & 1 ) + f_filled ( n >> 1 ) ;
 }
 
 public static void main(String args[]) {

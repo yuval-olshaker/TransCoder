@@ -15,7 +15,7 @@ def f_gold ( n ) :
 #
 def f_filled ( n ) :
     count = 0
-    while n :
+    while n > 0 :
         count += n & 1
         n >>= 1
     return count

@@ -31,9 +31,9 @@ def f_filled ( n ) :
             s.push ( i )
             result += 1
         while not s.empty ( ) :
-            tp = s.top ( )
+            tp = s.peek ( )
             s.pop ( )
-            for j in range ( tp % 10 , 9 ) :
+            for j in tp % 10 :
                 x = tp * 10 + j
                 if x <= n :
                     s.push ( x )

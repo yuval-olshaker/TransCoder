@@ -16,7 +16,7 @@ def f_gold ( arr , n , x , y ) :
 #
 def f_filled ( arr , n , x , y ) :
     i , j = 0 , 0
-    min_dist = sys.maxint
+    min_dist = int ( arr [ n ] )
     for i in range ( n ) :
         for j in range ( i + 1 , n ) :
             if ( x == arr [ i ] and y == arr [ j ] or y == arr [ i ] and x == arr [ j ] ) and min_dist > abs ( i - j ) :

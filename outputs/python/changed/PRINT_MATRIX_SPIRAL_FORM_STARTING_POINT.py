@@ -37,23 +37,23 @@ def f_gold ( mat , r , c ) :
 
 #
 def f_filled ( mat , r , c ) :
-    i , a = 0 , 2
-    low_row = ( 0 > a ) & ( a < r )
-    low_column = ( 0 > b ) & ( b - 1 )
-    high_row = ( ( a + 1 ) >= r ) & ( r - 1 )
-    high_column = ( ( b + 1 ) >= c ) & ( c - 1 )
+    i , a = 0 , 0 , 2
+    low_row = ( 0 > a )
+    low_column = ( 0 > b )
+    high_row = ( ( a + 1 ) >= r )
+    high_column = ( ( b + 1 ) >= c )
     while ( low_row > 0 - r and low_column > 0 - c ) :
         for i in range ( low_column + 1 , high_column , c , low_row >= 0 ) :
-            print ( mat [ low_row ] [ i ] , end = ' ' )
+            print ( mat [ low_row ] [ i ] + " " for i in range ( r , c ) )
         low_row -= 1
-        for i in range ( low_row + 2 , high_row , r , high_column < c ) :
-            print ( mat [ i ] [ high_column ] , end = ' ' )
+        for i in range ( low_row + 2 , high_row , r + c ) :
+            print ( mat [ i , high_column ] , end = ' ' )
         high_column += 1
-        for i in range ( high_column - 2 , low_column , 0 , r ) :
-            print ( mat [ high_row ] [ i ] , end = ' ' )
+        for i in high_column - 2 :
+            print ( mat [ high_row ] [ i ] + " " for i in range ( r , c ) )
         high_row += 1
-        for i in range ( high_row - 2 , low_row , 0 , 0 , low_column >= 0 ) :
-            print ( mat [ i ] [ low_column ] , end = ' ' )
+        for i in high_row - 2 :
+            print ( mat [ i , low_column ] , end = ' ' )
         low_column -= 1
     print ( )
 

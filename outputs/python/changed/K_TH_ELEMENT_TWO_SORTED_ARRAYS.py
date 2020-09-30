@@ -30,17 +30,17 @@ def f_gold ( arr1 , arr2 , m , n , k ) :
 
 #
 def f_filled ( arr1 , arr2 , m , n , k ) :
-    sorted1 = [ ]
-    i , j , d = 0 , 0 , 0
+    sorted1 = np.argsort ( arr1 )
+    i , j , d = arr1
     while i < m and j < n :
         if arr1 [ i ] < arr2 [ j ] :
-            sorted1.append ( arr1 [ i ++ ] )
+            sorted1 [ d ] = arr1 [ i ]
         else :
-            sorted1.append ( arr2 [ j ++ ] )
+            sorted1 [ d ] = arr2 [ j ]
     while i < m :
-        sorted1.append ( arr1 [ i ++ ] )
+        sorted1 [ d ] = arr1 [ i ]
     while j < n :
-        sorted1.append ( arr2 [ j ++ ] )
+        sorted1 [ d ] = arr2 [ j ]
     return sorted1 [ k - 1 ]
 
 if __name__ == '__main__':

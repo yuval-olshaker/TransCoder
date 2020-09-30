@@ -26,7 +26,7 @@ def f_filled ( a , n , k ) :
             max_so_far = max_ending_here
         if max_ending_here < 0 :
             max_ending_here = 0
-    return max_so_far , max_ending_here
+    return max_so_far
 
 if __name__ == '__main__':
     param = [
