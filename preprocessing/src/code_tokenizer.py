@@ -18,7 +18,7 @@ import clang
 import preprocessing.src.javalang_tokenizer as javalang_tok
 from clang.cindex import TokenKind
 from preprocessing.src.timeout import timeout, TimeoutError
-from sacrebleu import tokenize_v14_international
+# from sacrebleu import tokenize_v14_international
 
 TOK_NO_SPACE_BEFORE = {',', ';'}
 clang.cindex.Config.set_library_path('/usr/lib/llvm-7/lib/')
@@ -360,6 +360,22 @@ def tokenize_cpp(s, keep_comments=False):
     except:
         return []
 
+def tokenize_c(s, keep_comments=False):
+    tokens = []
+    assert isinstance(s, str)
+    for tok in s.split():
+        tokens.append(tok)
+
+    return tokens
+
+def tokenize_wat(s, keep_comments=False):
+    tokens = []
+    assert isinstance(s, str)
+    for tok in s.split():
+        tokens.append(tok)
+
+    return tokens
+
 
 def tokenize_java(s, keep_comments=False):
     try:
@@ -438,6 +454,23 @@ def detokenize_cpp(s):
         'CB_COMA', '},').replace('CB_', '}').replace('OB_', '{')
     return untok_s
 
+def detokenize_c(s):
+    assert isinstance(s, str) or isinstance(s, list)
+    if isinstance(s, list):
+        untok_s = ' '.join(s)
+    else:
+        untok_s = s
+
+    return untok_s
+
+def detokenize_wat(s):
+    assert isinstance(s, str) or isinstance(s, list)
+    if isinstance(s, list):
+        untok_s = ' '.join(s)
+    else:
+        untok_s = s
+
+    return untok_s
 
 def indent_lines(lines):
     prefix = ''
@@ -698,6 +731,11 @@ def extract_functions_cpp(s):
             break
     return functions_standalone, functions_class
 
+def extract_functions_c(s):
+    return [], [s]
+
+def extract_functions_wat(s):
+    return [], [s]
 
 def extract_functions_cpp_with_docstring(function):
     function = re.sub("[<][ ][D][O][C][U][M][E][N][T].*?[>] ", "", function)
@@ -733,6 +771,11 @@ def get_first_token_before_first_parenthesis(s):
 def get_function_name_java(s):
     return get_first_token_before_first_parenthesis(s)
 
+def get_function_name_c(s):
+    return 'ifunC'
+
+def get_function_name_wat(s):
+    return 'ifunC'
 
 def get_function_name_cpp(s):
     return get_first_token_before_first_parenthesis(s)

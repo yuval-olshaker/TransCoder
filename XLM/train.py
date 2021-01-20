@@ -278,23 +278,23 @@ def main(params):
 
         while trainer.n_sentences < trainer.epoch_size:
 
-            # CLM steps
+            # CLM steps - learn next word pred
             for lang1, lang2 in shuf_order(params.clm_steps, params):
                 trainer.clm_step(lang1, lang2, params.lambda_clm)
 
-            # MLM steps (also includes TLM if lang2 is not None)
+            # MLM steps (also includes TLM if lang2 is not None) - learn masked word correcting
             for lang1, lang2 in shuf_order(params.mlm_steps, params):
                 trainer.mlm_step(lang1, lang2, params.lambda_mlm)
 
-            # denoising auto-encoder steps
+            # denoising auto-encoder steps - from a to a
             for lang in shuf_order(params.ae_steps):
                 trainer.mt_step(lang, lang, params.lambda_ae)
 
-            # machine translation steps
+            # machine translation steps - seems like created for parallel
             for lang1, lang2 in shuf_order(params.mt_steps, params):
                 trainer.mt_step(lang1, lang2, params.lambda_mt)
 
-            # back-translation steps
+            # back-translation steps - from a to b and back to a
             for lang1, lang2, lang3 in shuf_order(params.bt_steps):
                 trainer.bt_step(lang1, lang2, lang3,
                                 params.lambda_bt, params.bt_sample_temperature)
