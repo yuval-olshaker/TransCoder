@@ -178,10 +178,8 @@ def learn_bpe_file(file_path, ncodes, codes):
     assert process.returncode == 0, f"failed to learn bpe on {str(file_path)}"
     assert Path(
         f"{str(codes)}").is_file, f"failed to output codes, cannot find codes {str(codes)}"
-    if ncodes > 50000:
-        codes.write_text(''.join(head(codes, 50000)), encoding='utf-8')
-    else:
-        codes.write_text(''.join(codes), encoding='utf-8')
+    if ncodes > 50000: #remember, numbers here
+        codes.write_text(''.join(head(codes, 735)), encoding='utf-8')
 
 
 def get_vocab_file(file_path, vocab):
