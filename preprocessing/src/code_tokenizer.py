@@ -6,6 +6,7 @@
 #
 
 import argparse
+import io
 import logging
 import os
 import random
@@ -731,11 +732,18 @@ def extract_functions_cpp(s):
             break
     return functions_standalone, functions_class
 
+def remove_documnet_addition(s):
+    return s.replace('<DOCUMENT_ID=\"repo/tree/master/a.c\"> ','').replace(' </DOCUMENT>','')
+
 def extract_functions_c(s):
-    return [], [s]
+    if 'static' in s:
+        return [remove_documnet_addition(s)], []
+    return [], [remove_documnet_addition(s)]
 
 def extract_functions_wat(s):
-    return [], [s]
+    if '$t0' in s:
+        return [], [remove_documnet_addition(s)]
+    return [remove_documnet_addition(s)], []
 
 def extract_functions_cpp_with_docstring(function):
     function = re.sub("[<][ ][D][O][C][U][M][E][N][T].*?[>] ", "", function)

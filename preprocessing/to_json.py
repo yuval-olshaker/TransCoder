@@ -9,7 +9,6 @@ def to_json_line(line):
 
 
 if __name__ == '__main__':
-
     for lang in langs:
         if lang == 'c':
             path = '/mnt/c/TransCoder/data/WASM/c/hl_corpus_small_fixed'

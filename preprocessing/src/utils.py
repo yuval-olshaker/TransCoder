@@ -180,6 +180,8 @@ def learn_bpe_file(file_path, ncodes, codes):
         f"{str(codes)}").is_file, f"failed to output codes, cannot find codes {str(codes)}"
     if ncodes > 50000:
         codes.write_text(''.join(head(codes, 50000)), encoding='utf-8')
+    else:
+        codes.write_text(''.join(codes), encoding='utf-8')
 
 
 def get_vocab_file(file_path, vocab):
@@ -195,11 +197,11 @@ def get_vocab_file(file_path, vocab):
 
 
 def binarize_for_XLM_file(file_path, vocab):
-    process = subprocess.run(f"python {XLM_PP} {vocab} {file_path}",
+    process = subprocess.run(f"python3 {XLM_PP} {vocab} {file_path}",
                              shell=True,
                              stdout=subprocess.PIPE,
                              stderr=subprocess.PIPE)
-    assert Path(f'{file_path}.pth').is_file and process.returncode == 0, f"failed to binarize for XLM the file {file_path} \n command: python {XLM_PP} {vocab} {file_path} "
+    assert Path(f'{file_path}.pth').is_file and process.returncode == 0, f"failed to binarize for XLM the file {file_path} \n command: python3 {XLM_PP} {vocab} {file_path} "
 
 
 def regroup_and_select_data(files, output, nlines=None):
