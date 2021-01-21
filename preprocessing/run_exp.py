@@ -1,7 +1,7 @@
 import os
 from os.path import isfile, join
 langs = ['c', 'wat']
-# Transcoder_path = '/mnt/c/TransCoder/TransCoder/'
+# Transcoder_path = '/mnt/c/TransCoder/'
 Transcoder_path = '/home/ubuntu/wasm_decompiler/TransCoder/'
 
 def get_all_files(path):

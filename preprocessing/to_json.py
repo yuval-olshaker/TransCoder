@@ -2,7 +2,7 @@ import os
 
 langs = ['c', 'wat']
 json_str_start = '{\"repo_name\":\"repo\",\"ref\":\"refs/heads/master\",\"path\":\"a.c\",\"copies\":\"1\",'
-# Transcoder_path = '/mnt/c/TransCoder/TransCoder/'
+# Transcoder_path = '/mnt/c/TransCoder/'
 Transcoder_path = '/home/ubuntu/wasm_decompiler/TransCoder/'
 
 def to_json_line(line):
