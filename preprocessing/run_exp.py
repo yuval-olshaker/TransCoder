@@ -8,7 +8,7 @@ def get_all_files(path):
 
 
 if __name__ == '__main__':
-    long = False
+    long = True
     if long:
         for lang in langs:
             path = '/mnt/c/TransCoder/data/WASM/' + lang + '/'
