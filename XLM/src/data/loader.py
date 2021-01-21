@@ -308,7 +308,7 @@ def check_data_params(params):
     for paths in params.mono_dataset.values():
         for p in paths.values():
             if not os.path.isfile(p):
-                logger.error(f"{p} not found")
+                print(f"{p} not found")
     if not params.eval_only:
         assert all([all([os.path.isfile(p) or os.path.isfile(p.replace('pth', '0.pth'))
                     for p in paths.values()]) for paths in params.mono_dataset.values()])

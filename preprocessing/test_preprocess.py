@@ -43,7 +43,7 @@ def preprocess_(dataset, lang_executor=None, tok_executor=None, bpe_executor=Non
         lang_executor=lang_executor, tok_executor=tok_executor)
     dataset.train_bpe(ncodes=100, size_gb=None)
     dataset.apply_bpe(
-        f'train{dataset.suffix}.[01234567].tok', use_vocab=False, executor=bpe_executor)
+        f'train{dataset.suffix}.tok', use_vocab=False, executor=bpe_executor)
     dataset.get_vocab()
     dataset.apply_bpe(f'test{dataset.suffix}.tok',
                       use_vocab=True, executor=None)
@@ -53,7 +53,7 @@ def preprocess_(dataset, lang_executor=None, tok_executor=None, bpe_executor=Non
         lang_executor=lang_executor, function_executor=tok_executor, bpe_executor=bpe_executor)
 
     dataset.binarize_for_XLM(
-        f'train{dataset.suffix}.[01234567].functions_*.bpe', executor=None)
+        f'train{dataset.suffix}.functions_*.bpe', executor=None)
     dataset.binarize_for_XLM(
         f'test{dataset.suffix}.functions_*.bpe', executor=None)
     dataset.binarize_for_XLM(

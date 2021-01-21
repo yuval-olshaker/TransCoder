@@ -18,6 +18,7 @@ if __name__ == '__main__':
                     os.system('rm ' + path + file_name)
         print('killed files')
         os.system('rm -rf ' + Transcoder_path + 'data/WASM/c-wat-')
+        os.system('rm -rf ' + Transcoder_path + 'data/WASM/c-wat-.XLM-syml')
         print('killed combined')
 
         print('start to_json')
