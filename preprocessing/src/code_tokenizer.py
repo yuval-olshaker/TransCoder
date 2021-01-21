@@ -23,12 +23,12 @@ from preprocessing.src.timeout import timeout, TimeoutError
 
 TOK_NO_SPACE_BEFORE = {',', ';'}
 # clang.cindex.Config.set_library_path('/usr/lib/llvm-7/lib/')
-clang.cindex.Config.set_library_path('/home/ubuntu/anaconda3/pkgs/libclang-10.0.1-default_hde54327_1/lib/')
+# clang.cindex.Config.set_library_path('/home/ubuntu/anaconda3/pkgs/libclang-10.0.1-default_hde54327_1/lib/')
 STRINGS_AND_COMMENTS_TOKEN_KINDS = {TokenKind.LITERAL, TokenKind.COMMENT}
 logging.basicConfig(
     filename='timeout_cpp_tokenizer_examples.log', level=logging.DEBUG)
 
-idx = clang.cindex.Index.create()
+idx = []#clang.cindex.Index.create()
 
 JAVA_TOKEN2CHAR = {'STOKEN0': "//",
                    'STOKEN1': "/*",
