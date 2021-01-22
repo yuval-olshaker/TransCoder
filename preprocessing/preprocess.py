@@ -79,7 +79,7 @@ def preprocess(root, lang1, lang2, keep_comments, local, lang3=None, test_size=1
     dataset.extract_functions_and_apply_bpe(
         lang_executor=mp_executor, function_executor=cluster_ex2, bpe_executor=cluster_ex2)
 
-    #dataset.binarize_for_XLM(f'train{dataset.suffix}.[0123456789].functions_class.bpe', executor=cluster_ex2)
+    dataset.binarize_for_XLM(f'train{dataset.suffix}.functions_class.bpe', executor=cluster_ex2)
     dataset.binarize_for_XLM(
         f'train{dataset.suffix}.functions_standalone.bpe', executor=cluster_ex2)
 
