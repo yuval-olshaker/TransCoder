@@ -13,9 +13,9 @@ def to_json_line(line):
 if __name__ == '__main__':
     for lang in langs:
         if lang == 'c':
-            path = Transcoder_path + 'data/WASM/c/hl_corpus_small_fixed'
+            path = Transcoder_path + 'data/WASM/c/hl_corpus_fixed'
         else:
-            path = Transcoder_path + 'data/WASM/wat/ll_corpus_small_fixed'
+            path = Transcoder_path + 'data/WASM/wat/ll_corpus_fixed'
 
 
 

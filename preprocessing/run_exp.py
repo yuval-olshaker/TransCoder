@@ -14,7 +14,7 @@ if __name__ == '__main__':
         for lang in langs:
             path = Transcoder_path + 'data/WASM/' + lang + '/'
             for file_name in get_all_files(path):
-                if not file_name.endswith('corpus_small_fixed'):
+                if not file_name.endswith('corpus_fixed'):
                     os.system('rm ' + path + file_name)
         print('killed files')
         os.system('rm -rf ' + Transcoder_path + 'data/WASM/c-wat-')
