@@ -38,7 +38,7 @@ def check_files_and_symlink_for_XLM(dataset, langs):
             if is_c:
                 double_symlink_suffix = f".{lang}{suffixs[cat]}-{other_lang}{suffixs[cat]}.{lang}{suffixs[cat]}.pth"
             else:
-                double_symlink_suffix = f".{lang}{suffixs[cat]}-{other_lang}{suffixs[cat]}.{other_lang}{suffixs[cat]}.pth"
+                double_symlink_suffix = f".{other_lang}{suffixs[cat]}-{lang}{suffixs[cat]}.{lang}{suffixs[cat]}.pth"
             create_symlink(dataset.folder.joinpath(f"{lang}.train{dataset.suffix}{cat}.bpe.pth"),
                            XLM_folder.joinpath(f"train.{lang}{suffixs[cat]}.pth"),
                            dataset.folder.joinpath(f"{lang}-{other_lang}.train{dataset.suffix}{cat}.bpe.pth"),
@@ -50,7 +50,7 @@ def check_files_and_symlink_for_XLM(dataset, langs):
             create_symlink(dataset.folder.joinpath(f"{lang}.valid{dataset.suffix}{cat}.bpe.pth"),
                            XLM_folder.joinpath(f"valid.{lang}{suffixs[cat]}.pth"),
                            dataset.folder.joinpath(f"{lang}-{other_lang}.valid{dataset.suffix}{cat}.bpe.pth"),
-                           XLM_folder.joinpath("valid." + double_symlink_suffix))
+                           XLM_folder.joinpath("valid" + double_symlink_suffix))
 
 
 def preprocess(root, lang1, lang2, keep_comments, local, lang3=None, test_size=1000, ncodes=100000, size_gb=50):
