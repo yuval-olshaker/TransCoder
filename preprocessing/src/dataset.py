@@ -52,8 +52,8 @@ class Language:
         size_gb = all_tok.stat().st_size
         n_lines = get_nlines(all_tok)
 
-        # shuf
-        shuf_file(all_tok)
+        # shuf - stopped
+        # shuf_file(all_tok)
 
         # select test/valid/train and split train in 8
         subprocess.run(f"cat {all_tok} | head -n {test_size} > {self.folder.joinpath(f'valid{suffix}.tok')}",

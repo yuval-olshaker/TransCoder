@@ -25,4 +25,4 @@ if __name__ == '__main__':
         os.system('python3 ' + Transcoder_path + 'preprocessing/to_json.py')
 
     print('start training')
-    os.system('python3 -m preprocessing.preprocess ' + Transcoder_path + 'data/WASM --lang1 c --lang2 wat --bpe_train_size 0 --test_size 100 --local True')
+    os.system('python3 -m preprocessing.preprocess ' + Transcoder_path + 'data/WASM --lang1 c --lang2 wat --bpe_train_size 0 --test_size 1500 --local True')

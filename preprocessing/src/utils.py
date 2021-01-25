@@ -44,10 +44,12 @@ def tokenize_json_helper(inpt):
 
 @timeout(3600)
 def output_all_tokenized_results(docs, f_tok):
-    pool = Pool(cpu_count())
-    result_content_tokenized = tqdm.tqdm(pool.imap_unordered(
-        tokenize_json_helper, docs), total=len(docs))
-    for content_tokenized, path in result_content_tokenized:
+    # pool = Pool(cpu_count())
+    # result_content_tokenized = tqdm.tqdm(pool.imap_unordered(
+    #     tokenize_json_helper, docs), total=len(docs))
+    # for content_tokenized, path in result_content_tokenized:
+    for doc in docs:
+        content_tokenized, path = tokenize_json_helper(doc)
         if len(content_tokenized) == 0:
             continue
         else:
@@ -179,7 +181,7 @@ def learn_bpe_file(file_path, ncodes, codes):
     assert Path(
         f"{str(codes)}").is_file, f"failed to output codes, cannot find codes {str(codes)}"
     if ncodes > 50000: #remember, numbers here
-        codes.write_text(''.join(head(codes, 735)), encoding='utf-8')
+        codes.write_text(''.join(head(codes, 25500)), encoding='utf-8')
 
 
 def get_vocab_file(file_path, vocab):
