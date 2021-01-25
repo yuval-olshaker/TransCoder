@@ -270,9 +270,6 @@ def main(params):
     i = 0
     # language model training
     for _ in range(params.max_epoch):
-        if i != 0:
-            print(i)
-            exit(0)
         logger.info("============ Starting epoch %i ... ============" %
                     trainer.epoch)
 
@@ -286,10 +283,7 @@ def main(params):
 
             # MLM steps (also includes TLM if lang2 is not None) - learn masked word correcting
             for lang1, lang2 in shuf_order(params.mlm_steps, params):
-                print(lang1)
-                print(lang2)
                 trainer.mlm_step(lang1, lang2, params.lambda_mlm)
-                i += 1
 
             # denoising auto-encoder steps - from a to a
             for lang in shuf_order(params.ae_steps):

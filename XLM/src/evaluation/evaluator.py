@@ -345,7 +345,7 @@ class Evaluator(object):
                 positions = None
                 langs = x.clone().fill_(lang1_id) if params.n_langs > 1 else None
             else:
-                (sent1, len1), (sent2, len2) = batch
+                (sent1, len1, _, _), (sent2, len2, _, _) = batch
                 x, lengths, positions, langs = concat_batches(
                     sent1, len1, lang1_id, sent2, len2, lang2_id, params.pad_index, params.eos_index, reset_positions=True)
 
