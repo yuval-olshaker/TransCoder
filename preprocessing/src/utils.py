@@ -102,15 +102,21 @@ def extract_functions_file(input_path, language, test_size=None):
         with output_path_class.open('w', encoding='utf-8') as f_class:
             pool = Pool(cpu_count())
             # result_functions = pool.map(extract_auto_code, lines)
-            result_functions = tqdm.tqdm(pool.imap_unordered(
-                extract_auto_code, lines), total=len(lines))
+            result_functions = list(map(extract_auto_code, lines))
+            # result_functions = tqdm.tqdm(pool.imap_unordered(
+            #     extract_auto_code, lines), total=len(lines))
+            i = 0
             for func_standalone, func_class in result_functions:
-                for func in func_standalone:
-                    f_sa.write(func)
-                    f_sa.write('\n')
-                for func in func_class:
-                    f_class.write(func)
-                    f_class.write('\n')
+                if i == 0:
+                    i = 1
+                    for func in func_class:
+                        f_class.write(func)
+                        f_class.write('\n')
+                else:
+                    for func in func_standalone:
+                        f_sa.write(func)
+                        f_sa.write('\n')
+
 
 
 def get_nlines(file_path):
@@ -235,9 +241,17 @@ def regroup_and_select_data(files, output, nlines=None):
                 break
 
 
-def create_symlink(file_path, symlink):
+def create_symlink(file_path, symlink, other_lang_path, other_lang_symlink):
     assert file_path.is_file()
     assert not symlink.is_file()
+    subprocess.run(f"cp {file_path} {other_lang_path}",
+                             shell=True,
+                             stdout=subprocess.PIPE,
+                             stderr=subprocess.PIPE)
+    subprocess.run(f"ln -s {other_lang_path} {other_lang_symlink}",
+                             shell=True,
+                             stdout=subprocess.PIPE,
+                             stderr=subprocess.PIPE)
     process = subprocess.run(f"ln -s {file_path} {symlink}",
                              shell=True,
                              stdout=subprocess.PIPE,

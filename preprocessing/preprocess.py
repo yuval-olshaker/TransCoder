@@ -31,13 +31,20 @@ def check_files_and_symlink_for_XLM(dataset, langs):
     XLM_folder.mkdir(exist_ok=True)
     print("create symlinks for XLM ...")
     for lang in langs:
+        other_lang = 'wat' if lang == 'c' else 'c'
         for cat in ["", ".functions_standalone"]:
             create_symlink(dataset.folder.joinpath(f"{lang}.train{dataset.suffix}{cat}.bpe.pth"),
-                           XLM_folder.joinpath(f"train.{lang}{suffixs[cat]}.pth"))
+                           XLM_folder.joinpath(f"train.{lang}{suffixs[cat]}.pth"),
+                           dataset.folder.joinpath(f"{lang}-{other_lang}.train{dataset.suffix}{cat}.bpe.pth"),
+                           XLM_folder.joinpath(f"train.{lang}{suffixs[cat]}-{other_lang}{suffixs[cat]}.{lang}{suffixs[cat]}.pth"))
             create_symlink(dataset.folder.joinpath(f"{lang}.test{dataset.suffix}{cat}.bpe.pth"),
-                           XLM_folder.joinpath(f"test.{lang}{suffixs[cat]}.pth"))
+                           XLM_folder.joinpath(f"test.{lang}{suffixs[cat]}.pth"),
+                           dataset.folder.joinpath(f"{lang}-{other_lang}.test{dataset.suffix}{cat}.bpe.pth"),
+                           XLM_folder.joinpath(f"test.{lang}{suffixs[cat]}-{other_lang}{suffixs[cat]}.{lang}{suffixs[cat]}.pth"))
             create_symlink(dataset.folder.joinpath(f"{lang}.valid{dataset.suffix}{cat}.bpe.pth"),
-                           XLM_folder.joinpath(f"valid.{lang}{suffixs[cat]}.pth"))
+                           XLM_folder.joinpath(f"valid.{lang}{suffixs[cat]}.pth"),
+                           dataset.folder.joinpath(f"{lang}-{other_lang}.valid{dataset.suffix}{cat}.bpe.pth"),
+                           XLM_folder.joinpath(f"valid.{lang}{suffixs[cat]}-{other_lang}{suffixs[cat]}.{lang}{suffixs[cat]}.pth"))
 
 
 def preprocess(root, lang1, lang2, keep_comments, local, lang3=None, test_size=1000, ncodes=100000, size_gb=50):
