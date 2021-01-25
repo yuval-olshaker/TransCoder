@@ -341,6 +341,12 @@ class Trainer(object):
         except StopIteration:
             iterator = self.get_iterator(iter_name, lang1, lang2, stream)
             x = next(iterator)
+        print('i just wanted a batch')
+        print(x)
+        print(lang1)
+        print(lang2)
+        print(lang2 is None or lang1 < lang2)
+        print(x[::-1])
         return x if lang2 is None or lang1 < lang2 else x[::-1]
 
     def word_shuffle(self, x, l):
