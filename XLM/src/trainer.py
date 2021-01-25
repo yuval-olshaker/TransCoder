@@ -513,6 +513,9 @@ class Trainer(object):
             x, lengths, positions, langs = concat_batches(
                 x1, len1, lang1_id, x2, len2, lang2_id, params.pad_index, params.eos_index, reset_positions=False)
         else:
+            print(name)
+            print(lang1)
+            print(lang2)
             (x1, len1), (x2, len2) = self.get_batch(name, lang1, lang2)
             x, lengths, positions, langs = concat_batches(
                 x1, len1, lang1_id, x2, len2, lang2_id, params.pad_index, params.eos_index, reset_positions=True)
