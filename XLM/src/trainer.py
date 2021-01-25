@@ -341,12 +341,6 @@ class Trainer(object):
         except StopIteration:
             iterator = self.get_iterator(iter_name, lang1, lang2, stream)
             x = next(iterator)
-        print('i just wanted a batch')
-        print(x)
-        print(lang1)
-        print(lang2)
-        print(lang2 is None or lang1 < lang2)
-        print(x[::-1])
         return x if lang2 is None or lang1 < lang2 else x[::-1]
 
     def word_shuffle(self, x, l):
@@ -519,10 +513,7 @@ class Trainer(object):
             x, lengths, positions, langs = concat_batches(
                 x1, len1, lang1_id, x2, len2, lang2_id, params.pad_index, params.eos_index, reset_positions=False)
         else:
-            print(name)
-            print(lang1)
-            print(lang2)
-            (x1, len1), (x2, len2) = self.get_batch(name, lang1, lang2)
+            (x1, len1, _, _), (x2, len2, _, _) = self.get_batch(name, lang1, lang2)
             x, lengths, positions, langs = concat_batches(
                 x1, len1, lang1_id, x2, len2, lang2_id, params.pad_index, params.eos_index, reset_positions=True)
 
