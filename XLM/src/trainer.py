@@ -475,7 +475,11 @@ class Trainer(object):
             if n2 != n1:
                 pred_mask[torch.nonzero(pred_mask).view(-1)[:n1 - n2]] = 0
             pred_mask = pred_mask.view(slen, bs)
-            assert pred_mask.sum().item() % 8 == 0
+            if not pred_mask.sum().item() % 8 == 0:
+                print('ERROORRR WHAT?')
+                print(pred_mask.sum().item())
+                print('ERROORRR WHAT?')
+            # assert pred_mask.sum().item() % 8 == 0
 
         # generate possible targets / update x input
         pred_mask = pred_mask == 1
