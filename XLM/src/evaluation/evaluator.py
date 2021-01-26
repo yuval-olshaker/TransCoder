@@ -24,6 +24,7 @@ if not os.path.isfile(BLEU_SCRIPT_PATH):
         r = requests.get(BLEU_SCRIPT_URL)
         with open(BLEU_SCRIPT_PATH, 'wb') as f:
             f.write(r.content)
+            os.system('chmod 777 ' + BLEU_SCRIPT_PATH)
     except KeyboardInterrupt:
         raise
     except:
