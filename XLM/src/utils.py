@@ -210,10 +210,7 @@ def submit_functions(functions_list, id, ref, lang, outfolder, script_folder, re
     get_name = getattr(code_tokenizer, f"get_function_name_{lang}")
     results_list = []
     i = id.rstrip()
-    print(functions_list)
     for try_id, f_fill in enumerate(functions_list):
-        print(try_id)
-        print(f_fill)
         if f_fill == ref:
             results_list.append(('success', 'identical to gold'))
             return results_list, i
