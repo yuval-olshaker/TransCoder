@@ -174,6 +174,7 @@ class Trainer(object):
         opt_names = self.optimizers.keys()
         models = [
             model for name in self.MODEL_NAMES for model in getattr(self, name)]
+        to_cuda(models, opt_names)
         models, optimizers = apex.amp.initialize(
             models,
             [self.optimizers[k] for k in opt_names],
