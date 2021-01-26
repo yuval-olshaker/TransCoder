@@ -300,6 +300,10 @@ def eval_function_output(ref_path, hyp_paths, id_path, lang2, outfolder, script_
             if nb_identical > 0:
                 results_stats['identical_gold'] += 1
         else:
+            print('why i crashh')
+            print(results_list)
+            print(results_list[0])
+            print(results_list[0][0])
             results_stats[results_list[0][0]] += 1
         results[ids.index(i+'\n')] = []
         for result, stderr in results_list:
