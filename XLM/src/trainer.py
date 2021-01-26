@@ -173,8 +173,7 @@ class Trainer(object):
             1, 2, 3] and params.fp16 is True
         opt_names = self.optimizers.keys()
         models = [
-            model for name in self.MODEL_NAMES for model in getattr(self, name)]
-        to_cuda(models)
+            to_cuda(model) for name in self.MODEL_NAMES for model in getattr(self, name)]
         models, optimizers = apex.amp.initialize(
             models,
             [to_cuda(self.optimizers[k]) for k in opt_names],
