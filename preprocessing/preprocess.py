@@ -40,16 +40,16 @@ def check_files_and_symlink_for_XLM(dataset, langs):
             else:
                 double_symlink_suffix = f".{other_lang}{suffixs[cat]}-{lang}{suffixs[cat]}.{lang}{suffixs[cat]}.pth"
             create_symlink(dataset.folder.joinpath(f"{lang}.train{dataset.suffix}{cat}.bpe.pth"),
-                           XLM_folder.joinpath(f"train.{lang}{suffixs[cat]}.pth"),
-                           dataset.folder.joinpath(f"{lang}-{other_lang}.train{dataset.suffix}{cat}.bpe.pth"),
+                           XLM_folder.joinpath(f"train.{lang}{suffixs[cat]}.pth"))
+            create_symlink(dataset.folder.joinpath(f"{lang}-{other_lang}.train{dataset.suffix}{cat}.bpe.pth"),
                            XLM_folder.joinpath("train" + double_symlink_suffix))
             create_symlink(dataset.folder.joinpath(f"{lang}.test{dataset.suffix}{cat}.bpe.pth"),
-                           XLM_folder.joinpath(f"test.{lang}{suffixs[cat]}.pth"),
-                           dataset.folder.joinpath(f"{lang}-{other_lang}.test{dataset.suffix}{cat}.bpe.pth"),
+                           XLM_folder.joinpath(f"test.{lang}{suffixs[cat]}.pth"))
+            create_symlink(dataset.folder.joinpath(f"{lang}-{other_lang}.test{dataset.suffix}{cat}.bpe.pth"),
                            XLM_folder.joinpath("test" + double_symlink_suffix))
             create_symlink(dataset.folder.joinpath(f"{lang}.valid{dataset.suffix}{cat}.bpe.pth"),
-                           XLM_folder.joinpath(f"valid.{lang}{suffixs[cat]}.pth"),
-                           dataset.folder.joinpath(f"{lang}-{other_lang}.valid{dataset.suffix}{cat}.bpe.pth"),
+                           XLM_folder.joinpath(f"valid.{lang}{suffixs[cat]}.pth"))
+            create_symlink(dataset.folder.joinpath(f"{lang}-{other_lang}.valid{dataset.suffix}{cat}.bpe.pth"),
                            XLM_folder.joinpath("valid" + double_symlink_suffix))
 
 
@@ -92,14 +92,14 @@ def preprocess(root, lang1, lang2, keep_comments, local, lang3=None, test_size=1
     dataset.extract_functions_and_apply_bpe(
         lang_executor=mp_executor, function_executor=cluster_ex2, bpe_executor=cluster_ex2)
 
-    dataset.binarize_for_XLM(f'train{dataset.suffix}.functions_class.bpe', executor=cluster_ex2)
+    dataset.binarize_for_XLM(f'train{dataset.suffix}.functions_class.bpe', executor=cluster_ex2, duplicate_for_parallel=True)
     dataset.binarize_for_XLM(
-        f'train{dataset.suffix}.functions_standalone.bpe', executor=cluster_ex2)
+        f'train{dataset.suffix}.functions_standalone.bpe', executor=cluster_ex2, duplicate_for_parallel=True)
 
     dataset.binarize_for_XLM(
-        f'test{dataset.suffix}.functions_*.bpe', executor=None)
+        f'test{dataset.suffix}.functions_*.bpe', executor=None, duplicate_for_parallel=True)
     dataset.binarize_for_XLM(
-        f'valid{dataset.suffix}.functions_*.bpe', executor=None)
+        f'valid{dataset.suffix}.functions_*.bpe', executor=None, duplicate_for_parallel=True)
 
     langs = [lang1, lang2] if lang3 is None else [lang1, lang2, lang3]
     check_files_and_symlink_for_XLM(dataset, langs)

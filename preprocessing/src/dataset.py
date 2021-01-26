@@ -127,6 +127,19 @@ class Language:
                 job.result()
 
 
+def duplicate_to_parallel(f):
+    with open(str(f)) as read_from:
+        lines = read_from.readlines()
+    lines2 = []
+    for i, line in enumerate(lines):
+        to_append = line if line == '\n' else str(i) + ' | ' + line
+        lines2.append(to_append)
+    f2 = str(f).replace('.tok','_parallel.tok')
+    with open(f2, 'w') as write_to:
+        write_to.writelines(lines2)
+    return f2
+
+
 class Dataset:
 
     def __init__(self, root, lang1, lang2, keep_comments, test_size=1000, lang3=None):
@@ -218,12 +231,13 @@ class Dataset:
         print(f"computing vocab on {data_get_vocab}...")
         get_vocab_file(data_get_vocab, self.vocab)
 
-    def apply_bpe(self, files_regex, use_vocab=False, executor=None):
+    def apply_bpe(self, files_regex, use_vocab=False, executor=None, duplicate_for_parallel=False):
         vocab = '' if use_vocab is False else self.vocab
         if executor is None:
             executor = LocalExecutor()
         jobs = []
         for l in self.langs:
+            other_lang = 'wat' if l.l == 'c' else 'c'
             for f in l.folder.glob(files_regex):
                 out = self.folder.joinpath(
                     f"{l.l}.{f.name}").with_suffix('.bpe')
@@ -231,20 +245,35 @@ class Dataset:
                     print(f'apply bpe on {f} ...')
                     jobs.append(executor.submit(
                         apply_bpe_file, f, out, self.codes, vocab))
+                if duplicate_for_parallel:
+                    f2 = duplicate_to_parallel(f)
+                    out2 = self.folder.joinpath(
+                        f"{l.l}-{other_lang}.{f.name}").with_suffix('.bpe')
+                    if not out.is_file():
+                        print(f'apply bpe on {f2} ...')
+                        jobs.append(executor.submit(
+                            apply_bpe_file, f2, out2, self.codes, vocab))
         for job in jobs:
             job.result()
 
-    def binarize_for_XLM(self, files_regex, executor=None):
+    def binarize_for_XLM(self, files_regex, executor=None, duplicate_for_parallel=False):
         print(f"binarize {files_regex} ...")
         if executor is None:
             executor = LocalExecutor()
         jobs = []
         for l in self.langs:
+            other_lang = 'wat' if l.l == 'c' else 'c'
             for f in self.folder.glob(f'{l.l}.{files_regex}'):
                 if not Path(str(f) + '.pth').is_file():
                     print(f"binarizing {f} ...")
                     jobs.append(executor.submit(
                         binarize_for_XLM_file, f, self.vocab))
+            if duplicate_for_parallel:
+                for f in self.folder.glob(f'{l.l}-{other_lang}.{files_regex}'):
+                    if not Path(str(f) + '.pth').is_file():
+                        print(f"binarizing {f} ...")
+                        jobs.append(executor.submit(
+                            binarize_for_XLM_file, f, self.vocab))
         for job in jobs:
             job.result()
 
@@ -264,9 +293,9 @@ class Dataset:
 
         print("apply bpe on train ... ")
         self.apply_bpe(
-            f'train{self.suffix}.functions_*.tok', use_vocab=False, executor=bpe_executor)
+            f'train{self.suffix}.functions_*.tok', use_vocab=False, executor=bpe_executor, duplicate_for_parallel=True)
         print("apply bpe on test and valid ...")
         self.apply_bpe(f'test{self.suffix}.functions_*.tok',
-                       use_vocab=False, executor=bpe_executor)
+                       use_vocab=False, executor=bpe_executor, duplicate_for_parallel=True)
         self.apply_bpe(f'valid{self.suffix}.functions_*.tok',
-                       use_vocab=False, executor=bpe_executor)
+                       use_vocab=False, executor=bpe_executor, duplicate_for_parallel=True)

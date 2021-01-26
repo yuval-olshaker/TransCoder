@@ -241,17 +241,12 @@ def regroup_and_select_data(files, output, nlines=None):
                 break
 
 
-def create_symlink(file_path, symlink, other_lang_path, other_lang_symlink):
+def create_symlink(file_path, symlink):
+    if not file_path.is_file():
+        print(file_path)
+        return
     assert file_path.is_file()
     assert not symlink.is_file()
-    subprocess.run(f"cp {file_path} {other_lang_path}",
-                             shell=True,
-                             stdout=subprocess.PIPE,
-                             stderr=subprocess.PIPE)
-    subprocess.run(f"ln -s {other_lang_path} {other_lang_symlink}",
-                             shell=True,
-                             stdout=subprocess.PIPE,
-                             stderr=subprocess.PIPE)
     process = subprocess.run(f"ln -s {file_path} {symlink}",
                              shell=True,
                              stdout=subprocess.PIPE,
