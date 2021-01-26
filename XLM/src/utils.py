@@ -210,57 +210,65 @@ def submit_functions(functions_list, id, ref, lang, outfolder, script_folder, re
     get_name = getattr(code_tokenizer, f"get_function_name_{lang}")
     results_list = []
     i = id.rstrip()
+    print(functions_list)
     for try_id, f_fill in enumerate(functions_list):
-        f = f_fill.rstrip()
-        script_model_path = os.path.join(
-            script_folder, f"{lang}/{i}.{EXT[lang]}")
-        if os.path.exists(script_model_path):
-            script_model = open(script_model_path, 'r',
-                                encoding='utf-8').read()
-            try:
-                f_name = get_name(f)
-                f = f.replace(f_name, 'f_filled')
-            except:
-                results_list.append(
-                    ('error', 'Could not replace function name'))
-            if f_fill == ref:
-                results_list.append(('success', 'identical to gold'))
-                return results_list, i
-            f = detokenize(f)
-            script = script_model.replace(TOFILL[lang], f)
-            if lang == 'python':
-                script = f"import numpy as np \nimport math\nfrom math import *\nimport collections\nfrom collections import *\nimport heapq\nimport itertools\nimport random\nimport sys\n\n{script}"
-            script_path = f"{outfolder}/{i}.{EXT[lang]}"
-            open(script_path, 'w', encoding='utf-8').write(script)
-            run_pg = globals()[f'run_{lang}_program']
-            result, _ = run_pg(script_path, i)
-            if result[0] == 'success':
-                results_list.append(result)
-                return results_list, i
-            elif retry_mismatching_types and lang in {'cpp', 'java'}:
-                try:
-                    script_transform_args = convert_filled_arguments(
-                        script_model, f_fill, lang, f_name=f_name)
-                except KeyboardInterrupt:
-                    raise
-                except:
-                    script_transform_args = None
-
-                if script_transform_args is not None:
-                    open(script_path, 'w',
-                         encoding='utf-8').write(script_transform_args)
-                    run_pg = globals()[f'run_{lang}_program']
-                    result2, _ = run_pg(script_path, i)
-                    if result2[0] == 'success':
-                        results_list.append(result2)
-                        return results_list, i
-                    else:
-                        result = (result2[0], ''.join(
-                            [result[1] if result[1] else '', f'|| second run handling types mismatch: ## function ## {script_transform_args} ## output ## {result2[1]}']))
-
-            results_list.append(result)
-        else:
-            return [return_script_not_found()], i
+        print(try_id)
+        print(f_fill)
+        if f_fill == ref:
+            results_list.append(('success', 'identical to gold'))
+            return results_list, i
+        results_list.append(('failed', 'not identical to gold'))
+        # f = f_fill.rstrip()
+        # script_model_path = os.path.join(
+        #     script_folder, f"{lang}/{i}.{EXT[lang]}")
+        # if os.path.exists(script_model_path):
+        #     script_model = open(script_model_path, 'r',
+        #                         encoding='utf-8').read()
+        #     try:
+        #         f_name = get_name(f)
+        #         f = f.replace(f_name, 'f_filled')
+        #     except:
+        #         results_list.append(
+        #             ('error', 'Could not replace function name'))
+        #     if f_fill == ref:
+        #         results_list.append(('success', 'identical to gold'))
+        #         return results_list, i
+        #
+        #     f = detokenize(f)
+        #     script = script_model.replace(TOFILL[lang], f)
+        #     if lang == 'python':
+        #         script = f"import numpy as np \nimport math\nfrom math import *\nimport collections\nfrom collections import *\nimport heapq\nimport itertools\nimport random\nimport sys\n\n{script}"
+        #     script_path = f"{outfolder}/{i}.{EXT[lang]}"
+        #     open(script_path, 'w', encoding='utf-8').write(script)
+        #     run_pg = globals()[f'run_{lang}_program']
+        #     result, _ = run_pg(script_path, i)
+        #     if result[0] == 'success':
+        #         results_list.append(result)
+        #         return results_list, i
+        #     elif retry_mismatching_types and lang in {'cpp', 'java'}:
+        #         try:
+        #             script_transform_args = convert_filled_arguments(
+        #                 script_model, f_fill, lang, f_name=f_name)
+        #         except KeyboardInterrupt:
+        #             raise
+        #         except:
+        #             script_transform_args = None
+        #
+        #         if script_transform_args is not None:
+        #             open(script_path, 'w',
+        #                  encoding='utf-8').write(script_transform_args)
+        #             run_pg = globals()[f'run_{lang}_program']
+        #             result2, _ = run_pg(script_path, i)
+        #             if result2[0] == 'success':
+        #                 results_list.append(result2)
+        #                 return results_list, i
+        #             else:
+        #                 result = (result2[0], ''.join(
+        #                     [result[1] if result[1] else '', f'|| second run handling types mismatch: ## function ## {script_transform_args} ## output ## {result2[1]}']))
+        #
+        #     results_list.append(result)
+        # else:
+        #     return [return_script_not_found()], i
     return results_list, i
 
 
