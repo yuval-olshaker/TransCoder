@@ -293,7 +293,14 @@ class ParallelDataset(Dataset):
             sentences = []
             ids_ = []
             for s in sentences_WITH_IDS:
-                pos = np.where(s == self.sep_index)[0][0]
+                try:
+                    pos = np.where(s == self.sep_index)[0][0]
+                except:
+                    print(sentences_WITH_IDS)
+                    print(sentences)
+                    print(ids_)
+                    print("woops")
+                    exit(5)
                 sentences.append(s[pos + 1:])
                 ids_.append(s[:pos])
 
