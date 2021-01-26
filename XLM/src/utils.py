@@ -291,6 +291,8 @@ def eval_function_output(ref_path, hyp_paths, id_path, lang2, outfolder, script_
     results = ['' for _ in range(len(ids))]
     for job in jobs:
         results_list, i = job.result()
+        print('i will print!!')
+        print(results_list)
         nb_success = sum([r[0] == 'success' for r in results_list])
         nb_identical = sum([r[0] == 'success' and r[1] ==
                             'identical to gold' for r in results_list])
