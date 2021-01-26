@@ -217,7 +217,7 @@ def submit_functions(functions_list, id, ref, lang, outfolder, script_folder, re
         if f_fill == ref:
             results_list.append(('success', 'identical to gold'))
             return results_list, i
-        results_list.append(('failed', 'not identical to gold'))
+        results_list.append(('failure', 'not identical to gold'))
         # f = f_fill.rstrip()
         # script_model_path = os.path.join(
         #     script_folder, f"{lang}/{i}.{EXT[lang]}")
@@ -291,8 +291,6 @@ def eval_function_output(ref_path, hyp_paths, id_path, lang2, outfolder, script_
     results = ['' for _ in range(len(ids))]
     for job in jobs:
         results_list, i = job.result()
-        print('i will print!!')
-        print(results_list)
         nb_success = sum([r[0] == 'success' for r in results_list])
         nb_identical = sum([r[0] == 'success' and r[1] ==
                             'identical to gold' for r in results_list])
@@ -302,10 +300,6 @@ def eval_function_output(ref_path, hyp_paths, id_path, lang2, outfolder, script_
             if nb_identical > 0:
                 results_stats['identical_gold'] += 1
         else:
-            print('why i crashh')
-            print(results_list)
-            print(results_list[0])
-            print(results_list[0][0])
             results_stats[results_list[0][0]] += 1
         results[ids.index(i+'\n')] = []
         for result, stderr in results_list:
