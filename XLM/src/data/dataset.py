@@ -296,10 +296,13 @@ class ParallelDataset(Dataset):
                 try:
                     pos = np.where(s == self.sep_index)[0][0]
                 except:
-                    print(sentences_WITH_IDS)
+                    # print(sentences_WITH_IDS)
                     print(sentences)
                     print(ids_)
                     print("woops")
+                    print(s)
+                    print(self.sep_index)
+                    print(np.where(s == self.sep_index))
                     exit(5)
                 sentences.append(s[pos + 1:])
                 ids_.append(s[:pos])
