@@ -226,6 +226,9 @@ def get_parser():
     parser.add_argument("--n_share_dec", type=int, default=0,
                         help="Number of decoder layers to share")
 
+    parser.add_argument("--do_double", type=bool_flag, default=False,
+                        help="Use the double transformer concept")
+
     return parser
 
 
@@ -291,7 +294,7 @@ def main(params):
 
             # machine translation steps - seems like created for parallel
             for lang1, lang2 in shuf_order(params.mt_steps, params):
-                trainer.mt_step(lang1, lang2, params.lambda_mt)
+                trainer.mt_step(lang1, lang2, params.lambda_mt, do_double=params.do_double)
 
             # back-translation steps - from a to b and back to a
             for lang1, lang2, lang3 in shuf_order(params.bt_steps):
