@@ -138,7 +138,38 @@ def compare_slices(java_sliced, python_sliced):
             different_length.append(java_sliced[i][0])
 
 
+# translate with the model from facebook
+def translate_lines_decompiler(input_lines):
+    t_params = create_params_decompiler()
+    translator = translate.Translator(t_params)
+    print(input_lines[0])
+    return list(map(lambda line: (translator.translate(line, lang1=t_params.src_lang, lang2=t_params.tgt_lang,)), tqdm(input_lines)))
+
+
+# create the params for translation
+def create_params_decompiler(src_lang='wat', tgt_lang='c', model_name='checkpoint.pth', beam_size=1):
+    a_parser = get_parser()
+    a_params = a_parser.parse_args()
+    a_params.model_path = '/mnt/c/TransCoder/data/WASM/wat/' + model_name
+    a_params.BPE_path = '/mnt/c/TransCoder/data/WASM/c-wat-/codes'
+    a_params.beam_size = beam_size
+    a_params.src_lang = src_lang
+    a_params.tgt_lang = tgt_lang
+    return a_params
+
+
+
 if __name__ == '__main__':
+    print_time('start')
+    wat_test_path = '/mnt/c/TransCoder/data/WASM/wat/test.functions_standalone.tok'
+    with open(wat_test_path) as f:
+        input_lines = list(filter(lambda line: line != '\n', f.readlines()))
+        input_lines = input_lines[:4]
+    output_lines = translate_lines_decompiler(input_lines)
+    with open(wat_test_path[:-4] + '.translated', 'w') as f2:
+        f2.writelines(output_lines)
+    print_time('end')
+    exit(1)
     print_time('start')
 
     # generate parser / parse parameters

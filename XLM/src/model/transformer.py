@@ -331,7 +331,7 @@ class TransformerModel(nn.Module):
         else:
             raise Exception("Unknown mode: %s" % mode)
 
-    def fwd(self, x, lengths, causal, src_enc=None, src_len=None, positions=None, langs=None, use_cache=False):
+    def fwd(self, x, lengths, causal, src_enc=None, src_len=None, positions=None, langs=None, use_cache=False, use_emb=True, embedded_x=None):
         """
         Inputs:
             `x` LongTensor(slen, bs), containing word indices
@@ -384,13 +384,16 @@ class TransformerModel(nn.Module):
             attn_mask = attn_mask[:, -_slen:]
 
         # embeddings
-        tensor = self.embeddings(x)
-        tensor = tensor + self.position_embeddings(positions).expand_as(tensor)
-        if langs is not None and self.use_lang_emb:
-            tensor = tensor + self.lang_embeddings(langs)
-        tensor = self.layer_norm_emb(tensor)
-        tensor = F.dropout(tensor, p=self.dropout, training=self.training)
-        tensor *= mask.unsqueeze(-1).to(tensor.dtype)
+        if use_emb:
+            tensor = self.embeddings(x)
+            tensor = tensor + self.position_embeddings(positions).expand_as(tensor)
+            if langs is not None and self.use_lang_emb:
+                tensor = tensor + self.lang_embeddings(langs)
+            tensor = self.layer_norm_emb(tensor)
+            tensor = F.dropout(tensor, p=self.dropout, training=self.training)
+            tensor *= mask.unsqueeze(-1).to(tensor.dtype)
+        else:
+            tensor = embedded_x
 
         # transformer layers
         for i in range(self.n_layers):
