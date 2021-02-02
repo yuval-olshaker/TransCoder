@@ -396,6 +396,8 @@ class TransformerModel(nn.Module):
         else:
             tensor = embedded_x
             print(tensor.shape)
+            tensor = tensor.transpose(0, 1)
+            print(tensor.shape)
 
         # transformer layers
         for i in range(self.n_layers):
