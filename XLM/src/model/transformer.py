@@ -392,10 +392,10 @@ class TransformerModel(nn.Module):
             tensor = self.layer_norm_emb(tensor)
             tensor = F.dropout(tensor, p=self.dropout, training=self.training)
             tensor *= mask.unsqueeze(-1).to(tensor.dtype)
+            print(tensor.shape)
         else:
-            print(mask.shape)
-            print(embedded_x.shape)
             tensor = embedded_x
+            print(tensor.shape)
 
         # transformer layers
         for i in range(self.n_layers):
