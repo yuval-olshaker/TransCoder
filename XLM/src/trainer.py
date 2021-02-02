@@ -869,11 +869,11 @@ class EncDecTrainer(Trainer):
         # decode target sentence
         dec2 = decoder('fwd', x=x2, lengths=len2, langs=langs2,
                        causal=True, src_enc=enc1, src_len=len1)
-
+        print(dec2.shape)
         # loss
         _, loss = decoder('predict', tensor=dec2,
                           pred_mask=pred_mask, y=y, get_scores=False)
-
+        print(dec2.shape)
         if do_double:
             # encode source sentence
             sec_enc = self.encoder[0]('fwd', x=x2, lengths=len2,

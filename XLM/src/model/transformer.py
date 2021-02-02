@@ -393,6 +393,8 @@ class TransformerModel(nn.Module):
             tensor = F.dropout(tensor, p=self.dropout, training=self.training)
             tensor *= mask.unsqueeze(-1).to(tensor.dtype)
         else:
+            print(mask.shape)
+            print(embedded_x.shape)
             tensor = embedded_x
 
         # transformer layers
