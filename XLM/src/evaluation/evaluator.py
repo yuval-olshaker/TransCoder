@@ -505,7 +505,7 @@ class EncDecEvaluator(Evaluator):
 
         # write hypotheses
         if True or ((eval_bleu or eval_computation) and data_set in datasets_for_bleu):
-
+            logger.info('i am in')
             # hypothesis / reference paths
             hyp_paths = []
             ref_path = params.ref_paths[(lang1, lang2, data_set)]
@@ -516,8 +516,9 @@ class EncDecEvaluator(Evaluator):
                     scores['epoch'], lang1, lang2, data_set, beam_number)
                 hyp_path = os.path.join(params.hyp_path, hyp_name)
                 hyp_paths.append(hyp_path)
-                print(f'outputing hypotheses in {hyp_path}')
+                logger.info(f'outputing hypotheses in {hyp_path}')
                 with open(hyp_path, 'w', encoding='utf-8') as f:
+                    logger.info(hypothesis)
                     f.write('\n'.join([hyp[beam_number]
                                        for hyp in hypothesis]) + '\n')
                 restore_segmentation(hyp_path)
