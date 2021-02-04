@@ -521,12 +521,9 @@ class EncDecEvaluator(Evaluator):
                 for hyp in hypothesis:
                     lines.append(hyp[beam_number] + '\n')
                 logger.info('has lines, length: ' + str(len(lines)))
-                logger.info('write to: ' + '/home/ubuntu/wasm_decompiler/TransCoder/bla/' + hyp_name)
-                with open('/home/ubuntu/wasm_decompiler/TransCoder/bla/' + hyp_name, 'w') as f3:
+                logger.info('write to: ' + params.hyp_path + '/' + hyp_name)
+                with open(params.hyp_path + '/' + hyp_name, 'w') as f3:
                     f3.writelines(lines)
-                logger.info('write to: ' + hyp_path)
-                with open(hyp_path, 'w') as f2:
-                    f2.writelines(lines)
                 restore_segmentation(hyp_path)
 
         # check how many functions compiles + return same output as GT
