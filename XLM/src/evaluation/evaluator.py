@@ -525,7 +525,9 @@ class EncDecEvaluator(Evaluator):
                 logger.info('write to: ' + write_to)
                 with open(write_to, 'w') as f3:
                     f3.writelines(lines)
-                # restore_segmentation(hyp_path)
+                with open(hyp_path, 'w') as f3:
+                    f3.writelines(lines)
+                restore_segmentation(hyp_path)
 
         # check how many functions compiles + return same output as GT
         if eval_computation and data_set in datasets_for_bleu:
