@@ -516,13 +516,14 @@ class EncDecEvaluator(Evaluator):
                     scores['epoch'], lang1, lang2, data_set, beam_number)
                 hyp_path = os.path.join(params.hyp_path, hyp_name)
                 hyp_paths.append(hyp_path)
-                logger.info(f'outputing hypotheses in {hyp_path}')
                 lines = []
                 for hyp in hypothesis:
                     lines.append(hyp[beam_number] + '\n')
                 logger.info('has lines, length: ' + str(len(lines)))
-                logger.info('write to: ' + params.hyp_path + '/' + hyp_name)
-                with open(params.hyp_path + '/' + hyp_name, 'w') as f3:
+                write_to = params.hyp_path + '/' + hyp_name
+                write_to = write_to.replace('/hypotheses','')
+                logger.info('write to: ' + write_to)
+                with open(write_to, 'w') as f3:
                     f3.writelines(lines)
                 restore_segmentation(hyp_path)
 
