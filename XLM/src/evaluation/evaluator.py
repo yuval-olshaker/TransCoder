@@ -511,9 +511,6 @@ class EncDecEvaluator(Evaluator):
             ref_path = params.ref_paths[(lang1, lang2, data_set)]
 
             # export sentences to hypothesis file / restore BPE segmentation
-            logger.info('len')
-            logger.info(len(hypothesis[0]))
-            logger.info('len')
             for beam_number in range(len(hypothesis[0])):
                 hyp_name = 'hyp{0}.{1}-{2}.{3}_beam{4}.txt'.format(
                     scores['epoch'], lang1, lang2, data_set, beam_number)
@@ -521,7 +518,13 @@ class EncDecEvaluator(Evaluator):
                 hyp_paths.append(hyp_path)
                 logger.info(f'outputing hypotheses in {hyp_path}')
                 with open(hyp_path, 'w', encoding='utf-8') as f:
-                    logger.info(hypothesis)
+                    lines = []
+                    logger.info(len(hypothesis))
+                    for hyp in hypothesis[:10]:
+                        logger.info(hyp)
+                        logger.info(hyp[beam_number])
+                        lines.append(hyp[beam_number] + '\n')
+                    logger.info(lines)
                     f.write('\n'.join([hyp[beam_number]
                                        for hyp in hypothesis]) + '\n')
                 restore_segmentation(hyp_path)
