@@ -521,8 +521,8 @@ class EncDecEvaluator(Evaluator):
                 for hyp in hypothesis:
                     lines.append(hyp[beam_number] + '\n')
                 logger.info('has lines, length: ' + str(len(lines)))
-                logger.info('write to: ' + '/home/ubuntu/wasm_decompiler/TransCoder/bla/')
-                with open('/home/ubuntu/wasm_decompiler/TransCoder/bla/', 'w') as f3:
+                logger.info('write to: ' + '/home/ubuntu/wasm_decompiler/TransCoder/bla/hyp.txt')
+                with open('/home/ubuntu/wasm_decompiler/TransCoder/bla/hyp.txt', 'w') as f3:
                     f3.writelines(lines)
                 logger.info('write to: ' + hyp_path)
                 with open(hyp_path, 'w', encoding='utf-8') as f2:
