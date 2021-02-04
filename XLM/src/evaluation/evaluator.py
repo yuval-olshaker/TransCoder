@@ -520,8 +520,10 @@ class EncDecEvaluator(Evaluator):
                 for hyp in hypothesis:
                     lines.append(hyp[beam_number] + '\n')
                 logger.info('has lines, length: ' + str(len(lines)))
-                logger.info('write to: ' + hyp_path)
-                with open(hyp_path, 'w') as f3:
+                write_to = params.hyp_path + '/' + hyp_name
+                write_to = write_to.replace('/hypotheses','')
+                logger.info('write to: ' + write_to)
+                with open(write_to, 'w') as f3:
                     f3.writelines(lines)
                 # restore_segmentation(hyp_path)
 
