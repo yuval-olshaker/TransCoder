@@ -1,6 +1,7 @@
 import os
 
 langs = ['c', 'wat']
+data_path = 'data/x86/' # for wasm - 'data/WASM/'
 json_str_start = '{\"repo_name\":\"repo\",\"ref\":\"refs/heads/master\",\"path\":\"a.c\",\"copies\":\"1\",'
 # Transcoder_path = '/mnt/c/TransCoder/'
 Transcoder_path = '/home/ubuntu/wasm_decompiler/TransCoder/'
@@ -13,9 +14,9 @@ def to_json_line(line):
 if __name__ == '__main__':
     for lang in langs:
         if lang == 'c':
-            path = Transcoder_path + 'data/WASM/c/hl_corpus_fixed'
+            path = Transcoder_path + data_path + 'c/hl_corpus_fixed'
         else:
-            path = Transcoder_path + 'data/WASM/wat/ll_corpus_fixed'
+            path = Transcoder_path + data_path + 'wat/ll_corpus_fixed'
 
 
 
