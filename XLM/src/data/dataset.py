@@ -351,7 +351,7 @@ class ParallelDataset(Dataset):
         Remove empty sentences.
         """
         init_size = len(self.pos1)
-        indices = np.arange(len(self.pos1))
+        indices = np.arange(min(len(self.pos1),len(self.pos2)))
         print()
         print(len(indices))
         print()
