@@ -353,11 +353,11 @@ class ParallelDataset(Dataset):
         init_size = len(self.pos1)
         indices = np.arange(len(self.pos1))
         print()
-        print(indices)
+        print(len(indices))
         print()
-        print(self.lengths1)
+        print(len(self.lengths1))
         print()
-        print(self.lengths2)
+        print(len(self.lengths2))
         print()
         indices = indices[self.lengths1[indices] > 0]
         indices = indices[self.lengths2[indices] > 0]
