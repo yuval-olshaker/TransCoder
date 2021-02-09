@@ -49,7 +49,7 @@ def output_all_tokenized_results(docs, f_tok):
     #     tokenize_json_helper, docs), total=len(docs))
     # for content_tokenized, path in result_content_tokenized:
     for i, doc in enumerate(docs):
-        content_tokenized, path = tokenize_json_helper(doc, i)
+        content_tokenized, path = tokenize_json_helper(doc, i % 2000)
         if len(content_tokenized) == 0:
             continue
         else:
@@ -187,7 +187,7 @@ def learn_bpe_file(file_path, ncodes, codes):
     assert Path(
         f"{str(codes)}").is_file, f"failed to output codes, cannot find codes {str(codes)}"
     if ncodes > 50000: #remember, numbers here
-        codes.write_text(''.join(head(codes, 25000)), encoding='utf-8')
+        codes.write_text(''.join(head(codes, 2200)), encoding='utf-8')
 
 
 def get_vocab_file(file_path, vocab):
