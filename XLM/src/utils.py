@@ -211,6 +211,12 @@ def submit_functions(functions_list, id, ref, lang, outfolder, script_folder, re
     results_list = []
     i = id.rstrip()
     for try_id, f_fill in enumerate(functions_list):
+        with open('/home/ubuntu/wasm_decompiler/TransCoder/bla/eval_double_mt/to_work_on/refs.txt','a') as f1:
+            with open('/home/ubuntu/wasm_decompiler/TransCoder/bla/eval_double_mt/to_work_on/idss.txt','a') as f2:
+                with open('/home/ubuntu/wasm_decompiler/TransCoder/bla/eval_double_mt/to_work_on/trans.txt','a') as f3:
+                    f1.write(str(ref) + '\n')
+                    f2.write(str(i) + '\n')
+                    f3.write(str(f_fill) + '\n')
         if f_fill == ref:
             results_list.append(('success', 'identical to gold'))
             return results_list, i
