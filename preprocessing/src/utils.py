@@ -36,10 +36,10 @@ def bool_flag(s):
         raise argparse.ArgumentTypeError("Invalid value for a boolean flag!")
 
 
-def tokenize_json_helper(inpt):
+def tokenize_json_helper(inpt, i):
     tokenizer, content, path, keep_comments = inpt
     content_tokenized = tokenizer(content, keep_comments)
-    return content_tokenized, path
+    return content_tokenized, ' ' + str(i) + ' '
 
 
 @timeout(3600)
@@ -48,8 +48,8 @@ def output_all_tokenized_results(docs, f_tok):
     # result_content_tokenized = tqdm.tqdm(pool.imap_unordered(
     #     tokenize_json_helper, docs), total=len(docs))
     # for content_tokenized, path in result_content_tokenized:
-    for doc in docs:
-        content_tokenized, path = tokenize_json_helper(doc)
+    for i, doc in enumerate(docs):
+        content_tokenized, path = tokenize_json_helper(doc, i)
         if len(content_tokenized) == 0:
             continue
         else:
