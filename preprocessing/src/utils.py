@@ -39,7 +39,7 @@ def bool_flag(s):
 def tokenize_json_helper(inpt, i):
     tokenizer, content, path, keep_comments = inpt
     content_tokenized = tokenizer(content, keep_comments)
-    return content_tokenized, ' ' + str(i) + ' '
+    return content_tokenized, path #' ' + str(i) + ' '
 
 
 @timeout(3600)

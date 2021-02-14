@@ -1,7 +1,7 @@
 import os
 from os.path import isfile, join
 langs = ['c', 'wat']
-data_path = 'data/x86_temp/' # for wasm - 'data/WASM/'
+data_path = 'data/x86/' # for wasm - 'data/WASM/'
 # Transcoder_path = '/mnt/c/TransCoder/'
 Transcoder_path = '/home/ubuntu/wasm_decompiler/TransCoder/'
 
