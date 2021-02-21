@@ -68,7 +68,7 @@ class Language:
     def process(self, keep_comments, tok_executor=None, test_size=1000, split_executor=None):
         suffix = '.with_comments' if keep_comments else ''
         print(f"{self.l}: process ...")
-        self.process_json_and_tok(keep_comments, tok_executor)
+        # self.process_json_and_tok(keep_comments, tok_executor)
         if (self.folder.joinpath(f'train{suffix}.tok').is_file() and
                 self.folder.joinpath(f'test{suffix}.tok').is_file() and
                 self.folder.joinpath(f'valid{suffix}.tok').is_file()):
