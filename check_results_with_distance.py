@@ -22,7 +22,7 @@ def distance(or_line, tested_line):
 
 def return_lines(path):
     with open(path) as f:
-        lines = f.readlines() # list(map(lambda line: line.replace('void ','').replace('static ','') ,f.readlines()))
+        lines = list(map(lambda line: line.replace('void ','').replace('static ','') ,f.readlines()))  #f.readlines()
     return lines
 
 def check():
@@ -47,21 +47,38 @@ def check_succ(succ_path, only_list, ref_lines, wat_lines, translated0_lines, tr
             f.write(translated2_lines[i])
             f.write('\n\n')
 
-def print_results(basic_path, succ_indices, ref_lines, train_lines):
-    with open(basic_path + 'succ', 'w') as f_succ:
-        with open(basic_path + 'fail', 'w') as f_fail:
+def Average(lst):
+    return sum(lst) / len(lst)
+
+def print_results(basic_path, succ_indices, ref_lines, train_lines, exp_name):
+    with open(basic_path + 'succ_' + exp_name, 'w') as f_succ:
+        with open(basic_path + 'fail_' + exp_name, 'w') as f_fail:
             j = 0
             succ_l = []
+            succ_ind = []
             for i, ref_line in enumerate(ref_lines):
                 if i in succ_indices:
                     if ref_line in train_lines or ref_line in succ_l:
                         j += 1
-                    f_succ.write(ref_line)
-                    succ_l.append(ref_line)
+                    else:
+                        f_succ.write(ref_line)
+                        succ_l.append(ref_line)
+                        succ_ind.append(i)
                 else:
                     f_fail.write(ref_line)
 
     print('j: ' + str(j) + ' new_succ: ' + str(len(succ_indices) - j))
+    len_list = list(map(lambda line: len(line.split()), succ_l))
+    print(len_list)
+    print(Average(len_list))
+    print(succ_ind)
+
+
+def check_i(num):
+    d_double = min(list(map(lambda lines: distance(ref_lines[num], lines[num]), double_translated_lines)))
+    print(d_double)
+    exit(1)
+
 
 if __name__ == "__main__":
     # check()
@@ -76,6 +93,8 @@ if __name__ == "__main__":
     results_double = []
     results_lean = []
     results_base = []
+
+    # check_i(302)
 
     for i, ref_line in enumerate(ref_lines):
         d_double = min(list(map(lambda lines: distance(ref_line, lines[i]), double_translated_lines)))
@@ -107,9 +126,9 @@ if __name__ == "__main__":
 
     check_succ(double_succ, only_d, ref_lines, wat_lines, lean_translated_lines[0], lean_translated_lines[1], lean_translated_lines[2])
     check_succ(lean_succ, only_l, ref_lines, wat_lines, double_translated_lines[0], double_translated_lines[1], double_translated_lines[2])
-    print_results(output_path, zeros_d, ref_lines, train_lines)
-    print_results(output_path, zeros_l, ref_lines, train_lines)
-    print_results(output_path, zeros_b, ref_lines, train_lines)
+    print_results(output_path, zeros_d, ref_lines, train_lines, 'double')
+    print_results(output_path, zeros_l, ref_lines, train_lines, 'one_stage')
+    print_results(output_path, zeros_b, ref_lines, train_lines, 'baseline')
 
     print(zeros_d)
     print(zeros_l)
