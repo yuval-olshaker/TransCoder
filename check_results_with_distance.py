@@ -1,10 +1,11 @@
 import Levenshtein
-
+import complex_check
+import operator
 
 ref = '/mnt/c/TransCoder/outputs/c-wat/double_stage/eval/ref.wat_sa-c_sa.test.txt'
 wat_ref = '/mnt/c/TransCoder/outputs/c-wat/double_stage/eval/ref.c_sa-wat_sa.test.txt'
-double_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/c-wat/double_stage/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(25)))
-lean_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/c-wat/mt_ae_lean/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(25)))
+double_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/c-wat/double_stage/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(3)))
+lean_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/c-wat/mt_ae_lean/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(3)))
 baseline_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/c-wat/baseline_only_transformer_parallel/eval/hyp0.wat_sa-c_sa.test_beam' +str(i) + '.txt', range(3)))
 
 
@@ -18,12 +19,59 @@ lean_succ = output_path + 'lean_succ.txt'
 train_sta_path = output_path + 'train.tok'
 
 def distance(or_line, tested_line):
-    return Levenshtein.distance(or_line, tested_line)
+    dist = Levenshtein.distance(or_line, tested_line)
+    if dist != 0:
+        if complex_check.complex_check(or_line, tested_line):
+            return 0
+    return dist
 
-def return_lines(path):
+def list_in_indices(l, indices):
+    f = operator.itemgetter(*indices)
+    return f(l)
+
+def only_over_70_words(line):
+    return len(line.split()) > 70
+
+def has_while_loop(line):
+    return 'while' in line
+
+def has_condition(line):
+    return 'if' in line
+
+def has_for_loop(line):
+    return 'for' in line
+
+def has_pointer(line):
+    return '*' in line
+
+def has_deref(line):
+    return '&' in line
+
+def has_unary(line):
+    return '+ +' in line or '- -' in line
+
+def hard_sentence(line):
+    return has_for_loop(line) and has_condition(line) and has_while_loop(line) and only_over_70_words(line)
+
+def easy_sentence(line):
+    return not hard_sentence(line)
+
+def always_true(line):
+    return True
+
+def return_lines(path, filter_func=None, indices=None):
     with open(path) as f:
-        lines = list(map(lambda line: line.replace('void ','').replace('static ','') ,f.readlines()))  #f.readlines()
-    return lines
+        lines = f.readlines()
+        if filter_func is not None:
+            indices = list(filter(lambda x: filter_func(lines[x]), range(len(lines))))
+            return list_in_indices(lines, indices), indices
+
+    if indices is None:
+        return lines
+    return list_in_indices(lines, indices)
+
+
+
 
 def check():
     ref2_lines = return_lines(ref2)
@@ -70,7 +118,10 @@ def print_results(basic_path, succ_indices, ref_lines, train_lines, exp_name):
     print('j: ' + str(j) + ' new_succ: ' + str(len(succ_indices) - j))
     len_list = list(map(lambda line: len(line.split()), succ_l))
     print(len_list)
-    print(Average(len_list))
+    if len(len_list) > 0:
+        print(Average(len_list))
+    else:
+        print('haha')
     print(succ_ind)
 
 
@@ -83,12 +134,12 @@ def check_i(num):
 if __name__ == "__main__":
     # check()
     train_lines = list(map(lambda line: line.replace('<DOCUMENT_ID="repo/tree/master/a.c"> ','').replace(' </DOCUMENT>',''), return_lines(train_sta_path)))
-    ref_lines = return_lines(ref)
-    wat_lines = return_lines(wat_ref)
+    ref_lines, indices = return_lines(ref, filter_func=always_true)
+    wat_lines = return_lines(wat_ref, indices=indices)
 
-    double_translated_lines = list(map(return_lines, double_translated_paths))
-    lean_translated_lines = list(map(return_lines, lean_translated_paths))
-    baseline_translated_lines = list(map(return_lines, baseline_translated_paths))
+    double_translated_lines = list(map(lambda line: return_lines(line, indices=indices), double_translated_paths))
+    lean_translated_lines = list(map(lambda line: return_lines(line, indices=indices), lean_translated_paths))
+    baseline_translated_lines = list(map(lambda line: return_lines(line, indices=indices), baseline_translated_paths))
 
     results_double = []
     results_lean = []
