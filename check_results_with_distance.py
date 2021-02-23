@@ -8,6 +8,12 @@ double_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/c-wat/do
 lean_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/c-wat/mt_ae_lean/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(3)))
 baseline_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/c-wat/baseline_only_transformer_parallel/eval/hyp0.wat_sa-c_sa.test_beam' +str(i) + '.txt', range(3)))
 
+valid = '/mnt/c/TransCoder/outputs/c-wat/double_stage/eval/ref.wat_sa-c_sa.valid.txt'
+wat_valid = '/mnt/c/TransCoder/outputs/c-wat/double_stage/eval/ref.c_sa-wat_sa.valid.txt'
+double_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/c-wat/double_stage/eval/hyp0.wat_sa-c_sa.valid_beam' + str(i) + '.txt', range(3)))
+lean_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/c-wat/mt_ae_lean/eval/hyp0.wat_sa-c_sa.valid_beam' + str(i) + '.txt', range(3)))
+baseline_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/c-wat/baseline_only_transformer_parallel/eval/hyp0.wat_sa-c_sa.valid_beam' +str(i) + '.txt', range(3)))
+
 
 ref2 = '/mnt/c/TransCoder/outputs/c-wat/check/refs.txt'
 trans2 = '/mnt/c/TransCoder/outputs/c-wat/check/trans.txt'
@@ -59,11 +65,11 @@ def easy_sentence(line):
 def always_true(line):
     return True
 
-def return_lines(path, filter_func=None, indices=None):
+def return_lines(path, train_lines=None, filter_func=None, indices=None):
     with open(path) as f:
         lines = f.readlines()
         if filter_func is not None:
-            indices = list(filter(lambda x: filter_func(lines[x]), range(len(lines))))
+            indices = list(filter(lambda x: filter_func(lines[x]) and lines[x] not in train_lines, range(len(lines))))
             return list_in_indices(lines, indices), indices
 
     if indices is None:
@@ -125,21 +131,16 @@ def print_results(basic_path, succ_indices, ref_lines, train_lines, exp_name):
     print(succ_ind)
 
 
-def check_i(num):
+def check_i(num, ref_lines, double_translated_lines):
     d_double = min(list(map(lambda lines: distance(ref_lines[num], lines[num]), double_translated_lines)))
     print(d_double)
     exit(1)
 
 
-if __name__ == "__main__":
-    # check()
-    train_lines = list(map(lambda line: line.replace('<DOCUMENT_ID="repo/tree/master/a.c"> ','').replace(' </DOCUMENT>',''), return_lines(train_sta_path)))
-    ref_lines, indices = return_lines(ref, filter_func=always_true)
-    wat_lines = return_lines(wat_ref, indices=indices)
-
-    double_translated_lines = list(map(lambda line: return_lines(line, indices=indices), double_translated_paths))
-    lean_translated_lines = list(map(lambda line: return_lines(line, indices=indices), lean_translated_paths))
-    baseline_translated_lines = list(map(lambda line: return_lines(line, indices=indices), baseline_translated_paths))
+def run_evaluation(ref_lines, indices, wat_lines, paths):
+    double_translated_lines = list(map(lambda line: return_lines(line, indices=indices), paths[0]))
+    lean_translated_lines = list(map(lambda line: return_lines(line, indices=indices), paths[1]))
+    baseline_translated_lines = list(map(lambda line: return_lines(line, indices=indices), paths[2]))
 
     results_double = []
     results_lean = []
@@ -156,7 +157,8 @@ if __name__ == "__main__":
         results_lean.append(d_lean)
         results_base.append(d_base)
 
-
+        # if 0 < d_double < 10:
+        #     print(i)
 
     zeros_d = []
     zeros_l = []
@@ -172,11 +174,13 @@ if __name__ == "__main__":
     only_d = sorted(set(zeros_d).difference(set(zeros_l)))
     only_l = sorted(set(zeros_l).difference(set(zeros_d)))
 
-    print('only_d: zise - ' + str(len(only_d)) + ' list - ' +  str(only_d))
+    print('only_d: zise - ' + str(len(only_d)) + ' list - ' + str(only_d))
     print('only_d: zise - ' + str(len(only_l)) + ' list - ' + str(only_l))
 
-    check_succ(double_succ, only_d, ref_lines, wat_lines, lean_translated_lines[0], lean_translated_lines[1], lean_translated_lines[2])
-    check_succ(lean_succ, only_l, ref_lines, wat_lines, double_translated_lines[0], double_translated_lines[1], double_translated_lines[2])
+    check_succ(double_succ, only_d, ref_lines, wat_lines, lean_translated_lines[0], lean_translated_lines[1],
+               lean_translated_lines[2])
+    check_succ(lean_succ, only_l, ref_lines, wat_lines, double_translated_lines[0], double_translated_lines[1],
+               double_translated_lines[2])
     print_results(output_path, zeros_d, ref_lines, train_lines, 'double')
     print_results(output_path, zeros_l, ref_lines, train_lines, 'one_stage')
     print_results(output_path, zeros_b, ref_lines, train_lines, 'baseline')
@@ -185,9 +189,21 @@ if __name__ == "__main__":
     print(zeros_l)
     print(zeros_b)
 
-
     print()
     print()
     print('double model total: ' + str(sum(results_double)) + ' correct num: ' + str(len(zeros_d)))
     print('one model total: ' + str(sum(results_lean)) + ' correct num: ' + str(len(zeros_l)))
     print('base model total: ' + str(sum(results_base)) + ' correct num: ' + str(len(zeros_b)))
+
+
+if __name__ == "__main__":
+    # check()
+    train_lines = list(map(lambda line: line.replace('<DOCUMENT_ID="repo/tree/master/a.c"> ','').replace(' </DOCUMENT>',''), return_lines(train_sta_path)))
+    ref_lines, indices = return_lines(ref, train_lines=train_lines, filter_func=always_true)
+    wat_lines = return_lines(wat_ref, indices=indices)
+    run_evaluation(ref_lines, indices, wat_lines, [double_translated_paths, lean_translated_paths, baseline_translated_paths])
+
+    ref_lines, indices = return_lines(valid, train_lines=train_lines, filter_func=always_true)
+    wat_lines = return_lines(wat_valid, indices=indices)
+    run_evaluation(ref_lines, indices, wat_lines,
+                   [double_translated_paths_valid, lean_translated_paths_valid, baseline_translated_paths_valid])

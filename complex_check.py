@@ -31,6 +31,9 @@ def check_same_word_exc(key_or_value, dicti):
 
 
 def complex_check(ref_line, translated_line):
+    ref_line = ref_line.replace('sizeof','cfunC15').replace('( void )','( )')
+    translated_line = translated_line.replace('sizeof', 'cfunC15').replace('( void )','( )')
+
     split_ref = ref_line.split()
     split_trans = translated_line.split()
 
