@@ -2,21 +2,23 @@ import Levenshtein
 import complex_check
 import operator
 
-ref = '/mnt/c/TransCoder/outputs/c-wat/double_stage/eval/ref.wat_sa-c_sa.test.txt'
-wat_ref = '/mnt/c/TransCoder/outputs/c-wat/double_stage/eval/ref.c_sa-wat_sa.test.txt'
-double_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/c-wat/double_stage/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(3)))
-lean_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/c-wat/mt_ae_lean/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(3)))
-baseline_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/c-wat/baseline_only_transformer_parallel/eval/hyp0.wat_sa-c_sa.test_beam' +str(i) + '.txt', range(3)))
+exp_name = 'c-wat-all' # 'c-wat'
 
-valid = '/mnt/c/TransCoder/outputs/c-wat/double_stage/eval/ref.wat_sa-c_sa.valid.txt'
-wat_valid = '/mnt/c/TransCoder/outputs/c-wat/double_stage/eval/ref.c_sa-wat_sa.valid.txt'
-double_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/c-wat/double_stage/eval/hyp0.wat_sa-c_sa.valid_beam' + str(i) + '.txt', range(3)))
-lean_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/c-wat/mt_ae_lean/eval/hyp0.wat_sa-c_sa.valid_beam' + str(i) + '.txt', range(3)))
-baseline_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/c-wat/baseline_only_transformer_parallel/eval/hyp0.wat_sa-c_sa.valid_beam' +str(i) + '.txt', range(3)))
+ref = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/ref.wat_sa-c_sa.test.txt'
+wat_ref = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/ref.c_sa-wat_sa.test.txt'
+double_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(3)))
+lean_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/mt_ae_lean/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(3)))
+# baseline_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/baseline_only_transformer_parallel/eval/hyp0.wat_sa-c_sa.test_beam' +str(i) + '.txt', range(3)))
+
+valid = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/ref.wat_sa-c_sa.valid.txt'
+wat_valid = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/ref.c_sa-wat_sa.valid.txt'
+double_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/hyp0.wat_sa-c_sa.valid_beam' + str(i) + '.txt', range(3)))
+lean_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/mt_ae_lean/eval/hyp0.wat_sa-c_sa.valid_beam' + str(i) + '.txt', range(3)))
+# baseline_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/baseline_only_transformer_parallel/eval/hyp0.wat_sa-c_sa.valid_beam' +str(i) + '.txt', range(3)))
 
 
-ref2 = '/mnt/c/TransCoder/outputs/c-wat/check/refs.txt'
-trans2 = '/mnt/c/TransCoder/outputs/c-wat/check/trans.txt'
+ref2 = '/mnt/c/TransCoder/outputs/' + exp_name + '/check/refs.txt'
+trans2 = '/mnt/c/TransCoder/outputs/' + exp_name + '/check/trans.txt'
 
 output_path = '/mnt/c/TransCoder/outputs/c-wat/'
 double_succ = output_path + 'double_succ.txt'
@@ -138,9 +140,10 @@ def check_i(num, ref_lines, double_translated_lines):
 
 
 def run_evaluation(ref_lines, indices, wat_lines, paths):
+    # read translated lines
     double_translated_lines = list(map(lambda line: return_lines(line, indices=indices), paths[0]))
     lean_translated_lines = list(map(lambda line: return_lines(line, indices=indices), paths[1]))
-    baseline_translated_lines = list(map(lambda line: return_lines(line, indices=indices), paths[2]))
+    # baseline_translated_lines = list(map(lambda line: return_lines(line, indices=indices), paths[2]))
 
     results_double = []
     results_lean = []
@@ -148,62 +151,67 @@ def run_evaluation(ref_lines, indices, wat_lines, paths):
 
     # check_i(302)
 
+    # run over refs and calculate the distances
     for i, ref_line in enumerate(ref_lines):
+        # we take the min of all beams
         d_double = min(list(map(lambda lines: distance(ref_line, lines[i]), double_translated_lines)))
         d_lean = min(list(map(lambda lines: distance(ref_line, lines[i]), lean_translated_lines)))
-        d_base = min(list(map(lambda lines: distance(ref_line, lines[i]), baseline_translated_lines)))
+        # d_base = min(list(map(lambda lines: distance(ref_line, lines[i]), baseline_translated_lines)))
 
         results_double.append(d_double)
         results_lean.append(d_lean)
-        results_base.append(d_base)
+        # results_base.append(d_base)
 
         # if 0 < d_double < 10:
         #     print(i)
 
+    # create lists for exact match - including complex_check
     zeros_d = []
     zeros_l = []
-    zeros_b = []
+    # zeros_b = []
     for i, res in enumerate(results_double):
         if res == 0:
             zeros_d.append(i)
         if results_lean[i] == 0:
             zeros_l.append(i)
-        if results_base[i] == 0:
-            zeros_b.append(i)
+        # if results_base[i] == 0:
+        #     zeros_b.append(i)
 
     only_d = sorted(set(zeros_d).difference(set(zeros_l)))
     only_l = sorted(set(zeros_l).difference(set(zeros_d)))
 
     print('only_d: zise - ' + str(len(only_d)) + ' list - ' + str(only_d))
-    print('only_d: zise - ' + str(len(only_l)) + ' list - ' + str(only_l))
+    print('only_l: zise - ' + str(len(only_l)) + ' list - ' + str(only_l))
 
+    # prints and saves results
     check_succ(double_succ, only_d, ref_lines, wat_lines, lean_translated_lines[0], lean_translated_lines[1],
                lean_translated_lines[2])
     check_succ(lean_succ, only_l, ref_lines, wat_lines, double_translated_lines[0], double_translated_lines[1],
                double_translated_lines[2])
     print_results(output_path, zeros_d, ref_lines, train_lines, 'double')
     print_results(output_path, zeros_l, ref_lines, train_lines, 'one_stage')
-    print_results(output_path, zeros_b, ref_lines, train_lines, 'baseline')
+    # print_results(output_path, zeros_b, ref_lines, train_lines, 'baseline')
 
     print(zeros_d)
     print(zeros_l)
-    print(zeros_b)
+    # print(zeros_b)
 
-    print()
     print()
     print('double model total: ' + str(sum(results_double)) + ' correct num: ' + str(len(zeros_d)))
     print('one model total: ' + str(sum(results_lean)) + ' correct num: ' + str(len(zeros_l)))
-    print('base model total: ' + str(sum(results_base)) + ' correct num: ' + str(len(zeros_b)))
-
+    # print('base model total: ' + str(sum(results_base)) + ' correct num: ' + str(len(zeros_b)))
+    print()
+    print()
 
 if __name__ == "__main__":
+    # commented out full-baseline, only transformer
     # check()
     train_lines = list(map(lambda line: line.replace('<DOCUMENT_ID="repo/tree/master/a.c"> ','').replace(' </DOCUMENT>',''), return_lines(train_sta_path)))
     ref_lines, indices = return_lines(ref, train_lines=train_lines, filter_func=always_true)
     wat_lines = return_lines(wat_ref, indices=indices)
-    run_evaluation(ref_lines, indices, wat_lines, [double_translated_paths, lean_translated_paths, baseline_translated_paths])
+    run_evaluation(ref_lines, indices, wat_lines, [double_translated_paths, lean_translated_paths])
 
     ref_lines, indices = return_lines(valid, train_lines=train_lines, filter_func=always_true)
     wat_lines = return_lines(wat_valid, indices=indices)
     run_evaluation(ref_lines, indices, wat_lines,
-                   [double_translated_paths_valid, lean_translated_paths_valid, baseline_translated_paths_valid])
+                   [double_translated_paths_valid, lean_translated_paths_valid])
