@@ -2,18 +2,22 @@ import Levenshtein
 import complex_check
 import operator
 
-exp_name = 'c-wat-all' # 'c-wat'
+exp_name = 'c-wat-all' # 'c-wat-all'
+range1 = 25
+if 'all' in exp_name:
+    range1 = 3
+
 
 ref = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/ref.wat_sa-c_sa.test.txt'
 wat_ref = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/ref.c_sa-wat_sa.test.txt'
-double_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(3)))
-lean_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/mt_ae_lean/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(3)))
+double_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(range1)))
+lean_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/mt_ae_lean/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(range1)))
 # baseline_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/baseline_only_transformer_parallel/eval/hyp0.wat_sa-c_sa.test_beam' +str(i) + '.txt', range(3)))
 
 valid = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/ref.wat_sa-c_sa.valid.txt'
 wat_valid = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/ref.c_sa-wat_sa.valid.txt'
-double_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/hyp0.wat_sa-c_sa.valid_beam' + str(i) + '.txt', range(3)))
-lean_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/mt_ae_lean/eval/hyp0.wat_sa-c_sa.valid_beam' + str(i) + '.txt', range(3)))
+double_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/hyp0.wat_sa-c_sa.valid_beam' + str(i) + '.txt', range(range1)))
+lean_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/mt_ae_lean/eval/hyp0.wat_sa-c_sa.valid_beam' + str(i) + '.txt', range(range1)))
 # baseline_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/baseline_only_transformer_parallel/eval/hyp0.wat_sa-c_sa.valid_beam' +str(i) + '.txt', range(3)))
 
 
@@ -37,14 +41,17 @@ def list_in_indices(l, indices):
     f = operator.itemgetter(*indices)
     return f(l)
 
-def only_over_70_words(line):
-    return len(line.split()) > 70
+def long_line(line): # long sentence is over 30 C tokens
+    return len(line.split()) > 30
 
 def has_while_loop(line):
     return 'while' in line
 
-def has_condition(line):
+def has_if(line):
     return 'if' in line
+
+def has_no_if(line):
+    return not has_if(line)
 
 def has_for_loop(line):
     return 'for' in line
@@ -55,14 +62,27 @@ def has_pointer(line):
 def has_deref(line):
     return '&' in line
 
+def has_no_deref(line):
+    return not has_deref(line)
+
+def has_struct(line):
+    return 'struct' in line
+
+def has_no_struct(line):
+    return not has_struct(line)
+
 def has_unary(line):
     return '+ +' in line or '- -' in line
 
 def hard_sentence(line):
-    return has_for_loop(line) and has_condition(line) and has_while_loop(line) and only_over_70_words(line)
+    return has_for_loop(line) or has_no_if(line) or has_while_loop(line) or long_line(line)
 
 def easy_sentence(line):
     return not hard_sentence(line)
+
+
+def has_no_void(line):
+    return 'void' not in line
 
 def always_true(line):
     return True
@@ -71,7 +91,8 @@ def return_lines(path, train_lines=None, filter_func=None, indices=None):
     with open(path) as f:
         lines = f.readlines()
         if filter_func is not None:
-            indices = list(filter(lambda x: filter_func(lines[x]) and lines[x] not in train_lines, range(len(lines))))
+            # and lines[x] not in train_lines
+            indices = list(filter(lambda x: filter_func(lines[x]), range(len(lines))))
             return list_in_indices(lines, indices), indices
 
     if indices is None:
@@ -182,6 +203,7 @@ def run_evaluation(ref_lines, indices, wat_lines, paths):
 
     print('only_d: zise - ' + str(len(only_d)) + ' list - ' + str(only_d))
     print('only_l: zise - ' + str(len(only_l)) + ' list - ' + str(only_l))
+    print()
 
     # prints and saves results
     check_succ(double_succ, only_d, ref_lines, wat_lines, lean_translated_lines[0], lean_translated_lines[1],
@@ -192,6 +214,7 @@ def run_evaluation(ref_lines, indices, wat_lines, paths):
     print_results(output_path, zeros_l, ref_lines, train_lines, 'one_stage')
     # print_results(output_path, zeros_b, ref_lines, train_lines, 'baseline')
 
+    print()
     print(zeros_d)
     print(zeros_l)
     # print(zeros_b)
@@ -203,15 +226,18 @@ def run_evaluation(ref_lines, indices, wat_lines, paths):
     print()
     print()
 
+
 if __name__ == "__main__":
-    # commented out full-baseline, only transformer
+    # commented out full-baseline (only transformer)
     # check()
     train_lines = list(map(lambda line: line.replace('<DOCUMENT_ID="repo/tree/master/a.c"> ','').replace(' </DOCUMENT>',''), return_lines(train_sta_path)))
-    ref_lines, indices = return_lines(ref, train_lines=train_lines, filter_func=always_true)
+    ref_lines, indices = return_lines(ref, train_lines=train_lines, filter_func=long_line)
     wat_lines = return_lines(wat_ref, indices=indices)
     run_evaluation(ref_lines, indices, wat_lines, [double_translated_paths, lean_translated_paths])
 
-    ref_lines, indices = return_lines(valid, train_lines=train_lines, filter_func=always_true)
-    wat_lines = return_lines(wat_valid, indices=indices)
-    run_evaluation(ref_lines, indices, wat_lines,
-                   [double_translated_paths_valid, lean_translated_paths_valid])
+    run_valid = True
+    if run_valid:
+        ref_lines, indices = return_lines(valid, train_lines=train_lines, filter_func=long_line)
+        wat_lines = return_lines(wat_valid, indices=indices)
+        run_evaluation(ref_lines, indices, wat_lines,
+                       [double_translated_paths_valid, lean_translated_paths_valid])
