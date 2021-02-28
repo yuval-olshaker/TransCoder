@@ -454,6 +454,7 @@ class ParallelDataset(Dataset):
 
         # create batches - either have a fixed number of sentences, or a similar number of tokens
         if tokens_per_batch == -1:
+            print('tokens_per_batch == -1')
             batches = np.array_split(indices, math.ceil(
                 len(indices) * 1. / self.batch_size))
         else:
@@ -475,4 +476,5 @@ class ParallelDataset(Dataset):
         # assert set.union(*[set(x.tolist()) for x in batches]) == set(range(n_sentences))  # slow
 
         # return the iterator
+        print('in here')
         return self.get_batches_iterator(batches, return_indices)
