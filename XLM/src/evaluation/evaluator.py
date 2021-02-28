@@ -61,7 +61,6 @@ class Evaluator(object):
             self.params.id_paths = {}
             self.params.eval_scripts_folders = {}
             self.create_reference_files()
-            exit(2)
 
     def get_iterator(self, data_set, lang1, lang2=None, stream=False):
         """

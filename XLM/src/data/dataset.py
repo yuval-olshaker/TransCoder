@@ -191,9 +191,9 @@ class Dataset(object):
 
         for sentence_ids in batches:
             if 0 < self.max_batch_size < len(sentence_ids):
-                print('i am shuffle')
-                # np.random.shuffle(sentence_ids)
-                # sentence_ids = sentence_ids[:self.max_batch_size]
+                logger.info('need to check?')
+                np.random.shuffle(sentence_ids)
+                sentence_ids = sentence_ids[:self.max_batch_size]
             pos = self.pos[sentence_ids]
             sent = [self.sent[a:b] for a, b in pos]
             sent = self.batch_sentences(sent)
@@ -454,7 +454,6 @@ class ParallelDataset(Dataset):
 
         # create batches - either have a fixed number of sentences, or a similar number of tokens
         if tokens_per_batch == -1:
-            print('tokens_per_batch == -1')
             batches = np.array_split(indices, math.ceil(
                 len(indices) * 1. / self.batch_size))
         else:
@@ -476,5 +475,4 @@ class ParallelDataset(Dataset):
         # assert set.union(*[set(x.tolist()) for x in batches]) == set(range(n_sentences))  # slow
 
         # return the iterator
-        print('in here')
         return self.get_batches_iterator(batches, return_indices)
