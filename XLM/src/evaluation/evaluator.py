@@ -151,10 +151,6 @@ class Evaluator(object):
 
                     if params.has_sentences_ids:
                         assert id1.equal(id2) and lenid1.equal(lenid2)
-                        print('interesting')
-                        print(id1)
-                        print(lenid1)
-                        exit(1)
                         id_txt.extend(convert_to_text(
                             id1, lenid1, self.dico, params))
 
