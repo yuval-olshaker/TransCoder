@@ -2,8 +2,8 @@ import Levenshtein
 import complex_check
 import operator
 
-exp_name = 'c-wat-all' # 'c-wat-all'
-range1 = 25
+exp_name = 'c-wat' # 'c-wat-all'
+range1 = 3
 if 'all' in exp_name:
     range1 = 3
 
@@ -41,8 +41,8 @@ def list_in_indices(l, indices):
     f = operator.itemgetter(*indices)
     return f(l)
 
-def long_line(line): # long sentence is over 30 C tokens
-    return len(line.split()) > 30
+def long_line(line): # long sentence is over 20 C tokens / 70
+    return len(line.split()) > 20
 
 def has_while_loop(line):
     return 'while' in line
@@ -83,6 +83,9 @@ def easy_sentence(line):
 
 def has_no_void(line):
     return 'void' not in line
+
+def has_void(line):
+    return 'void' in line
 
 def always_true(line):
     return True
@@ -232,10 +235,11 @@ if __name__ == "__main__":
     # check()
     train_lines = list(map(lambda line: line.replace('<DOCUMENT_ID="repo/tree/master/a.c"> ','').replace(' </DOCUMENT>',''), return_lines(train_sta_path)))
     ref_lines, indices = return_lines(ref, train_lines=train_lines, filter_func=long_line)
+    print(len(ref_lines))
     wat_lines = return_lines(wat_ref, indices=indices)
     run_evaluation(ref_lines, indices, wat_lines, [double_translated_paths, lean_translated_paths])
 
-    run_valid = True
+    run_valid = False
     if run_valid:
         ref_lines, indices = return_lines(valid, train_lines=train_lines, filter_func=long_line)
         wat_lines = return_lines(wat_valid, indices=indices)
