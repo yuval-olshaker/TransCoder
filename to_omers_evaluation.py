@@ -11,34 +11,39 @@ out_path = exp_dir + 'test0.corpus.5.out'
 
 import pandas as pd
 
-def long_line(line):
-    num = 0
-    return len(line.split(' ')) > num
+def check_line(line):
+    return True
 
 
 def check_res():
     res_single_path = exp_dir + 'test0.success.5.csv'
     df_single = pd.read_csv(res_single_path)
-    res_lines_single = list(filter(long_line, df_single['out'].values))
+    res_lines_single = list(filter(check_line, df_single['out'].values))
     res_double_path = res_single_path.replace('single','double')
     df_double = pd.read_csv(res_double_path)
-    res_lines_double = list(filter(long_line, df_double['out'].values))
+    res_lines_double = list(filter(check_line, df_double['out'].values))
 
+    print('double succ: ' + str(len(res_lines_double)))
+    print('single succ: ' + str(len(res_lines_single)))
+
+    ids_single = list(df_single['line'].values)
+    ids_double = list(df_double['line'].values)
     only_d = []
     only_s = []
-    for i, single_line in enumerate(res_lines_single):
-        if single_line not in res_lines_double:
-            only_s.append(single_line)
-        if i < len(res_lines_double):
-            double_line = res_lines_double[i]
-            if double_line not in res_lines_single:
-                only_d.append(double_line)
+    for i, single_id in enumerate(ids_single):
+        if single_id not in ids_double:
+            only_s.append(single_id)
+        if i < len(ids_double):
+            double_id = ids_double[i]
+            if double_id not in ids_single:
+                only_d.append(double_id)
 
     print(len(only_d))
     print(only_d)
     print()
     print(len(only_s))
     print(only_s)
+
     exit(0)
 
 
