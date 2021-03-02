@@ -1,13 +1,16 @@
 import Levenshtein
 import complex_check
 import operator
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
 exp_name = 'c-wat' # 'c-wat-all'
 range1 = 3
 if 'all' in exp_name:
     range1 = 3
 
-
+tested_len = [0]
 ref = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/ref.wat_sa-c_sa.test.txt'
 wat_ref = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/ref.c_sa-wat_sa.test.txt'
 double_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(range1)))
@@ -23,6 +26,9 @@ lean_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + 
 
 ref2 = '/mnt/c/TransCoder/outputs/' + exp_name + '/check/refs.txt'
 trans2 = '/mnt/c/TransCoder/outputs/' + exp_name + '/check/trans.txt'
+
+double_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/scores.csv'
+single_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/mt_ae_lean/eval/scores.csv'
 
 output_path = '/mnt/c/TransCoder/outputs/c-wat/'
 double_succ = output_path + 'double_succ.txt'
@@ -42,7 +48,7 @@ def list_in_indices(l, indices):
     return f(l)
 
 def long_line(line): # long sentence is over 20 C tokens / 70
-    return len(line.split()) > 20
+    return len(line.split()) > tested_len[0]
 
 def has_while_loop(line):
     return 'while' in line
@@ -162,8 +168,54 @@ def check_i(num, ref_lines, double_translated_lines):
     print(d_double)
     exit(1)
 
+def get_acc_ppl_res(path, indices):
+    df = pd.read_csv(path)
+    n_words = sum(list_in_indices(list(df['n_words']), indices))
+    xe_loss = sum(list_in_indices(list(df['xe_loss']), indices))
+    n_valid = sum(list_in_indices(list(df['n_valid']), indices))
+    ppl = np.exp(xe_loss / n_words)
+    acc = 100. * n_valid / n_words
+    return ppl, acc
 
-def run_evaluation(ref_lines, indices, wat_lines, paths):
+def print_ppls_accs(path, title_beg):
+    ppls = []
+    accs = []
+    for i in range(0, 150, 5):
+        tested_len[0] = i
+        _, indices = return_lines(ref, filter_func=long_line)
+        ppl, acc = get_acc_ppl_res(path, indices)
+        ppls.append(ppl)
+        accs.append(acc)
+
+    create_graph(ppls, 'ppl', title_beg + ' ppl')
+    create_graph(accs, 'acc', title_beg + ' acc')
+
+def create_graph(y, name, title):
+    # x axis values
+    x = list(range(0, 150, 5))
+
+
+    # plotting the points
+    plt.plot(x, y)
+
+    plt.axis()
+    # naming the x axis
+    plt.xlabel('min length')
+    # naming the y axis
+    plt.ylabel(name)
+
+    # giving a title to my graph
+    plt.title(title)
+
+    # function to show the plot
+    plt.show()
+
+def print_ppl_acc_graphs():
+    print_ppls_accs(double_scores_path, 'double stage model')
+    print_ppls_accs(single_scores_path, 'single stage model')
+
+
+def run_evaluation(ref_lines, indices, wat_lines, paths, train_lines):
     # read translated lines
     double_translated_lines = list(map(lambda line: return_lines(line, indices=indices), paths[0]))
     lean_translated_lines = list(map(lambda line: return_lines(line, indices=indices), paths[1]))
@@ -229,19 +281,58 @@ def run_evaluation(ref_lines, indices, wat_lines, paths):
     print()
     print()
 
+def distance_check():
+    train_lines = list(
+        map(lambda line: line.replace('<DOCUMENT_ID="repo/tree/master/a.c"> ', '').replace(' </DOCUMENT>', ''),
+            return_lines(train_sta_path)))
+    ref_lines, indices = return_lines(ref, train_lines=train_lines, filter_func=long_line)
+    wat_lines = return_lines(wat_ref, indices=indices)
+    run_evaluation(ref_lines, indices, wat_lines, [double_translated_paths, lean_translated_paths],train_lines)
+
+    run_valid = False
+    if run_valid:
+        ref_lines, indices = return_lines(valid, train_lines=train_lines, filter_func=always_true)
+        wat_lines = return_lines(wat_valid, indices=indices)
+        run_evaluation(ref_lines, indices, wat_lines,
+                       [double_translated_paths_valid, lean_translated_paths_valid],train_lines)
+
+def print_histogram(sizes, title):
+    # setting the ranges and no. of intervals
+    range = (0, 200)
+    bins = 50
+
+    # plotting a histogram
+    plt.hist(sizes, bins, range, color='green',
+             histtype='bar', rwidth=0.8)
+
+    # x-axis label
+    plt.xlabel('sentence length')
+    # frequency label
+    plt.ylabel('No. of sentences')
+    # plot title
+    plt.title('Sentences Length ' + title)
+
+    # function to show the plot
+    plt.show()
+
+
+def from_lines_to_length(lines):
+    return list(map(lambda line: len(line.split(' ')), lines))
+
+
+def print_sizes_histogram():
+    train_lines = list(
+        map(lambda line: line.replace('<DOCUMENT_ID="repo/tree/master/a.c"> ', '').replace(' </DOCUMENT>', ''),
+            return_lines(train_sta_path)))
+    print_histogram(from_lines_to_length(train_lines), 'train')
+
+    refs_lines = return_lines(ref)
+    print_histogram(from_lines_to_length(refs_lines), 'test')
+
 
 if __name__ == "__main__":
     # commented out full-baseline (only transformer)
     # check()
-    train_lines = list(map(lambda line: line.replace('<DOCUMENT_ID="repo/tree/master/a.c"> ','').replace(' </DOCUMENT>',''), return_lines(train_sta_path)))
-    ref_lines, indices = return_lines(ref, train_lines=train_lines, filter_func=long_line)
-    print(len(ref_lines))
-    wat_lines = return_lines(wat_ref, indices=indices)
-    run_evaluation(ref_lines, indices, wat_lines, [double_translated_paths, lean_translated_paths])
-
-    run_valid = False
-    if run_valid:
-        ref_lines, indices = return_lines(valid, train_lines=train_lines, filter_func=long_line)
-        wat_lines = return_lines(wat_valid, indices=indices)
-        run_evaluation(ref_lines, indices, wat_lines,
-                       [double_translated_paths_valid, lean_translated_paths_valid])
+    # distance_check()
+    # print_ppl_acc_graphs()
+    print_sizes_histogram()
