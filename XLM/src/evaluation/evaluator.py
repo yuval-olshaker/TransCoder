@@ -427,75 +427,82 @@ class EncDecEvaluator(Evaluator):
             hypothesis = []
             f_ids = []
 
-        for i, batch in enumerate(self.get_iterator(data_set, lang1, lang2)):
-            (x1, len1, ids1, len_ids1), (x2, len2, ids2, len_ids2) = batch
-            langs1 = x1.clone().fill_(lang1_id)
-            langs2 = x2.clone().fill_(lang2_id)
+        scores_name = 'scores.csv'
+        scores_path = os.path.join(params.hyp_path, scores_name)
+        with open(scores_path, 'w') as scores_csv:
+            scores_csv.write('n_words,xe_loss,n_valid')
+            for i, batch in enumerate(self.get_iterator(data_set, lang1, lang2)):
+                (x1, len1, ids1, len_ids1), (x2, len2, ids2, len_ids2) = batch
+                langs1 = x1.clone().fill_(lang1_id)
+                langs2 = x2.clone().fill_(lang2_id)
 
-            # target words to predict
-            alen = torch.arange(
-                len2.max(), dtype=torch.long, device=len2.device)
-            # do not predict anything given the last target word
-            pred_mask = alen[:, None] < len2[None] - 1
-            y = x2[1:].masked_select(pred_mask[:-1])
-            assert len(y) == (len2 - 1).sum().item()
+                # target words to predict
+                alen = torch.arange(
+                    len2.max(), dtype=torch.long, device=len2.device)
+                # do not predict anything given the last target word
+                pred_mask = alen[:, None] < len2[None] - 1
+                y = x2[1:].masked_select(pred_mask[:-1])
+                assert len(y) == (len2 - 1).sum().item()
 
-            # cuda
-            x1, len1, langs1,  x2, len2, langs2, y = to_cuda(
-                x1, len1, langs1, x2, len2, langs2, y)
-            # encode source sentence
-            enc1 = encoder('fwd', x=x1, lengths=len1,
-                           langs=langs1, causal=False)
-            enc1 = enc1.transpose(0, 1)
-            enc1 = enc1.half() if params.fp16 else enc1
-            if max(len2) > 1024:
-                print('remove one long sentence')
-                continue
-            # decode target sentence
-            dec2 = decoder('fwd', x=x2, lengths=len2, langs=langs2,
-                           causal=True, src_enc=enc1, src_len=len1)
+                # cuda
+                x1, len1, langs1,  x2, len2, langs2, y = to_cuda(
+                    x1, len1, langs1, x2, len2, langs2, y)
+                # encode source sentence
+                enc1 = encoder('fwd', x=x1, lengths=len1,
+                               langs=langs1, causal=False)
+                enc1 = enc1.transpose(0, 1)
+                enc1 = enc1.half() if params.fp16 else enc1
+                if max(len2) > 1024:
+                    print('remove one long sentence')
+                    continue
+                # decode target sentence
+                dec2 = decoder('fwd', x=x2, lengths=len2, langs=langs2,
+                               causal=True, src_enc=enc1, src_len=len1)
 
-            # loss
-            word_scores, loss = decoder(
-                'predict', tensor=dec2, pred_mask=pred_mask, y=y, get_scores=True)
+                # loss
+                word_scores, loss = decoder(
+                    'predict', tensor=dec2, pred_mask=pred_mask, y=y, get_scores=True)
 
-            # update stats
-            n_words += y.size(0)
-            xe_loss += loss.item() * len(y)
-            n_valid += (word_scores.max(1)[1] == y).sum().item()
+                # update stats
+                n_words += y.size(0)
+                xe_loss += loss.item() * len(y)
+                n_valid += (word_scores.max(1)[1] == y).sum().item()
 
-            # generate translation - translate / convert to text
-            if (eval_bleu or eval_computation) and data_set in datasets_for_bleu:
-                len_v = (3 * len1 + 10).clamp(max=params.max_len)
-                if params.beam_size == 1:
-                    if params.number_samples > 1:
-                        assert params.eval_temperature is not None
-                        generated, lengths = decoder.generate(enc1.repeat_interleave(params.number_samples, dim=0),
-                                                              len1.repeat_interleave(
-                                                                  params.number_samples, dim=0),
-                                                              lang2_id, max_len=len_v.repeat_interleave(
-                                                                  params.number_samples, dim=0),
-                                                              sample_temperature=params.eval_temperature)
-                        generated = generated.T.reshape(
-                            -1, params.number_samples, generated.shape[0]).T
-                        lengths, _ = lengths.reshape(-1,
-                                                     params.number_samples).max(dim=1)
+                scores_csv.write(str(y.size(0)) + ',' + str(loss.item() * len(y)) +
+                                 ',' + str((word_scores.max(1)[1] == y).sum().item()))
+
+                # generate translation - translate / convert to text
+                if (eval_bleu or eval_computation) and data_set in datasets_for_bleu:
+                    len_v = (3 * len1 + 10).clamp(max=params.max_len)
+                    if params.beam_size == 1:
+                        if params.number_samples > 1:
+                            assert params.eval_temperature is not None
+                            generated, lengths = decoder.generate(enc1.repeat_interleave(params.number_samples, dim=0),
+                                                                  len1.repeat_interleave(
+                                                                      params.number_samples, dim=0),
+                                                                  lang2_id, max_len=len_v.repeat_interleave(
+                                                                      params.number_samples, dim=0),
+                                                                  sample_temperature=params.eval_temperature)
+                            generated = generated.T.reshape(
+                                -1, params.number_samples, generated.shape[0]).T
+                            lengths, _ = lengths.reshape(-1,
+                                                         params.number_samples).max(dim=1)
+                        else:
+                            generated, lengths = decoder.generate(
+                                enc1, len1, lang2_id, max_len=len_v)
+                        # print(f'path 1: {generated.shape}')
+
                     else:
-                        generated, lengths = decoder.generate(
-                            enc1, len1, lang2_id, max_len=len_v)
-                    # print(f'path 1: {generated.shape}')
-
-                else:
-                    assert params.number_samples == 1
-                    generated, lengths = decoder.generate_beam(
-                        enc1, len1, lang2_id, beam_size=params.beam_size,
-                        length_penalty=params.length_penalty,
-                        early_stopping=params.early_stopping,
-                        max_len=len_v
-                    )
-                    # print(f'path 2: {generated.shape}')
-                hypothesis.extend(convert_to_text(
-                    generated, lengths, self.dico, params, generate_several_reps=True))
+                        assert params.number_samples == 1
+                        generated, lengths = decoder.generate_beam(
+                            enc1, len1, lang2_id, beam_size=params.beam_size,
+                            length_penalty=params.length_penalty,
+                            early_stopping=params.early_stopping,
+                            max_len=len_v
+                        )
+                        # print(f'path 2: {generated.shape}')
+                    hypothesis.extend(convert_to_text(
+                        generated, lengths, self.dico, params, generate_several_reps=True))
 
         # compute perplexity and prediction accuracy
         scores['%s_%s-%s_mt_ppl' %
