@@ -303,7 +303,7 @@ def print_histogram(sizes, title):
 
     # plotting a histogram
     plt.hist(sizes, bins, range, color='green',
-             histtype='bar', rwidth=0.8)
+             histtype='bar', rwidth=0.8, density=True)
 
     # x-axis label
     plt.xlabel('sentence length')
