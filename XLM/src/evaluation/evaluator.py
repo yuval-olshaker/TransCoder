@@ -515,7 +515,7 @@ class EncDecEvaluator(Evaluator):
                (data_set, lang1, lang2)] = 100. * n_valid / n_words
 
         # write hypotheses
-        if True or ((eval_bleu or eval_computation) and data_set in datasets_for_bleu):
+        if (eval_bleu or eval_computation) and data_set in datasets_for_bleu:
             logger.info('i am in')
             # hypothesis / reference paths
             hyp_paths = []
