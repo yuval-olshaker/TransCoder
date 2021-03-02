@@ -187,17 +187,18 @@ def print_ppls_accs(path, title_beg):
         ppls.append(ppl)
         accs.append(acc)
 
-    create_graph(ppls, 'ppl', title_beg + ' ppl')
-    create_graph(accs, 'acc', title_beg + ' acc')
+    create_graph(ppls, 'ppl', title_beg + ' ppl', 0.1)
+    create_graph(accs, 'acc', title_beg + ' acc', 1.0)
 
-def create_graph(y, name, title):
+def create_graph(y, name, title, tick):
     # x axis values
     x = list(range(0, 150, 5))
 
 
     # plotting the points
-    plt.plot(x, y)
-
+    plt.scatter(x, y, label="stars", color="green",
+                marker="*", s=30)
+    plt.yticks(np.arange(min(y), max(y) + tick, tick))
     plt.axis()
     # naming the x axis
     plt.xlabel('min length')
@@ -208,6 +209,7 @@ def create_graph(y, name, title):
     plt.title(title)
 
     # function to show the plot
+    plt.savefig(title + '.png')
     plt.show()
 
 def print_ppl_acc_graphs():
@@ -313,7 +315,9 @@ def print_histogram(sizes, title):
     plt.title('Sentences Length ' + title)
 
     # function to show the plot
+    plt.savefig(title + '.png')
     plt.show()
+
 
 
 def from_lines_to_length(lines):
@@ -334,5 +338,5 @@ if __name__ == "__main__":
     # commented out full-baseline (only transformer)
     # check()
     # distance_check()
-    # print_ppl_acc_graphs()
+    print_ppl_acc_graphs()
     print_sizes_histogram()
