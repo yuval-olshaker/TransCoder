@@ -465,7 +465,7 @@ class EncDecEvaluator(Evaluator):
             xe_loss += loss.item() * len(y)
             n_valid += (word_scores.max(1)[1] == y).sum().item()
 
-            logger.info('iter num' + str(i))
+            logger.info('iter num ' + str(i))
             score_list.append(str(y.size(0)) + ',' + str(loss.item() * len(y)) +
                              ',' + str((word_scores.max(1)[1] == y).sum().item()) + '\n')
 
