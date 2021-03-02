@@ -465,6 +465,7 @@ class EncDecEvaluator(Evaluator):
             xe_loss += loss.item() * len(y)
             n_valid += (word_scores.max(1)[1] == y).sum().item()
 
+            logger.info('iter num' + str(i))
             score_list.append(str(y.size(0)) + ',' + str(loss.item() * len(y)) +
                              ',' + str((word_scores.max(1)[1] == y).sum().item()) + '\n')
 
@@ -504,7 +505,7 @@ class EncDecEvaluator(Evaluator):
         scores_name = 'scores.csv'
         scores_path = os.path.join(params.hyp_path, scores_name)
         with open(scores_path, 'w') as scores_csv:
-            scores_csv.write('n_words,xe_loss,n_valid')
+            scores_csv.write('n_words,xe_loss,n_valid\n')
             scores_csv.writelines(score_list)
 
         # compute perplexity and prediction accuracy
