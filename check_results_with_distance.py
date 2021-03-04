@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-exp_name = 'c-wat' # 'c-wat-all'
+exp_name = 'c-wat-all' # 'c-wat-all'
 range1 = 3
 if 'all' in exp_name:
     range1 = 3
@@ -30,7 +30,7 @@ trans2 = '/mnt/c/TransCoder/outputs/' + exp_name + '/check/trans.txt'
 double_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/scores.csv'
 single_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/mt_ae_lean/eval/scores.csv'
 
-output_path = '/mnt/c/TransCoder/outputs/c-wat/'
+output_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/'
 double_succ = output_path + 'double_succ.txt'
 lean_succ = output_path + 'lean_succ.txt'
 
@@ -194,7 +194,6 @@ def create_graph(y, name, title, tick):
     # x axis values
     x = list(range(0, 150, 5))
 
-
     # plotting the points
     plt.scatter(x, y, label="stars", color="green",
                 marker="*", s=30)
@@ -300,11 +299,11 @@ def distance_check():
 
 def print_histogram(sizes, title):
     # setting the ranges and no. of intervals
-    range = (0, 200)
+    range1 = (0, 200)
     bins = 50
 
     # plotting a histogram
-    plt.hist(sizes, bins, range, color='green',
+    plt.hist(sizes, bins, range1, color='green',
              histtype='bar', rwidth=0.8, density=True)
 
     # x-axis label
@@ -312,11 +311,22 @@ def print_histogram(sizes, title):
     # frequency label
     plt.ylabel('No. of sentences')
     # plot title
-    plt.title('Sentences Length ' + title)
+    plt.title('Sentences Length Histogram ' + title)
 
     # function to show the plot
-    plt.savefig(title + '.png')
+    plt.savefig('Sentences Length Histogram ' + title + '.png')
     plt.show()
+
+    sizes2 = []
+    temp = sizes.copy()
+    for i in range(0, 150, 5):
+        temp = list(filter(lambda size: size > i,temp))
+        sizes2.append(len(temp))
+    if title == 'train':
+        tick = 10000
+    else:
+        tick = 100
+    create_graph(sizes2, 'No. of sentences', 'Sentences Length Graph ' + title, tick)
 
 
 
