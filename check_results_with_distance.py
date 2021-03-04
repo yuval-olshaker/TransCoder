@@ -187,8 +187,19 @@ def print_ppls_accs(path, title_beg):
         ppls.append(ppl)
         accs.append(acc)
 
-    create_graph(ppls, 'ppl', title_beg + ' ppl', 0.1)
-    create_graph(accs, 'acc', title_beg + ' acc', 1.0)
+    ppl_tick = 0.1
+    acc_tick = 1.0
+    if 'all' in exp_name:
+        ppl_tick = 0.02
+        acc_tick = 0.3
+
+    create_graph(ppls, 'ppl', title_beg + ' ppl', ppl_tick)
+    create_graph(accs, 'acc', title_beg + ' acc', acc_tick)
+
+
+def save_pic(save_name):
+    plt.savefig('/mnt/c/TransCoder/outputs/' + exp_name + '/' + save_name)
+
 
 def create_graph(y, name, title, tick):
     # x axis values
@@ -208,7 +219,7 @@ def create_graph(y, name, title, tick):
     plt.title(title)
 
     # function to show the plot
-    plt.savefig(title + '.png')
+    save_pic(title + '.png')
     plt.show()
 
 def print_ppl_acc_graphs():
@@ -314,18 +325,16 @@ def print_histogram(sizes, title):
     plt.title('Sentences Length Histogram ' + title)
 
     # function to show the plot
-    plt.savefig('Sentences Length Histogram ' + title + '.png')
+    save_pic('Sentences Length Histogram ' + title + '.png')
     plt.show()
 
     sizes2 = []
     temp = sizes.copy()
     for i in range(0, 150, 5):
         temp = list(filter(lambda size: size > i,temp))
-        sizes2.append(len(temp))
-    if title == 'train':
-        tick = 10000
-    else:
-        tick = 100
+        sizes2.append(len(temp) / len(sizes))
+    tick = 0.1
+
     create_graph(sizes2, 'No. of sentences', 'Sentences Length Graph ' + title, tick)
 
 
