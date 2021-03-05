@@ -886,6 +886,8 @@ class EncDecTrainer(Trainer):
             _, sec_loss = decoder('predict', tensor=sec_dec,
                               pred_mask=pred_mask, y=y, get_scores=False)
 
+            print(double_coeff)
+            print(double_coeff.__doc__)
             loss = loss + (double_coeff * sec_loss)
 
         self.stats[('AE-%s' % lang1) if lang1 ==
