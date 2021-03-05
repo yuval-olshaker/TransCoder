@@ -5,7 +5,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-exp_name = 'c-wat-all' # 'c-wat-all'
+max_length = 350
+exp_name = 'c-wat' # 'c-wat-all'
 range1 = 3
 if 'all' in exp_name:
     range1 = 3
@@ -177,10 +178,34 @@ def get_acc_ppl_res(path, indices):
     acc = 100. * n_valid / n_words
     return ppl, acc
 
+def print_2_ppls_accs(path1, path2, title_beg):
+    ppls1 = []
+    accs1 = []
+    for i in range(0, max_length, 5):
+        tested_len[0] = i
+        _, indices = return_lines(ref, filter_func=long_line)
+        ppl, acc = get_acc_ppl_res(path1, indices)
+        ppls1.append(ppl)
+        accs1.append(acc)
+
+    ppls2 = []
+    accs2 = []
+    for i in range(0, max_length, 5):
+        tested_len[0] = i
+        _, indices = return_lines(ref, filter_func=long_line)
+        ppl, acc = get_acc_ppl_res(path2, indices)
+        ppls2.append(ppl)
+        accs2.append(acc)
+
+    ppl_tick = 0.1
+    acc_tick = 1.0
+    create_2_graphs(ppls1, ppls2, 'ppl', title_beg + ' ppl', ppl_tick)
+    create_2_graphs(accs1, accs2, 'acc', title_beg + ' acc', acc_tick)
+
 def print_ppls_accs(path, title_beg):
     ppls = []
     accs = []
-    for i in range(0, 150, 5):
+    for i in range(0, max_length, 5):
         tested_len[0] = i
         _, indices = return_lines(ref, filter_func=long_line)
         ppl, acc = get_acc_ppl_res(path, indices)
@@ -201,9 +226,36 @@ def save_pic(save_name):
     plt.savefig('/mnt/c/TransCoder/outputs/' + exp_name + '/' + save_name)
 
 
+def create_2_graphs(y1, y2, name, title, tick):
+    x = list(range(0, max_length, 5))
+
+    # plotting the points
+    plt.scatter(x, y1, label="stars", color="green",
+                marker="*", s=30)
+    plt.scatter(x, y2, label="stars", color="blue",
+                marker="*", s=30)
+    plt.yticks(np.arange(min(y1), max(y2) + tick, tick))
+    plt.axis()
+    # naming the x axis
+    plt.xlabel('min length')
+    # naming the y axis
+    plt.ylabel(name)
+
+    # giving a title to my graph
+    plt.title(title)
+
+    # function to show the plot
+    save_pic(title + '.png')
+    plt.show()
+
+    y = []
+    for i in range(len(y1)):
+        y.append(y1[i]-y2[i])
+    create_graph(y, 'name', 'title', 0.1)
+
 def create_graph(y, name, title, tick):
     # x axis values
-    x = list(range(0, 150, 5))
+    x = list(range(0, max_length, 5))
 
     # plotting the points
     plt.scatter(x, y, label="stars", color="green",
@@ -223,8 +275,10 @@ def create_graph(y, name, title, tick):
     plt.show()
 
 def print_ppl_acc_graphs():
-    print_ppls_accs(double_scores_path, 'double stage model')
-    print_ppls_accs(single_scores_path, 'single stage model')
+    print_2_ppls_accs(double_scores_path, single_scores_path, 'both models')
+
+    # print_ppls_accs(double_scores_path, 'double stage model')
+    # print_ppls_accs(single_scores_path, 'single stage model')
 
 
 def run_evaluation(ref_lines, indices, wat_lines, paths, train_lines):
@@ -330,7 +384,7 @@ def print_histogram(sizes, title):
 
     sizes2 = []
     temp = sizes.copy()
-    for i in range(0, 150, 5):
+    for i in range(0, max_length, 5):
         temp = list(filter(lambda size: size > i,temp))
         sizes2.append(len(temp) / len(sizes))
     tick = 0.1
@@ -358,4 +412,4 @@ if __name__ == "__main__":
     # check()
     # distance_check()
     print_ppl_acc_graphs()
-    print_sizes_histogram()
+    # print_sizes_histogram()
