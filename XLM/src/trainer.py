@@ -825,7 +825,7 @@ class EncDecTrainer(Trainer):
 
         super().__init__(data, params)
 
-    def mt_step(self, lang1, lang2, lambda_coeff, do_double=False):
+    def mt_step(self, lang1, lang2, lambda_coeff, do_double=False, double_coeff=0):
         """
         Machine translation step.
         Can also be used for denoising auto-encoding.
@@ -886,7 +886,7 @@ class EncDecTrainer(Trainer):
             _, sec_loss = decoder('predict', tensor=sec_dec,
                               pred_mask=pred_mask, y=y, get_scores=False)
 
-            loss = loss + sec_loss
+            loss = loss + (double_coeff * sec_loss)
 
         self.stats[('AE-%s' % lang1) if lang1 ==
                    lang2 else ('MT-%s-%s' % (lang1, lang2))].append(loss.item())

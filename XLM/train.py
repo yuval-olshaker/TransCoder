@@ -154,6 +154,8 @@ def get_parser():
                         help="MT coefficient")
     parser.add_argument("--lambda_bt", type=str, default="1",
                         help="BT coefficient")
+    parser.add_argument("--lambda_double", type=str, default="1",
+                        help="MT double coefficient")
 
     # training steps
     parser.add_argument("--clm_steps", type=str, default="",
@@ -294,7 +296,7 @@ def main(params):
 
             # machine translation steps - seems like created for parallel
             for lang1, lang2 in shuf_order(params.mt_steps, params):
-                trainer.mt_step(lang1, lang2, params.lambda_mt, do_double=params.do_double)
+                trainer.mt_step(lang1, lang2, params.lambda_mt, do_double=params.do_double, double_coeff=params.lambda_double)
 
             # back-translation steps - from a to b and back to a
             for lang1, lang2, lang3 in shuf_order(params.bt_steps):
