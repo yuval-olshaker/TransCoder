@@ -886,10 +886,6 @@ class EncDecTrainer(Trainer):
             _, sec_loss = decoder('predict', tensor=sec_dec,
                               pred_mask=pred_mask, y=y, get_scores=False)
 
-            print('i am')
-            print(double_coeff)
-            print(float(double_coeff))
-            print(lambda_coeff)
             d = float(double_coeff) * sec_loss
             loss = loss + d
 
