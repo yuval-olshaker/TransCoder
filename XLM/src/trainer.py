@@ -888,8 +888,8 @@ class EncDecTrainer(Trainer):
 
             print('i am')
             print(double_coeff)
-            print(double_coeff.__doc__)
             print(float(double_coeff))
+            print(lambda_coeff)
             d = double_coeff * sec_loss
             loss = loss + d
 
