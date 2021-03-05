@@ -890,7 +890,7 @@ class EncDecTrainer(Trainer):
             print(double_coeff)
             print(float(double_coeff))
             print(lambda_coeff)
-            d = double_coeff * sec_loss
+            d = float(double_coeff) * sec_loss
             loss = loss + d
 
         self.stats[('AE-%s' % lang1) if lang1 ==
