@@ -5,7 +5,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-max_length = 350
+colors = ['green', 'blue', 'red'] # one, half, double
+max_length = 245
 exp_name = 'c-wat' # 'c-wat-all'
 range1 = 3
 if 'all' in exp_name:
@@ -15,6 +16,7 @@ tested_len = [0]
 ref = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/ref.wat_sa-c_sa.test.txt'
 wat_ref = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/ref.c_sa-wat_sa.test.txt'
 double_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(range1)))
+half_double_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/half_double/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(range1)))
 lean_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/mt_ae_lean/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(range1)))
 # baseline_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/baseline_only_transformer_parallel/eval/hyp0.wat_sa-c_sa.test_beam' +str(i) + '.txt', range(3)))
 
@@ -29,6 +31,7 @@ ref2 = '/mnt/c/TransCoder/outputs/' + exp_name + '/check/refs.txt'
 trans2 = '/mnt/c/TransCoder/outputs/' + exp_name + '/check/trans.txt'
 
 double_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/scores.csv'
+half_double_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/half_double/eval/scores.csv'
 single_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/mt_ae_lean/eval/scores.csv'
 
 output_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/'
@@ -178,6 +181,24 @@ def get_acc_ppl_res(path, indices):
     acc = 100. * n_valid / n_words
     return ppl, acc
 
+def print_num_ppls_accs(paths, title_beg):
+    accs = []
+    ppls = []
+    for i, path in enumerate(paths):
+        ppls.append([])
+        accs.append([])
+        for j in range(0, max_length, 5):
+            tested_len[0] = j
+            _, indices = return_lines(ref, filter_func=long_line)
+            ppl, acc = get_acc_ppl_res(path, indices)
+            ppls[i].append(ppl)
+            accs[i].append(acc)
+
+    ppl_tick = 0.1
+    acc_tick = 1.0
+    create_num_graphs(ppls, 'ppl', title_beg + ' ppl', ppl_tick)
+    create_num_graphs(accs, 'acc', title_beg + ' acc', acc_tick)
+
 def print_2_ppls_accs(path1, path2, title_beg):
     ppls1 = []
     accs1 = []
@@ -225,6 +246,32 @@ def print_ppls_accs(path, title_beg):
 def save_pic(save_name):
     plt.savefig('/mnt/c/TransCoder/outputs/' + exp_name + '/' + save_name)
 
+def create_num_graphs(ys, name, title, tick):
+    x = list(range(0, max_length, 5))
+
+    for i, y in enumerate(ys):
+        plt.scatter(x, y, label="stars", color=colors[i],
+                    marker="*", s=30)
+
+
+    plt.yticks(np.arange(min(list(map(lambda y: min(y), ys))) - tick, max(list(map(lambda y: max(y), ys))) + tick, tick))
+    plt.axis()
+    # naming the x axis
+    plt.xlabel('min length')
+    # naming the y axis
+    plt.ylabel(name)
+
+    # giving a title to my graph
+    plt.title(title)
+
+    # function to show the plot
+    save_pic(title + '.png')
+    plt.show()
+
+    y = []
+    for i in range(len(ys[0])):
+        y.append(ys[0][i] - ys[1][i])
+    create_graph(y, 'name', 'title', 0.1)
 
 def create_2_graphs(y1, y2, name, title, tick):
     x = list(range(0, max_length, 5))
@@ -275,7 +322,7 @@ def create_graph(y, name, title, tick):
     plt.show()
 
 def print_ppl_acc_graphs():
-    print_2_ppls_accs(double_scores_path, single_scores_path, 'both models')
+    print_num_ppls_accs([single_scores_path, half_double_scores_path, double_scores_path], 'three models')
 
     # print_ppls_accs(double_scores_path, 'double stage model')
     # print_ppls_accs(single_scores_path, 'single stage model')
