@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 
 colors = ['green', 'blue', 'red'] # one, half, double
 max_length = 245
+min_length = 0
 exp_name = 'c-wat' # 'c-wat-all'
 range1 = 3
 if 'all' in exp_name:
@@ -187,7 +188,7 @@ def print_num_ppls_accs(paths, title_beg):
     for i, path in enumerate(paths):
         ppls.append([])
         accs.append([])
-        for j in range(0, max_length, 5):
+        for j in range(min_length, max_length, 5):
             tested_len[0] = j
             _, indices = return_lines(ref, filter_func=long_line)
             ppl, acc = get_acc_ppl_res(path, indices)
@@ -202,7 +203,7 @@ def print_num_ppls_accs(paths, title_beg):
 def print_2_ppls_accs(path1, path2, title_beg):
     ppls1 = []
     accs1 = []
-    for i in range(0, max_length, 5):
+    for i in range(min_length, max_length, 5):
         tested_len[0] = i
         _, indices = return_lines(ref, filter_func=long_line)
         ppl, acc = get_acc_ppl_res(path1, indices)
@@ -211,7 +212,7 @@ def print_2_ppls_accs(path1, path2, title_beg):
 
     ppls2 = []
     accs2 = []
-    for i in range(0, max_length, 5):
+    for i in range(min_length, max_length, 5):
         tested_len[0] = i
         _, indices = return_lines(ref, filter_func=long_line)
         ppl, acc = get_acc_ppl_res(path2, indices)
@@ -226,7 +227,7 @@ def print_2_ppls_accs(path1, path2, title_beg):
 def print_ppls_accs(path, title_beg):
     ppls = []
     accs = []
-    for i in range(0, max_length, 5):
+    for i in range(min_length, max_length, 5):
         tested_len[0] = i
         _, indices = return_lines(ref, filter_func=long_line)
         ppl, acc = get_acc_ppl_res(path, indices)
@@ -247,7 +248,7 @@ def save_pic(save_name):
     plt.savefig('/mnt/c/TransCoder/outputs/' + exp_name + '/' + save_name)
 
 def create_num_graphs(ys, name, title, tick):
-    x = list(range(0, max_length, 5))
+    x = list(range(min_length, max_length, 5))
 
     for i, y in enumerate(ys):
         plt.scatter(x, y, label="stars", color=colors[i],
@@ -270,11 +271,14 @@ def create_num_graphs(ys, name, title, tick):
 
     y = []
     for i in range(len(ys[0])):
-        y.append(ys[0][i] - ys[1][i])
-    create_graph(y, 'name', 'title', 0.1)
+        y.append(ys[1][i] - ys[0][i]) # ys[1] - half. ys[0] - single
+    print('diff ' + title.split(' ')[-1])
+    # print(y)
+    print('min: ' + str(min(y)) + ' max: ' + str(max(y)))
+    create_graph(y, 'diff', 'diff ' + title.split(' ')[-1], tick / 10)
 
 def create_2_graphs(y1, y2, name, title, tick):
-    x = list(range(0, max_length, 5))
+    x = list(range(min_length, max_length, 5))
 
     # plotting the points
     plt.scatter(x, y1, label="stars", color="green",
@@ -302,7 +306,7 @@ def create_2_graphs(y1, y2, name, title, tick):
 
 def create_graph(y, name, title, tick):
     # x axis values
-    x = list(range(0, max_length, 5))
+    x = list(range(min_length, max_length, 5))
 
     # plotting the points
     plt.scatter(x, y, label="stars", color="green",
@@ -431,7 +435,7 @@ def print_histogram(sizes, title):
 
     sizes2 = []
     temp = sizes.copy()
-    for i in range(0, max_length, 5):
+    for i in range(min_length, max_length, 5):
         temp = list(filter(lambda size: size > i,temp))
         sizes2.append(len(temp) / len(sizes))
     tick = 0.1
