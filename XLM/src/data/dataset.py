@@ -191,7 +191,6 @@ class Dataset(object):
 
         for sentence_ids in batches:
             if 0 < self.max_batch_size < len(sentence_ids):
-                logger.info('need to check?')
                 np.random.shuffle(sentence_ids)
                 sentence_ids = sentence_ids[:self.max_batch_size]
             pos = self.pos[sentence_ids]

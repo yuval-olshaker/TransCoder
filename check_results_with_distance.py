@@ -5,10 +5,10 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-colors = ['green', 'blue', 'red'] # one, half, double
+colors = ['green', 'blue', 'red', 'orange'] # one, half, double, baseline
 max_length = 245
 min_length = 0
-exp_name = 'c-wat' # 'c-wat-all'
+exp_name = 'c-wat-all' # 'c-wat-all'
 range1 = 3
 if 'all' in exp_name:
     range1 = 3
