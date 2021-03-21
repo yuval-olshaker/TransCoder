@@ -54,12 +54,12 @@ def output_all_tokenized_results(docs, f_tok):
             continue
         else:
             content_tokenized = ' '.join(content_tokenized)
-            s = f"<DOCUMENT_ID=\"{path}\"> {content_tokenized} </DOCUMENT>"
+            s = f"<DOCUMENT_ID=\"{path}\"> {content_tokenized} </DOCUMENT>\n"
             # for some reason sometimes, some caracters of s
             # cannot be encoded into utf-8 and it failed to print, so use try/catch
             try:
+                print(s)
                 f_tok.write(s)
-                f_tok.write('\n')
             except:
                 continue
 
