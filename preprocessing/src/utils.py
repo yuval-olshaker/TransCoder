@@ -70,8 +70,8 @@ def process_and_tokenize_json_file(input_path, language, keep_comments):
     tokenizer = getattr(code_tokenizer, f"tokenize_{language}")
     docs = []
     paths = []
+    print(input_path)
     for line in fileinput.input(str(input_path), openhook=fileinput.hook_compressed):
-        print(line)
         x = json.loads(line)
         content = x['content']
         path = f"{x['repo_name']}/tree/master/{x['path']}"
