@@ -22,20 +22,17 @@ if __name__ == '__main__':
 
 
         with open(path) as f:
-            lines = f.readlines()
+            lines = list(map(to_json_line, f.readlines()))
 
         new_lines = []
         for i, line in enumerate(lines):
             try:
                 x = json.loads(line)
-                print(i)
                 new_lines.append(line)
             except:
-                print(i)
                 continue
 
 
-        # lines = list(map(to_json_line, lines))
         path = path + '.000.json'
         os.system('rm ' + path + '.gz')
         with open(path, 'w') as f2:
