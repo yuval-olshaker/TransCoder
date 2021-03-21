@@ -28,6 +28,7 @@ if __name__ == '__main__':
         for i, line in enumerate(lines):
             try:
                 x = json.loads(line)
+                print(i)
                 new_lines.append(line)
             except:
                 continue
