@@ -58,7 +58,6 @@ def output_all_tokenized_results(docs, f_tok):
             # for some reason sometimes, some caracters of s
             # cannot be encoded into utf-8 and it failed to print, so use try/catch
             try:
-                print(s)
                 f_tok.write(s)
             except:
                 continue
@@ -70,7 +69,6 @@ def process_and_tokenize_json_file(input_path, language, keep_comments):
     tokenizer = getattr(code_tokenizer, f"tokenize_{language}")
     docs = []
     paths = []
-    print(input_path)
     for line in fileinput.input(str(input_path), openhook=fileinput.hook_compressed):
         x = json.loads(line)
         content = x['content']
