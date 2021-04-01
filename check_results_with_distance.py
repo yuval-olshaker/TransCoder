@@ -8,23 +8,23 @@ import matplotlib.pyplot as plt
 colors = ['green', 'blue', 'red', 'orange'] # one, half, double, baseline
 max_length = 245
 min_length = 0
-exp_name = 'c-wat-all' # 'c-wat-all'
+exp_name = 'c-wat-full' # 'c-wat-all' 'c-wat-full'
 range1 = 3
 if 'all' in exp_name:
     range1 = 3
 
-tested_len = [0]
+tested_len = [20]
 ref = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/ref.wat_sa-c_sa.test.txt'
 wat_ref = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/ref.c_sa-wat_sa.test.txt'
 double_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(range1)))
 half_double_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/half_double/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(range1)))
-lean_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/mt_ae_lean/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(range1)))
+single_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/mt_ae_single/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(range1)))
 # baseline_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/baseline_only_transformer_parallel/eval/hyp0.wat_sa-c_sa.test_beam' +str(i) + '.txt', range(3)))
 
 valid = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/ref.wat_sa-c_sa.valid.txt'
 wat_valid = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/ref.c_sa-wat_sa.valid.txt'
 double_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/hyp0.wat_sa-c_sa.valid_beam' + str(i) + '.txt', range(range1)))
-lean_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/mt_ae_lean/eval/hyp0.wat_sa-c_sa.valid_beam' + str(i) + '.txt', range(range1)))
+single_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/mt_ae_single/eval/hyp0.wat_sa-c_sa.valid_beam' + str(i) + '.txt', range(range1)))
 # baseline_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/baseline_only_transformer_parallel/eval/hyp0.wat_sa-c_sa.valid_beam' +str(i) + '.txt', range(3)))
 
 
@@ -33,11 +33,12 @@ trans2 = '/mnt/c/TransCoder/outputs/' + exp_name + '/check/trans.txt'
 
 double_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/scores.csv'
 half_double_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/half_double/eval/scores.csv'
-single_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/mt_ae_lean/eval/scores.csv'
+single_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/mt_ae_single/eval/scores.csv'
 
 output_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/'
 double_succ = output_path + 'double_succ.txt'
-lean_succ = output_path + 'lean_succ.txt'
+single_succ = output_path + 'single_succ.txt'
+half_succ = output_path + 'half_succ.txt'
 
 train_sta_path = output_path + 'train.tok'
 
@@ -117,14 +118,11 @@ def return_lines(path, train_lines=None, filter_func=None, indices=None):
 
 
 def check():
-    ref2_lines = return_lines(ref2)
-    trans2_lines = return_lines(trans2)
-    iss = []
-    for i, ref_line in enumerate(ref2_lines):
-        if ref_line == trans2_lines[i]:
-            iss.append(i)
-    print(iss)
-    print(len(iss))
+    ref2_lines = list(map(lambda line: len(line[:-2].split()), return_lines('/mnt/c/c_projects/hl_corpus_fixed')))
+    # train_lines = list(
+    #     map(lambda line: line.replace('<DOCUMENT_ID="repo/tree/master/a.c"> ', '').replace(' </DOCUMENT>', ''),
+    #         return_lines(train_sta_path)))
+    print_histogram(ref2_lines, 'hh')
     exit(1)
 
 def check_succ(succ_path, only_list, ref_lines, wat_lines, translated0_lines, translated1_lines, translated2_lines):
@@ -335,12 +333,12 @@ def print_ppl_acc_graphs():
 def run_evaluation(ref_lines, indices, wat_lines, paths, train_lines):
     # read translated lines
     double_translated_lines = list(map(lambda line: return_lines(line, indices=indices), paths[0]))
-    lean_translated_lines = list(map(lambda line: return_lines(line, indices=indices), paths[1]))
-    # baseline_translated_lines = list(map(lambda line: return_lines(line, indices=indices), paths[2]))
+    single_translated_lines = list(map(lambda line: return_lines(line, indices=indices), paths[1]))
+    half_translated_lines = list(map(lambda line: return_lines(line, indices=indices), paths[2]))
 
     results_double = []
-    results_lean = []
-    results_base = []
+    results_single = []
+    results_half = []
 
     # check_i(302)
 
@@ -348,52 +346,52 @@ def run_evaluation(ref_lines, indices, wat_lines, paths, train_lines):
     for i, ref_line in enumerate(ref_lines):
         # we take the min of all beams
         d_double = min(list(map(lambda lines: distance(ref_line, lines[i]), double_translated_lines)))
-        d_lean = min(list(map(lambda lines: distance(ref_line, lines[i]), lean_translated_lines)))
-        # d_base = min(list(map(lambda lines: distance(ref_line, lines[i]), baseline_translated_lines)))
+        d_single = min(list(map(lambda lines: distance(ref_line, lines[i]), single_translated_lines)))
+        d_half = min(list(map(lambda lines: distance(ref_line, lines[i]), half_translated_lines)))
 
         results_double.append(d_double)
-        results_lean.append(d_lean)
-        # results_base.append(d_base)
+        results_single.append(d_single)
+        results_half.append(d_half)
 
         # if 0 < d_double < 10:
         #     print(i)
 
     # create lists for exact match - including complex_check
-    zeros_d = []
-    zeros_l = []
-    # zeros_b = []
+    zeros_double = []
+    zeros_single = []
+    zeros_half = []
     for i, res in enumerate(results_double):
         if res == 0:
-            zeros_d.append(i)
-        if results_lean[i] == 0:
-            zeros_l.append(i)
-        # if results_base[i] == 0:
-        #     zeros_b.append(i)
+            zeros_double.append(i)
+        if results_single[i] == 0:
+            zeros_single.append(i)
+        if results_half[i] == 0:
+            zeros_half.append(i)
 
-    only_d = sorted(set(zeros_d).difference(set(zeros_l)))
-    only_l = sorted(set(zeros_l).difference(set(zeros_d)))
+    only_half = sorted(set(zeros_half).difference(set(zeros_single)))
+    only_single = sorted(set(zeros_single).difference(set(zeros_half)))
 
-    print('only_d: zise - ' + str(len(only_d)) + ' list - ' + str(only_d))
-    print('only_l: zise - ' + str(len(only_l)) + ' list - ' + str(only_l))
+    print('only_half: zise - ' + str(len(only_half)) + ' list - ' + str(only_half))
+    print('only_single: zise - ' + str(len(only_single)) + ' list - ' + str(only_single))
     print()
 
     # prints and saves results
-    check_succ(double_succ, only_d, ref_lines, wat_lines, lean_translated_lines[0], lean_translated_lines[1],
-               lean_translated_lines[2])
-    check_succ(lean_succ, only_l, ref_lines, wat_lines, double_translated_lines[0], double_translated_lines[1],
-               double_translated_lines[2])
-    print_results(output_path, zeros_d, ref_lines, train_lines, 'double')
-    print_results(output_path, zeros_l, ref_lines, train_lines, 'one_stage')
+    check_succ(half_succ, only_half, ref_lines, wat_lines, single_translated_lines[0], single_translated_lines[1],
+               single_translated_lines[2])
+    check_succ(single_succ, only_single, ref_lines, wat_lines, half_translated_lines[0], half_translated_lines[1],
+               half_translated_lines[2])
+    print_results(output_path, zeros_half, ref_lines, train_lines, 'half')
+    print_results(output_path, zeros_single, ref_lines, train_lines, 'single')
     # print_results(output_path, zeros_b, ref_lines, train_lines, 'baseline')
 
     print()
-    print(zeros_d)
-    print(zeros_l)
+    print(zeros_half)
+    print(zeros_single)
     # print(zeros_b)
 
     print()
-    print('double model total: ' + str(sum(results_double)) + ' correct num: ' + str(len(zeros_d)))
-    print('one model total: ' + str(sum(results_lean)) + ' correct num: ' + str(len(zeros_l)))
+    print('half model total: ' + str(sum(results_double)) + ' correct num: ' + str(len(zeros_double)))
+    print('one model total: ' + str(sum(results_single)) + ' correct num: ' + str(len(zeros_single)))
     # print('base model total: ' + str(sum(results_base)) + ' correct num: ' + str(len(zeros_b)))
     print()
     print()
@@ -404,14 +402,14 @@ def distance_check():
             return_lines(train_sta_path)))
     ref_lines, indices = return_lines(ref, train_lines=train_lines, filter_func=long_line)
     wat_lines = return_lines(wat_ref, indices=indices)
-    run_evaluation(ref_lines, indices, wat_lines, [double_translated_paths, lean_translated_paths],train_lines)
+    run_evaluation(ref_lines, indices, wat_lines, [double_translated_paths, single_translated_paths, half_double_translated_paths],train_lines)
 
     run_valid = False
     if run_valid:
         ref_lines, indices = return_lines(valid, train_lines=train_lines, filter_func=always_true)
         wat_lines = return_lines(wat_valid, indices=indices)
         run_evaluation(ref_lines, indices, wat_lines,
-                       [double_translated_paths_valid, lean_translated_paths_valid],train_lines)
+                       [double_translated_paths_valid, single_translated_paths_valid],train_lines)
 
 def print_histogram(sizes, title):
     # setting the ranges and no. of intervals
