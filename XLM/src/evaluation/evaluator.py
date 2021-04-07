@@ -479,8 +479,7 @@ class EncDecEvaluator(Evaluator):
             logger.info('iter num ' + str(i))
             score_list.append(str(y.size(0)) + ',' + str(loss.item() * len(y)) +
                              ',' + str((word_scores.max(1)[1] == y).sum().item()) + '\n')
-            if i > 100:
-                break
+
             # generate translation - translate / convert to text
             if (eval_bleu or eval_computation) and data_set in datasets_for_bleu:
                 len_v = (3 * len1 + 10).clamp(max=params.max_len)
