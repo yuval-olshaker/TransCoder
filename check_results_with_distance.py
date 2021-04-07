@@ -269,7 +269,7 @@ def create_num_graphs(ys, name, title, tick):
 
     y = []
     for i in range(len(ys[0])):
-        y.append(ys[1][i] - ys[0][i]) # ys[1] - half. ys[0] - single
+        y.append(ys[2][i] - ys[0][i]) # ys[2] - double. ys[1] - half. ys[0] - single.
     print('diff ' + title.split(' ')[-1])
     # print(y)
     print('min: ' + str(min(y)) + ' max: ' + str(max(y)))

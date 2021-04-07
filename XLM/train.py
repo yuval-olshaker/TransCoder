@@ -264,7 +264,7 @@ def main(params):
 
     # evaluation
     if params.eval_only:
-        scores = evaluator.run_all_evals(trainer)
+        scores = evaluator.run_all_evals(trainer, params.do_double)
         for k, v in scores.items():
             logger.info("%s -> %.6f" % (k, v))
         logger.info("__log__:%s" % json.dumps(scores))
@@ -309,7 +309,7 @@ def main(params):
                     trainer.epoch)
 
         # evaluate perplexity
-        scores = evaluator.run_all_evals(trainer)
+        scores = evaluator.run_all_evals(trainer, params.do_double)
 
         # print / JSON log
         for k, v in scores.items():

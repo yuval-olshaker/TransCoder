@@ -203,7 +203,7 @@ class Evaluator(object):
 
         return x, _x_real, pred_mask
 
-    def run_all_evals(self, trainer):
+    def run_all_evals(self, trainer, do_double=False):
         """
         Run all evaluations.
         """
@@ -227,7 +227,7 @@ class Evaluator(object):
                     eval_bleu = params.eval_bleu and params.is_master and 'cl' not in lang1
                     eval_computation = params.eval_computation and params.is_master and 'cl' not in lang1
                     self.evaluate_mt(scores, data_set, lang1,
-                                     lang2, eval_bleu, eval_computation)
+                                     lang2, eval_bleu, eval_computation, do_double)
 
                 # report average metrics per language
                 _clm_mono = [l1 for (l1, l2) in params.clm_steps if l2 is None]
@@ -395,7 +395,7 @@ class EncDecEvaluator(Evaluator):
         self.encoder = trainer.encoder
         self.decoder = trainer.decoder
 
-    def evaluate_mt(self, scores, data_set, lang1, lang2, eval_bleu, eval_computation):
+    def evaluate_mt(self, scores, data_set, lang1, lang2, eval_bleu, eval_computation, do_double=False):
         """
         Evaluate perplexity and next word prediction accuracy.
         """
@@ -455,6 +455,17 @@ class EncDecEvaluator(Evaluator):
             # decode target sentence
             dec2 = decoder('fwd', x=x2, lengths=len2, langs=langs2,
                            causal=True, src_enc=enc1, src_len=len1)
+            if do_double:
+                # encode source sentence
+                sec_enc = encoder('fwd', x=x2, lengths=len2,
+                                          langs=langs2, causal=False, use_emb=False, embedded_x=dec2)
+                sec_enc = sec_enc.transpose(0, 1)
+
+                # decode target sentence
+                sec_dec = decoder('fwd', x=x2, lengths=len2, langs=langs2,
+                                  causal=True, src_enc=sec_enc, src_len=len2)
+
+                dec2 = sec_dec
 
             # loss
             word_scores, loss = decoder(

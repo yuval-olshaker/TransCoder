@@ -5,21 +5,21 @@ def return_lines(path):
     return lines
 
 trans_num = 5
-exp_name = 'c-x86/single' # double / single
+exp_name = 'c-x86/single' # double / single / half
 exp_dir = '/mnt/c/TransCoder/outputs/' + exp_name + '/eval/'
 out_path = exp_dir + 'test0.corpus.5.out'
 
 import pandas as pd
 
 def check_line(line):
-    return True
+    return len(line.split()) > 0
 
 
 def check_res():
     res_single_path = exp_dir + 'test0.success.5.csv'
     df_single = pd.read_csv(res_single_path)
     res_lines_single = list(filter(check_line, df_single['out'].values))
-    res_double_path = res_single_path.replace('single','double')
+    res_double_path = res_single_path.replace('single','half')
     df_double = pd.read_csv(res_double_path)
     res_lines_double = list(filter(check_line, df_double['out'].values))
 
@@ -44,6 +44,14 @@ def check_res():
     print(len(only_s))
     print(only_s)
 
+    out_double = list(df_double['out'].values)
+    with open(exp_dir.replace('single','half') + 'choose.txt', 'w') as f:
+        for i, ind in enumerate(ids_double):
+            if ind in only_d:
+                f.write('\n')
+                f.write(str(ind) + '\n')
+                f.write(out_double[i] + '\n')
+                f.write('\n')
     exit(0)
 
 
