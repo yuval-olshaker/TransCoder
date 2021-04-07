@@ -460,7 +460,7 @@ class EncDecEvaluator(Evaluator):
                 sec_enc = encoder('fwd', x=x2, lengths=len2,
                                           langs=langs2, causal=False, use_emb=False, embedded_x=dec2)
                 sec_enc = sec_enc.transpose(0, 1)
-
+                sec_enc = sec_enc.half() if params.fp16 else sec_enc
                 # decode target sentence
                 sec_dec = decoder('fwd', x=x2, lengths=len2, langs=langs2,
                                   causal=True, src_enc=sec_enc, src_len=len2)
@@ -479,8 +479,8 @@ class EncDecEvaluator(Evaluator):
             logger.info('iter num ' + str(i))
             score_list.append(str(y.size(0)) + ',' + str(loss.item() * len(y)) +
                              ',' + str((word_scores.max(1)[1] == y).sum().item()) + '\n')
-            # if i > 100:
-            #     break
+            if i > 100:
+                break
             # generate translation - translate / convert to text
             if (eval_bleu or eval_computation) and data_set in datasets_for_bleu:
                 len_v = (3 * len1 + 10).clamp(max=params.max_len)
