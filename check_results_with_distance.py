@@ -14,26 +14,26 @@ if 'all' in exp_name:
     range1 = 3
 
 tested_len = [20]
-ref = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/ref.wat_sa-c_sa.test.txt'
-wat_ref = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/ref.c_sa-wat_sa.test.txt'
-double_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(range1)))
-half_double_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/half_double/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(range1)))
-single_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/mt_ae_single/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(range1)))
+ref = '/mnt/c/TransCoder/outputs/' + exp_name + '/double/eval/ref.wat_sa-c_sa.test.txt'
+wat_ref = '/mnt/c/TransCoder/outputs/' + exp_name + '/double/eval/ref.c_sa-wat_sa.test.txt'
+double_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/double/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(range1)))
+half_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/half/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(range1)))
+single_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/single/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(range1)))
 # baseline_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/baseline_only_transformer_parallel/eval/hyp0.wat_sa-c_sa.test_beam' +str(i) + '.txt', range(3)))
 
-valid = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/ref.wat_sa-c_sa.valid.txt'
-wat_valid = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/ref.c_sa-wat_sa.valid.txt'
-double_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/hyp0.wat_sa-c_sa.valid_beam' + str(i) + '.txt', range(range1)))
-single_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/mt_ae_single/eval/hyp0.wat_sa-c_sa.valid_beam' + str(i) + '.txt', range(range1)))
+valid = '/mnt/c/TransCoder/outputs/' + exp_name + '/double/eval/ref.wat_sa-c_sa.valid.txt'
+wat_valid = '/mnt/c/TransCoder/outputs/' + exp_name + '/double/eval/ref.c_sa-wat_sa.valid.txt'
+double_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/double/eval/hyp0.wat_sa-c_sa.valid_beam' + str(i) + '.txt', range(range1)))
+single_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/single/eval/hyp0.wat_sa-c_sa.valid_beam' + str(i) + '.txt', range(range1)))
 # baseline_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/baseline_only_transformer_parallel/eval/hyp0.wat_sa-c_sa.valid_beam' +str(i) + '.txt', range(3)))
 
 
 ref2 = '/mnt/c/TransCoder/outputs/' + exp_name + '/check/refs.txt'
 trans2 = '/mnt/c/TransCoder/outputs/' + exp_name + '/check/trans.txt'
 
-double_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/double_stage/eval/scores.csv'
-half_double_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/half_double/eval/scores.csv'
-single_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/mt_ae_single/eval/scores.csv'
+double_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/double/eval/scores.csv'
+half_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/half/eval/scores.csv'
+single_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/single/eval/scores.csv'
 
 output_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/'
 double_succ = output_path + 'double_succ.txt'
@@ -324,7 +324,7 @@ def create_graph(y, name, title, tick):
     plt.show()
 
 def print_ppl_acc_graphs():
-    print_num_ppls_accs([single_scores_path, half_double_scores_path, double_scores_path], 'three models')
+    print_num_ppls_accs([single_scores_path, half_scores_path, double_scores_path], 'three models')
 
     # print_ppls_accs(double_scores_path, 'double stage model')
     # print_ppls_accs(single_scores_path, 'single stage model')
@@ -404,7 +404,7 @@ def distance_check():
             return_lines(train_sta_path)))
     ref_lines, indices = return_lines(ref, train_lines=train_lines, filter_func=long_line)
     wat_lines = return_lines(wat_ref, indices=indices)
-    run_evaluation(ref_lines, indices, wat_lines, [double_translated_paths, single_translated_paths, half_double_translated_paths],train_lines)
+    run_evaluation(ref_lines, indices, wat_lines, [double_translated_paths, single_translated_paths, half_translated_paths],train_lines)
 
     run_valid = False
     if run_valid:
