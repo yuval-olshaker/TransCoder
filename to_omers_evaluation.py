@@ -19,7 +19,7 @@ def check_res():
     res_single_path = exp_dir + 'test0.success.5.csv'
     df_single = pd.read_csv(res_single_path)
     res_lines_single = list(filter(check_line, df_single['out'].values))
-    res_double_path = res_single_path.replace('single','half')
+    res_double_path = res_single_path.replace('single','double')
     df_double = pd.read_csv(res_double_path)
     res_lines_double = list(filter(check_line, df_double['out'].values))
 

@@ -370,27 +370,29 @@ def run_evaluation(ref_lines, indices, wat_lines, paths, train_lines):
 
     only_half = sorted(set(zeros_half).difference(set(zeros_single)))
     only_single = sorted(set(zeros_single).difference(set(zeros_half)))
+    only_double = sorted(set(zeros_double).difference(set(zeros_single)))
 
     print('only_half: zise - ' + str(len(only_half)) + ' list - ' + str(only_half))
     print('only_single: zise - ' + str(len(only_single)) + ' list - ' + str(only_single))
-    print()
+    print('only_double: zise - ' + str(len(only_double)) + ' list - ' + str(only_double))
 
     # prints and saves results
     check_succ(half_succ, only_half, ref_lines, wat_lines, single_translated_lines[0], single_translated_lines[1],
                single_translated_lines[2])
     check_succ(single_succ, only_single, ref_lines, wat_lines, half_translated_lines[0], half_translated_lines[1],
                half_translated_lines[2])
+    print_results(output_path, zeros_double, ref_lines, train_lines, 'double')
     print_results(output_path, zeros_half, ref_lines, train_lines, 'half')
     print_results(output_path, zeros_single, ref_lines, train_lines, 'single')
     # print_results(output_path, zeros_b, ref_lines, train_lines, 'baseline')
 
-    print()
+    print(zeros_double)
     print(zeros_half)
     print(zeros_single)
     # print(zeros_b)
 
-    print()
-    print('half model total: ' + str(sum(results_double)) + ' correct num: ' + str(len(zeros_double)))
+    print('double model total: ' + str(sum(results_double)) + ' correct num: ' + str(len(zeros_double)))
+    print('half model total: ' + str(sum(results_half)) + ' correct num: ' + str(len(zeros_half)))
     print('one model total: ' + str(sum(results_single)) + ' correct num: ' + str(len(zeros_single)))
     # print('base model total: ' + str(sum(results_base)) + ' correct num: ' + str(len(zeros_b)))
     print()
