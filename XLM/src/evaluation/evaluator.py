@@ -459,13 +459,12 @@ class EncDecEvaluator(Evaluator):
                 generated, len2, dec2 = decoder.generate(
                     enc1, len1, lang2_id, max_len=len_v)
                 generated = generated[:-1]
-                len2 = len2.unsqueeze(0)
-                len2[0][0] = len2[0][0] - 1
+                len2[0] = len2[0] - 1
 
                 print(x2.shape)
                 print(dec2.shape)
                 print(generated.shape)
-                print(len2[0][0])
+                print(len2[0])
                 print(langs2.shape)
 
                 sec_enc = encoder('fwd', x=generated, lengths=len2,
