@@ -461,6 +461,7 @@ class EncDecEvaluator(Evaluator):
                 print(x2.shape)
                 print(dec2.shape)
                 print(generated.shape)
+                print(len2)
                 sec_enc = encoder('fwd', x=generated, lengths=len2,
                                   langs=langs2, causal=False, use_emb=False, embedded_x=dec2)
                 sec_enc = sec_enc.transpose(0, 1)
