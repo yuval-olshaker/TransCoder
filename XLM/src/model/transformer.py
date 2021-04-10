@@ -522,7 +522,7 @@ class TransformerModel(nn.Module):
                 src_len=src_len[unfinished_mask],
                 use_cache=True
             )
-            t = tensor.copy()
+            t = tensor.detach().clone()
             assert tensor.size() == (1, unfinished_mask.sum().item(), self.dim), (cur_len,
                                                                                   global_max_len, src_enc.size(), tensor.size(), (1, bs, self.dim))
             tensor = tensor.data[-1, :, :].type_as(src_enc)  # (bs, dim)
