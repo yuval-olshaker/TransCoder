@@ -461,7 +461,6 @@ class EncDecEvaluator(Evaluator):
                 generated = generated[:-1]
                 print(len2)
                 print(len2.shape)
-                len2 = torch.cat(len2[0:-1])
 
                 print(x2.shape)
                 print(dec2.shape)
