@@ -461,14 +461,12 @@ class EncDecEvaluator(Evaluator):
                 generated = generated[:-1]
                 len2 = len2.unsqueeze(0)
                 print(len2)
-                print(len2.shape)
-                len2 = len2[:-1]
+                print(len2[0])
+                len2[0] = len2[0][:-1]
+                print(len2[0])
                 print(len2)
-                print(len2.shape)
-                len2 = len2.squeeze()
-                print(len2)
-                print(len2.shape)
-                exit(15)
+                exit(18)
+
                 print(x2.shape)
                 print(dec2.shape)
                 print(generated.shape)
