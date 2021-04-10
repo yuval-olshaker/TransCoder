@@ -462,6 +462,7 @@ class EncDecEvaluator(Evaluator):
                 len2 = len2.unsqueeze(0)
                 print(len2)
                 print(len2[0])
+                print(len2[0][0])
                 len2[0] = len2[0][:-1]
                 print(len2[0])
                 print(len2)
