@@ -455,20 +455,21 @@ class EncDecEvaluator(Evaluator):
 
             if do_double:
                 # decode target sentence - double - so we have another transformer and needs to be generated
-                len_v = (3 * len1 + 10).clamp(max=params.max_len)
-                generated, len_temp, dec2 = decoder.generate(
-                    enc1, len1, lang2_id, max_len=len_v)
-                generated = generated[:-1]
-                len_temp[0] = len_temp[0] - 1
+                if params.eval_only:
+                    len_v = (3 * len1 + 10).clamp(max=params.max_len)
+                    generated, len_temp, dec2 = decoder.generate(
+                        enc1, len1, lang2_id, max_len=len_v)
+                    generated = generated[:-1]
+                    len_temp[0] = len_temp[0] - 1
+                    sec_enc = encoder('fwd', x=generated, lengths=len_temp,
+                                      langs=None, causal=False, use_emb=False, embedded_x=dec2)
+                else:
+                    dec2 = decoder('fwd', x=x2, lengths=len2, langs=langs2,
+                                   causal=True, src_enc=enc1, src_len=len1)
+                    sec_enc = encoder('fwd', x=x2, lengths=len2,
+                                      langs=langs2, causal=False, use_emb=False, embedded_x=dec2)
+                    len_temp = len2
 
-                print(x2.shape)
-                print(dec2.shape)
-                print(generated.shape)
-                print(len2[0])
-                print(langs2.shape)
-
-                sec_enc = encoder('fwd', x=generated, lengths=len_temp,
-                                  langs=None, causal=False, use_emb=False, embedded_x=dec2)
                 sec_enc = sec_enc.transpose(0, 1)
                 sec_enc = sec_enc.half() if params.fp16 else sec_enc
                 # decode target sentence
@@ -476,9 +477,7 @@ class EncDecEvaluator(Evaluator):
                                   causal=True, src_enc=sec_enc, src_len=len_temp)
 
                 dec2 = sec_dec
-                # print(dec2.shape)
-                # print('okakakaka')
-                # exit(19)
+
             else:
                 # decode target sentence - regular
                 dec2 = decoder('fwd', x=x2, lengths=len2, langs=langs2,
@@ -498,7 +497,7 @@ class EncDecEvaluator(Evaluator):
                              ',' + str((word_scores.max(1)[1] == y).sum().item()) + '\n')
 
             # generate translation - translate / convert to text
-            if (eval_bleu or eval_computation) and data_set in datasets_for_bleu:
+            if params.eval_only and (eval_bleu or eval_computation) and data_set in datasets_for_bleu:
                 len_v = (3 * len1 + 10).clamp(max=params.max_len)
                 if params.beam_size == 1:
                     if params.number_samples > 1:
@@ -538,11 +537,12 @@ class EncDecEvaluator(Evaluator):
                 hypothesis.extend(convert_to_text(
                     generated, lengths, self.dico, params, generate_several_reps=True))
 
-        scores_name = 'scores.csv'
-        scores_path = os.path.join(params.hyp_path, scores_name)
-        with open(scores_path, 'w') as scores_csv:
-            scores_csv.write('n_words,xe_loss,n_valid\n')
-            scores_csv.writelines(score_list)
+        if params.eval_only:
+            scores_name = 'scores.csv'
+            scores_path = os.path.join(params.hyp_path, scores_name)
+            with open(scores_path, 'w') as scores_csv:
+                scores_csv.write('n_words,xe_loss,n_valid\n')
+                scores_csv.writelines(score_list)
 
         # compute perplexity and prediction accuracy
         scores['%s_%s-%s_mt_ppl' %
@@ -551,7 +551,7 @@ class EncDecEvaluator(Evaluator):
                (data_set, lang1, lang2)] = 100. * n_valid / n_words
 
         # write hypotheses
-        if (eval_bleu or eval_computation) and data_set in datasets_for_bleu:
+        if params.eval_only and (eval_bleu or eval_computation) and data_set in datasets_for_bleu:
             logger.info('i am in')
             # hypothesis / reference paths
             hyp_paths = []
@@ -577,7 +577,7 @@ class EncDecEvaluator(Evaluator):
                 restore_segmentation(hyp_path)
 
         # check how many functions compiles + return same output as GT
-        if eval_computation and data_set in datasets_for_bleu:
+        if params.eval_only and eval_computation and data_set in datasets_for_bleu:
             func_run_stats, func_run_out = eval_function_output(ref_path, hyp_paths,
                                                                 params.id_paths[(
                                                                     lang1, lang2, data_set)],
@@ -614,7 +614,7 @@ class EncDecEvaluator(Evaluator):
                 Path(out_path).unlink()
 
         # compute BLEU score
-        if eval_bleu and data_set in datasets_for_bleu:
+        if params.eval_only and eval_bleu and data_set in datasets_for_bleu:
             # evaluate BLEU score
             bleu = eval_moses_bleu(ref_path, hyp_paths[0])
             logger.info("BLEU %s %s : %f" % (hyp_paths[0], ref_path, bleu))
