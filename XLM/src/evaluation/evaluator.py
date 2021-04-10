@@ -461,11 +461,11 @@ class EncDecEvaluator(Evaluator):
                 generated = generated[:-1]
                 len2[0] = len2[0] - 1
 
-                print(x2.shape)
-                print(dec2.shape)
-                print(generated.shape)
-                print(len2[0])
-                print(langs2.shape)
+                # print(x2.shape)
+                # print(dec2.shape)
+                # print(generated.shape)
+                # print(len2[0])
+                # print(langs2.shape)
 
                 sec_enc = encoder('fwd', x=generated, lengths=len2,
                                   langs=None, causal=False, use_emb=False, embedded_x=dec2)
@@ -476,9 +476,9 @@ class EncDecEvaluator(Evaluator):
                                   causal=True, src_enc=sec_enc, src_len=len2)
 
                 dec2 = sec_dec
-                print(dec2.shape)
-                print('okakakaka')
-                exit(19)
+                # print(dec2.shape)
+                # print('okakakaka')
+                # exit(19)
             else:
                 # decode target sentence - regular
                 dec2 = decoder('fwd', x=x2, lengths=len2, langs=langs2,
