@@ -459,9 +459,16 @@ class EncDecEvaluator(Evaluator):
                 generated, len2, dec2 = decoder.generate(
                     enc1, len1, lang2_id, max_len=len_v)
                 generated = generated[:-1]
+                len2 = len2.unsqueeze(0)
                 print(len2)
                 print(len2.shape)
-
+                len2 = len2[:-1]
+                print(len2)
+                print(len2.shape)
+                len2 = len2.squeeze()
+                print(len2)
+                print(len2.shape)
+                exit(15)
                 print(x2.shape)
                 print(dec2.shape)
                 print(generated.shape)
