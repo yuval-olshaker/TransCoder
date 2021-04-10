@@ -456,6 +456,8 @@ class EncDecEvaluator(Evaluator):
             if do_double:
                 # decode target sentence - double - so we have another transformer and needs to be generated
                 len_v = (3 * len1 + 10).clamp(max=params.max_len)
+                print(x2.shape)
+                print(dec2.shape)
                 dec2, len2 = decoder.generate(
                     enc1, len1, lang2_id, max_len=len_v)
                 sec_enc = encoder('fwd', x=x2, lengths=len2,
