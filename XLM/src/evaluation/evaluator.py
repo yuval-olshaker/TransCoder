@@ -461,11 +461,11 @@ class EncDecEvaluator(Evaluator):
                 generated = generated[:-1]
                 len_temp[0] = len_temp[0] - 1
 
-                # print(x2.shape)
-                # print(dec2.shape)
-                # print(generated.shape)
-                # print(len2[0])
-                # print(langs2.shape)
+                print(x2.shape)
+                print(dec2.shape)
+                print(generated.shape)
+                print(len2[0])
+                print(langs2.shape)
 
                 sec_enc = encoder('fwd', x=generated, lengths=len_temp,
                                   langs=None, causal=False, use_emb=False, embedded_x=dec2)
