@@ -464,7 +464,7 @@ class EncDecEvaluator(Evaluator):
                 print(len2)
                 print(langs2.shape)
                 sec_enc = encoder('fwd', x=generated, lengths=len2,
-                                  langs=langs2, causal=False, use_emb=False, embedded_x=dec2)
+                                  langs=None, causal=False, use_emb=False, embedded_x=dec2)
                 sec_enc = sec_enc.transpose(0, 1)
                 sec_enc = sec_enc.half() if params.fp16 else sec_enc
                 # decode target sentence
