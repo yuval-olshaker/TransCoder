@@ -458,11 +458,15 @@ class EncDecEvaluator(Evaluator):
                 len_v = (3 * len1 + 10).clamp(max=params.max_len)
                 generated, len2, dec2 = decoder.generate(
                     enc1, len1, lang2_id, max_len=len_v)
+                generated = generated[:-1]
+                len2 = len2[:-1]
+
                 print(x2.shape)
                 print(dec2.shape)
                 print(generated.shape)
                 print(len2)
                 print(langs2.shape)
+
                 sec_enc = encoder('fwd', x=generated, lengths=len2,
                                   langs=None, causal=False, use_emb=False, embedded_x=dec2)
                 sec_enc = sec_enc.transpose(0, 1)
