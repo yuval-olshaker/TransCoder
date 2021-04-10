@@ -459,7 +459,8 @@ class EncDecEvaluator(Evaluator):
                 generated, len2, dec2 = decoder.generate(
                     enc1, len1, lang2_id, max_len=len_v)
                 generated = generated[:-1]
-                len2 = len2[:-1]
+                print(len2)
+                len2 = torch.cat(len2[0:-1])
 
                 print(x2.shape)
                 print(dec2.shape)
