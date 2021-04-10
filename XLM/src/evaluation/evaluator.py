@@ -458,7 +458,7 @@ class EncDecEvaluator(Evaluator):
                 if params.eval_only:
                     len_v = (3 * len1 + 10).clamp(max=params.max_len)
                     generated, len_temp, dec2 = decoder.generate(
-                        enc1, len1, lang2_id, max_len=len_v)
+                        enc1, len1, lang2_id, max_len=len_v, concat=True)
                     generated = generated[:-1]
                     len_temp[0] = len_temp[0] - 1
                     sec_enc = encoder('fwd', x=generated, lengths=len_temp,

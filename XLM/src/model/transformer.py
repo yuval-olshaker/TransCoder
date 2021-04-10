@@ -445,7 +445,7 @@ class TransformerModel(nn.Module):
         scores, loss = self.pred_layer(masked_tensor, y, get_scores)
         return scores, loss
 
-    def generate(self, src_enc, src_len, tgt_lang_id, max_len=200, sample_temperature=None):
+    def generate(self, src_enc, src_len, tgt_lang_id, max_len=200, sample_temperature=None, concat=False):
         """
         Decode a sentence given initial start.
         `x`:
@@ -558,8 +558,10 @@ class TransformerModel(nn.Module):
 
         # sanity check
         assert (generated == self.eos_index).sum() == 2 * bs
-
-        result = torch.cat(t, dim=1)
+        if concat:
+            result = torch.cat(t, dim=0)
+        else:
+            result = []
         return generated[:cur_len], gen_len, result
 
     def generate_beam(self, src_enc, src_len, tgt_lang_id, beam_size, length_penalty, early_stopping, max_len=200):
