@@ -452,13 +452,14 @@ class EncDecEvaluator(Evaluator):
             if max(len2) > 1024:
                 print('remove one long sentence')
                 continue
-            # decode target sentence
-            dec2 = decoder('fwd', x=x2, lengths=len2, langs=langs2,
-                           causal=True, src_enc=enc1, src_len=len1)
+
             if do_double:
-                # encode source sentence
+                # decode target sentence - double - so we have another transformer and needs to be generated
+                len_v = (3 * len1 + 10).clamp(max=params.max_len)
+                dec2, len2 = decoder.generate(
+                    enc1, len1, lang2_id, max_len=len_v)
                 sec_enc = encoder('fwd', x=x2, lengths=len2,
-                                          langs=langs2, causal=False, use_emb=False, embedded_x=dec2)
+                                  langs=langs2, causal=False, use_emb=False, embedded_x=dec2)
                 sec_enc = sec_enc.transpose(0, 1)
                 sec_enc = sec_enc.half() if params.fp16 else sec_enc
                 # decode target sentence
@@ -466,6 +467,11 @@ class EncDecEvaluator(Evaluator):
                                   causal=True, src_enc=sec_enc, src_len=len2)
 
                 dec2 = sec_dec
+            else:
+                # decode target sentence - regular
+                dec2 = decoder('fwd', x=x2, lengths=len2, langs=langs2,
+                           causal=True, src_enc=enc1, src_len=len1)
+
 
             # loss
             word_scores, loss = decoder(
