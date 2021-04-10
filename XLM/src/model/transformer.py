@@ -497,6 +497,9 @@ class TransformerModel(nn.Module):
         # cache compute states
         self.cache = {'slen': 0}
         previous_unfinished_mask = unfinished_sents.ne(0)
+
+        t = []
+
         while cur_len < global_max_len:
             # compute word scores
             unfinished_mask = unfinished_sents.ne(0)
@@ -522,9 +525,7 @@ class TransformerModel(nn.Module):
                 src_len=src_len[unfinished_mask],
                 use_cache=True
             )
-            print('jj')
-            print(tensor.shape)
-            t = tensor.detach().clone()
+            t.append(tensor.detach().clone())
             assert tensor.size() == (1, unfinished_mask.sum().item(), self.dim), (cur_len,
                                                                                   global_max_len, src_enc.size(), tensor.size(), (1, bs, self.dim))
             tensor = tensor.data[-1, :, :].type_as(src_enc)  # (bs, dim)
@@ -558,7 +559,8 @@ class TransformerModel(nn.Module):
         # sanity check
         assert (generated == self.eos_index).sum() == 2 * bs
 
-        return generated[:cur_len], gen_len, t
+        result = torch.cat(t, dim=0)
+        return generated[:cur_len], gen_len, result
 
     def generate_beam(self, src_enc, src_len, tgt_lang_id, beam_size, length_penalty, early_stopping, max_len=200):
         """

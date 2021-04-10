@@ -456,11 +456,12 @@ class EncDecEvaluator(Evaluator):
             if do_double:
                 # decode target sentence - double - so we have another transformer and needs to be generated
                 len_v = (3 * len1 + 10).clamp(max=params.max_len)
-                bla, len2, dec2 = decoder.generate(
+                generated, len2, dec2 = decoder.generate(
                     enc1, len1, lang2_id, max_len=len_v)
                 print(x2.shape)
                 print(dec2.shape)
-                sec_enc = encoder('fwd', x=x2, lengths=len2,
+                print(generated.shape)
+                sec_enc = encoder('fwd', x=generated, lengths=len2,
                                   langs=langs2, causal=False, use_emb=False, embedded_x=dec2)
                 sec_enc = sec_enc.transpose(0, 1)
                 sec_enc = sec_enc.half() if params.fp16 else sec_enc
@@ -469,12 +470,13 @@ class EncDecEvaluator(Evaluator):
                                   causal=True, src_enc=sec_enc, src_len=len2)
 
                 dec2 = sec_dec
+                print(dec2.shape)
+                print('okakakaka')
+                exit(19)
             else:
                 # decode target sentence - regular
                 dec2 = decoder('fwd', x=x2, lengths=len2, langs=langs2,
                            causal=True, src_enc=enc1, src_len=len1)
-                print(dec2.shape)
-                exit(0)
 
             # loss
             word_scores, loss = decoder(
