@@ -555,7 +555,7 @@ class TransformerModel(nn.Module):
         # sanity check
         assert (generated == self.eos_index).sum() == 2 * bs
 
-        return generated[:cur_len], gen_len
+        return generated[:cur_len], gen_len, tensor
 
     def generate_beam(self, src_enc, src_len, tgt_lang_id, beam_size, length_penalty, early_stopping, max_len=200):
         """
