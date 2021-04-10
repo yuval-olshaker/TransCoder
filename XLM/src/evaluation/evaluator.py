@@ -473,7 +473,8 @@ class EncDecEvaluator(Evaluator):
                 # decode target sentence - regular
                 dec2 = decoder('fwd', x=x2, lengths=len2, langs=langs2,
                            causal=True, src_enc=enc1, src_len=len1)
-
+                print(dec2.shape)
+                exit(0)
 
             # loss
             word_scores, loss = decoder(
