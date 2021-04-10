@@ -522,6 +522,7 @@ class TransformerModel(nn.Module):
                 src_len=src_len[unfinished_mask],
                 use_cache=True
             )
+            t = tensor.copy()
             assert tensor.size() == (1, unfinished_mask.sum().item(), self.dim), (cur_len,
                                                                                   global_max_len, src_enc.size(), tensor.size(), (1, bs, self.dim))
             tensor = tensor.data[-1, :, :].type_as(src_enc)  # (bs, dim)
@@ -555,7 +556,7 @@ class TransformerModel(nn.Module):
         # sanity check
         assert (generated == self.eos_index).sum() == 2 * bs
 
-        return generated[:cur_len], gen_len, tensor
+        return generated[:cur_len], gen_len, t
 
     def generate_beam(self, src_enc, src_len, tgt_lang_id, beam_size, length_penalty, early_stopping, max_len=200):
         """
