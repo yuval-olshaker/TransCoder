@@ -559,9 +559,7 @@ class TransformerModel(nn.Module):
         # sanity check
         assert (generated == self.eos_index).sum() == 2 * bs
 
-        for i in t:
-            print(i.shape)
-        result = torch.cat(t, dim=0)
+        result = torch.cat(t, dim=1)
         return generated[:cur_len], gen_len, result
 
     def generate_beam(self, src_enc, src_len, tgt_lang_id, beam_size, length_penalty, early_stopping, max_len=200):
