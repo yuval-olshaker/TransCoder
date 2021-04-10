@@ -559,6 +559,8 @@ class TransformerModel(nn.Module):
         # sanity check
         assert (generated == self.eos_index).sum() == 2 * bs
 
+        for i in t:
+            print(i.shape)
         result = torch.cat(t, dim=0)
         return generated[:cur_len], gen_len, result
 
