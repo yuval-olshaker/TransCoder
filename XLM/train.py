@@ -230,6 +230,8 @@ def get_parser():
 
     parser.add_argument("--do_double", type=bool_flag, default=False,
                         help="Use the double transformer concept")
+    parser.add_argument("--do_separated_double", type=bool_flag, default=False,
+                        help="Use the double transformer concept with separated encoder and decoder")
 
     return parser
 
