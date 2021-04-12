@@ -409,9 +409,8 @@ class EncDecEvaluator(Evaluator):
         lang2_id = params.lang2id[lang2]
 
         self.eval_mode()
-        encoder = self.encoder[0].module if params.multi_gpu else self.encoder[0]
-        decoder = self.decoder[lang2_id] if params.separate_decoders else self.decoder[0]
-        decoder = decoder.module if params.multi_gpu else decoder
+        encoder = self.encoder[0]
+        decoder = self.decoder[0]
 
         n_words = 0
         xe_loss = 0
@@ -454,6 +453,10 @@ class EncDecEvaluator(Evaluator):
                 continue
 
             if do_double:
+                num = 1 if params.do_separated_double else 0
+
+                encoder2 = self.encoder[num]
+                decoder2 = self.decoder[num]
                 # decode target sentence - double - so we have another transformer and needs to be generated
                 if params.eval_only:
                     len_v = (3 * len1 + 10).clamp(max=params.max_len)
@@ -461,31 +464,32 @@ class EncDecEvaluator(Evaluator):
                         enc1, len1, lang2_id, max_len=len_v, concat=True)
                     generated = generated[:-1]
                     len_temp[0] = len_temp[0] - 1
-                    sec_enc = encoder('fwd', x=generated, lengths=len_temp,
+                    sec_enc = encoder2('fwd', x=generated, lengths=len_temp,
                                       langs=None, causal=False, use_emb=False, embedded_x=dec2)
                 else:
                     dec2 = decoder('fwd', x=x2, lengths=len2, langs=langs2,
                                    causal=True, src_enc=enc1, src_len=len1)
-                    sec_enc = encoder('fwd', x=x2, lengths=len2,
+                    sec_enc = encoder2('fwd', x=x2, lengths=len2,
                                       langs=langs2, causal=False, use_emb=False, embedded_x=dec2)
                     len_temp = len2
 
                 sec_enc = sec_enc.transpose(0, 1)
                 sec_enc = sec_enc.half() if params.fp16 else sec_enc
                 # decode target sentence
-                sec_dec = decoder('fwd', x=x2, lengths=len2, langs=langs2,
+                sec_dec = decoder2('fwd', x=x2, lengths=len2, langs=langs2,
                                   causal=True, src_enc=sec_enc, src_len=len_temp)
 
                 dec2 = sec_dec
-
+                word_scores, loss = decoder2(
+                    'predict', tensor=dec2, pred_mask=pred_mask, y=y, get_scores=True)
             else:
                 # decode target sentence - regular
                 dec2 = decoder('fwd', x=x2, lengths=len2, langs=langs2,
                            causal=True, src_enc=enc1, src_len=len1)
 
-            # loss
-            word_scores, loss = decoder(
-                'predict', tensor=dec2, pred_mask=pred_mask, y=y, get_scores=True)
+                # loss
+                word_scores, loss = decoder(
+                    'predict', tensor=dec2, pred_mask=pred_mask, y=y, get_scores=True)
 
             # update stats
             n_words += y.size(0)

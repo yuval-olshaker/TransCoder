@@ -839,9 +839,13 @@ class EncDecTrainer(Trainer):
         lang1_id = params.lang2id[lang1]
         lang2_id = params.lang2id[lang2]
 
-        decoder = self.decoder[lang2_id] if params.separate_decoders else self.decoder[0]
+        decoder = self.decoder[0]
+        encoder = self.encoder[0]
         # generate batch
         if lang1 == lang2:
+            if params.do_separated_double:
+                decoder = self.decoder[1]
+                encoder = self.encoder[1]
             (x1, len1) = self.get_batch('ae', lang1)
             (x2, len2) = (x1, len1)
             (x1, len1) = self.add_noise(x1, len1)
@@ -862,7 +866,7 @@ class EncDecTrainer(Trainer):
             x1, len1, langs1, x2, len2, langs2, y)
 
         # encode source sentence
-        enc1 = self.encoder[0]('fwd', x=x1, lengths=len1,
+        enc1 = encoder('fwd', x=x1, lengths=len1,
                                langs=langs1, causal=False)
         enc1 = enc1.transpose(0, 1)
 
@@ -873,8 +877,11 @@ class EncDecTrainer(Trainer):
         _, loss = decoder('predict', tensor=dec2,
                           pred_mask=pred_mask, y=y, get_scores=False)
         if do_double:
-            # encode source sentence
-            sec_enc = self.encoder[0]('fwd', x=x2, lengths=len2,
+            if params.do_separated_double:
+                decoder = self.decoder[1]
+                encoder = self.encoder[1]
+            # encode source sentence - second encoder
+            sec_enc = encoder('fwd', x=x2, lengths=len2,
                                    langs=langs2, causal=False, use_emb=False, embedded_x=dec2)
             sec_enc = sec_enc.transpose(0, 1)
 

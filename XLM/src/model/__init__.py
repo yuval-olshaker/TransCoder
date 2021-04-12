@@ -144,14 +144,16 @@ def build_model(params, dico):
     else:
         # build
         # TODO: only output when necessary - len(params.clm_steps + params.mlm_steps) > 0
-        encoder = TransformerModel(
-            params, dico, is_encoder=True, with_output=True)
+        encoders = [TransformerModel(
+            params, dico, is_encoder=True, with_output=True), TransformerModel(
+            params, dico, is_encoder=True, with_output=True)]
 
         if params.separate_decoders:
             decoders = [TransformerModel(
                 params, dico, is_encoder=False, with_output=True) for _ in params.lang2id.values()]
         else:
             decoders = [TransformerModel(
+                params, dico, is_encoder=False, with_output=True), TransformerModel(
                 params, dico, is_encoder=False, with_output=True)]
 
         for layer in range(params.n_layers_decoder):
@@ -165,7 +167,7 @@ def build_model(params, dico):
         # reload pretrained word embeddings
         if params.reload_emb != '':
             word2id, embeddings = load_embeddings(params.reload_emb, params)
-            set_pretrain_emb(encoder, dico, word2id, embeddings)
+            set_pretrain_emb(encoders, dico, word2id, embeddings)
             set_pretrain_emb(decoders, dico, word2id, embeddings)
 
         # reload a pretrained model
@@ -175,32 +177,33 @@ def build_model(params, dico):
 
             # reload encoder
             if enc_path != '':
-                logger.info("Reloading encoder from %s ..." % enc_path)
-                enc_reload = torch.load(enc_path, map_location=torch.device('cpu'))
-                enc_reload = enc_reload['model' if 'model' in enc_reload else 'encoder']
-                if all([k.startswith('module.') for k in enc_reload.keys()]):
-                    enc_reload = {k[len('module.'):]: v for k,
-                                  v in enc_reload.items()}
+                for enc in encoders:
+                    logger.info("Reloading encoder from %s ..." % enc_path)
+                    enc_reload = torch.load(enc_path, map_location=torch.device('cpu'))
+                    enc_reload = enc_reload['model' if 'model' in enc_reload else 'encoder']
+                    if all([k.startswith('module.') for k in enc_reload.keys()]):
+                        enc_reload = {k[len('module.'):]: v for k,
+                                      v in enc_reload.items()}
 
-                # # HACK to reload models trained with less languages
-                n_langs = len(params.langs)
-                n_langs_reload = enc_reload['lang_embeddings.weight'].size()[0]
-                assert n_langs == n_langs_reload or n_langs == 2 * \
-                    n_langs_reload or n_langs == 2 * n_langs_reload + 1
-                if n_langs == 2 * n_langs_reload:
-                    enc_reload['lang_embeddings.weight'] = enc_reload['lang_embeddings.weight'].transpose(
-                        0, 1).repeat_interleave(2, 1).transpose(0, 1)
-                elif n_langs == 2 * n_langs_reload + 1:
-                    enc_reload['lang_embeddings.weight'] = enc_reload['lang_embeddings.weight'].transpose(
-                        0, 1).repeat_interleave(2, 1).transpose(0, 1)
-                    enc_reload['lang_embeddings.weight'] = torch.cat(
-                        [enc_reload['lang_embeddings.weight'][0, :].unsqueeze(dim=0), enc_reload['lang_embeddings.weight']])
+                    # # HACK to reload models trained with less languages
+                    n_langs = len(params.langs)
+                    n_langs_reload = enc_reload['lang_embeddings.weight'].size()[0]
+                    assert n_langs == n_langs_reload or n_langs == 2 * \
+                        n_langs_reload or n_langs == 2 * n_langs_reload + 1
+                    if n_langs == 2 * n_langs_reload:
+                        enc_reload['lang_embeddings.weight'] = enc_reload['lang_embeddings.weight'].transpose(
+                            0, 1).repeat_interleave(2, 1).transpose(0, 1)
+                    elif n_langs == 2 * n_langs_reload + 1:
+                        enc_reload['lang_embeddings.weight'] = enc_reload['lang_embeddings.weight'].transpose(
+                            0, 1).repeat_interleave(2, 1).transpose(0, 1)
+                        enc_reload['lang_embeddings.weight'] = torch.cat(
+                            [enc_reload['lang_embeddings.weight'][0, :].unsqueeze(dim=0), enc_reload['lang_embeddings.weight']])
 
-                if encoder.position_embeddings.weight.size()[0] == 2 * enc_reload['position_embeddings.weight'].size()[0]:
-                    enc_reload['position_embeddings.weight'] = enc_reload['position_embeddings.weight'].repeat(
-                        2, 1)
+                    if enc.position_embeddings.weight.size()[0] == 2 * enc_reload['position_embeddings.weight'].size()[0]:
+                        enc_reload['position_embeddings.weight'] = enc_reload['position_embeddings.weight'].repeat(
+                            2, 1)
 
-                encoder.load_state_dict(enc_reload)
+                    enc.load_state_dict(enc_reload)
 
             # reload decoders
             if dec_path != '':
@@ -239,12 +242,12 @@ def build_model(params, dico):
                                     name % i]
                     dec.load_state_dict(dec_reload)
 
-        logger.debug("Encoder: {}".format(encoder))
+        logger.debug("Encoders: {}".format(encoders))
         logger.debug("Decoder: {}".format(decoders))
-        logger.info("Number of parameters (encoder): %i" % sum(
-            [p.numel() for p in encoder.parameters() if p.requires_grad]))
+        logger.info("Number of parameters (encoders): %i" % sum(
+            [p.numel() for p in encoders[0].parameters() if p.requires_grad]))
         logger.info("Number of parameters (decoders): %i" % sum(
             [p.numel() for p in decoders[0].parameters() if p.requires_grad]))
         logger.info(f"Number of decoders: {len(decoders)}")
 
-        return [encoder], [dec for dec in decoders]
+        return [enc for enc in encoders], [dec for dec in decoders]
