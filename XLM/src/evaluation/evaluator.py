@@ -227,7 +227,7 @@ class Evaluator(object):
                     eval_bleu = params.eval_bleu and params.is_master and 'cl' not in lang1
                     eval_computation = params.eval_computation and params.is_master and 'cl' not in lang1
                     self.evaluate_mt(scores, data_set, lang1,
-                                     lang2, eval_bleu, eval_computation, do_double)
+                                     lang2, eval_bleu, eval_computation)
 
                 # report average metrics per language
                 _clm_mono = [l1 for (l1, l2) in params.clm_steps if l2 is None]
@@ -395,7 +395,7 @@ class EncDecEvaluator(Evaluator):
         self.encoder = trainer.encoder
         self.decoder = trainer.decoder
 
-    def evaluate_mt(self, scores, data_set, lang1, lang2, eval_bleu, eval_computation, do_double=False):
+    def evaluate_mt(self, scores, data_set, lang1, lang2, eval_bleu, eval_computation):
         """
         Evaluate perplexity and next word prediction accuracy.
         """
@@ -452,7 +452,7 @@ class EncDecEvaluator(Evaluator):
                 print('remove one long sentence')
                 continue
 
-            if do_double:
+            if params.do_double_eval:
                 num = 1 if params.do_separated_double else 0
 
                 encoder2 = self.encoder[num]
