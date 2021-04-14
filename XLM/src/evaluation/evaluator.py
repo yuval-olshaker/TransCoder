@@ -524,7 +524,7 @@ class EncDecEvaluator(Evaluator):
 
                 else:
                     assert params.number_samples == 1
-                    if do_double:
+                    if params.do_double_eval:
                         generated, lengths = decoder.generate_beam(
                             sec_enc, len2, lang2_id, beam_size=params.beam_size,
                             length_penalty=params.length_penalty,
