@@ -153,8 +153,10 @@ def build_model(params, dico):
                 params, dico, is_encoder=False, with_output=True)]
         else:
             encoders = [TransformerModel(
+                params, dico, is_encoder=True, with_output=True), TransformerModel(
                 params, dico, is_encoder=True, with_output=True)]
             decoders = [TransformerModel(
+                params, dico, is_encoder=False, with_output=True), TransformerModel(
                 params, dico, is_encoder=False, with_output=True)]
 
         if params.separate_decoders:
