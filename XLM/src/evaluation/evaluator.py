@@ -499,8 +499,8 @@ class EncDecEvaluator(Evaluator):
 
             if params.eval_only:
                 logger.info('iter num ' + str(i))
-                print(str(np.exp(loss.item() * len(y) / y.size(0))))
-                print(str(100. * (word_scores.max(1)[1] == y).sum().item() / y.size(0)))
+                logger.info((str(np.exp(loss.item() * len(y) / y.size(0)))))
+                logger.info((str(100. * (word_scores.max(1)[1] == y).sum().item() / y.size(0))))
                 score_list.append(str(y.size(0)) + ',' + str(loss.item() * len(y)) +
                                  ',' + str((word_scores.max(1)[1] == y).sum().item()) + '\n')
 
