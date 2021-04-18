@@ -144,17 +144,23 @@ def build_model(params, dico):
     else:
         # build
         # TODO: only output when necessary - len(params.clm_steps + params.mlm_steps) > 0
-        encoders = [TransformerModel(
-            params, dico, is_encoder=True, with_output=True), TransformerModel(
-            params, dico, is_encoder=True, with_output=True)]
+        if params.do_separated_double:
+            encoders = [TransformerModel(
+                params, dico, is_encoder=True, with_output=True), TransformerModel(
+                params, dico, is_encoder=True, with_output=True)]
+            decoders = [TransformerModel(
+                params, dico, is_encoder=False, with_output=True), TransformerModel(
+                params, dico, is_encoder=False, with_output=True)]
+        else:
+            encoders = [TransformerModel(
+                params, dico, is_encoder=True, with_output=True)]
+            decoders = [TransformerModel(
+                params, dico, is_encoder=False, with_output=True)]
 
         if params.separate_decoders:
             decoders = [TransformerModel(
                 params, dico, is_encoder=False, with_output=True) for _ in params.lang2id.values()]
-        else:
-            decoders = [TransformerModel(
-                params, dico, is_encoder=False, with_output=True), TransformerModel(
-                params, dico, is_encoder=False, with_output=True)]
+
 
         for layer in range(params.n_layers_decoder):
             if layer <= params.n_share_dec - 1:
