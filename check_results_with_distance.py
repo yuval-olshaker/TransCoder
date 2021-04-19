@@ -7,25 +7,28 @@ import matplotlib.pyplot as plt
 
 colors = ['green', 'blue', 'red', 'orange'] # one, half, double, baseline
 max_length = 245
+jumps = 3
 min_length = 0
-exp_name = 'c-wat-full' # 'c-wat-all' 'c-wat-full'
+exp_name = 'c-wat' # 'c-wat-all' 'c-wat-full'
 range1 = 3
 if 'all' in exp_name:
     range1 = 3
+if 'x86' in  exp_name:
+    range1 = 5
 
-tested_len = [20]
+tested_len = [0]
 ref = '/mnt/c/TransCoder/outputs/' + exp_name + '/double/eval/ref.wat_sa-c_sa.test.txt'
 wat_ref = '/mnt/c/TransCoder/outputs/' + exp_name + '/double/eval/ref.c_sa-wat_sa.test.txt'
 double_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/double/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(range1)))
 half_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/half/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(range1)))
 single_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/single/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(range1)))
-# baseline_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/baseline_only_transformer_parallel/eval/hyp0.wat_sa-c_sa.test_beam' +str(i) + '.txt', range(3)))
+baseline_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/baseline/eval/hyp0.wat_sa-c_sa.test_beam' +str(i) + '.txt', range(3)))
 
 valid = '/mnt/c/TransCoder/outputs/' + exp_name + '/double/eval/ref.wat_sa-c_sa.valid.txt'
 wat_valid = '/mnt/c/TransCoder/outputs/' + exp_name + '/double/eval/ref.c_sa-wat_sa.valid.txt'
 double_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/double/eval/hyp0.wat_sa-c_sa.valid_beam' + str(i) + '.txt', range(range1)))
 single_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/single/eval/hyp0.wat_sa-c_sa.valid_beam' + str(i) + '.txt', range(range1)))
-# baseline_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/baseline_only_transformer_parallel/eval/hyp0.wat_sa-c_sa.valid_beam' +str(i) + '.txt', range(3)))
+baseline_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/baseline/eval/hyp0.wat_sa-c_sa.valid_beam' +str(i) + '.txt', range(3)))
 
 
 ref2 = '/mnt/c/TransCoder/outputs/' + exp_name + '/check/refs.txt'
@@ -34,6 +37,7 @@ trans2 = '/mnt/c/TransCoder/outputs/' + exp_name + '/check/trans.txt'
 double_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/double/eval/scores.csv'
 half_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/half/eval/scores.csv'
 single_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/single/eval/scores.csv'
+baseline_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/baseline/eval/scores.csv'
 
 output_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/'
 double_succ = output_path + 'double_succ.txt'
@@ -44,9 +48,9 @@ train_sta_path = output_path + 'train.tok'
 
 def distance(or_line, tested_line):
     dist = Levenshtein.distance(or_line, tested_line)
-    if dist != 0:
-        if complex_check.complex_check(or_line, tested_line):
-            return 0
+    # if dist != 0:
+    #     if complex_check.complex_check(or_line, tested_line):
+    #         return 0
     return dist
 
 def list_in_indices(l, indices):
@@ -186,7 +190,7 @@ def print_num_ppls_accs(paths, title_beg):
     for i, path in enumerate(paths):
         ppls.append([])
         accs.append([])
-        for j in range(min_length, max_length, 5):
+        for j in range(min_length, max_length, jumps):
             tested_len[0] = j
             _, indices = return_lines(ref, filter_func=long_line)
             ppl, acc = get_acc_ppl_res(path, indices)
@@ -201,7 +205,7 @@ def print_num_ppls_accs(paths, title_beg):
 def print_2_ppls_accs(path1, path2, title_beg):
     ppls1 = []
     accs1 = []
-    for i in range(min_length, max_length, 5):
+    for i in range(min_length, max_length, jumps):
         tested_len[0] = i
         _, indices = return_lines(ref, filter_func=long_line)
         ppl, acc = get_acc_ppl_res(path1, indices)
@@ -210,7 +214,7 @@ def print_2_ppls_accs(path1, path2, title_beg):
 
     ppls2 = []
     accs2 = []
-    for i in range(min_length, max_length, 5):
+    for i in range(min_length, max_length, jumps):
         tested_len[0] = i
         _, indices = return_lines(ref, filter_func=long_line)
         ppl, acc = get_acc_ppl_res(path2, indices)
@@ -225,7 +229,7 @@ def print_2_ppls_accs(path1, path2, title_beg):
 def print_ppls_accs(path, title_beg):
     ppls = []
     accs = []
-    for i in range(min_length, max_length, 5):
+    for i in range(min_length, max_length, jumps):
         tested_len[0] = i
         _, indices = return_lines(ref, filter_func=long_line)
         ppl, acc = get_acc_ppl_res(path, indices)
@@ -246,7 +250,7 @@ def save_pic(save_name):
     plt.savefig('/mnt/c/TransCoder/outputs/' + exp_name + '/' + save_name)
 
 def create_num_graphs(ys, name, title, tick):
-    x = list(range(min_length, max_length, 5))
+    x = list(range(min_length, max_length, jumps))
 
     for i, y in enumerate(ys):
         plt.scatter(x, y, label="stars", color=colors[i],
@@ -269,14 +273,14 @@ def create_num_graphs(ys, name, title, tick):
 
     y = []
     for i in range(len(ys[0])):
-        y.append(ys[2][i] - ys[0][i]) # ys[2] - double. ys[1] - half. ys[0] - single.
+        y.append(ys[1][i] - ys[0][i]) # ys[2] - double. ys[1] - half. ys[0] - single.
     print('diff ' + title.split(' ')[-1])
     # print(y)
     print('min: ' + str(min(y)) + ' max: ' + str(max(y)))
     create_graph(y, 'diff', 'diff ' + title.split(' ')[-1], tick / 10)
 
 def create_2_graphs(y1, y2, name, title, tick):
-    x = list(range(min_length, max_length, 5))
+    x = list(range(min_length, max_length, jumps))
 
     # plotting the points
     plt.scatter(x, y1, label="stars", color="green",
@@ -304,7 +308,7 @@ def create_2_graphs(y1, y2, name, title, tick):
 
 def create_graph(y, name, title, tick):
     # x axis values
-    x = list(range(min_length, max_length, 5))
+    x = list(range(min_length, max_length, jumps))
 
     # plotting the points
     plt.scatter(x, y, label="stars", color="green",
@@ -435,7 +439,7 @@ def print_histogram(sizes, title):
 
     sizes2 = []
     temp = sizes.copy()
-    for i in range(min_length, max_length, 5):
+    for i in range(min_length, max_length, jumps):
         temp = list(filter(lambda size: size > i,temp))
         sizes2.append(len(temp) / len(sizes))
     tick = 0.1
