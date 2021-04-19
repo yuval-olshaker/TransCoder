@@ -143,7 +143,6 @@ def build_model(params, dico):
 
     else:
         # build
-        # TODO: only output when necessary - len(params.clm_steps + params.mlm_steps) > 0
         if params.do_separated_double:
             encoders = [TransformerModel(
                 params, dico, is_encoder=True, with_output=True), TransformerModel(
@@ -153,10 +152,8 @@ def build_model(params, dico):
                 params, dico, is_encoder=False, with_output=True)]
         else:
             encoders = [TransformerModel(
-                params, dico, is_encoder=True, with_output=True), TransformerModel(
                 params, dico, is_encoder=True, with_output=True)]
             decoders = [TransformerModel(
-                params, dico, is_encoder=False, with_output=True), TransformerModel(
                 params, dico, is_encoder=False, with_output=True)]
 
         if params.separate_decoders:
@@ -183,7 +180,7 @@ def build_model(params, dico):
             enc_path, dec_path = params.reload_model.split(',')
             assert not (enc_path == '' and dec_path == '')
 
-            # reload encoder
+            # reload encoders
             if enc_path != '':
                 for enc in encoders:
                     logger.info("Reloading encoder from %s ..." % enc_path)
