@@ -345,6 +345,9 @@ def run_evaluation(ref_lines, indices, wat_lines, paths, train_lines):
     results_half = []
 
     # check_i(302)
+    # to find max diff
+    # max = 0
+    # maxi = 0
 
     # run over refs and calculate the distances
     for i, ref_line in enumerate(ref_lines):
@@ -357,8 +360,23 @@ def run_evaluation(ref_lines, indices, wat_lines, paths, train_lines):
         results_single.append(d_single)
         results_half.append(d_half)
 
+        # if d_single-d_half > max:
+        #     maxi = i
+        #     max = d_single-d_half
         # if 0 < d_double < 10:
         #     print(i)
+
+    # print(str(maxi) + '\n')
+    # print(ref_lines[maxi])
+    # print(wat_lines[maxi])
+    # print(half_translated_lines[0][maxi])
+    # print(half_translated_lines[1][maxi])
+    # print(half_translated_lines[2][maxi])
+    # print('\n\n')
+    # print(single_translated_lines[0][maxi])
+    # print(single_translated_lines[1][maxi])
+    # print(single_translated_lines[2][maxi])
+    # print('\n\n')
 
     # create lists for exact match - including complex_check
     zeros_double = []
