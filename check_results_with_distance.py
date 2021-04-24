@@ -202,49 +202,6 @@ def print_num_ppls_accs(paths, title_beg):
     create_num_graphs(ppls, 'ppl', title_beg + ' ppl', ppl_tick)
     create_num_graphs(accs, 'acc', title_beg + ' acc', acc_tick)
 
-def print_2_ppls_accs(path1, path2, title_beg):
-    ppls1 = []
-    accs1 = []
-    for i in range(min_length, max_length, jumps):
-        tested_len[0] = i
-        _, indices = return_lines(ref, filter_func=long_line)
-        ppl, acc = get_acc_ppl_res(path1, indices)
-        ppls1.append(ppl)
-        accs1.append(acc)
-
-    ppls2 = []
-    accs2 = []
-    for i in range(min_length, max_length, jumps):
-        tested_len[0] = i
-        _, indices = return_lines(ref, filter_func=long_line)
-        ppl, acc = get_acc_ppl_res(path2, indices)
-        ppls2.append(ppl)
-        accs2.append(acc)
-
-    ppl_tick = 0.1
-    acc_tick = 1.0
-    create_2_graphs(ppls1, ppls2, 'ppl', title_beg + ' ppl', ppl_tick)
-    create_2_graphs(accs1, accs2, 'acc', title_beg + ' acc', acc_tick)
-
-def print_ppls_accs(path, title_beg):
-    ppls = []
-    accs = []
-    for i in range(min_length, max_length, jumps):
-        tested_len[0] = i
-        _, indices = return_lines(ref, filter_func=long_line)
-        ppl, acc = get_acc_ppl_res(path, indices)
-        ppls.append(ppl)
-        accs.append(acc)
-
-    ppl_tick = 0.1
-    acc_tick = 1.0
-    if 'all' in exp_name:
-        ppl_tick = 0.02
-        acc_tick = 0.3
-
-    create_graph(ppls, 'ppl', title_beg + ' ppl', ppl_tick)
-    create_graph(accs, 'acc', title_beg + ' acc', acc_tick)
-
 
 def save_pic(save_name):
     plt.savefig('/mnt/c/TransCoder/outputs/' + exp_name + '/' + save_name)
