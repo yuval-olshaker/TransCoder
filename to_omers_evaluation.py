@@ -5,7 +5,7 @@ def return_lines(path):
     return lines
 
 trans_num = 5
-exp_name = 'c-x86/single' # double / single / half
+exp_name = 'c-x86/baseline' # double / single / half / baseline
 exp_dir = '/mnt/c/TransCoder/outputs/' + exp_name + '/eval/'
 out_path = exp_dir + 'test0.corpus.5.out'
 
@@ -56,7 +56,7 @@ def check_res():
 
 
 if __name__ == "__main__":
-    check_res()
+    # check_res()
 
     translated_paths = list(map(lambda i: exp_dir + 'hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(trans_num)))
     translated_lines = list(map(lambda line: return_lines(line), translated_paths))

@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 
 colors = ['green', 'blue', 'red', 'orange'] # one, half, double, baseline
 max_length = 245
+# max_length = 75
 jumps = 3
 min_length = 0
 exp_name = 'c-wat' # 'c-wat-all' 'c-wat-full'
@@ -122,11 +123,15 @@ def return_lines(path, train_lines=None, filter_func=None, indices=None):
 
 
 def check():
-    ref2_lines = list(map(lambda line: len(line[:-2].split()), return_lines('/mnt/c/c_projects/hl_corpus_fixed')))
-    # train_lines = list(
-    #     map(lambda line: line.replace('<DOCUMENT_ID="repo/tree/master/a.c"> ', '').replace(' </DOCUMENT>', ''),
-    #         return_lines(train_sta_path)))
-    print_histogram(ref2_lines, 'hh')
+    train_lines = list(
+        map(lambda line: line.replace('<DOCUMENT_ID="repo/tree/master/a.c"> ', '').replace(' </DOCUMENT>', ''),
+            return_lines(train_sta_path)))
+    i = 0
+    for line in train_lines:
+        if 'stR' in line:
+            i += 1
+    print(i)
+    # print_histogram(ref2_lines, 'hh')
     exit(1)
 
 def check_succ(succ_path, only_list, ref_lines, wat_lines, translated0_lines, translated1_lines, translated2_lines):
@@ -285,7 +290,7 @@ def create_graph(y, name, title, tick):
     plt.show()
 
 def print_ppl_acc_graphs():
-    print_num_ppls_accs([single_scores_path, half_scores_path, double_scores_path], 'three models')
+    print_num_ppls_accs([single_scores_path, half_scores_path, double_scores_path, baseline_scores_path], 'four models')
 
     # print_ppls_accs(double_scores_path, 'double stage model')
     # print_ppls_accs(single_scores_path, 'single stage model')
