@@ -498,9 +498,9 @@ class EncDecEvaluator(Evaluator):
                            causal=True, src_enc=enc1, src_len=len1)
 
                 if first is None:
-                    first = dec2
+                    first = dec2.tolist()
 
-                to_use = from_size_to_vec(first, len2)
+                to_use = torch.Tensor(from_size_to_vec(first, len2)).cuda()
 
                 # loss
                 word_scores, loss = decoder(
