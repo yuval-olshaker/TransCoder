@@ -385,6 +385,15 @@ class SingleEvaluator(Evaluator):
         self.model = trainer.model
 
 
+def from_size_to_vec(first, len2):
+    our_len = len(first)
+
+    while our_len < len2:
+        first.extend(first)
+        our_len = len(first)
+
+    return first[:len2]
+
 class EncDecEvaluator(Evaluator):
 
     def __init__(self, trainer, data, params):
@@ -491,14 +500,11 @@ class EncDecEvaluator(Evaluator):
                 if first is None:
                     first = dec2
 
-                print(len(dec2))
-                print(len(first))
-                print(len2)
-                print(len1)
+                to_use = from_size_to_vec(first, len2)
 
                 # loss
                 word_scores, loss = decoder(
-                    'predict', tensor=dec2, pred_mask=pred_mask, y=y, get_scores=True)
+                    'predict', tensor=to_use, pred_mask=pred_mask, y=y, get_scores=True)
 
             # update stats
             n_words += y.size(0)
