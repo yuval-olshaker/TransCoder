@@ -203,7 +203,7 @@ class Evaluator(object):
 
         return x, _x_real, pred_mask
 
-    def run_all_evals(self, trainer, do_double=False):
+    def run_all_evals(self, trainer):
         """
         Run all evaluations.
         """
@@ -427,6 +427,7 @@ class EncDecEvaluator(Evaluator):
             f_ids = []
 
         score_list = []
+        first = None
         for i, batch in enumerate(self.get_iterator(data_set, lang1, lang2)):
             (x1, len1, ids1, len_ids1), (x2, len2, ids2, len_ids2) = batch
             langs1 = x1.clone().fill_(lang1_id)
@@ -486,6 +487,14 @@ class EncDecEvaluator(Evaluator):
                 # decode target sentence - regular
                 dec2 = decoder('fwd', x=x2, lengths=len2, langs=langs2,
                            causal=True, src_enc=enc1, src_len=len1)
+
+                if first is None:
+                    first = dec2
+
+                print(len(dec2))
+                print(len(first))
+                print(len2)
+                print(len1)
 
                 # loss
                 word_scores, loss = decoder(
