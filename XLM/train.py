@@ -268,7 +268,7 @@ def main(params):
 
     # evaluation
     if params.eval_only:
-        scores = evaluator.run_all_evals(trainer, params.do_double)
+        scores = evaluator.run_all_evals(trainer)
         for k, v in scores.items():
             logger.info("%s -> %.6f" % (k, v))
         logger.info("__log__:%s" % json.dumps(scores))
