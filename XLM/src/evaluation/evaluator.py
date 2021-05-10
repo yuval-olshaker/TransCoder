@@ -497,14 +497,14 @@ class EncDecEvaluator(Evaluator):
                 dec2 = decoder('fwd', x=x2, lengths=len2, langs=langs2,
                            causal=True, src_enc=enc1, src_len=len1)
 
-                if first is None:
-                    first = dec2.tolist()
-
-                to_use = torch.Tensor(from_size_to_vec(first, len2)).cuda()
+                # if first is None:
+                #     first = dec2.tolist()
+                #
+                # to_use = torch.Tensor(from_size_to_vec(first, len2)).cuda()
 
                 # loss
                 word_scores, loss = decoder(
-                    'predict', tensor=to_use, pred_mask=pred_mask, y=y, get_scores=True)
+                    'predict', tensor=dec2, pred_mask=pred_mask, y=y, get_scores=True)
 
             # update stats
             n_words += y.size(0)
