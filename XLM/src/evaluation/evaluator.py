@@ -431,9 +431,8 @@ class EncDecEvaluator(Evaluator):
         else:
             datasets_for_bleu = ['test', 'valid']
 
-        if (eval_bleu or eval_computation) and data_set in datasets_for_bleu:
-            hypothesis = []
-            f_ids = []
+        # if (eval_bleu or eval_computation) and data_set in datasets_for_bleu:
+        hypothesis = []
 
         score_list = []
         first = None
@@ -506,9 +505,8 @@ class EncDecEvaluator(Evaluator):
                 word_scores, loss = decoder(
                     'predict', tensor=dec2, pred_mask=pred_mask, y=y, get_scores=True)
 
-                if hypothesis:
-                    hypothesis.extend(convert_to_text(
-                        dec2, len2, self.dico, params, generate_several_reps=True))
+                hypothesis.extend(convert_to_text(
+                    dec2, len2, self.dico, params, generate_several_reps=True))
 
             # update stats
             n_words += y.size(0)
