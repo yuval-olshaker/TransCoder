@@ -506,7 +506,7 @@ class EncDecEvaluator(Evaluator):
                     'predict', tensor=dec2, pred_mask=pred_mask, y=y, get_scores=True)
 
                 hypothesis.extend(convert_to_text(
-                    dec2, len2, self.dico, params, generate_several_reps=True))
+                    dec2, len1, self.dico, params, generate_several_reps=True))
 
             # update stats
             n_words += y.size(0)
