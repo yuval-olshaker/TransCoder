@@ -527,14 +527,17 @@ class EncDecEvaluator(Evaluator):
                     early_stopping=params.early_stopping,
                     max_len=len_v
                 )
+                logger.info(generated)
                 logger.info(generated.shape)
                 logger.info(lengths)
                 hypothesis.extend(convert_to_text(
                     generated, lengths, self.dico, params, generate_several_reps=True))
+                dec2_new = torch.argmax(dec2, dim=2).unsqueeze(1).repeat(1, params.beam_size, 1)
                 logger.info(dec2.shape)
+                logger.info(dec2_new.shape)
                 logger.info(len2)
                 hypothesis.extend(convert_to_text(
-                    dec2, len2, self.dico, params, generate_several_reps=True))
+                    dec2_new, len2, self.dico, params, generate_several_reps=True))
 
             # generate translation - translate / convert to text
             if params.eval_only and (eval_bleu or eval_computation) and data_set in datasets_for_bleu:
