@@ -505,8 +505,8 @@ class EncDecEvaluator(Evaluator):
                 word_scores, loss = decoder(
                     'predict', tensor=dec2, pred_mask=pred_mask, y=y, get_scores=True)
 
-                hypothesis.extend(convert_to_text(
-                    dec2, len1, self.dico, params, generate_several_reps=True))
+                # hypothesis.extend(convert_to_text(
+                #     dec2, len1, self.dico, params, generate_several_reps=True))
 
             # update stats
             n_words += y.size(0)
@@ -540,27 +540,29 @@ class EncDecEvaluator(Evaluator):
                     else:
                         generated, lengths = decoder.generate(
                             enc1, len1, lang2_id, max_len=len_v)
+                        print(generated.shape)
+                        print(lengths)
                     # print(f'path 1: {generated.shape}')
 
-                # else:
-                #     assert params.number_samples == 1
-                #     if params.do_double_eval:
-                #         generated, lengths = decoder.generate_beam(
-                #             sec_enc, len2, lang2_id, beam_size=params.beam_size,
-                #             length_penalty=params.length_penalty,
-                #             early_stopping=params.early_stopping,
-                #             max_len=len_v
-                #         )
-                #     else:
-                #         generated, lengths = decoder.generate_beam(
-                #             enc1, len1, lang2_id, beam_size=params.beam_size,
-                #             length_penalty=params.length_penalty,
-                #             early_stopping=params.early_stopping,
-                #             max_len=len_v
-                #         )
-                #     # print(f'path 2: {generated.shape}')
-                # hypothesis.extend(convert_to_text(
-                #     generated, lengths, self.dico, params, generate_several_reps=True))
+                else:
+                    assert params.number_samples == 1
+                    if params.do_double_eval:
+                        generated, lengths = decoder.generate_beam(
+                            sec_enc, len2, lang2_id, beam_size=params.beam_size,
+                            length_penalty=params.length_penalty,
+                            early_stopping=params.early_stopping,
+                            max_len=len_v
+                        )
+                    else:
+                        generated, lengths = decoder.generate_beam(
+                            enc1, len1, lang2_id, beam_size=params.beam_size,
+                            length_penalty=params.length_penalty,
+                            early_stopping=params.early_stopping,
+                            max_len=len_v
+                        )
+                    # print(f'path 2: {generated.shape}')
+                hypothesis.extend(convert_to_text(
+                    generated, lengths, self.dico, params, generate_several_reps=True))
 
         if params.eval_only:
             scores_name = 'scores.csv'
