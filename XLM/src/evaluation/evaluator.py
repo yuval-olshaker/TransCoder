@@ -521,22 +521,18 @@ class EncDecEvaluator(Evaluator):
                 score_list.append(str(y.size(0)) + ',' + str(loss.item() * len(y)) +
                                  ',' + str((word_scores.max(1)[1] == y).sum().item()) + '\n')
                 len_v = (3 * len1 + 10).clamp(max=params.max_len)
-                generated, lengths = decoder.generate_beam(
-                    enc1, len1, lang2_id, beam_size=params.beam_size,
-                    length_penalty=params.length_penalty,
-                    early_stopping=params.early_stopping,
-                    max_len=len_v
-                )
-                logger.info(generated.shape)
-                logger.info(lengths)
-                hypothesis.extend(convert_to_text(
-                    generated, lengths, self.dico, params, generate_several_reps=True))
-                dec2_new = torch.argmax(dec2, dim=2).unsqueeze(1).repeat(1, params.beam_size, 1)
-                logger.info(dec2.shape)
-                logger.info(dec2_new.shape)
-                logger.info(len2)
-                hypothesis.extend(convert_to_text(
-                    dec2_new, len2, self.dico, params, generate_several_reps=True))
+                if i < 50:
+                    generated, lengths = decoder.generate(enc1, len1, lang2_id, max_len=len_v)
+                    logger.info(generated.shape)
+                    logger.info(lengths)
+                    hypothesis.extend(convert_to_text(
+                        generated, lengths, self.dico, params, generate_several_reps=True))
+                    dec2_new = torch.argmax(dec2, dim=2).unsqueeze(1)#.repeat(1, params.beam_size, 1)
+                    logger.info(dec2.shape)
+                    logger.info(dec2_new.shape)
+                    logger.info(len2)
+                    hypothesis.extend(convert_to_text(
+                        dec2_new, len2, self.dico, params, generate_several_reps=True))
 
             # generate translation - translate / convert to text
             if params.eval_only and (eval_bleu or eval_computation) and data_set in datasets_for_bleu:
@@ -555,10 +551,11 @@ class EncDecEvaluator(Evaluator):
                         lengths, _ = lengths.reshape(-1,
                                                      params.number_samples).max(dim=1)
                     else:
-                        generated, lengths = decoder.generate(
-                            enc1, len1, lang2_id, max_len=len_v)
-                        print(generated.shape)
-                        print(lengths)
+                        pass
+                        # generated, lengths = decoder.generate(
+                        #     enc1, len1, lang2_id, max_len=len_v)
+                        # print(generated.shape)
+                        # print(lengths)
                     # print(f'path 1: {generated.shape}')
 
                 else:
@@ -571,15 +568,14 @@ class EncDecEvaluator(Evaluator):
                             max_len=len_v
                         )
                     else:
-                        pass
-                        # generated, lengths = decoder.generate_beam(
-                        #     enc1, len1, lang2_id, beam_size=params.beam_size,
-                        #     length_penalty=params.length_penalty,
-                        #     early_stopping=params.early_stopping,
-                        #     max_len=len_v
-                        # )
-                        # logger.info(generated.shape)
-                        # logger.info(lengths.shape)
+                        generated, lengths = decoder.generate_beam(
+                            enc1, len1, lang2_id, beam_size=params.beam_size,
+                            length_penalty=params.length_penalty,
+                            early_stopping=params.early_stopping,
+                            max_len=len_v
+                        )
+                        logger.info(generated.shape)
+                        logger.info(lengths.shape)
                     # print(f'path 2: {generated.shape}')
                 # hypothesis.extend(convert_to_text(
                 #     generated, lengths, self.dico, params, generate_several_reps=True))
