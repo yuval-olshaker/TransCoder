@@ -534,6 +534,7 @@ class EncDecEvaluator(Evaluator):
                     generated, lengths, self.dico, params, generate_several_reps=True))
                 dec2_new = torch.argmax(dec2, dim=2).unsqueeze(1).repeat(1, params.beam_size, 1)
                 logger.info(dec2.shape)
+                logger.info(dec2_new)
                 logger.info(dec2_new.shape)
                 logger.info(len2)
                 hypothesis.extend(convert_to_text(
@@ -688,6 +689,9 @@ def convert_to_text(batch, lengths, dico, params, generate_several_reps=False):
         assert (batch == params.eos_index).sum() == 2 * bs
     else:
         slen, nb_repetitions, bs = batch.shape
+        logger.info((batch == params.eos_index).sum())
+        logger.info(bs)
+        logger.info(nb_repetitions)
         assert (batch == params.eos_index).sum() == 2 * bs * nb_repetitions
         assert (batch[0] == params.eos_index).sum() == bs * nb_repetitions, print(
             f"The values were {(batch[0] == params.eos_index).sum()} and  {bs * nb_repetitions}")
