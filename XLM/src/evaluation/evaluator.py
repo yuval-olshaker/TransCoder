@@ -496,6 +496,8 @@ class EncDecEvaluator(Evaluator):
                 dec2 = decoder('fwd', x=x2, lengths=len2, langs=langs2,
                            causal=True, src_enc=enc1, src_len=len1)
 
+                if i < 10:
+                    print(dec2.shape)
                 # if first is None:
                 #     first = dec2.tolist()
                 #
@@ -559,6 +561,7 @@ class EncDecEvaluator(Evaluator):
                                 early_stopping=params.early_stopping,
                                 max_len=len_v
                             )
+                            print(generated.shape)
                     # print(f'path 2: {generated.shape}')
                 hypothesis.extend(convert_to_text(
                     generated, lengths, self.dico, params, generate_several_reps=True))
