@@ -521,18 +521,21 @@ class EncDecEvaluator(Evaluator):
                 score_list.append(str(y.size(0)) + ',' + str(loss.item() * len(y)) +
                                  ',' + str((word_scores.max(1)[1] == y).sum().item()) + '\n')
                 len_v = (3 * len1 + 10).clamp(max=params.max_len)
-                if i < 50:
+                if i < 5:
                     # generated, lengths = decoder.generate(enc1, len1, lang2_id, max_len=len_v)
                     # logger.info(generated.shape)
                     # logger.info(lengths)
                     # hypothesis.extend(convert_to_text(
                     #     generated, lengths, self.dico, params, generate_several_reps=True))
-                    dec2_new = torch.argmax(dec2, dim=2).unsqueeze(1)#.repeat(1, params.beam_size, 1)
+                    scores = decoder.pred_layer.get_scores(dec2)
+                    next_words = torch.topk(scores, 1)[1].squeeze(1)
+                    # dec2_new = torch.argmax(dec2, dim=2).unsqueeze(1)#.repeat(1, params.beam_size, 1)
                     logger.info(dec2.shape)
-                    logger.info(dec2_new.shape)
+                    logger.info(next_words)
+                    logger.info(next_words.shape)
                     logger.info(len2)
                     hypothesis.extend(convert_to_text(
-                        dec2_new, len2, self.dico, params, generate_several_reps=True))
+                        next_words, len2, self.dico, params, generate_several_reps=True))
 
             # generate translation - translate / convert to text
             if params.eval_only and (eval_bleu or eval_computation) and data_set in datasets_for_bleu:
