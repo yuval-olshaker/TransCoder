@@ -582,14 +582,14 @@ class TransformerModel(nn.Module):
             - (lang_id1, lang_id2) if two languages are involved (MT)
         """
         logger.info('in generate_beam')
-        logger.info('src_enc.shape' + str(src_enc.shape))
-        logger.info('src_len' + str(src_len))
-        logger.info('bs' + str(len(src_len)))
-        logger.info('tgt_lang_id' + str(tgt_lang_id))
-        logger.info('beam_size' + str(beam_size))
-        logger.info('length_penalty' + str(length_penalty))
-        logger.info('early_stopping' + str(early_stopping))
-        logger.info('max_len' + str(max_len))
+        logger.info('src_enc.shape ' + str(src_enc.shape))
+        logger.info('src_len ' + str(src_len))
+        logger.info('bs ' + str(len(src_len)))
+        logger.info('tgt_lang_id ' + str(tgt_lang_id))
+        logger.info('beam_size ' + str(beam_size))
+        logger.info('length_penalty ' + str(length_penalty))
+        logger.info('early_stopping ' + str(early_stopping))
+        logger.info('max_len ' + str(max_len))
         if isinstance(max_len, int):
             max_lengths = src_len.clone().fill_(max_len)
             global_max_len = max_len
@@ -701,7 +701,8 @@ class TransformerModel(nn.Module):
                     # get beam and word IDs
                     beam_id = idx // n_words
                     word_id = idx % n_words
-
+                    logger.info('word_id AKA next word?')
+                    logger.info(word_id)
                     # end of sentence, or next word
                     if word_id == self.eos_index or cur_len + 1 == global_max_len:
                         generated_hyps[sent_id].add(
@@ -732,6 +733,8 @@ class TransformerModel(nn.Module):
             # re-order batch and internal states
             generated = generated[:, beam_idx]
             generated[cur_len] = beam_words
+            logger.info('beam_words AKA next word?')
+            logger.info(beam_words[0])
             for k in self.cache.keys():
                 if k != 'slen':
                     self.cache[k] = (self.cache[k][0][beam_idx],
@@ -759,6 +762,7 @@ class TransformerModel(nn.Module):
         logger.info('huge')
         for i, hypotheses in enumerate(generated_hyps):
             logger.info(len(hypotheses.hyp))
+            logger.info(hypotheses.hyp[0])
             sorted_hyps = [h[1] for h in sorted(
                 hypotheses.hyp, key=lambda x: x[0], reverse=True)]
             tgt_len[i] = max([len(hyp) for hyp in sorted_hyps]
