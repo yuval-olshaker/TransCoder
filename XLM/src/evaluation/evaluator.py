@@ -527,7 +527,10 @@ class EncDecEvaluator(Evaluator):
                     # logger.info(lengths)
                     # hypothesis.extend(convert_to_text(
                     #     generated, lengths, self.dico, params, generate_several_reps=True))
-                    scores = decoder.pred_layer.get_scores(dec2)
+                    use = dec2.squeeze(1)
+                    logger.info(use.shape)
+                    logger.info(use)
+                    scores = decoder.pred_layer.get_scores(use)
                     next_words = torch.topk(scores, 1)[1].squeeze(1)
                     # dec2_new = torch.argmax(dec2, dim=2).unsqueeze(1)#.repeat(1, params.beam_size, 1)
                     logger.info(dec2.shape)
