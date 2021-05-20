@@ -522,11 +522,11 @@ class EncDecEvaluator(Evaluator):
                                  ',' + str((word_scores.max(1)[1] == y).sum().item()) + '\n')
                 len_v = (3 * len1 + 10).clamp(max=params.max_len)
                 if i < 50:
-                    generated, lengths = decoder.generate(enc1, len1, lang2_id, max_len=len_v)
-                    logger.info(generated.shape)
-                    logger.info(lengths)
-                    hypothesis.extend(convert_to_text(
-                        generated, lengths, self.dico, params, generate_several_reps=True))
+                    # generated, lengths = decoder.generate(enc1, len1, lang2_id, max_len=len_v)
+                    # logger.info(generated.shape)
+                    # logger.info(lengths)
+                    # hypothesis.extend(convert_to_text(
+                    #     generated, lengths, self.dico, params, generate_several_reps=True))
                     dec2_new = torch.argmax(dec2, dim=2).unsqueeze(1)#.repeat(1, params.beam_size, 1)
                     logger.info(dec2.shape)
                     logger.info(dec2_new.shape)
