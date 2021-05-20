@@ -701,8 +701,8 @@ class TransformerModel(nn.Module):
                     # get beam and word IDs
                     beam_id = idx // n_words
                     word_id = idx % n_words
-                    logger.info('word_id AKA next word?')
-                    logger.info(word_id)
+                    # logger.info('word_id AKA next word?')
+                    # logger.info(word_id)
                     # end of sentence, or next word
                     if word_id == self.eos_index or cur_len + 1 == global_max_len:
                         generated_hyps[sent_id].add(
@@ -733,8 +733,8 @@ class TransformerModel(nn.Module):
             # re-order batch and internal states
             generated = generated[:, beam_idx]
             generated[cur_len] = beam_words
-            logger.info('beam_words AKA next word?')
-            logger.info(beam_words[0])
+            # logger.info('beam_words AKA next word?')
+            # logger.info(beam_words[0])
             for k in self.cache.keys():
                 if k != 'slen':
                     self.cache[k] = (self.cache[k][0][beam_idx],
