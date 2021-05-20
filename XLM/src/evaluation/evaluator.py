@@ -520,25 +520,6 @@ class EncDecEvaluator(Evaluator):
                 logger.info((str(100. * (word_scores.max(1)[1] == y).sum().item() / y.size(0))))
                 score_list.append(str(y.size(0)) + ',' + str(loss.item() * len(y)) +
                                  ',' + str((word_scores.max(1)[1] == y).sum().item()) + '\n')
-                len_v = (3 * len1 + 10).clamp(max=params.max_len)
-                if i < 5:
-                    # generated, lengths = decoder.generate(enc1, len1, lang2_id, max_len=len_v)
-                    # logger.info(generated.shape)
-                    # logger.info(lengths)
-                    # hypothesis.extend(convert_to_text(
-                    #     generated, lengths, self.dico, params, generate_several_reps=True))
-                    use = dec2.squeeze(1)
-                    logger.info(use.shape)
-                    logger.info(use)
-                    scores = decoder.pred_layer.get_scores(use)
-                    next_words = torch.topk(scores, 1)[1].squeeze(1)
-                    # dec2_new = torch.argmax(dec2, dim=2).unsqueeze(1)#.repeat(1, params.beam_size, 1)
-                    logger.info(dec2.shape)
-                    logger.info(next_words)
-                    logger.info(next_words.shape)
-                    logger.info(len2)
-                    hypothesis.extend(convert_to_text(
-                        next_words, len2, self.dico, params, generate_several_reps=True))
 
             # generate translation - translate / convert to text
             if params.eval_only and (eval_bleu or eval_computation) and data_set in datasets_for_bleu:
@@ -557,11 +538,8 @@ class EncDecEvaluator(Evaluator):
                         lengths, _ = lengths.reshape(-1,
                                                      params.number_samples).max(dim=1)
                     else:
-                        pass
-                        # generated, lengths = decoder.generate(
-                        #     enc1, len1, lang2_id, max_len=len_v)
-                        # print(generated.shape)
-                        # print(lengths)
+                        generated, lengths = decoder.generate(
+                            enc1, len1, lang2_id, max_len=len_v)
                     # print(f'path 1: {generated.shape}')
 
                 else:
@@ -580,11 +558,9 @@ class EncDecEvaluator(Evaluator):
                             early_stopping=params.early_stopping,
                             max_len=len_v
                         )
-                        logger.info(generated.shape)
-                        logger.info(lengths.shape)
                     # print(f'path 2: {generated.shape}')
-                # hypothesis.extend(convert_to_text(
-                #     generated, lengths, self.dico, params, generate_several_reps=True))
+                hypothesis.extend(convert_to_text(
+                    generated, lengths, self.dico, params, generate_several_reps=True))
 
         if params.eval_only:
             scores_name = 'scores.csv'
@@ -689,15 +665,9 @@ def convert_to_text(batch, lengths, dico, params, generate_several_reps=False):
         assert (batch == params.eos_index).sum() == 2 * bs
     else:
         slen, nb_repetitions, bs = batch.shape
-        logger.info((batch == params.eos_index).sum())
-        logger.info(bs)
-        logger.info(nb_repetitions)
-        logger.info(params.eos_index)
-        logger.info(batch.shape)
-        logger.info(2 * bs * nb_repetitions)
-        # assert (batch == params.eos_index).sum() == 2 * bs * nb_repetitions
-        # assert (batch[0] == params.eos_index).sum() == bs * nb_repetitions, print(
-        #     f"The values were {(batch[0] == params.eos_index).sum()} and  {bs * nb_repetitions}")
+        assert (batch == params.eos_index).sum() == 2 * bs * nb_repetitions
+        assert (batch[0] == params.eos_index).sum() == bs * nb_repetitions, print(
+            f"The values were {(batch[0] == params.eos_index).sum()} and  {bs * nb_repetitions}")
     assert lengths.max() == slen and lengths.shape[0] == bs, print(
         lengths.max(), slen, lengths.shape[0], bs)
     sentences = []
