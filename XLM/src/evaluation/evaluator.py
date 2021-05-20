@@ -552,15 +552,17 @@ class EncDecEvaluator(Evaluator):
                             max_len=len_v
                         )
                     else:
-                        generated, lengths = decoder.generate_beam(
-                            enc1, len1, lang2_id, beam_size=params.beam_size,
-                            length_penalty=params.length_penalty,
-                            early_stopping=params.early_stopping,
-                            max_len=len_v
-                        )
+                        if i < 50:
+                            generated, lengths = decoder.generate_beam(
+                                enc1, len1, lang2_id, beam_size=params.beam_size,
+                                length_penalty=params.length_penalty,
+                                early_stopping=params.early_stopping,
+                                max_len=len_v
+                            )
                     # print(f'path 2: {generated.shape}')
-                hypothesis.extend(convert_to_text(
-                    generated, lengths, self.dico, params, generate_several_reps=True))
+                if i < 50:
+                    hypothesis.extend(convert_to_text(
+                        generated, lengths, self.dico, params, generate_several_reps=True))
 
         if params.eval_only:
             scores_name = 'scores.csv'
