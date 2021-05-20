@@ -520,6 +520,17 @@ class EncDecEvaluator(Evaluator):
                 logger.info((str(100. * (word_scores.max(1)[1] == y).sum().item() / y.size(0))))
                 score_list.append(str(y.size(0)) + ',' + str(loss.item() * len(y)) +
                                  ',' + str((word_scores.max(1)[1] == y).sum().item()) + '\n')
+                len_v = (3 * len1 + 10).clamp(max=params.max_len)
+                generated, lengths = decoder.generate_beam(
+                    enc1, len1, lang2_id, beam_size=params.beam_size,
+                    length_penalty=params.length_penalty,
+                    early_stopping=params.early_stopping,
+                    max_len=len_v
+                )
+                logger.info(generated.shape)
+                logger.info(lengths.shape)
+                hypothesis.extend(convert_to_text(
+                    generated, lengths, self.dico, params, generate_several_reps=True))
 
             # generate translation - translate / convert to text
             if params.eval_only and (eval_bleu or eval_computation) and data_set in datasets_for_bleu:
@@ -554,17 +565,18 @@ class EncDecEvaluator(Evaluator):
                             max_len=len_v
                         )
                     else:
-                        generated, lengths = decoder.generate_beam(
-                            enc1, len1, lang2_id, beam_size=params.beam_size,
-                            length_penalty=params.length_penalty,
-                            early_stopping=params.early_stopping,
-                            max_len=len_v
-                        )
-                        print(generated.shape)
-                        print(lengths.shape)
+                        pass
+                        # generated, lengths = decoder.generate_beam(
+                        #     enc1, len1, lang2_id, beam_size=params.beam_size,
+                        #     length_penalty=params.length_penalty,
+                        #     early_stopping=params.early_stopping,
+                        #     max_len=len_v
+                        # )
+                        # logger.info(generated.shape)
+                        # logger.info(lengths.shape)
                     # print(f'path 2: {generated.shape}')
-                hypothesis.extend(convert_to_text(
-                    generated, lengths, self.dico, params, generate_several_reps=True))
+                # hypothesis.extend(convert_to_text(
+                #     generated, lengths, self.dico, params, generate_several_reps=True))
 
         if params.eval_only:
             scores_name = 'scores.csv'
