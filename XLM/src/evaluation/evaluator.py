@@ -528,7 +528,7 @@ class EncDecEvaluator(Evaluator):
                     max_len=len_v
                 )
                 logger.info(generated.shape)
-                logger.info(lengths.shape)
+                logger.info(lengths)
                 hypothesis.extend(convert_to_text(
                     generated, lengths, self.dico, params, generate_several_reps=True))
 
