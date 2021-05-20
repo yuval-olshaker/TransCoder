@@ -560,6 +560,8 @@ class EncDecEvaluator(Evaluator):
                             early_stopping=params.early_stopping,
                             max_len=len_v
                         )
+                        print(generated.shape)
+                        print(lengths.shape)
                     # print(f'path 2: {generated.shape}')
                 hypothesis.extend(convert_to_text(
                     generated, lengths, self.dico, params, generate_several_reps=True))
