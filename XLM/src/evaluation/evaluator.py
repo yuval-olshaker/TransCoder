@@ -692,6 +692,9 @@ def convert_to_text(batch, lengths, dico, params, generate_several_reps=False):
         logger.info((batch == params.eos_index).sum())
         logger.info(bs)
         logger.info(nb_repetitions)
+        logger.info(params.eos_index)
+        logger.info(batch.shape)
+        logger.info(2 * bs * nb_repetitions)
         assert (batch == params.eos_index).sum() == 2 * bs * nb_repetitions
         assert (batch[0] == params.eos_index).sum() == bs * nb_repetitions, print(
             f"The values were {(batch[0] == params.eos_index).sum()} and  {bs * nb_repetitions}")
