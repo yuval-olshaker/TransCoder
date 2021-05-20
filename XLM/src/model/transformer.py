@@ -582,13 +582,14 @@ class TransformerModel(nn.Module):
             - (lang_id1, lang_id2) if two languages are involved (MT)
         """
         logger.info('in generate_beam')
-        logger.info(src_enc.shape)
-        logger.info(src_len)
-        logger.info(tgt_lang_id)
-        logger.info(beam_size)
-        logger.info(length_penalty)
-        logger.info(early_stopping)
-        logger.info(max_len)
+        logger.info('src_enc.shape' + str(src_enc.shape))
+        logger.info('src_len' + str(src_len))
+        logger.info('bs' + str(len(src_len)))
+        logger.info('tgt_lang_id' + str(tgt_lang_id))
+        logger.info('beam_size' + str(beam_size))
+        logger.info('length_penalty' + str(length_penalty))
+        logger.info('early_stopping' + str(early_stopping))
+        logger.info('max_len' + str(max_len))
         if isinstance(max_len, int):
             max_lengths = src_len.clone().fill_(max_len)
             global_max_len = max_len
@@ -645,7 +646,6 @@ class TransformerModel(nn.Module):
         done = [False for _ in range(bs)]
 
         while cur_len < global_max_len:
-            logger.info(generated.shape)
             # compute word scores
             tensor = self.forward(
                 'fwd',
@@ -658,7 +658,6 @@ class TransformerModel(nn.Module):
                 src_len=src_len,
                 use_cache=True
             )
-            logger.info(tensor.size())
             assert tensor.size() == (1, bs * beam_size, self.dim)
             # (bs * beam_size, dim)
             tensor = tensor.data[-1, :, :].type_as(src_enc)
@@ -757,8 +756,9 @@ class TransformerModel(nn.Module):
         # select the best hypotheses
         tgt_len = src_len.new(bs)
         best = []
-
+        logger.info('huge')
         for i, hypotheses in enumerate(generated_hyps):
+            logger.info(len(hypotheses.hyp))
             sorted_hyps = [h[1] for h in sorted(
                 hypotheses.hyp, key=lambda x: x[0], reverse=True)]
             tgt_len[i] = max([len(hyp) for hyp in sorted_hyps]
@@ -768,11 +768,14 @@ class TransformerModel(nn.Module):
         # generate target batch
         decoded = src_len.new(tgt_len.max().item(),
                               beam_size, bs).fill_(self.pad_index)
+        logger.info(decoded.shape)
         for i, hypo_list in enumerate(best):
             for hyp_index, hypo in enumerate(hypo_list):
                 decoded[:len(hypo), hyp_index, i] = hypo
                 decoded[len(hypo), hyp_index, i] = self.eos_index
-
+        logger.info(decoded.shape)
+        logger.info('huge2')
+        logger.info(decoded)
         # sanity check
         assert (decoded == self.eos_index).sum() == 2 * beam_size * bs
 
