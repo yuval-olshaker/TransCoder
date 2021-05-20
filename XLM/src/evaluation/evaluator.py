@@ -555,7 +555,6 @@ class EncDecEvaluator(Evaluator):
                         )
                     else:
                         if i < 10:
-                            logger.info(enc1.shape)
                             generated, lengths = decoder.generate_beam(
                                 enc1, len1, lang2_id, beam_size=params.beam_size,
                                 length_penalty=params.length_penalty,

@@ -581,6 +581,14 @@ class TransformerModel(nn.Module):
             - lang_id if only one language is involved (LM)
             - (lang_id1, lang_id2) if two languages are involved (MT)
         """
+        logger.info('in generate_beam')
+        logger.info(src_enc.shape)
+        logger.info(src_len)
+        logger.info(tgt_lang_id)
+        logger.info(beam_size)
+        logger.info(length_penalty)
+        logger.info(early_stopping)
+        logger.info(max_len)
         if isinstance(max_len, int):
             max_lengths = src_len.clone().fill_(max_len)
             global_max_len = max_len
@@ -637,7 +645,7 @@ class TransformerModel(nn.Module):
         done = [False for _ in range(bs)]
 
         while cur_len < global_max_len:
-
+            logger.info(generated.shape)
             # compute word scores
             tensor = self.forward(
                 'fwd',
@@ -650,6 +658,7 @@ class TransformerModel(nn.Module):
                 src_len=src_len,
                 use_cache=True
             )
+            logger.info(tensor.size())
             assert tensor.size() == (1, bs * beam_size, self.dim)
             # (bs * beam_size, dim)
             tensor = tensor.data[-1, :, :].type_as(src_enc)
