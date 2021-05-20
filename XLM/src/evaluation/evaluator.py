@@ -527,14 +527,12 @@ class EncDecEvaluator(Evaluator):
                     early_stopping=params.early_stopping,
                     max_len=len_v
                 )
-                logger.info(generated)
                 logger.info(generated.shape)
                 logger.info(lengths)
                 hypothesis.extend(convert_to_text(
                     generated, lengths, self.dico, params, generate_several_reps=True))
                 dec2_new = torch.argmax(dec2, dim=2).unsqueeze(1).repeat(1, params.beam_size, 1)
                 logger.info(dec2.shape)
-                logger.info(dec2_new)
                 logger.info(dec2_new.shape)
                 logger.info(len2)
                 hypothesis.extend(convert_to_text(
@@ -695,9 +693,9 @@ def convert_to_text(batch, lengths, dico, params, generate_several_reps=False):
         logger.info(params.eos_index)
         logger.info(batch.shape)
         logger.info(2 * bs * nb_repetitions)
-        assert (batch == params.eos_index).sum() == 2 * bs * nb_repetitions
-        assert (batch[0] == params.eos_index).sum() == bs * nb_repetitions, print(
-            f"The values were {(batch[0] == params.eos_index).sum()} and  {bs * nb_repetitions}")
+        # assert (batch == params.eos_index).sum() == 2 * bs * nb_repetitions
+        # assert (batch[0] == params.eos_index).sum() == bs * nb_repetitions, print(
+        #     f"The values were {(batch[0] == params.eos_index).sum()} and  {bs * nb_repetitions}")
     assert lengths.max() == slen and lengths.shape[0] == bs, print(
         lengths.max(), slen, lengths.shape[0], bs)
     sentences = []
