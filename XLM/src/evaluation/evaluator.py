@@ -531,6 +531,10 @@ class EncDecEvaluator(Evaluator):
                 logger.info(lengths)
                 hypothesis.extend(convert_to_text(
                     generated, lengths, self.dico, params, generate_several_reps=True))
+                logger.info(dec2.shape)
+                logger.info(len2)
+                hypothesis.extend(convert_to_text(
+                    dec2, len2, self.dico, params, generate_several_reps=True))
 
             # generate translation - translate / convert to text
             if params.eval_only and (eval_bleu or eval_computation) and data_set in datasets_for_bleu:
