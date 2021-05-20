@@ -778,8 +778,8 @@ class TransformerModel(nn.Module):
                 decoded[:len(hypo), hyp_index, i] = hypo
                 decoded[len(hypo), hyp_index, i] = self.eos_index
         logger.info(decoded.shape)
-        logger.info('huge2')
-        logger.info(decoded)
+        # logger.info('huge2')
+        # logger.info(decoded)
         # sanity check
         assert (decoded == self.eos_index).sum() == 2 * beam_size * bs
 
