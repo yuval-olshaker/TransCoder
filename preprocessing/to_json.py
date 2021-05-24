@@ -1,7 +1,7 @@
 import os
 import json
 langs = ['c', 'wat']
-data_path = 'data/WASM_test/'
+data_path = 'data/WASM_semi_full/'
 json_str_start = '{\"repo_name\":\"repo\",\"ref\":\"refs/heads/master\",\"path\":\"a.c\",\"copies\":\"1\",'
 # Transcoder_path = '/mnt/c/TransCoder/'
 Transcoder_path = '/home/ubuntu/wasm_decompiler/TransCoder/'
@@ -13,6 +13,7 @@ def to_json_line(line):
 
 
 if __name__ == '__main__':
+    json_failed = []
     for lang in langs:
         if lang == 'c':
             path = Transcoder_path + data_path + 'c/hl_corpus_fixed'
@@ -26,11 +27,13 @@ if __name__ == '__main__':
 
         new_lines = []
         for i, line in enumerate(lines):
+            if i in json_failed:
+                continue
             try:
                 x = json.loads(line)
                 new_lines.append(line)
             except:
-                continue
+                json_failed.append(i)
 
 
         path = path + '.000.json'
