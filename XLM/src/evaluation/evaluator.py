@@ -496,8 +496,8 @@ class EncDecEvaluator(Evaluator):
                 dec2 = decoder('fwd', x=x2, lengths=len2, langs=langs2,
                            causal=True, src_enc=enc1, src_len=len1)
 
-                if i < 10:
-                    logger.info(dec2.shape)
+                # if i < 10:
+                #     logger.info(dec2.shape)
                 # if first is None:
                 #     first = dec2.tolist()
                 #
@@ -554,14 +554,13 @@ class EncDecEvaluator(Evaluator):
                             max_len=len_v
                         )
                     else:
-                        if i < 10:
-                            generated, lengths = decoder.generate_beam(
-                                enc1, len1, lang2_id, beam_size=params.beam_size,
-                                length_penalty=params.length_penalty,
-                                early_stopping=params.early_stopping,
-                                max_len=len_v
-                            )
-                            logger.info(generated.shape)
+                        generated, lengths = decoder.generate_beam(
+                            enc1, len1, lang2_id, beam_size=params.beam_size,
+                            length_penalty=params.length_penalty,
+                            early_stopping=params.early_stopping,
+                            max_len=len_v
+                        )
+                        # logger.info(generated.shape)
                     # print(f'path 2: {generated.shape}')
                 hypothesis.extend(convert_to_text(
                     generated, lengths, self.dico, params, generate_several_reps=True))

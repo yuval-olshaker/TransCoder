@@ -313,7 +313,7 @@ def main(params):
                     trainer.epoch)
 
         # evaluate perplexity
-        scores = evaluator.run_all_evals(trainer, params.do_double)
+        scores = evaluator.run_all_evals(trainer)
 
         # print / JSON log
         for k, v in scores.items():
