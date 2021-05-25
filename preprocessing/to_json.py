@@ -1,7 +1,7 @@
 import os
 import json
 langs = ['c', 'wat']
-data_path = 'data/WASM_semi_full/'
+data_path = 'data/WASM_full/'
 json_str_start = '{\"repo_name\":\"repo\",\"ref\":\"refs/heads/master\",\"path\":\"a.c\",\"copies\":\"1\",'
 # Transcoder_path = '/mnt/c/TransCoder/'
 Transcoder_path = '/home/ubuntu/wasm_decompiler/TransCoder/'
