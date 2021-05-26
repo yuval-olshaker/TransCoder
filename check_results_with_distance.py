@@ -1,4 +1,6 @@
 import Levenshtein
+import numpy
+
 import complex_check
 import operator
 import pandas as pd
@@ -10,7 +12,7 @@ max_length = 245
 # max_length = 75
 jumps = 3
 min_length = 0
-exp_name = 'c-wat' # 'c-wat-all' 'c-wat-full'
+exp_name = 'c-wat-full' # 'c-wat-all' 'c-wat-full'
 range1 = 3
 if 'all' in exp_name:
     range1 = 3
@@ -235,7 +237,7 @@ def create_num_graphs(ys, name, title, tick):
 
     y = []
     for i in range(len(ys[0])):
-        y.append(ys[1][i] - ys[0][i]) # ys[2] - double. ys[1] - half. ys[0] - single.
+        y.append(ys[2][i] - ys[3][i]) # ys[3] - baseline. ys[2] - double. ys[1] - half. ys[0] - single.
     print('diff ' + title.split(' ')[-1])
     # print(y)
     print('min: ' + str(min(y)) + ' max: ' + str(max(y)))
@@ -436,7 +438,11 @@ def print_sizes_histogram():
     train_lines = list(
         map(lambda line: line.replace('<DOCUMENT_ID="repo/tree/master/a.c"> ', '').replace(' </DOCUMENT>', ''),
             return_lines(train_sta_path)))
-    print_histogram(from_lines_to_length(train_lines), 'train')
+    sizes = from_lines_to_length(train_lines)
+    print_histogram(sizes, 'train')
+    print(numpy.percentile(sizes, 25))
+    print(numpy.percentile(sizes, 50))
+    print(numpy.percentile(sizes, 75))
 
     refs_lines = return_lines(ref)
     print_histogram(from_lines_to_length(refs_lines), 'test')
@@ -445,6 +451,6 @@ def print_sizes_histogram():
 if __name__ == "__main__":
     # commented out full-baseline (only transformer)
     # check()
-    # distance_check()
+    distance_check()
     print_ppl_acc_graphs()
     # print_sizes_histogram()
