@@ -8,6 +8,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 colors = ['green', 'blue', 'red', 'orange'] # one, half, double, baseline
+exp_names = ['one', 'half', 'double', 'baseline']
 max_length = 245
 # max_length = 75
 jumps = 3
@@ -167,7 +168,7 @@ def print_results(basic_path, succ_indices, ref_lines, train_lines, exp_name):
                 else:
                     f_fail.write(ref_line)
 
-    print('j: ' + str(j) + ' new_succ: ' + str(len(succ_indices) - j))
+    print(exp_name + ' - total_succ: ' + str(j) + ' new_succ: ' + str(len(succ_indices) - j))
     len_list = list(map(lambda line: len(line.split()), succ_l))
     print(len_list)
     if len(len_list) > 0:
@@ -217,8 +218,9 @@ def create_num_graphs(ys, name, title, tick):
     x = list(range(min_length, max_length, jumps))
 
     for i, y in enumerate(ys):
-        plt.scatter(x, y, label="stars", color=colors[i],
-                    marker="*", s=30)
+        plt.scatter(x, y, color=colors[i],
+                    marker="*", s=30, label=exp_names[i])
+
 
 
     plt.yticks(np.arange(min(list(map(lambda y: min(y), ys))) - tick, max(list(map(lambda y: max(y), ys))) + tick, tick))
@@ -231,13 +233,15 @@ def create_num_graphs(ys, name, title, tick):
     # giving a title to my graph
     plt.title(title)
 
+    plt.legend()
+
     # function to show the plot
     save_pic(title + '.png')
     plt.show()
 
     y = []
     for i in range(len(ys[0])):
-        y.append(ys[2][i] - ys[3][i]) # ys[3] - baseline. ys[2] - double. ys[1] - half. ys[0] - single.
+        y.append(ys[1][i] - ys[3][i]) # ys[3] - baseline. ys[2] - double. ys[1] - half. ys[0] - single.
     print('diff ' + title.split(' ')[-1])
     # print(y)
     print('min: ' + str(min(y)) + ' max: ' + str(max(y)))
@@ -451,6 +455,6 @@ def print_sizes_histogram():
 if __name__ == "__main__":
     # commented out full-baseline (only transformer)
     # check()
-    distance_check()
+    # distance_check()
     print_ppl_acc_graphs()
     # print_sizes_histogram()
