@@ -7,8 +7,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-colors = ['green', 'blue', 'red', 'orange'] # one, half, double, baseline
-exp_names = ['one', 'half', 'double', 'baseline']
+colors = ['green', 'blue', 'red', 'orange', 'black', 'purple'] # one, half, double, baseline, base_half, base_double
+exp_names = ['one', 'half', 'double', 'baseline', 'base_half', 'base_double']
 max_length = 245
 # max_length = 75
 jumps = 3
@@ -240,7 +240,7 @@ def create_num_graphs(ys, name, title, tick):
     plt.show()
 
     y = []
-    for i in range(len(ys[0])):
+    for i in range(len(ys[0])): # TODO: change to best (by acc or ppl)
         y.append(ys[1][i] - ys[3][i]) # ys[3] - baseline. ys[2] - double. ys[1] - half. ys[0] - single.
     print('diff ' + title.split(' ')[-1])
     # print(y)
@@ -395,7 +395,7 @@ def distance_check():
     ref_lines, indices = return_lines(ref, train_lines=train_lines, filter_func=long_line)
     wat_lines = return_lines(wat_ref, indices=indices)
     run_evaluation(ref_lines, indices, wat_lines, [double_translated_paths, single_translated_paths, half_translated_paths],train_lines)
-
+    print(len(ref_lines))
     run_valid = False
     if run_valid:
         ref_lines, indices = return_lines(valid, train_lines=train_lines, filter_func=always_true)
@@ -455,6 +455,6 @@ def print_sizes_histogram():
 if __name__ == "__main__":
     # commented out full-baseline (only transformer)
     # check()
-    # distance_check()
+    distance_check()
     print_ppl_acc_graphs()
     # print_sizes_histogram()
