@@ -1,14 +1,13 @@
 import Levenshtein
 import numpy
 
-import complex_check
 import operator
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-colors = ['green', 'blue', 'red', 'orange', 'black', 'purple'] # one, half, double, baseline, base_half, base_double
-exp_names = ['one', 'half', 'double', 'baseline', 'base_half', 'base_double']
+colors = ['green', 'blue', 'red', 'orange', 'black', 'purple'] # baseline, single, base_half, half, base_double, double
+model_names = ['baseline', 'single', 'base_half', 'half', 'base_double', 'double']
 max_length = 245
 # max_length = 75
 jumps = 3
@@ -21,27 +20,16 @@ if 'x86' in  exp_name:
     range1 = 5
 
 tested_len = [0]
+
+# refs
 ref = '/mnt/c/TransCoder/outputs/' + exp_name + '/double/eval/ref.wat_sa-c_sa.test.txt'
 wat_ref = '/mnt/c/TransCoder/outputs/' + exp_name + '/double/eval/ref.c_sa-wat_sa.test.txt'
-double_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/double/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(range1)))
-half_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/half/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(range1)))
-single_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/single/eval/hyp0.wat_sa-c_sa.test_beam' + str(i) + '.txt', range(range1)))
-baseline_translated_paths = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/baseline/eval/hyp0.wat_sa-c_sa.test_beam' +str(i) + '.txt', range(3)))
 
-valid = '/mnt/c/TransCoder/outputs/' + exp_name + '/double/eval/ref.wat_sa-c_sa.valid.txt'
-wat_valid = '/mnt/c/TransCoder/outputs/' + exp_name + '/double/eval/ref.c_sa-wat_sa.valid.txt'
-double_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/double/eval/hyp0.wat_sa-c_sa.valid_beam' + str(i) + '.txt', range(range1)))
-single_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/single/eval/hyp0.wat_sa-c_sa.valid_beam' + str(i) + '.txt', range(range1)))
-baseline_translated_paths_valid = list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/baseline/eval/hyp0.wat_sa-c_sa.valid_beam' +str(i) + '.txt', range(3)))
+# translations paths - for graphs
+all_translated_paths = list(map(lambda model_name: list(map(lambda i: '/mnt/c/TransCoder/outputs/' + exp_name + '/' + model_name + '/eval/hyp0.wat_sa-c_sa.test_beam' +str(i) + '.txt', range(range1))), model_names))
 
-
-ref2 = '/mnt/c/TransCoder/outputs/' + exp_name + '/check/refs.txt'
-trans2 = '/mnt/c/TransCoder/outputs/' + exp_name + '/check/trans.txt'
-
-double_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/double/eval/scores.csv'
-half_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/half/eval/scores.csv'
-single_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/single/eval/scores.csv'
-baseline_scores_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/baseline/eval/scores.csv'
+# scores paths - for graphs
+all_scores_paths = list(map(lambda model_name: '/mnt/c/TransCoder/outputs/' + exp_name + '/' + model_name + '/eval/scores.csv', model_names))
 
 output_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/'
 double_succ = output_path + 'double_succ.txt'
@@ -49,6 +37,13 @@ single_succ = output_path + 'single_succ.txt'
 half_succ = output_path + 'half_succ.txt'
 
 train_sta_path = output_path + 'train.tok'
+
+
+# results:
+distances = [[],[],[],[],[],[]]
+identical_match = [[], [], [], [], [], []]
+accs = []
+ppls = []
 
 def distance(or_line, tested_line):
     dist = Levenshtein.distance(or_line, tested_line)
@@ -110,7 +105,7 @@ def has_void(line):
 def always_true(line):
     return True
 
-def return_lines(path, train_lines=None, filter_func=None, indices=None):
+def return_lines(path, filter_func=None, indices=None):
     with open(path) as f:
         lines = f.readlines()
         if filter_func is not None:
@@ -192,10 +187,9 @@ def get_acc_ppl_res(path, indices):
     acc = 100. * n_valid / n_words
     return ppl, acc
 
-def print_num_ppls_accs(paths, title_beg):
-    accs = []
-    ppls = []
-    for i, path in enumerate(paths):
+def print_num_ppls_accs():
+    title_beg = 'Six Models'
+    for i, path in enumerate(all_scores_paths):
         ppls.append([])
         accs.append([])
         for j in range(min_length, max_length, jumps):
@@ -219,7 +213,7 @@ def create_num_graphs(ys, name, title, tick):
 
     for i, y in enumerate(ys):
         plt.scatter(x, y, color=colors[i],
-                    marker="*", s=30, label=exp_names[i])
+                    marker="*", s=30, label=model_names[i])
 
 
 
@@ -296,112 +290,26 @@ def create_graph(y, name, title, tick):
     plt.show()
 
 def print_ppl_acc_graphs():
-    print_num_ppls_accs([single_scores_path, half_scores_path, double_scores_path, baseline_scores_path], 'four models')
+    print_num_ppls_accs()
 
     # print_ppls_accs(double_scores_path, 'double stage model')
     # print_ppls_accs(single_scores_path, 'single stage model')
 
 
-def run_evaluation(ref_lines, indices, wat_lines, paths, train_lines):
+def distance_check():
     # read translated lines
-    double_translated_lines = list(map(lambda line: return_lines(line, indices=indices), paths[0]))
-    single_translated_lines = list(map(lambda line: return_lines(line, indices=indices), paths[1]))
-    half_translated_lines = list(map(lambda line: return_lines(line, indices=indices), paths[2]))
-
-    results_double = []
-    results_single = []
-    results_half = []
-
-    # check_i(302)
-    # to find max diff
-    # max = 0
-    # maxi = 0
+    all_translated_lines = list(map(lambda translated_paths:
+                                    list(map(lambda path: return_lines(path), translated_paths)), all_translated_paths))
 
     # run over refs and calculate the distances
-    for i, ref_line in enumerate(ref_lines):
-        # we take the min of all beams
-        d_double = min(list(map(lambda lines: distance(ref_line, lines[i]), double_translated_lines)))
-        d_single = min(list(map(lambda lines: distance(ref_line, lines[i]), single_translated_lines)))
-        d_half = min(list(map(lambda lines: distance(ref_line, lines[i]), half_translated_lines)))
-
-        results_double.append(d_double)
-        results_single.append(d_single)
-        results_half.append(d_half)
-
-        # if d_single-d_half > max:
-        #     maxi = i
-        #     max = d_single-d_half
-        # if 0 < d_double < 10:
-        #     print(i)
-
-    # print(str(maxi) + '\n')
-    # print(ref_lines[maxi])
-    # print(wat_lines[maxi])
-    # print(half_translated_lines[0][maxi])
-    # print(half_translated_lines[1][maxi])
-    # print(half_translated_lines[2][maxi])
-    # print('\n\n')
-    # print(single_translated_lines[0][maxi])
-    # print(single_translated_lines[1][maxi])
-    # print(single_translated_lines[2][maxi])
-    # print('\n\n')
-
-    # create lists for exact match - including complex_check
-    zeros_double = []
-    zeros_single = []
-    zeros_half = []
-    for i, res in enumerate(results_double):
-        if res == 0:
-            zeros_double.append(i)
-        if results_single[i] == 0:
-            zeros_single.append(i)
-        if results_half[i] == 0:
-            zeros_half.append(i)
-
-    only_half = sorted(set(zeros_half).difference(set(zeros_single)))
-    only_single = sorted(set(zeros_single).difference(set(zeros_half)))
-    only_double = sorted(set(zeros_double).difference(set(zeros_single)))
-
-    print('only_half: zise - ' + str(len(only_half)) + ' list - ' + str(only_half))
-    print('only_single: zise - ' + str(len(only_single)) + ' list - ' + str(only_single))
-    print('only_double: zise - ' + str(len(only_double)) + ' list - ' + str(only_double))
-
-    # prints and saves results
-    check_succ(half_succ, only_half, ref_lines, wat_lines, single_translated_lines[0], single_translated_lines[1],
-               single_translated_lines[2])
-    check_succ(single_succ, only_single, ref_lines, wat_lines, half_translated_lines[0], half_translated_lines[1],
-               half_translated_lines[2])
-    print_results(output_path, zeros_double, ref_lines, train_lines, 'double')
-    print_results(output_path, zeros_half, ref_lines, train_lines, 'half')
-    print_results(output_path, zeros_single, ref_lines, train_lines, 'single')
-    # print_results(output_path, zeros_b, ref_lines, train_lines, 'baseline')
-
-    print(zeros_double)
-    print(zeros_half)
-    print(zeros_single)
-    # print(zeros_b)
-
-    print('double model total: ' + str(sum(results_double)) + ' correct num: ' + str(len(zeros_double)))
-    print('half model total: ' + str(sum(results_half)) + ' correct num: ' + str(len(zeros_half)))
-    print('one model total: ' + str(sum(results_single)) + ' correct num: ' + str(len(zeros_single)))
-    # print('base model total: ' + str(sum(results_base)) + ' correct num: ' + str(len(zeros_b)))
-    print()
-    print()
-
-def distance_check():
-    train_lines = list(
-        map(lambda line: line.replace('<DOCUMENT_ID="repo/tree/master/a.c"> ', '').replace(' </DOCUMENT>', ''),
-            return_lines(train_sta_path)))
-    ref_lines, indices = return_lines(ref, train_lines=train_lines, filter_func=long_line)
-    wat_lines = return_lines(wat_ref, indices=indices)
-    run_evaluation(ref_lines, indices, wat_lines, [double_translated_paths, single_translated_paths, half_translated_paths],train_lines)
-    print(len(ref_lines))
-    run_valid = False
-    if run_valid:
-        ref_lines, indices = return_lines(valid, train_lines=train_lines, filter_func=always_true)
-        wat_lines = return_lines(wat_valid, indices=indices)
-        run_evaluation(ref_lines, indices, wat_lines,
-                       [double_translated_paths_valid, single_translated_paths_valid],train_lines)
+    for i, ref_line in enumerate(return_lines(ref)):
+        for j in range(len(all_translated_lines)):
+            # we take the min of all beams
+            d = min(list(map(lambda lines: distance(ref_line, lines[i]), all_translated_lines[j])))
+            distances[j].append(d)
+            # if identical the result is 0
+            if d == 0:
+                identical_match[j].append(i)
 
 def print_histogram(sizes, title):
     # setting the ranges and no. of intervals
@@ -452,9 +360,35 @@ def print_sizes_histogram():
     print_histogram(from_lines_to_length(refs_lines), 'test')
 
 
+def from_list_to_line(name, list):
+    s = name
+    for l in list:
+        s += ',' + str(l)
+
+    s += '\n'
+    return s
+
+
+def create_table():
+    sum_distances = list(map(lambda diss: sum(diss), distances))
+    num_identical_match = list(map(lambda diss: len(diss), identical_match))
+    total_accs = list(map(lambda acc: acc[0], accs))
+    total_ppls = list(map(lambda ppl: ppl[0], ppls))
+
+    out_path = output_path + 'results.csv'
+    with open(out_path, 'w') as w:
+        w.write(from_list_to_line('Model Name', model_names))
+        w.write(from_list_to_line('Distances', sum_distances))
+        w.write(from_list_to_line('Correct Num', num_identical_match))
+        w.write(from_list_to_line('Acc', total_accs))
+        w.write(from_list_to_line('Ppl', total_ppls))
+
+    a = 5
+
 if __name__ == "__main__":
     # commented out full-baseline (only transformer)
     # check()
     distance_check()
     print_ppl_acc_graphs()
+    create_table()
     # print_sizes_histogram()
