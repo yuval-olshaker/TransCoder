@@ -358,23 +358,26 @@ def print_sizes_histogram():
     print_histogram(from_lines_to_length(refs_lines), 'test')
 
 
-def from_list_to_line(name, list):
-    s = name
-    for l in list:
-        s += ',' + str(l)
+def from_list_to_line(li):
+    s = ''
+    for l in li:
+        s += str(l) + ','
 
+    s = s[:-1]
     s += '\n'
     return s
 
 def calc_total_succ():
     total_succ = []
-    all_succ_paths = list(
-        map(lambda
-                model_name: '/mnt/c/TransCoder/outputs/' + exp_name + '/' + model_name + '/eval/test0.success.5.csv',
-            model_names))
-    for path in all_succ_paths:
-        with open(path) as f:
-            total_succ.append(len(f.readlines()) - 1)
+    if 'x86' in exp_name:
+        total_ref = 1448
+        all_succ_paths = list(
+            map(lambda
+                    model_name: '/mnt/c/TransCoder/outputs/' + exp_name + '/' + model_name + '/eval/test0.success.5.csv',
+                model_names))
+        for path in all_succ_paths:
+            with open(path) as f:
+                total_succ.append((len(f.readlines()) - 1) / total_ref)
 
     return total_succ
 
@@ -383,19 +386,25 @@ def create_table():
     num_identical_match = list(map(lambda diss: len(diss), identical_match))
     total_accs = list(map(lambda acc: acc[0], accs))
     total_ppls = list(map(lambda ppl: ppl[0], ppls))
+    total_succ = calc_total_succ()
+    lines_names = ['Model Name', 'Distances', 'Correct Num', 'Acc', 'Ppl']
+    all = [model_names, sum_distances, num_identical_match, total_accs, total_ppls]
+    trans_all = []
+    if 'x86' in exp_name:
+        all.append(total_succ)
+        lines_names.append('Total Success Percentage By TraFix')
 
     out_path = output_path + 'results.csv'
     with open(out_path, 'w') as w:
-        w.write(from_list_to_line('Model Name', model_names))
-        w.write(from_list_to_line('Distances', sum_distances))
-        w.write(from_list_to_line('Correct Num', num_identical_match))
-        w.write(from_list_to_line('Acc', total_accs))
-        w.write(from_list_to_line('Ppl', total_ppls))
-        if 'x86' in exp_name:
-            w.write(from_list_to_line('Total Success By TraFix', calc_total_succ()))
+        for i in range(len(all[0])):
+            trans_all.append([])
+            for l in all:
+                trans_all[-1].append(l[i])
 
+        w.write(from_list_to_line(lines_names))
+        for l in trans_all:
+            w.write(from_list_to_line(l))
 
-    a = 5
 
 if __name__ == "__main__":
     # commented out full-baseline (only transformer)
