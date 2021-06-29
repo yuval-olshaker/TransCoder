@@ -9,15 +9,13 @@ import matplotlib.pyplot as plt
 colors = ['green', 'blue', 'red', 'orange', 'black', 'purple'] # baseline, single, base_half, half, base_double, double
 model_names = ['baseline', 'single', 'base_half', 'half', 'base_double', 'double']
 max_length = 245
-# max_length = 75
 jumps = 3
 min_length = 0
-exp_name = 'c-wat-full' # 'c-wat-all' 'c-wat-full'
+exp_name = 'c-x86' # 'c-wat-all' 'c-wat-full' 'c-x86'
 range1 = 3
-if 'all' in exp_name:
-    range1 = 3
 if 'x86' in  exp_name:
     range1 = 5
+    max_length = 75
 
 tested_len = [0]
 
@@ -368,6 +366,17 @@ def from_list_to_line(name, list):
     s += '\n'
     return s
 
+def calc_total_succ():
+    total_succ = []
+    all_succ_paths = list(
+        map(lambda
+                model_name: '/mnt/c/TransCoder/outputs/' + exp_name + '/' + model_name + '/eval/test0.success.5.csv',
+            model_names))
+    for path in all_succ_paths:
+        with open(path) as f:
+            total_succ.append(len(f.readlines()) - 1)
+
+    return total_succ
 
 def create_table():
     sum_distances = list(map(lambda diss: sum(diss), distances))
@@ -382,6 +391,9 @@ def create_table():
         w.write(from_list_to_line('Correct Num', num_identical_match))
         w.write(from_list_to_line('Acc', total_accs))
         w.write(from_list_to_line('Ppl', total_ppls))
+        if 'x86' in exp_name:
+            w.write(from_list_to_line('Total Success By TraFix', calc_total_succ()))
+
 
     a = 5
 
