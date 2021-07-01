@@ -11,7 +11,7 @@ model_names = ['baseline', 'single', 'base_half', 'half', 'base_double', 'double
 max_length = 245
 jumps = 3
 min_length = 0
-exp_name = 'c-x86' # 'c-wat-all' 'c-wat-full' 'c-x86'
+exp_name = 'c-wat-full' # 'c-wat-all' 'c-wat-full' 'c-x86'
 range1 = 3
 if 'x86' in  exp_name:
     range1 = 5
@@ -361,7 +361,7 @@ def print_sizes_histogram():
 def from_list_to_line(li, separator):
     s = ''
     for l in li:
-        s += str(l) + separator
+        s += l + separator
 
     s = s[:-1]
     return s
@@ -404,22 +404,25 @@ def save_table_latex_code(trans_all, lines_names):
     one_slash = '\\'
     two_slash = one_slash + one_slash
     with open(out_path, 'w') as w:
-        w.write(one_slash + "begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }" + '\n')
-        w.write(one_slash + "hline" + '\n')
-        w.write(one_slash + "multicolumn{4}{|c|}{Country List} " + two_slash + '\n')
-        w.write(one_slash + "hline" + '\n')
-        w.write(from_list_to_line(lines_names, separator) + two_slash+ '\n')
-        w.write(one_slash + "hline" + '\n')
+        w.write(one_slash + "begin{table}[h!]" + '\n')
+        w.write(one_slash + "centering" + '\n')
+        w.write(one_slash + "begin{tabular}{ |p{2cm}||p{2cm}|p{2cm}|p{2cm}|p{2cm}|}" + '\n')
+        w.write(' ' + one_slash + "hline" + '\n')
+        w.write(' ' + from_list_to_line(lines_names, separator) + two_slash+ '\n')
+        w.write(' ' + one_slash + "hline" + '\n')
         for l in trans_all:
-            w.write(from_list_to_line(l, separator) + two_slash + '\n')
-        w.write(one_slash + "hline" + '\n')
+            w.write(' ' + from_list_to_line(l, separator) + two_slash + '\n')
+        w.write(' ' + one_slash + "hline" + '\n')
         w.write(one_slash + "end{tabular}" + '\n')
+        w.write(one_slash + "caption{Table of models results}" + '\n')
+        w.write(one_slash + "label{" + exp_name + "_results_table}" + '\n')
+        w.write(one_slash + "end{table}" + '\n')
 
 def create_table():
-    sum_distances = list(map(lambda diss: sum(diss), distances))
-    num_identical_match = list(map(lambda diss: len(diss), identical_match))
-    total_accs = list(map(lambda acc: acc[0], accs))
-    total_ppls = list(map(lambda ppl: ppl[0], ppls))
+    sum_distances = list(map(lambda diss: str(sum(diss)), distances))
+    num_identical_match = list(map(lambda diss: str(len(diss)), identical_match))
+    total_accs = list(map(lambda acc: '%.3f' % acc[0], accs))
+    total_ppls = list(map(lambda ppl: '%.3f' % ppl[0], ppls))
     total_succ = calc_total_succ()
     lines_names = ['Model Name', 'Distances', 'Correct Num', 'Acc', 'Ppl']
     all = [model_names, sum_distances, num_identical_match, total_accs, total_ppls]
