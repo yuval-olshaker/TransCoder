@@ -358,13 +358,12 @@ def print_sizes_histogram():
     print_histogram(from_lines_to_length(refs_lines), 'test')
 
 
-def from_list_to_line(li):
+def from_list_to_line(li, separator):
     s = ''
     for l in li:
-        s += str(l) + ','
+        s += str(l) + separator
 
     s = s[:-1]
-    s += '\n'
     return s
 
 def calc_total_succ():
@@ -381,6 +380,41 @@ def calc_total_succ():
 
     return total_succ
 
+
+def get_trans_all(all):
+    trans_all = []
+    for i in range(len(all[0])):
+        trans_all.append([])
+        for l in all:
+            trans_all[-1].append(l[i])
+
+    return trans_all
+
+def save_table_csv(trans_all, lines_names):
+    out_path = output_path + 'results.csv'
+    separator = ','
+    with open(out_path, 'w') as w:
+        w.write(from_list_to_line(lines_names, separator) + '\n')
+        for l in trans_all:
+            w.write(from_list_to_line(l, separator)+ '\n')
+
+def save_table_latex_code(trans_all, lines_names):
+    out_path = output_path + 'table.txt'
+    separator = '&'
+    one_slash = '\\'
+    two_slash = one_slash + one_slash
+    with open(out_path, 'w') as w:
+        w.write(one_slash + "begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }" + '\n')
+        w.write(one_slash + "hline" + '\n')
+        w.write(one_slash + "multicolumn{4}{|c|}{Country List} " + two_slash + '\n')
+        w.write(one_slash + "hline" + '\n')
+        w.write(from_list_to_line(lines_names, separator) + two_slash+ '\n')
+        w.write(one_slash + "hline" + '\n')
+        for l in trans_all:
+            w.write(from_list_to_line(l, separator) + two_slash + '\n')
+        w.write(one_slash + "hline" + '\n')
+        w.write(one_slash + "end{tabular}" + '\n')
+
 def create_table():
     sum_distances = list(map(lambda diss: sum(diss), distances))
     num_identical_match = list(map(lambda diss: len(diss), identical_match))
@@ -389,21 +423,14 @@ def create_table():
     total_succ = calc_total_succ()
     lines_names = ['Model Name', 'Distances', 'Correct Num', 'Acc', 'Ppl']
     all = [model_names, sum_distances, num_identical_match, total_accs, total_ppls]
-    trans_all = []
     if 'x86' in exp_name:
         all.append(total_succ)
         lines_names.append('Total Success Percentage By TraFix')
 
-    out_path = output_path + 'results.csv'
-    with open(out_path, 'w') as w:
-        for i in range(len(all[0])):
-            trans_all.append([])
-            for l in all:
-                trans_all[-1].append(l[i])
+    trans_all = get_trans_all(all)
+    save_table_csv(trans_all, lines_names)
+    save_table_latex_code(trans_all, lines_names)
 
-        w.write(from_list_to_line(lines_names))
-        for l in trans_all:
-            w.write(from_list_to_line(l))
 
 
 if __name__ == "__main__":
