@@ -1,6 +1,5 @@
 import Levenshtein
 import numpy
-
 import operator
 import pandas as pd
 import numpy as np
@@ -28,6 +27,10 @@ all_translated_paths = list(map(lambda model_name: list(map(lambda i: '/mnt/c/Tr
 
 # scores paths - for graphs
 all_scores_paths = list(map(lambda model_name: '/mnt/c/TransCoder/outputs/' + exp_name + '/' + model_name + '/eval/scores.csv', model_names))
+
+# successes paths - for Trafix checks.
+if 'x86' in  exp_name:
+    successes_paths = list(map(lambda model_name: '/mnt/c/TransCoder/outputs/' + exp_name + '/' + model_name + '/eval/test0.success.5.csv', model_names))
 
 output_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/'
 double_succ = output_path + 'double_succ.txt'
@@ -57,17 +60,20 @@ def list_in_indices(l, indices):
 def long_line(line): # long sentence is over 20 C tokens / 70
     return len(line.split()) > tested_len[0]
 
+def long_line_by_number(line, number): # long sentence is over 20 C tokens / 70
+    return len(line.split()) > number
+
 def has_while_loop(line):
-    return 'while' in line
+    return ' while ' in line
 
 def has_if(line):
-    return 'if' in line
+    return ' if ' in line
 
 def has_no_if(line):
     return not has_if(line)
 
 def has_for_loop(line):
-    return 'for' in line
+    return ' for ' in line
 
 def has_pointer(line):
     return '*' in line
@@ -88,7 +94,7 @@ def has_unary(line):
     return '+ +' in line or '- -' in line
 
 def hard_sentence(line):
-    return has_for_loop(line) or has_no_if(line) or has_while_loop(line) or long_line(line)
+    return (has_for_loop(line) or has_if(line) or has_while_loop(line)) and long_line(line)
 
 def easy_sentence(line):
     return not hard_sentence(line)
@@ -99,6 +105,14 @@ def has_no_void(line):
 
 def has_void(line):
     return 'void' in line
+
+def has_arrow(line):
+    return '- >' in line
+
+def to_use(line):
+    # return True
+    return has_while_loop(line)
+    # return 'WHILE' in line or 'IF' in line
 
 def always_true(line):
     return True
@@ -192,7 +206,7 @@ def print_num_ppls_accs():
         accs.append([])
         for j in range(min_length, max_length, jumps):
             tested_len[0] = j
-            _, indices = return_lines(ref, filter_func=long_line)
+            _, indices = return_lines(ref, filter_func=to_use)
             ppl, acc = get_acc_ppl_res(path, indices)
             ppls[i].append(ppl)
             accs[i].append(acc)
@@ -233,7 +247,7 @@ def create_num_graphs(ys, name, title, tick):
 
     y = []
     for i in range(len(ys[0])): # TODO: change to best (by acc or ppl)
-        y.append(ys[1][i] - ys[3][i]) # ys[3] - baseline. ys[2] - double. ys[1] - half. ys[0] - single.
+        y.append(ys[2][i] - ys[0][i]) # ys[0] - baseline. ys[1] - single. ys[2] - base_half. ys[3] - half. ys[4] - base_double. ys[5] - double.
     print('diff ' + title.split(' ')[-1])
     # print(y)
     print('min: ' + str(min(y)) + ' max: ' + str(max(y)))
@@ -296,18 +310,28 @@ def print_ppl_acc_graphs():
 
 def distance_check():
     # read translated lines
+    new_ref, indices = return_lines(ref, filter_func=to_use)
     all_translated_lines = list(map(lambda translated_paths:
-                                    list(map(lambda path: return_lines(path), translated_paths)), all_translated_paths))
+                                    list(map(lambda path: return_lines(path, indices=indices), translated_paths)), all_translated_paths))
 
     # run over refs and calculate the distances
-    for i, ref_line in enumerate(return_lines(ref)):
+    for i, ref_line in enumerate(new_ref):
+        # tempd = []
         for j in range(len(all_translated_lines)):
             # we take the min of all beams
             d = min(list(map(lambda lines: distance(ref_line, lines[i]), all_translated_lines[j])))
             distances[j].append(d)
+            # tempd.append(d)
             # if identical the result is 0
             if d == 0:
                 identical_match[j].append(i)
+
+        # if tempd[0] - tempd[2] > 500:
+        #     print(ref_line)
+        #     print(all_translated_lines[2][0][i])
+        #     print(all_translated_lines[0][0][i])
+
+    # exit(0)
 
 def print_histogram(sizes, title):
     # setting the ranges and no. of intervals
@@ -376,7 +400,7 @@ def calc_total_succ():
                 model_names))
         for path in all_succ_paths:
             with open(path) as f:
-                total_succ.append((len(f.readlines()) - 1) / total_ref)
+                total_succ.append('%.3f' % ((len(f.readlines()) - 1) / total_ref))
 
     return total_succ
 
@@ -418,15 +442,30 @@ def save_table_latex_code(trans_all, lines_names):
         w.write(one_slash + "label{" + exp_name + "_results_table}" + '\n')
         w.write(one_slash + "end{table}" + '\n')
 
+
+def calc_succ(refs_num):
+    succ_percentage = []
+    for path in successes_paths:
+        df = pd.read_csv(path)
+        succ_percentage.append('%.2f' % (len(list(filter(to_use,df['hl']))) / refs_num * 100))
+
+    return succ_percentage
+
 def create_table():
-    sum_distances = list(map(lambda diss: str(sum(diss)), distances))
-    num_identical_match = list(map(lambda diss: str(len(diss)), identical_match))
+    import numpy as np
+    _, indices = return_lines(ref, filter_func=to_use)
+    ref_num = len(indices)
+    print('total num ' + str(ref_num))
+
+    sum_distances = list(map(lambda diss: str(np.percentile(diss, 75)), distances))
+    num_identical_match = list(map(lambda diss: '%.2f' % (len(diss) / ref_num * 100), identical_match))
     total_accs = list(map(lambda acc: '%.3f' % acc[0], accs))
     total_ppls = list(map(lambda ppl: '%.3f' % ppl[0], ppls))
-    total_succ = calc_total_succ()
+
     lines_names = ['Model Name', 'Distances', 'Correct Num', 'Acc', 'Ppl']
     all = [model_names, sum_distances, num_identical_match, total_accs, total_ppls]
     if 'x86' in exp_name:
+        total_succ = calc_succ(ref_num)
         all.append(total_succ)
         lines_names.append('Total Success Percentage By TraFix')
 
