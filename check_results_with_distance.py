@@ -4,6 +4,7 @@ import operator
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import complex_check as cc
 
 colors = ['green', 'blue', 'red', 'orange', 'black', 'purple'] # baseline, single, base_half, base_double, half, double
 model_names = ['baseline', 'single', 'base_half', 'base_double', 'half', 'double']
@@ -11,9 +12,11 @@ model_paper_names = ['Transformer', 'Transcoder', 'Reverser half', 'Reverser', '
 max_length = 245
 jumps = 3
 min_length = 0
-exp_name = 'c-wat-full' # 'c-wat-all' 'c-wat-full' 'c-x86'
+# exp_name = 'c-x86' # 'c-wat-all' 'c-wat-full' 'c-x86'
+exp_name = 'c-wat-full'
 range1 = 3
-if 'x86' in  exp_name:
+is_x86 = 'x86' in  exp_name
+if is_x86:
     range1 = 5
     max_length = 75
 
@@ -30,7 +33,7 @@ all_translated_paths = list(map(lambda model_name: list(map(lambda i: '/mnt/c/Tr
 all_scores_paths = list(map(lambda model_name: '/mnt/c/TransCoder/outputs/' + exp_name + '/' + model_name + '/eval/scores.csv', model_names))
 
 # successes paths - for Trafix checks.
-if 'x86' in  exp_name:
+if is_x86:
     successes_paths = list(map(lambda model_name: '/mnt/c/TransCoder/outputs/' + exp_name + '/' + model_name + '/eval/test0.success.5.csv', model_names))
 
 output_path = '/mnt/c/TransCoder/outputs/' + exp_name + '/'
@@ -44,14 +47,14 @@ train_sta_path = output_path + 'train.tok'
 # results:
 distances = [[],[],[],[],[],[]]
 identical_match = [[], [], [], [], [], []]
+identical_match_complex = [[], [], [], [], [], []]
 accs = []
 ppls = []
 
-def distance(or_line, tested_line):
+def distance(or_line, tested_line, check_complex=False):
     dist = Levenshtein.distance(or_line, tested_line)
-    # if dist != 0:
-    #     if complex_check.complex_check(or_line, tested_line):
-    #         return 0
+    if check_complex and dist != 0 and cc.complex_check(or_line, tested_line):
+        return 0
     return dist
 
 def list_in_indices(l, indices):
@@ -110,10 +113,22 @@ def has_void(line):
 def has_arrow(line):
     return '- >' in line
 
-def to_use(line):
-    # return True
-    return has_while_loop(line)
+def to_use_WASM (line):
+    return True
+    # return has_while_loop(line)
+    # return long_line_by_number(line, 100)#25% longest
+    # return long_line_by_number(line, 150) #10% longest
+    # return has_deref(line) and has_pointer(line)
+
+
+def to_use_x86 (line):
+    return True
     # return 'WHILE' in line or 'IF' in line
+    # return 'WHILE' in line
+    # return 'IF' in line
+
+def to_use(line):
+    return to_use_x86(line) if is_x86 else to_use_WASM
 
 def always_true(line):
     return True
@@ -344,11 +359,14 @@ def distance_check():
         for j in range(len(all_translated_lines)):
             # we take the min of all beams
             d = min(list(map(lambda lines: distance(ref_line, lines[i]), all_translated_lines[j])))
+            d_complex = min(list(map(lambda lines: distance(ref_line, lines[i], True), all_translated_lines[j])))
             distances[j].append(d)
             # tempd.append(d)
             # if identical the result is 0
             if d == 0:
                 identical_match[j].append(i)
+            if d_complex == 0:
+                identical_match_complex[j].append(i)
 
         # if tempd[0] - tempd[2] > 500:
         #     print(ref_line)
@@ -454,10 +472,7 @@ def save_table_latex_code(trans_all, lines_names):
     with open(out_path, 'w') as w:
         w.write(one_slash + "begin{table}[h!]" + '\n')
         w.write(one_slash + "centering" + '\n')
-        if 'x86' in exp_name:
-            w.write(one_slash + "begin{tabular}{ |p{2cm}||p{2cm}|p{2cm}|p{3cm}|}" + '\n')
-        else:
-            w.write(one_slash + "begin{tabular}{ |p{2cm}||p{2cm}|p{2cm}|}" + '\n')
+        w.write(one_slash + "begin{tabular}{ |p{2cm}||p{2cm}|p{2cm}|p{2cm}|}" + '\n')
         w.write(' ' + one_slash + "hline" + '\n')
         w.write(' ' + from_list_to_line(lines_names, separator) + two_slash+ '\n')
         w.write(' ' + one_slash + "hline" + '\n')
@@ -486,15 +501,21 @@ def create_table():
     dis_percentile = 75
     sum_distances = list(map(lambda diss: str(np.percentile(diss, dis_percentile)), distances))
     num_identical_match = list(map(lambda diss: '%.2f' % (len(diss) / ref_num * 100), identical_match))
+
     # total_accs = list(map(lambda acc: '%.3f' % acc[0], accs))
     # total_ppls = list(map(lambda ppl: '%.3f' % ppl[0], ppls))
 
     lines_names = ['Model Name', 'Distances ' + str(dis_percentile) + ' percentage', 'Sentence Accuracy']
     all = [model_paper_names, sum_distances, num_identical_match] #, total_accs, total_ppls]
-    if 'x86' in exp_name:
+    if is_x86:
         total_succ = calc_succ(ref_num)
         all.append(total_succ)
         lines_names.append('Sentence Accuracy By TraFix')
+    else:
+        num_identical_match_complex = list(
+            map(lambda diss: '%.2f' % (len(diss) / ref_num * 100), identical_match_complex))
+        all.append(num_identical_match_complex)
+        lines_names.append('Complex Sentence Accuracy')
 
     trans_all = get_trans_all(all)
     save_table_csv(trans_all, lines_names)
