@@ -5,8 +5,9 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-colors = ['green', 'blue', 'red', 'orange', 'black', 'purple'] # baseline, single, base_half, half, base_double, double
-model_names = ['baseline', 'single', 'base_half', 'half', 'base_double', 'double']
+colors = ['green', 'blue', 'red', 'orange', 'black', 'purple'] # baseline, single, base_half, base_double, half, double
+model_names = ['baseline', 'single', 'base_half', 'base_double', 'half', 'double']
+model_paper_names = ['Transformer', 'Transcoder', 'Reverser half', 'Reverser', 'half', 'double']
 max_length = 245
 jumps = 3
 min_length = 0
@@ -190,13 +191,35 @@ def check_i(num, ref_lines, double_translated_lines):
     print(d_double)
     exit(1)
 
-def get_acc_ppl_res(path, indices):
+def get_acc_ppl_res(path, indices, to_print, i):
     df = pd.read_csv(path)
-    n_words = sum(list_in_indices(list(df['n_words']), indices))
-    xe_loss = sum(list_in_indices(list(df['xe_loss']), indices))
-    n_valid = sum(list_in_indices(list(df['n_valid']), indices))
+    pre_n_words = list_in_indices(list(df['n_words']), indices)
+    pre_xe_loss = list_in_indices(list(df['xe_loss']), indices)
+    pre_n_valid = list_in_indices(list(df['n_valid']), indices)
+    n_words = sum(pre_n_words)
+    xe_loss = sum(pre_xe_loss)
+    n_valid = sum(pre_n_valid)
+
     ppl = np.exp(xe_loss / n_words)
     acc = 100. * n_valid / n_words
+
+    if to_print:
+        print()
+        print(model_names[i])
+        print('n_words: ' + str(n_words))
+        print('max(pre_n_words):' + str(max(pre_n_words)))
+        print('min(pre_n_words):' + str(min(pre_n_words)))
+        print('xe_loss: ' + str(xe_loss))
+        print('max(pre_xe_loss):' + str(max(pre_xe_loss)))
+        print('min(pre_xe_loss):' + str(min(pre_xe_loss)))
+        print('n_valid: ' + str(n_valid))
+        print('max(pre_n_valid):' + str(max(pre_n_valid)))
+        print('min(pre_n_valid):' + str(min(pre_n_valid)))
+        print('ppl: ' + str(ppl))
+        print('acc: ' + str(acc))
+        print()
+
+
     return ppl, acc
 
 def print_num_ppls_accs():
@@ -207,7 +230,8 @@ def print_num_ppls_accs():
         for j in range(min_length, max_length, jumps):
             tested_len[0] = j
             _, indices = return_lines(ref, filter_func=to_use)
-            ppl, acc = get_acc_ppl_res(path, indices)
+            to_print = j == 0
+            ppl, acc = get_acc_ppl_res(path, indices, to_print, i)
             ppls[i].append(ppl)
             accs[i].append(acc)
 
@@ -430,7 +454,10 @@ def save_table_latex_code(trans_all, lines_names):
     with open(out_path, 'w') as w:
         w.write(one_slash + "begin{table}[h!]" + '\n')
         w.write(one_slash + "centering" + '\n')
-        w.write(one_slash + "begin{tabular}{ |p{2cm}||p{2cm}|p{2cm}|p{2cm}|p{2cm}|}" + '\n')
+        if 'x86' in exp_name:
+            w.write(one_slash + "begin{tabular}{ |p{2cm}||p{2cm}|p{2cm}|p{3cm}|}" + '\n')
+        else:
+            w.write(one_slash + "begin{tabular}{ |p{2cm}||p{2cm}|p{2cm}|}" + '\n')
         w.write(' ' + one_slash + "hline" + '\n')
         w.write(' ' + from_list_to_line(lines_names, separator) + two_slash+ '\n')
         w.write(' ' + one_slash + "hline" + '\n')
@@ -456,18 +483,18 @@ def create_table():
     _, indices = return_lines(ref, filter_func=to_use)
     ref_num = len(indices)
     print('total num ' + str(ref_num))
-
-    sum_distances = list(map(lambda diss: str(np.percentile(diss, 75)), distances))
+    dis_percentile = 75
+    sum_distances = list(map(lambda diss: str(np.percentile(diss, dis_percentile)), distances))
     num_identical_match = list(map(lambda diss: '%.2f' % (len(diss) / ref_num * 100), identical_match))
-    total_accs = list(map(lambda acc: '%.3f' % acc[0], accs))
-    total_ppls = list(map(lambda ppl: '%.3f' % ppl[0], ppls))
+    # total_accs = list(map(lambda acc: '%.3f' % acc[0], accs))
+    # total_ppls = list(map(lambda ppl: '%.3f' % ppl[0], ppls))
 
-    lines_names = ['Model Name', 'Distances', 'Correct Num', 'Acc', 'Ppl']
-    all = [model_names, sum_distances, num_identical_match, total_accs, total_ppls]
+    lines_names = ['Model Name', 'Distances ' + str(dis_percentile) + ' percentage', 'Sentence Accuracy']
+    all = [model_paper_names, sum_distances, num_identical_match] #, total_accs, total_ppls]
     if 'x86' in exp_name:
         total_succ = calc_succ(ref_num)
         all.append(total_succ)
-        lines_names.append('Total Success Percentage By TraFix')
+        lines_names.append('Sentence Accuracy By TraFix')
 
     trans_all = get_trans_all(all)
     save_table_csv(trans_all, lines_names)
@@ -479,6 +506,6 @@ if __name__ == "__main__":
     # commented out full-baseline (only transformer)
     # check()
     distance_check()
-    print_ppl_acc_graphs()
+    # print_ppl_acc_graphs()
     create_table()
     # print_sizes_histogram()
